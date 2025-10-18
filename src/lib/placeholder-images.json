@@ -1,3 +1,58 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "electric-bike-rental",
+      "description": "An electric bike parked on a city street.",
+      "imageUrl": "https://images.unsplash.com/photo-1649878938553-1eaac5c27375?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxlbGVjdHJpYyUyMGJpa2V8ZW58MHx8fHwxNzYwNzU0ODk1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "electric bike"
+    },
+    {
+      "id": "farm-to-table-restaurant",
+      "description": "A beautifully plated dish at a farm-to-table restaurant.",
+      "imageUrl": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxnb3VybWV0JTIwZm9vZHxlbnwwfHx8fDE3NjA3MzMwMjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "gourmet food"
+    },
+    {
+      "id": "eco-laundry-service",
+      "description": "Clean, folded towels stacked neatly.",
+      "imageUrl": "https://images.unsplash.com/photo-1469504512102-900f29606341?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjbGVhbiUyMGxhdW5kcnl8ZW58MHx8fHwxNzYwNzMxNjE5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "clean laundry"
+    },
+    {
+      "id": "sustainable-housekeeping",
+      "description": "A pristine and tidy hotel room.",
+      "imageUrl": "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxob3RlbCUyMHJvb218ZW58MHx8fHwxNzYwNzM0MTM4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "hotel room"
+    },
+    {
+      "id": "guided-nature-hike",
+      "description": "A scenic trail through a lush forest.",
+      "imageUrl": "https://images.unsplash.com/photo-1720760585814-5c5280ea72d5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxmb3Jlc3QlMjB0cmFpbHxlbnwwfHx8fDE3NjA3MzMxODJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "forest trail"
+    },
+    {
+      "id": "local-artisan-market",
+      "description": "Colorful crafts at a local market.",
+      "imageUrl": "https://images.unsplash.com/photo-1510247854398-8e6a1ac45557?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxhcnRpc2FuJTIwbWFya2V0fGVufDB8fHx8MTc2MDc1NTc1Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "artisan market"
+    },
+    {
+      "id": "urban-gardening-workshop",
+      "description": "People tending to plants in a rooftop garden.",
+      "imageUrl": "https://images.unsplash.com/photo-1594110757221-07709db6990c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx1cmJhbiUyMGdhcmRlbnxlbnwwfHx8fDE3NjA3NTU3NTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "urban garden"
+    },
+    {
+      "id": "zero-waste-cooking-class",
+      "description": "Fresh vegetables on a kitchen counter, ready for cooking.",
+      "imageUrl": "https://images.unsplash.com/photo-1609126986933-e3c84f19d49c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxmcmVzaCUyMHZlZ2V0YWJsZXN8ZW58MHx8fHwxNzYwNzMzMjY3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fresh vegetables"
+    },
+    {
+      "id": "hero-dashboard",
+      "description": "A stunning modern hotel lobby with natural elements.",
+      "imageUrl": "https://images.unsplash.com/photo-1546967900-1bea5f16b69d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8aG90ZWwlMjBsb2JieXxlbnwwfHx8fDE3NjA3MzQxMzh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "hotel lobby"
+    }
+  ]
 }

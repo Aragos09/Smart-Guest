@@ -1,0 +1,32 @@
+export type UserProfile = {
+  name: string;
+  email: string;
+  language: 'en' | 'es' | 'fr';
+  tripType: 'business' | 'leisure';
+  ecoSensitivity: 'low' | 'medium' | 'high';
+};
+
+export type Service = {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  ecoLabel: 'certified-organic' | 'energy-star' | 'water-wise';
+  isDurable: boolean;
+  image: string;
+  imageHint: string;
+};
+
+export type Experience = {
+  id: string;
+  name: string;
+  description: string;
+  image: string;
+  imageHint: string;
+};
+
+export type Message = {
+  id: string;
+  role: 'user' | 'assistant';
+  content: string;
+};

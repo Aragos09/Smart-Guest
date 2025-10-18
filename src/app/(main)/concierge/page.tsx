@@ -1,0 +1,145 @@
+"use client";
+
+import { useState, useRef, useEffect } from "react";
+import type { FormEvent } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Send, User, Bot } from "lucide-react";
+import type { Message } from "@/lib/types";
+import { answerUserQuery } from "@/ai/flows/answer-user-queries";
+
+export default function ConciergePage() {
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (scrollAreaRef.current) {
+      scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
+    }
+  }, [messages]);
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+
+    const userMessage: Message = {
+      id: Date.now().toString(),
+      role: "user",
+      content: input,
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
+    setInput("");
+    setIsLoading(true);
+
+    try {
+      const response = await answerUserQuery({
+        query: input,
+        userProfile: {
+          language: "en",
+          tripType: "leisure",
+          ecoSensitivity: "high",
+        },
+        knowledgeBase: "Our hotel uses solar panels for hot water, offers a linen reuse program, and sources 80% of its restaurant ingredients from local farms within a 50-mile radius. We have EV charging stations available for a small fee.",
+      });
+
+      const assistantMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        role: "assistant",
+        content: response.answer,
+      };
+      setMessages((prev) => [...prev, assistantMessage]);
+    } catch (error) {
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        role: "assistant",
+        content: "Sorry, I'm having trouble connecting. Please try again later.",
+      };
+      setMessages((prev) => [...prev, errorMessage]);
+      console.error("Error fetching AI response:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div className="flex h-[calc(100vh-2rem)] flex-col p-4">
+      <header className="mb-4">
+        <h1 className="text-2xl font-bold font-headline">AI Concierge</h1>
+        <p className="text-muted-foreground">
+          Ask me about sustainable travel, local tips, or hotel services.
+        </p>
+      </header>
+      <ScrollArea className="flex-1" ref={scrollAreaRef}>
+        <div className="space-y-6 pr-4">
+          {messages.map((message) => (
+            <div
+              key={message.id}
+              className={`flex items-start gap-4 ${
+                message.role === "user" ? "justify-end" : ""
+              }`}
+            >
+              {message.role === "assistant" && (
+                <Avatar className="h-8 w-8">
+                  <AvatarFallback>
+                    <Bot className="h-5 w-5" />
+                  </AvatarFallback>
+                </Avatar>
+              )}
+              <div
+                className={`max-w-md rounded-lg p-3 ${
+                  message.role === "user"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted"
+                }`}
+              >
+                <p className="text-sm">{message.content}</p>
+              </div>
+              {message.role === "user" && (
+                <Avatar className="h-8 w-8">
+                  <AvatarFallback>
+                    <User className="h-5 w-5" />
+                  </AvatarFallback>
+                </Avatar>
+              )}
+            </div>
+          ))}
+          {isLoading && (
+            <div className="flex items-start gap-4">
+              <Avatar className="h-8 w-8">
+                <AvatarFallback>
+                  <Bot className="h-5 w-5" />
+                </AvatarFallback>
+              </Avatar>
+              <div className="max-w-md rounded-lg bg-muted p-3">
+                <div className="flex items-center space-x-2">
+                  <span className="h-2 w-2 animate-pulse rounded-full bg-foreground/50 [animation-delay:-0.3s]"></span>
+                  <span className="h-2 w-2 animate-pulse rounded-full bg-foreground/50 [animation-delay:-0.15s]"></span>
+                  <span className="h-2 w-2 animate-pulse rounded-full bg-foreground/50"></span>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </ScrollArea>
+      <div className="mt-4">
+        <form onSubmit={handleSubmit} className="flex items-center gap-2">
+          <Input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Ask a question..."
+            className="flex-1"
+            disabled={isLoading}
+          />
+          <Button type="submit" size="icon" disabled={isLoading || !input.trim()}>
+            <Send className="h-4 w-4" />
+          </Button>
+        </form>
+      </div>
+    </div>
+  );
+}
