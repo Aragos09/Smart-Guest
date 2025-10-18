@@ -30,3 +30,15 @@ export type Message = {
   role: 'user' | 'assistant';
   content: string;
 };
+
+export type MenuItem = {
+  name: string;
+  type: string;
+  price: number;
+  eco_label: string;
+};
+
+export type MenuCategory = {
+  name: string;
+  items: MenuItem[];
+};

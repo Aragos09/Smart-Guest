@@ -11,6 +11,7 @@ import {
   Leaf,
   Settings,
   User,
+  Utensils,
 } from "lucide-react";
 import { AppLogo } from "@/components/icons";
 import {
@@ -32,6 +33,7 @@ const navItems = [
   { href: "/eco-manager", icon: Leaf, label: "Eco Manager" },
   { href: "/services", icon: Building2, label: "Services" },
   { href: "/experiences", icon: HeartHandshake, label: "Experiences" },
+  { href: "/restaurant", icon: Utensils, label: "Restaurant" },
   { href: "/concierge", icon: BotMessageSquare, label: "Concierge" },
 ];
 
