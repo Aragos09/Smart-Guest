@@ -28,21 +28,27 @@ import {
   SidebarGroupLabel,
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
+import { getTranslator } from "@/lib/translations";
+
+// For demonstration, we'll hardcode the language.
+// In a real app, this would come from user preferences or context.
+const lang = "fr";
+const t = getTranslator(lang);
 
 const navItems = [
-  { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
-  { href: "/eco-manager", icon: Leaf, label: "Eco Manager" },
-  { href: "/services", icon: Building2, label: "Services" },
-  { href: "/experiences", icon: HeartHandshake, label: "Experiences" },
-  { href: "/restaurant", icon: Utensils, label: "Restaurant" },
-  { href: "/wellness", icon: Wind, label: "Wellness" },
-  { href: "/concierge", icon: BotMessageSquare, label: "Concierge" },
+  { href: "/dashboard", icon: LayoutDashboard, label: t("Dashboard") },
+  { href: "/eco-manager", icon: Leaf, label: t("Eco Manager") },
+  { href: "/services", icon: Building2, label: t("Services") },
+  { href: "/experiences", icon: HeartHandshake, label: t("Experiences") },
+  { href: "/restaurant", icon: Utensils, label: t("Restaurant") },
+  { href: "/wellness", icon: Wind, label: t("Wellness") },
+  { href: "/concierge", icon: BotMessageSquare, label: t("Concierge") },
 ];
 
 const settingsItem = {
   href: "/profile",
   icon: Settings,
-  label: "Profile",
+  label: t("Profile"),
 };
 
 export function SidebarNav() {

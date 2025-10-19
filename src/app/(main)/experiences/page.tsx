@@ -11,6 +11,13 @@ import { Button } from "@/components/ui/button";
 import { personalizedRecommendation } from "@/ai/flows/personalized-recommendation";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import type { Experience } from "@/lib/types";
+import { getTranslator } from "@/lib/translations";
+
+// For demonstration, we'll hardcode the language.
+// In a real app, this would come from user preferences or context.
+const lang = "fr";
+const t = getTranslator(lang);
+
 
 const mockExperiences: Experience[] = [
   {
@@ -61,7 +68,7 @@ function ExperienceCard({ experience }: { experience: Experience }) {
       </CardHeader>
       <CardFooter className="mt-auto">
         <Button variant="secondary" className="w-full">
-          Learn More
+          {t('Learn More')}
         </Button>
       </CardFooter>
     </Card>
@@ -94,10 +101,10 @@ export default async function ExperiencesPage() {
     <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">
       <div>
         <h1 className="text-3xl font-bold tracking-tight font-headline">
-          Local Eco-Friendly Experiences
+          {t('Local Eco-Friendly Experiences')}
         </h1>
         <p className="text-muted-foreground">
-          Personalized recommendations for sustainable activities near you.
+          {t('Personalized recommendations for sustainable activities near you.')}
         </p>
       </div>
       <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">

@@ -16,31 +16,38 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { generateDynamicWelcomeMessage } from "@/ai/flows/dynamic-welcome-message";
 import { EcoScoreChart } from "./eco-score-chart";
+import { getTranslator } from "@/lib/translations";
+
+// For demonstration, we'll hardcode the language.
+// In a real app, this would come from user preferences or context.
+const lang = "fr";
+const t = getTranslator(lang);
+
 
 const quickLinks = [
   {
     href: "/eco-manager",
     icon: Leaf,
-    title: "Eco Manager",
-    description: "Track your impact.",
+    title: t("Eco Manager"),
+    description: t("Track your impact."),
   },
   {
     href: "/services",
     icon: Building2,
-    title: "Sustainable Services",
-    description: "Book eco-friendly services.",
+    title: t("Sustainable Services"),
+    description: t("Book eco-friendly services."),
   },
   {
     href: "/experiences",
     icon: HeartHandshake,
-    title: "Local Experiences",
-    description: "Discover green activities.",
+    title: t("Local Experiences"),
+    description: t("Discover green activities."),
   },
   {
     href: "/concierge",
     icon: BotMessageSquare,
-    title: "AI Concierge",
-    description: "Ask me anything.",
+    title: t("AI Concierge"),
+    description: t("Ask me anything."),
   },
 ];
 
@@ -58,7 +65,7 @@ export default async function DashboardPage() {
       <Card>
         <CardHeader>
           <CardTitle className="font-headline text-3xl">
-            Welcome back, Alex!
+            {t('Welcome back')}, Alex!
           </CardTitle>
           <CardDescription>
             {welcomeMessageData.welcomeMessage}
@@ -68,9 +75,9 @@ export default async function DashboardPage() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle>Your EcoScore</CardTitle>
+            <CardTitle>{t('Your EcoScore')}</CardTitle>
             <CardDescription>
-              A summary of your environmental impact during your stay.
+              {t('A summary of your environmental impact during your stay.')}
             </CardDescription>
           </CardHeader>
           <CardContent className="pb-8">
@@ -79,9 +86,9 @@ export default async function DashboardPage() {
         </Card>
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle>Quick Links</CardTitle>
+            <CardTitle>{t('Quick Links')}</CardTitle>
             <CardDescription>
-              Navigate to key features of your Smart Guest experience.
+              {t('Navigate to key features of your Smart Guest experience.')}
             </CardDescription>
           </CardHeader>
           <CardContent className="grid grid-cols-1 gap-4 sm:grid-cols-2">

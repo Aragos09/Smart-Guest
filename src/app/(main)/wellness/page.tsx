@@ -18,6 +18,13 @@ import {
   GlassWater,
   Smile,
 } from "lucide-react";
+import { getTranslator } from "@/lib/translations";
+
+// For demonstration, we'll hardcode the language.
+// In a real app, this would come from user preferences or context.
+const lang = "fr";
+const t = getTranslator(lang);
+
 
 const activities = [
   {
@@ -64,19 +71,19 @@ export default function WellnessPage() {
       <div className="flex items-center justify-between space-y-2">
         <div>
           <h1 className="text-3xl font-bold tracking-tight font-headline">
-            Wellness & Mindfulness
+            {t('Wellness & Mindfulness')}
           </h1>
           <p className="text-muted-foreground">
-            Your personal space for relaxation and well-being.
+            {t('Your personal space for relaxation and well-being.')}
           </p>
         </div>
       </div>
       <div className="grid gap-8">
         <Card>
           <CardHeader>
-            <CardTitle>Personalized Activities</CardTitle>
+            <CardTitle>{t('Personalized Activities')}</CardTitle>
             <CardDescription>
-              Based on your profile, here are some recommended activities.
+              {t('Based on your profile, here are some recommended activities.')}
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-6 md:grid-cols-3">
@@ -90,7 +97,7 @@ export default function WellnessPage() {
                   </div>
                 </CardHeader>
                 <CardFooter className="mt-auto">
-                  <Button className="w-full">Book Now</Button>
+                  <Button className="w-full">{t('Book Now')}</Button>
                 </CardFooter>
               </Card>
             ))}
@@ -99,9 +106,9 @@ export default function WellnessPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Daily Wellness Tracking</CardTitle>
+            <CardTitle>{t('Daily Wellness Tracking')}</CardTitle>
             <CardDescription>
-              Monitor your daily goals for a healthier you.
+              {t('Monitor your daily goals for a healthier you.')}
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-6 md:grid-cols-3">
@@ -122,9 +129,9 @@ export default function WellnessPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Relaxing Playlists</CardTitle>
+            <CardTitle>{t('Relaxing Playlists')}</CardTitle>
             <CardDescription>
-              Curated sounds to help you relax and focus.
+              {t('Curated sounds to help you relax and focus.')}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -139,7 +146,7 @@ export default function WellnessPage() {
                     {playlist.description}
                   </p>
                 </div>
-                <Button variant="outline">Play</Button>
+                <Button variant="outline">{t('Play')}</Button>
               </div>
             ))}
           </CardContent>

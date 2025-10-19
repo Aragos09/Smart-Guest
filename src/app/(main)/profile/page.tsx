@@ -25,6 +25,13 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { getTranslator } from "@/lib/translations";
+
+// For demonstration, we'll hardcode the language.
+// In a real app, this would come from user preferences or context.
+const lang = "fr";
+const t = getTranslator(lang);
+
 
 const profileFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
@@ -45,7 +52,7 @@ type ProfileFormValues = z.infer<typeof profileFormSchema>;
 const defaultValues: Partial<ProfileFormValues> = {
   name: "Alex Doe",
   email: "alex.doe@example.com",
-  language: "en",
+  language: "fr",
   tripType: "leisure",
   ecoSensitivity: "high",
 };
@@ -60,8 +67,8 @@ export default function ProfilePage() {
 
   function onSubmit(data: ProfileFormValues) {
     toast({
-      title: "Profile Updated",
-      description: "Your preferences have been saved successfully.",
+      title: t('Profile Updated'),
+      description: t('Your preferences have been saved successfully.'),
     });
     console.log(data);
   }
@@ -70,16 +77,16 @@ export default function ProfilePage() {
     <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">
       <div className="flex items-center justify-between space-y-2">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight font-headline">Profile Settings</h1>
+          <h1 className="text-3xl font-bold tracking-tight font-headline">{t('Profile Settings')}</h1>
           <p className="text-muted-foreground">
-            Manage your account and personalization settings.
+            {t('Manage your account and personalization settings.')}
           </p>
         </div>
       </div>
       <Card>
         <CardHeader>
-          <CardTitle>Personal Information</CardTitle>
-          <CardDescription>Update your personal details here.</CardDescription>
+          <CardTitle>{t('Personal Information')}</CardTitle>
+          <CardDescription>{t('Update your personal details here.')}</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -94,9 +101,9 @@ export default function ProfilePage() {
                   name="name"
                   render={({ field }) => (
                     <FormItem className="flex-1">
-                      <FormLabel>Full Name</FormLabel>
+                      <FormLabel>{t('Full Name')}</FormLabel>
                       <FormControl>
-                        <Input placeholder="Your name" {...field} />
+                        <Input placeholder={t('Your name')} {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -109,7 +116,7 @@ export default function ProfilePage() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>{t('Email')}</FormLabel>
                     <FormControl>
                       <Input type="email" placeholder="your.email@example.com" {...field} />
                     </FormControl>
@@ -123,11 +130,11 @@ export default function ProfilePage() {
                 name="language"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Preferred Language</FormLabel>
+                    <FormLabel>{t('Preferred Language')}</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select your language" />
+                          <SelectValue placeholder={t('Select your language')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -137,7 +144,7 @@ export default function ProfilePage() {
                       </SelectContent>
                     </Select>
                     <FormDescription>
-                      This will be used for all communications and in-app text.
+                      {t('This will be used for all communications and in-app text.')}
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -149,7 +156,7 @@ export default function ProfilePage() {
                 name="tripType"
                 render={({ field }) => (
                   <FormItem className="space-y-3">
-                    <FormLabel>Primary Trip Type</FormLabel>
+                    <FormLabel>{t('Primary TripType')}</FormLabel>
                     <FormControl>
                       <RadioGroup
                         onValueChange={field.onChange}
@@ -160,13 +167,13 @@ export default function ProfilePage() {
                           <FormControl>
                             <RadioGroupItem value="leisure" />
                           </FormControl>
-                          <FormLabel className="font-normal">Leisure</FormLabel>
+                          <FormLabel className="font-normal">{t('Leisure')}</FormLabel>
                         </FormItem>
                         <FormItem className="flex items-center space-x-3 space-y-0">
                           <FormControl>
                             <RadioGroupItem value="business" />
                           </FormControl>
-                          <FormLabel className="font-normal">Business</FormLabel>
+                          <FormLabel className="font-normal">{t('Business')}</FormLabel>
                         </FormItem>
                       </RadioGroup>
                     </FormControl>
@@ -180,7 +187,7 @@ export default function ProfilePage() {
                 name="ecoSensitivity"
                 render={({ field }) => (
                   <FormItem className="space-y-3">
-                    <FormLabel>Eco-Sensitivity Level</FormLabel>
+                    <FormLabel>{t('Eco-Sensitivity Level')}</FormLabel>
                     <FormControl>
                        <RadioGroup
                         onValueChange={field.onChange}
@@ -192,7 +199,7 @@ export default function ProfilePage() {
                             <RadioGroupItem value="high" />
                           </FormControl>
                           <FormLabel className="font-normal">
-                            High - I actively seek out the most sustainable options.
+                            {t('High - I actively seek out the most sustainable options.')}
                           </FormLabel>
                         </FormItem>
                         <FormItem className="flex items-center space-x-3 space-y-0">
@@ -200,7 +207,7 @@ export default function ProfilePage() {
                             <RadioGroupItem value="medium" />
                           </FormControl>
                           <FormLabel className="font-normal">
-                            Medium - I prefer sustainable options when convenient.
+                            {t('Medium - I prefer sustainable options when convenient.')}
                           </FormLabel>
                         </FormItem>
                         <FormItem className="flex items-center space-x-3 space-y-0">
@@ -208,20 +215,20 @@ export default function ProfilePage() {
                             <RadioGroupItem value="low" />
                           </FormControl>
                           <FormLabel className="font-normal">
-                            Low - I'm just starting to learn about eco-friendly travel.
+                            {t("Low - I'm just starting to learn about eco-friendly travel.")}
                           </FormLabel>
                         </FormItem>
                       </RadioGroup>
                     </FormControl>
                     <FormDescription>
-                      Helps us tailor recommendations to your preferences.
+                      {t('Helps us tailor recommendations to your preferences.')}
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
               />
 
-              <Button type="submit">Update Profile</Button>
+              <Button type="submit">{t('Update Profile')}</Button>
             </form>
           </Form>
         </CardContent>

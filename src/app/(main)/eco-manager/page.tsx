@@ -29,6 +29,13 @@ import {
   RecycleBadge,
   WaterBadge,
 } from "@/components/icons";
+import { getTranslator } from "@/lib/translations";
+
+// For demonstration, we'll hardcode the language.
+// In a real app, this would come from user preferences or context.
+const lang = "fr";
+const t = getTranslator(lang);
+
 
 const impactChartData = [
   { category: "Water", impact: 186, target: 200 },
@@ -96,18 +103,18 @@ export default function EcoManagerPage() {
     <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">
       <div className="flex items-center justify-between space-y-2">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight font-headline">Eco Manager</h1>
+          <h1 className="text-3xl font-bold tracking-tight font-headline">{t('Eco Manager')}</h1>
           <p className="text-muted-foreground">
-            Visualize your positive impact on the environment.
+            {t('Visualize your positive impact on the environment.')}
           </p>
         </div>
       </div>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
         <Card className="col-span-4">
           <CardHeader>
-            <CardTitle>Impact Breakdown</CardTitle>
+            <CardTitle>{t('Impact Breakdown')}</CardTitle>
             <CardDescription>
-              Your consumption compared to daily eco-targets. (Lower is better)
+              {t('Your consumption compared to daily eco-targets. (Lower is better)')}
             </CardDescription>
           </CardHeader>
           <CardContent className="pl-2">
@@ -147,8 +154,8 @@ export default function EcoManagerPage() {
         </Card>
         <Card className="col-span-4 lg:col-span-3">
           <CardHeader>
-            <CardTitle>EcoScore Trend</CardTitle>
-            <CardDescription>Your daily EcoScore during your stay.</CardDescription>
+            <CardTitle>{t('EcoScore Trend')}</CardTitle>
+            <CardDescription>{t('Your daily EcoScore during your stay.')}</CardDescription>
           </CardHeader>
           <CardContent>
             <ChartContainer config={trendChartConfig} className="h-[300px] w-full">
@@ -195,9 +202,9 @@ export default function EcoManagerPage() {
         </Card>
         <Card className="col-span-4 lg:col-span-7">
           <CardHeader>
-            <CardTitle>Achievements</CardTitle>
+            <CardTitle>{t('Achievements')}</CardTitle>
             <CardDescription>
-              Badges you've earned for your eco-friendly choices.
+              {t("Badges you've earned for your eco-friendly choices.")}
             </CardDescription>
           </CardHeader>
           <CardContent className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">

@@ -17,6 +17,13 @@ import { Label } from "@/components/ui/label";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import type { Service } from "@/lib/types";
 import { Leaf, Zap, Droplets } from "lucide-react";
+import { getTranslator } from "@/lib/translations";
+
+// For demonstration, we'll hardcode the language.
+// In a real app, this would come from user preferences or context.
+const lang = "fr";
+const t = getTranslator(lang);
+
 
 const initialServices: Service[] = [
   {
@@ -102,7 +109,7 @@ function ServiceCard({ service }: { service: Service }) {
           ${service.price}
           {service.price > 0 && <span className="text-sm font-normal text-muted-foreground">/unit</span>}
         </p>
-        <Button>Reserve</Button>
+        <Button>{t('Reserve')}</Button>
       </CardFooter>
     </Card>
   );
@@ -119,10 +126,10 @@ export default function ServicesPage() {
       <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
         <div>
           <h1 className="text-3xl font-bold tracking-tight font-headline">
-            Sustainable Services
+            {t('Sustainable Services')}
           </h1>
           <p className="text-muted-foreground">
-            Book eco-friendly services to enhance your stay.
+            {t('Book eco-friendly services to enhance your stay.')}
           </p>
         </div>
         <div className="flex items-center space-x-2">
@@ -131,7 +138,7 @@ export default function ServicesPage() {
             checked={showDurableOnly}
             onCheckedChange={setShowDurableOnly}
           />
-          <Label htmlFor="durable-only">Durable only</Label>
+          <Label htmlFor="durable-only">{t('Durable only')}</Label>
         </div>
       </div>
       <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
