@@ -14,7 +14,6 @@ export const translations = {
 
     // Dashboard
     'Welcome back': 'Bon retour',
-    "Welcome back, {name}! We're delighted to have you return, especially for a leisure trip after your last stay in our eco-suite. Your digital check-in is all set, and we've ensured you have a quiet room for a truly relaxing experience. Don't forget to explore our expanded plant-based meal options. For your leisure, we've just opened our beautiful new rooftop garden, perfect for a peaceful escape. You might also enjoy our new electric scooter rentals to explore the area sustainably. We hope you have a wonderful and refreshing stay!": "Bienvenue, {name} ! Nous sommes ravis de vous revoir, surtout pour un voyage d'agrément après votre dernier séjour dans notre suite écologique. Votre enregistrement numérique est prêt, et nous nous sommes assurés que vous ayez une chambre calme pour une expérience vraiment relaxante. N'oubliez pas d'explorer nos options de repas à base de plantes élargies. Pour vos loisirs, nous venons d'ouvrir notre magnifique nouveau jardin sur le toit, parfait pour une évasion paisible. Vous pourriez également apprécier nos nouvelles locations de scooters électriques pour explorer la région de manière durable. Nous espérons que vous passerez un séjour merveilleux et rafraîchissant !",
     'Your EcoScore': 'Votre ÉcoScore',
     'A summary of your environmental impact during your stay.': 'Un résumé de votre impact environnemental pendant votre séjour.',
     'Quick Links': 'Liens Rapides',
@@ -317,7 +316,6 @@ export const translations = {
 
     // Dashboard
     'Welcome back': 'Welcome back',
-    "Welcome back, {name}! We're delighted to have you return, especially for a leisure trip after your last stay in our eco-suite. Your digital check-in is all set, and we've ensured you have a quiet room for a truly relaxing experience. Don't forget to explore our expanded plant-based meal options. For your leisure, we've just opened our beautiful new rooftop garden, perfect for a peaceful escape. You might also enjoy our new electric scooter rentals to explore the area sustainably. We hope you have a wonderful and refreshing stay!": "Welcome back, {name}! We're delighted to have you return, especially for a leisure trip after your last stay in our eco-suite. Your digital check-in is all set, and we've ensured you have a quiet room for a truly relaxing experience. Don't forget to explore our expanded plant-based meal options. For your leisure, we've just opened our beautiful new rooftop garden, perfect for a peaceful escape. You might also enjoy our new electric scooter rentals to explore the area sustainably. We hope you have a wonderful and refreshing stay!",
     'Your EcoScore': 'Your EcoScore',
     'A summary of your environmental impact during your stay.': 'A summary of your environmental impact during your stay.',
     'Quick Links': 'Quick Links',
@@ -620,7 +618,6 @@ export const translations = {
 
     // Dashboard
     'Welcome back': 'Bienvenido de nuevo',
-    "Welcome back, {name}! We're delighted to have you return, especially for a leisure trip after your last stay in our eco-suite. Your digital check-in is all set, and we've ensured you have a quiet room for a truly relaxing experience. Don't forget to explore our expanded plant-based meal options. For your leisure, we've just opened our beautiful new rooftop garden, perfect for a peaceful escape. You might also enjoy our new electric scooter rentals to explore the area sustainably. We hope you have a wonderful and refreshing stay!": "¡Bienvenido de nuevo, {name}! Estamos encantados de que regreses, especialmente para un viaje de placer después de tu última estancia en nuestra eco-suite. Tu check-in digital está listo y nos hemos asegurado de que tengas una habitación tranquila para una experiencia verdaderamente relajante. No olvides explorar nuestras opciones ampliadas de comidas a base de plantas. Para tu ocio, acabamos de abrir nuestro hermoso jardín en la azotea, perfecto para una escapada tranquila. También puedes disfrutar de nuestros nuevos alquileres de scooters eléctricos para explorar la zona de forma sostenible. ¡Esperamos que tengas una estancia maravillosa y refrescante!",
     'Your EcoScore': 'Tu EcoScore',
     'A summary of your environmental impact during your stay.': 'Un resumen de tu impacto ambiental durante tu estancia.',
     'Quick Links': 'Enlaces Rápidos',

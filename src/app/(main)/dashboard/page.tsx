@@ -22,6 +22,8 @@ import Link from "next/link";
 import { EcoScoreChart } from "./eco-score-chart";
 import { useLanguage } from "@/context/language-context";
 import { useUserProfile } from "@/context/user-profile-context";
+import { useEffect, useState } from "react";
+import { generateDynamicWelcomeMessage } from "@/ai/flows/dynamic-welcome-message";
 
 type QuickLink = {
   id: string;
@@ -80,6 +82,32 @@ const allQuickLinks: QuickLink[] = [
 export default function DashboardPage() {
   const { t } = useLanguage();
   const { profile } = useUserProfile();
+  const [welcomeMessage, setWelcomeMessage] = useState("Loading your personalized welcome...");
+
+  useEffect(() => {
+    async function getWelcomeMessage() {
+      try {
+        const result = await generateDynamicWelcomeMessage({
+          userName: profile.name,
+          travelHistory: "Last stay was in an eco-suite.",
+          userPreferences: `Trip type: ${profile.tripType}, Digital check-in preferred, Quiet room requested.`,
+          ecoSensitivity: profile.ecoSensitivity,
+          newOptions: "Expanded plant-based meal options, new rooftop garden, electric scooter rentals available.",
+          language: profile.language,
+        });
+        setWelcomeMessage(result.welcomeMessage);
+      } catch (error) {
+        console.error("Error generating welcome message:", error);
+        // Fallback message
+        setWelcomeMessage(`Welcome back, ${profile.name}! We're glad to see you again.`);
+      }
+    }
+
+    if (profile.name) {
+      getWelcomeMessage();
+    }
+  }, [profile]);
+
 
   const quickLinks = allQuickLinks
     .filter(link => profile.quickLinks?.includes(link.id))
@@ -89,8 +117,6 @@ export default function DashboardPage() {
       description: t(link.description as any)
     }));
 
-  const welcomeMessageKey = "Welcome back, {name}! We're delighted to have you return, especially for a leisure trip after your last stay in our eco-suite. Your digital check-in is all set, and we've ensured you have a quiet room for a truly relaxing experience. Don't forget to explore our expanded plant-based meal options. For your leisure, we've just opened our beautiful new rooftop garden, perfect for a peaceful escape. You might also enjoy our new electric scooter rentals to explore the area sustainably. We hope you have a wonderful and refreshing stay!";
-
   return (
     <div className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
       <Card>
@@ -99,7 +125,7 @@ export default function DashboardPage() {
             {t('Welcome back')}, {profile.name}!
           </CardTitle>
           <CardDescription>
-            {t(welcomeMessageKey as any).replace('{name}', profile.name)}
+            {welcomeMessage}
           </CardDescription>
         </CardHeader>
       </Card>
