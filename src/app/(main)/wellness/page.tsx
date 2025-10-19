@@ -18,13 +18,7 @@ import {
   GlassWater,
   Smile,
 } from "lucide-react";
-import { getTranslator } from "@/lib/translations";
-
-// For demonstration, we'll hardcode the language.
-// In a real app, this would come from user preferences or context.
-const lang = "fr";
-const t = getTranslator(lang);
-
+import { useLanguage } from "@/context/language-context";
 
 const activities = [
   {
@@ -66,6 +60,7 @@ const wellnessTrackers = [
 ];
 
 export default function WellnessPage() {
+  const { t } = useLanguage();
   return (
     <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">
       <div className="flex items-center justify-between space-y-2">

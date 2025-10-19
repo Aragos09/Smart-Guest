@@ -1,5 +1,6 @@
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { SidebarNav } from "@/components/layout/sidebar-nav";
+import { LanguageProvider } from "@/context/language-context";
 
 export default function MainLayout({
   children,
@@ -7,11 +8,13 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <SidebarProvider>
-      <SidebarNav />
-      <SidebarInset>
-        {children}
-      </SidebarInset>
-    </SidebarProvider>
+    <LanguageProvider>
+      <SidebarProvider>
+        <SidebarNav />
+        <SidebarInset>
+          {children}
+        </SidebarInset>
+      </SidebarProvider>
+    </LanguageProvider>
   );
 }

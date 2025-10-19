@@ -19,9 +19,8 @@ import {
   CartesianGrid,
   XAxis,
   YAxis,
-  Line,
-  LineChart,
   Area,
+  LineChart,
 } from "recharts";
 import {
   EnergyBadge,
@@ -29,13 +28,7 @@ import {
   RecycleBadge,
   WaterBadge,
 } from "@/components/icons";
-import { getTranslator } from "@/lib/translations";
-
-// For demonstration, we'll hardcode the language.
-// In a real app, this would come from user preferences or context.
-const lang = "fr";
-const t = getTranslator(lang);
-
+import { useLanguage } from "@/context/language-context";
 
 const impactChartData = [
   { category: "Water", impact: 186, target: 200 },
@@ -99,6 +92,7 @@ const badges = [
 ];
 
 export default function EcoManagerPage() {
+  const { t } = useLanguage();
   return (
     <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">
       <div className="flex items-center justify-between space-y-2">

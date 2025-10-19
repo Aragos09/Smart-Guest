@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import {
   Card,
@@ -11,13 +13,8 @@ import { Button } from "@/components/ui/button";
 import { personalizedRecommendation } from "@/ai/flows/personalized-recommendation";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import type { Experience } from "@/lib/types";
-import { getTranslator } from "@/lib/translations";
-
-// For demonstration, we'll hardcode the language.
-// In a real app, this would come from user preferences or context.
-const lang = "fr";
-const t = getTranslator(lang);
-
+import { useLanguage } from "@/context/language-context";
+import { useEffect, useState } from "react";
 
 const mockExperiences: Experience[] = [
   {
@@ -51,6 +48,7 @@ const mockExperiences: Experience[] = [
 ];
 
 function ExperienceCard({ experience }: { experience: Experience }) {
+  const { t } = useLanguage();
   return (
     <Card className="flex h-full flex-col overflow-hidden">
       <div className="relative h-56 w-full">
@@ -75,27 +73,37 @@ function ExperienceCard({ experience }: { experience: Experience }) {
   );
 }
 
-export default async function ExperiencesPage() {
-  // In a real app, these values would be dynamic.
-  const recommendationInput = {
-    language: "en",
-    tripType: "leisure",
-    ecoSensitivity: "high" as "high" | "medium" | "low",
-    geolocation: { latitude: 34.0522, longitude: -118.2437 }, // Los Angeles
-    weatherCondition: "Sunny",
-    userProfile: "User enjoys outdoor activities and cultural experiences. Interested in photography."
-  };
+export default function ExperiencesPage() {
+  const { t, language } = useLanguage();
+  const [displayExperiences, setDisplayExperiences] = useState<Experience[]>(mockExperiences);
 
-  const { recommendations } = await personalizedRecommendation(recommendationInput);
-  
-  // For this scaffold, we'll map AI recommendations to our mock data.
-  // A real implementation would fetch detailed data from a database based on the recommendation IDs/names.
-  const recommendedExperiences = mockExperiences.filter(exp => 
-    recommendations.some(rec => rec.toLowerCase().includes(exp.name.toLowerCase()))
-  );
-  
-  // If AI recommendations don't match, show all mock experiences as a fallback.
-  const displayExperiences = recommendedExperiences.length > 0 ? recommendedExperiences : mockExperiences;
+  useEffect(() => {
+    async function getRecommendations() {
+      // In a real app, these values would be dynamic.
+      const recommendationInput = {
+        language: language,
+        tripType: "leisure",
+        ecoSensitivity: "high" as "high" | "medium" | "low",
+        geolocation: { latitude: 34.0522, longitude: -118.2437 }, // Los Angeles
+        weatherCondition: "Sunny",
+        userProfile: "User enjoys outdoor activities and cultural experiences. Interested in photography."
+      };
+
+      const { recommendations } = await personalizedRecommendation(recommendationInput);
+      
+      // For this scaffold, we'll map AI recommendations to our mock data.
+      // A real implementation would fetch detailed data from a database based on the recommendation IDs/names.
+      const recommendedExperiences = mockExperiences.filter(exp => 
+        recommendations.some(rec => rec.toLowerCase().includes(exp.name.toLowerCase()))
+      );
+      
+      // If AI recommendations don't match, show all mock experiences as a fallback.
+      setDisplayExperiences(recommendedExperiences.length > 0 ? recommendedExperiences : mockExperiences);
+    }
+    
+    getRecommendations();
+  }, [language]);
+
 
   return (
     <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">

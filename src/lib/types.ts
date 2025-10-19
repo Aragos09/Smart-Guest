@@ -1,7 +1,9 @@
+import type { Language } from "./translations";
+
 export type UserProfile = {
   name: string;
   email: string;
-  language: 'en' | 'es' | 'fr';
+  language: Language;
   tripType: 'business' | 'leisure';
   ecoSensitivity: 'low' | 'medium' | 'high';
 };

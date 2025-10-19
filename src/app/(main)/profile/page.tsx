@@ -25,13 +25,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { getTranslator } from "@/lib/translations";
-
-// For demonstration, we'll hardcode the language.
-// In a real app, this would come from user preferences or context.
-const lang = "fr";
-const t = getTranslator(lang);
-
+import { useLanguage } from "@/context/language-context";
+import type { Language } from "@/lib/translations";
 
 const profileFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
@@ -49,16 +44,18 @@ const profileFormSchema = z.object({
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
-const defaultValues: Partial<ProfileFormValues> = {
-  name: "Alex Doe",
-  email: "alex.doe@example.com",
-  language: "fr",
-  tripType: "leisure",
-  ecoSensitivity: "high",
-};
-
 export default function ProfilePage() {
+  const { t, language, setLanguage } = useLanguage();
   const { toast } = useToast();
+
+  const defaultValues: Partial<ProfileFormValues> = {
+    name: "Alex Doe",
+    email: "alex.doe@example.com",
+    language: language,
+    tripType: "leisure",
+    ecoSensitivity: "high",
+  };
+
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
     defaultValues,
@@ -66,11 +63,11 @@ export default function ProfilePage() {
   });
 
   function onSubmit(data: ProfileFormValues) {
+    setLanguage(data.language as Language);
     toast({
       title: t('Profile Updated'),
       description: t('Your preferences have been saved successfully.'),
     });
-    console.log(data);
   }
 
   return (
@@ -156,7 +153,7 @@ export default function ProfilePage() {
                 name="tripType"
                 render={({ field }) => (
                   <FormItem className="space-y-3">
-                    <FormLabel>{t('Primary TripType')}</FormLabel>
+                    <FormLabel>{t('Primary Trip Type')}</FormLabel>
                     <FormControl>
                       <RadioGroup
                         onValueChange={field.onChange}

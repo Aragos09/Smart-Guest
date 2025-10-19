@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Card,
   CardContent,
@@ -13,52 +15,55 @@ import {
   Leaf,
 } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { generateDynamicWelcomeMessage } from "@/ai/flows/dynamic-welcome-message";
 import { EcoScoreChart } from "./eco-score-chart";
-import { getTranslator } from "@/lib/translations";
+import { useLanguage } from "@/context/language-context";
+import { useEffect, useState } from "react";
 
-// For demonstration, we'll hardcode the language.
-// In a real app, this would come from user preferences or context.
-const lang = "fr";
-const t = getTranslator(lang);
+export default function DashboardPage() {
+  const { t } = useLanguage();
+  const [welcomeMessage, setWelcomeMessage] = useState("");
 
-
-const quickLinks = [
-  {
-    href: "/eco-manager",
-    icon: Leaf,
-    title: t("Eco Manager"),
-    description: t("Track your impact."),
-  },
-  {
-    href: "/services",
-    icon: Building2,
-    title: t("Sustainable Services"),
-    description: t("Book eco-friendly services."),
-  },
-  {
-    href: "/experiences",
-    icon: HeartHandshake,
-    title: t("Local Experiences"),
-    description: t("Discover green activities."),
-  },
-  {
-    href: "/concierge",
-    icon: BotMessageSquare,
-    title: t("AI Concierge"),
-    description: t("Ask me anything."),
-  },
-];
-
-export default async function DashboardPage() {
-  const welcomeMessageData = await generateDynamicWelcomeMessage({
-    userName: "Alex",
-    travelHistory: "Frequent business traveler, last stayed in our eco-suite.",
-    userPreferences: "Prefers quiet rooms, plant-based meals, and digital check-ins.",
-    ecoSensitivity: "high",
-    newOptions: "We've introduced a new rooftop garden and electric scooter rentals.",
-  });
+  const quickLinks = [
+    {
+      href: "/eco-manager",
+      icon: Leaf,
+      title: t("Eco Manager"),
+      description: t("Track your impact."),
+    },
+    {
+      href: "/services",
+      icon: Building2,
+      title: t("Sustainable Services"),
+      description: t("Book eco-friendly services."),
+    },
+    {
+      href: "/experiences",
+      icon: HeartHandshake,
+      title: t("Local Experiences"),
+      description: t("Discover green activities."),
+    },
+    {
+      href: "/concierge",
+      icon: BotMessageSquare,
+      title: t("AI Concierge"),
+      description: t("Ask me anything."),
+    },
+  ];
+  
+  useEffect(() => {
+    async function getWelcomeMessage() {
+        const welcomeMessageData = await generateDynamicWelcomeMessage({
+            userName: "Alex",
+            travelHistory: "Frequent business traveler, last stayed in our eco-suite.",
+            userPreferences: "Prefers quiet rooms, plant-based meals, and digital check-ins.",
+            ecoSensitivity: "high",
+            newOptions: "We've introduced a new rooftop garden and electric scooter rentals.",
+        });
+        setWelcomeMessage(welcomeMessageData.welcomeMessage);
+    }
+    getWelcomeMessage();
+  }, []);
 
   return (
     <div className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
@@ -68,7 +73,7 @@ export default async function DashboardPage() {
             {t('Welcome back')}, Alex!
           </CardTitle>
           <CardDescription>
-            {welcomeMessageData.welcomeMessage}
+            {welcomeMessage}
           </CardDescription>
         </CardHeader>
       </Card>

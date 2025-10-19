@@ -17,13 +17,7 @@ import { Label } from "@/components/ui/label";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import type { Service } from "@/lib/types";
 import { Leaf, Zap, Droplets } from "lucide-react";
-import { getTranslator } from "@/lib/translations";
-
-// For demonstration, we'll hardcode the language.
-// In a real app, this would come from user preferences or context.
-const lang = "fr";
-const t = getTranslator(lang);
-
+import { useLanguage } from "@/context/language-context";
 
 const initialServices: Service[] = [
   {
@@ -75,6 +69,7 @@ const ecoLabelInfo = {
 };
 
 function ServiceCard({ service }: { service: Service }) {
+  const { t } = useLanguage();
   const labelInfo = ecoLabelInfo[service.ecoLabel];
   const LabelIcon = labelInfo.icon;
 
@@ -116,6 +111,7 @@ function ServiceCard({ service }: { service: Service }) {
 }
 
 export default function ServicesPage() {
+  const { t } = useLanguage();
   const [showDurableOnly, setShowDurableOnly] = useState(false);
   const filteredServices = showDurableOnly
     ? initialServices.filter((s) => s.isDurable)

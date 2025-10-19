@@ -3,14 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  BarChart3,
   BotMessageSquare,
   Building2,
   HeartHandshake,
   LayoutDashboard,
   Leaf,
   Settings,
-  User,
   Utensils,
   Wind,
 } from "lucide-react";
@@ -24,35 +22,28 @@ import {
   SidebarTrigger,
   SidebarFooter,
   SidebarContent,
-  SidebarGroup,
-  SidebarGroupLabel,
 } from "@/components/ui/sidebar";
-import { Button } from "@/components/ui/button";
-import { getTranslator } from "@/lib/translations";
-
-// For demonstration, we'll hardcode the language.
-// In a real app, this would come from user preferences or context.
-const lang = "fr";
-const t = getTranslator(lang);
-
-const navItems = [
-  { href: "/dashboard", icon: LayoutDashboard, label: t("Dashboard") },
-  { href: "/eco-manager", icon: Leaf, label: t("Eco Manager") },
-  { href: "/services", icon: Building2, label: t("Services") },
-  { href: "/experiences", icon: HeartHandshake, label: t("Experiences") },
-  { href: "/restaurant", icon: Utensils, label: t("Restaurant") },
-  { href: "/wellness", icon: Wind, label: t("Wellness") },
-  { href: "/concierge", icon: BotMessageSquare, label: t("Concierge") },
-];
-
-const settingsItem = {
-  href: "/profile",
-  icon: Settings,
-  label: t("Profile"),
-};
+import { useLanguage } from "@/context/language-context";
 
 export function SidebarNav() {
   const pathname = usePathname();
+  const { t } = useLanguage();
+
+  const navItems = [
+    { href: "/dashboard", icon: LayoutDashboard, label: t("Dashboard") },
+    { href: "/eco-manager", icon: Leaf, label: t("Eco Manager") },
+    { href: "/services", icon: Building2, label: t("Services") },
+    { href: "/experiences", icon: HeartHandshake, label: t("Experiences") },
+    { href: "/restaurant", icon: Utensils, label: t("Restaurant") },
+    { href: "/wellness", icon: Wind, label: t("Wellness") },
+    { href: "/concierge", icon: BotMessageSquare, label: t("Concierge") },
+  ];
+
+  const settingsItem = {
+    href: "/profile",
+    icon: Settings,
+    label: t("Profile"),
+  };
 
   return (
     <Sidebar collapsible="icon" className="group-data-[variant=inset]:bg-transparent group-data-[variant=inset]:border-none dark:group-data-[variant=inset]:bg-transparent">
