@@ -12,6 +12,7 @@ import {
   Settings,
   User,
   Utensils,
+  Wind,
 } from "lucide-react";
 import { AppLogo } from "@/components/icons";
 import {
@@ -34,6 +35,7 @@ const navItems = [
   { href: "/services", icon: Building2, label: "Services" },
   { href: "/experiences", icon: HeartHandshake, label: "Experiences" },
   { href: "/restaurant", icon: Utensils, label: "Restaurant" },
+  { href: "/wellness", icon: Wind, label: "Wellness" },
   { href: "/concierge", icon: BotMessageSquare, label: "Concierge" },
 ];
 
