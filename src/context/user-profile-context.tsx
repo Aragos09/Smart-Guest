@@ -10,6 +10,15 @@ export type UserProfile = {
   language: Language;
   tripType: 'leisure' | 'business';
   ecoSensitivity: 'low' | 'medium' | 'high';
+  arrivalDate?: string;
+  bedType?: string;
+  floorPreference?: string;
+  viewPreference?: string;
+  pillowType?: string;
+  roomFragrance?: string;
+  housekeepingSchedule?: string;
+  dietaryRestrictions?: string;
+  allergies?: string[];
 };
 
 type UserProfileContextType = {
@@ -68,3 +77,5 @@ export function useUserProfile() {
   }
   return context;
 }
+
+    
