@@ -2,7 +2,8 @@
 "use client";
 
 import { useState } from "react";
-import menuData from "@/lib/room-service-menu.json";
+import classicMenuData from "@/lib/room-service-menu.json";
+import veganMenuData from "@/lib/room-service-menu-vegan.json";
 import { useLanguage } from "@/context/language-context";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -27,11 +28,12 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { useCart } from "@/context/cart-context";
 import type { RoomServiceItem, CartItem } from "@/lib/types";
-import { Search, ShoppingCart, Plus, Minus, Trash2 } from "lucide-react";
+import { Search, ShoppingCart, Plus, Minus, Trash2, ArrowLeft, Utensils, Leaf } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import Image from "next/image";
 
-const { room_service_menu: menu } = menuData;
+const { room_service_menu: classicMenu } = classicMenuData;
+const { room_service_menu_vegan: veganMenu } = veganMenuData;
 
 function MenuItemCard({ item }: { item: RoomServiceItem }) {
   const { t } = useLanguage();
@@ -47,17 +49,17 @@ function MenuItemCard({ item }: { item: RoomServiceItem }) {
     } as CartItem);
     toast({
       title: t('Added to cart'),
-      description: `${item.name_fr} ${t('has been added to your order.')}`,
+      description: `${t(item.name_fr as any)} ${t('has been added to your order.')}`,
     });
   };
 
   return (
     <Card className="overflow-hidden flex flex-col">
-      <CardHeader>
-        <CardTitle>{item.name_fr}</CardTitle>
+       <CardHeader>
+        <CardTitle>{t(item.name_fr as any)}</CardTitle>
       </CardHeader>
       <CardContent className="flex-grow">
-        <p className="text-sm text-muted-foreground">{item.description_fr}</p>
+        <p className="text-sm text-muted-foreground">{t(item.description_fr as any)}</p>
       </CardContent>
       <CardFooter className="flex items-center justify-between mt-auto">
         <p className="text-lg font-bold">{item.price_eur > 0 ? `${item.price_eur.toFixed(2)}€` : t('Offert')}</p>
@@ -157,81 +159,126 @@ function CartSheet() {
   );
 }
 
-export default function RoomServicePage() {
+function MenuDisplay({ menuData, onBack }: { menuData: any, onBack: () => void }) {
   const { t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState("");
-  const { totalItems } = useCart();
-  const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const categories = Object.entries(menu.categories).map(([id, items]) => ({
+  const categories = Object.entries(menuData.categories).map(([id, items]: [string, any]) => ({
     id,
     name: t(id.charAt(0).toUpperCase() + id.slice(1) as any),
-    items: items.filter(item =>
-        item.name_fr.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.description_fr.toLowerCase().includes(searchTerm.toLowerCase())
+    items: items.filter((item: RoomServiceItem) =>
+        t(item.name_fr as any).toLowerCase().includes(searchTerm.toLowerCase()) ||
+        t(item.description_fr as any).toLowerCase().includes(searchTerm.toLowerCase())
     )
   })).filter(category => category.items.length > 0);
 
   const defaultTab = categories.length > 0 ? categories[0].id : "";
-
+  
   return (
     <div className="flex h-full flex-col">
-      <div className="p-4 md:p-8">
-        <h1 className="text-3xl font-bold tracking-tight font-headline">{t("Room Service")}</h1>
-        <p className="text-muted-foreground">{t("Order from your room, 24/7.")}</p>
-        <div className="relative mt-4">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-          <Input
-            placeholder={t("Search for dishes...")}
-            className="pl-10"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+        <div className="p-4 md:p-8">
+            <Button variant="ghost" onClick={onBack} className="mb-4">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                {t('Back to menus')}
+            </Button>
+            <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                <Input
+                    placeholder={t("Search for dishes...")}
+                    className="pl-10"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+            </div>
+        </div>
+
+        <Tabs defaultValue={defaultTab} className="flex-1 flex flex-col">
+            <div className="px-4 md:px-8">
+                <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
+                    {Object.keys(menuData.categories).map((cat) => (
+                        <TabsTrigger key={cat} value={cat}>{t(cat.charAt(0).toUpperCase() + cat.slice(1) as any)}</TabsTrigger>
+                    ))}
+                </TabsList>
+            </div>
+            <ScrollArea className="flex-1">
+                <div className="p-4 md:p-8">
+                    {categories.map((category) => (
+                        <TabsContent key={category.id} value={category.id}>
+                        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                            {category.items.map((item: RoomServiceItem) => (
+                            <MenuItemCard key={item.name_fr} item={item} />
+                            ))}
+                        </div>
+                        </TabsContent>
+                    ))}
+                    {
+                    categories.length === 0 && (
+                        <div className="text-center text-muted-foreground py-10">
+                        {t('No dishes found.')}
+                        </div>
+                    )
+                    }
+                </div>
+            </ScrollArea>
+        </Tabs>
+    </div>
+  );
+}
+
+
+export default function RoomServicePage() {
+  const { t } = useLanguage();
+  const { totalItems } = useCart();
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [selectedMenu, setSelectedMenu] = useState<"classic" | "vegan" | null>(null);
+
+  if (!selectedMenu) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full p-4">
+        <h1 className="text-3xl font-bold tracking-tight text-center font-headline">{t("Room Service")}</h1>
+        <p className="text-muted-foreground text-center mb-8">{t("Please select a menu to start your order.")}</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-2xl">
+          <Card className="text-center hover:bg-muted/50 transition-colors cursor-pointer" onClick={() => setSelectedMenu('classic')}>
+            <CardHeader>
+              <Utensils className="h-12 w-12 mx-auto text-primary" />
+            </CardHeader>
+            <CardContent>
+              <CardTitle className="text-2xl font-headline">{t('Classic Menu')}</CardTitle>
+              <CardDescription>{t('A selection of timeless favorites and comforting classics.')}</CardDescription>
+            </CardContent>
+          </Card>
+          <Card className="text-center hover:bg-muted/50 transition-colors cursor-pointer" onClick={() => setSelectedMenu('vegan')}>
+            <CardHeader>
+              <Leaf className="h-12 w-12 mx-auto text-accent" />
+            </CardHeader>
+            <CardContent>
+              <CardTitle className="text-2xl font-headline">{t('Vegan Menu')}</CardTitle>
+              <CardDescription>{t('Delicious and creative plant-based dishes.')}</CardDescription>
+            </CardContent>
+          </Card>
         </div>
       </div>
+    );
+  }
+  
+  const menuData = selectedMenu === 'classic' ? classicMenu : veganMenu;
 
-      <Tabs defaultValue={defaultTab} className="flex-1 flex flex-col">
-        <div className="px-4 md:px-8">
-            <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
-                {Object.keys(menu.categories).map((cat) => (
-                    <TabsTrigger key={cat} value={cat}>{t(cat.charAt(0).toUpperCase() + cat.slice(1) as any)}</TabsTrigger>
-                ))}
-            </TabsList>
-        </div>
-        <ScrollArea className="flex-1">
-            <div className="p-4 md:p-8">
-                {categories.map((category) => (
-                    <TabsContent key={category.id} value={category.id}>
-                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                        {category.items.map((item) => (
-                        <MenuItemCard key={item.name_fr} item={item} />
-                        ))}
-                    </div>
-                    </TabsContent>
-                ))}
-                {
-                  categories.length === 0 && (
-                    <div className="text-center text-muted-foreground py-10">
-                      {t('No dishes found.')}
-                    </div>
-                  )
-                }
+  return (
+    <div className="h-full flex flex-col">
+        <MenuDisplay menuData={menuData} onBack={() => setSelectedMenu(null)} />
+        
+        <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
+            <CartSheet />
+        </Sheet>
+
+        {totalItems > 0 && (
+            <div className="sticky bottom-0 z-10 w-full p-4 bg-background/80 backdrop-blur-sm border-t">
+            <Button className="w-full text-lg h-14" onClick={() => setIsCartOpen(true)}>
+                <ShoppingCart className="mr-2 h-5 w-5" />
+                {t('My Order')} ({totalItems})
+            </Button>
             </div>
-        </ScrollArea>
-      </Tabs>
-      
-      <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
-        <CartSheet />
-      </Sheet>
-
-      {totalItems > 0 && (
-        <div className="sticky bottom-0 z-10 w-full p-4">
-          <Button className="w-full text-lg h-14" onClick={() => setIsCartOpen(true)}>
-            <ShoppingCart className="mr-2 h-5 w-5" />
-            {t('My Order')} ({totalItems})
-          </Button>
-        </div>
-      )}
+        )}
     </div>
   );
 }

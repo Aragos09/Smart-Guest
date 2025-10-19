@@ -1,0 +1,114 @@
+{
+  "room_service_menu_vegan": {
+    "categories": {
+      "entrees": [
+        {
+          "name_fr": "Ceviche de légumes croquants",
+          "description_fr": "Légumes de saison marinés au citron vert, lait de coco, coriandre fraîche",
+          "price_eur": 10.00
+        },
+        {
+          "name_fr": "Terrine végétale aux lentilles et champignons",
+          "description_fr": "Servie avec chutney de mangue et toasts grillés",
+          "price_eur": 9.50
+        },
+        {
+          "name_fr": "Salade de quinoa tricolore",
+          "description_fr": "Grenade, avocat, fèves edamame, vinaigrette sésame-citron",
+          "price_eur": 11.00
+        },
+        {
+          "name_fr": "Soupe froide de carotte et gingembre",
+          "description_fr": "Parfumée au lait d’amande et coriandre",
+          "price_eur": 8.50
+        }
+      ],
+      "plats": [
+        {
+          "name_fr": "Curry thaï vert aux légumes bio",
+          "description_fr": "Lait de coco, citronnelle, riz jasmin",
+          "price_eur": 19.50
+        },
+        {
+          "name_fr": "Burger vegan gourmet",
+          "description_fr": "Galette de pois chiches, avocat, oignons rouges, sauce tahini, frites de patate douce",
+          "price_eur": 21.00
+        },
+        {
+          "name_fr": "Lasagnes de légumes grillés",
+          "description_fr": "Béchamel végétale, pesto de basilic maison",
+          "price_eur": 18.50
+        },
+        {
+          "name_fr": "Tofu rôti au sésame noir",
+          "description_fr": "Purée de patates douces, légumes vapeur, réduction soja-miel vegan",
+          "price_eur": 20.00
+        },
+        {
+          "name_fr": "Poke bowl équilibré",
+          "description_fr": "Riz complet, edamame, mangue, chou rouge, graines de chia, sauce soja-gingembre",
+          "price_eur": 17.50
+        }
+      ],
+      "desserts": [
+        {
+          "name_fr": "Tarte au chocolat cru et dattes",
+          "description_fr": "Ganache cacao-avocat, base aux noix de cajou",
+          "price_eur": 9.00
+        },
+        {
+          "name_fr": "Cheesecake vegan au citron vert",
+          "description_fr": "Base coco-amande, coulis de framboise",
+          "price_eur": 8.50
+        },
+        {
+          "name_fr": "Mousse de mangue et lait de coco",
+          "description_fr": "Servie fraîche, zestes de citron vert",
+          "price_eur": 8.00
+        },
+        {
+          "name_fr": "Brownie sans gluten",
+          "description_fr": "Cacao pur, noix de pécan, sirop d’érable",
+          "price_eur": 9.50
+        }
+      ],
+      "boissons": [
+        {
+          "name_fr": "Kombucha artisanal (gingembre / hibiscus)",
+          "size": "33cl",
+          "price_eur": 6.00
+        },
+        {
+          "name_fr": "Smoothie Énergie verte",
+          "description_fr": "Épinards, kiwi, pomme, spiruline",
+          "price_eur": 6.50
+        },
+        {
+          "name_fr": "Eau de coco bio",
+          "size": "33cl",
+          "price_eur": 5.00
+        },
+        {
+          "name_fr": "Infusion glacée maison",
+          "description_fr": "Menthe, citron, miel d’agave",
+          "price_eur": 4.50
+        },
+        {
+          "name_fr": "Vin blanc vegan Côtes-du-Rhône 2021",
+          "size": "12cl",
+          "price_eur": 9.00
+        }
+      ]
+    },
+    "eco_options": {
+      "ingredients_origin_fr": "Ingrédients issus de l’agriculture biologique certifiée",
+      "packaging_fr": "Emballages compostables et biodégradables",
+      "energy_saving_fr": "Cuisine basse consommation énergétique",
+      "waste_reduction_fr": "Réduction du gaspillage alimentaire via précommande"
+    },
+    "service_info": {
+      "availability_fr": "Service disponible 24h/24",
+      "delivery_time_fr": "Temps moyen de livraison : 25 minutes"
+    }
+  }
+}
