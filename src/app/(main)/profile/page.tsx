@@ -31,7 +31,7 @@ import { useLanguage } from "@/context/language-context";
 import type { Language } from "@/lib/translations";
 import { useUserProfile } from "@/context/user-profile-context";
 import { useEffect, useState } from "react";
-import { Star } from "lucide-react";
+import { LucideIcon, Star, Leaf, Building2, HeartHandshake, BotMessageSquare, Utensils, Wind } from "lucide-react";
 import menuData from "@/lib/restaurant-menu.json";
 import signatureMenuJson from "@/lib/signature-menu.json";
 import type { MenuCategory, SignatureMenuData } from "@/lib/types";
@@ -51,6 +51,15 @@ const alergies = [
   { id: "dairy", label: "Dairy" },
   { id: "wheat", label: "Wheat" },
   { id: "other", label: "Other" },
+];
+
+const allQuickLinks = [
+  { id: "eco-manager", label: "Eco Manager", icon: Leaf },
+  { id: "services", label: "Services", icon: Building2 },
+  { id: "experiences", label: "Experiences", icon: HeartHandshake },
+  { id: "concierge", label: "Concierge", icon: BotMessageSquare },
+  { id: "restaurant", label: "Restaurant", icon: Utensils },
+  { id: "wellness", label: "Wellness", icon: Wind },
 ];
 
 const profileFormSchema = z.object({
@@ -74,6 +83,7 @@ const profileFormSchema = z.object({
   dietaryRestrictions: z.string().optional(),
   allergies: z.array(z.string()).optional(),
   favoriteDishes: z.array(z.string()).optional(),
+  quickLinks: z.array(z.string()).optional(),
 });
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
@@ -207,6 +217,7 @@ export default function ProfilePage() {
           <Card>
             <CardHeader>
                 <CardTitle>{t('Stay & Room Preferences')}</CardTitle>
+                <CardDescription>{t("Customize your room for the perfect stay.")}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-8">
                 <FormField
@@ -314,7 +325,7 @@ export default function ProfilePage() {
                             </FormControl>
                             <SelectContent>
                             <SelectItem value="none">{t('None')}</SelectItem>
-                            <SelectItem value="citrus">{t('Citrus')}</SelectItem>
+                            <SelectItem value="citrus">{t('Citrus')}</FormItem>
                             <SelectItem value="lavender">{t('Lavender')}</SelectItem>
                             <SelectItem value="fresh-linen">{t('Fresh linen')}</SelectItem>
                             </SelectContent>
@@ -350,6 +361,7 @@ export default function ProfilePage() {
           <Card>
             <CardHeader>
                 <CardTitle>{t('Dietary Preferences')}</CardTitle>
+                <CardDescription>{t("Let us know about your dietary needs and allergies.")}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-8">
                  <FormField
@@ -463,7 +475,66 @@ export default function ProfilePage() {
 
           <Card>
             <CardHeader>
+              <CardTitle>{t('Dashboard Customization')}</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-8">
+              <FormField
+                control={form.control}
+                name="quickLinks"
+                render={() => (
+                  <FormItem>
+                    <div className="mb-4">
+                      <FormLabel className="text-base">{t('Quick Links')}</FormLabel>
+                      <FormDescription>
+                        {t('Select which quick links to display on your dashboard.')}
+                      </FormDescription>
+                    </div>
+                    <div className="space-y-2">
+                      {allQuickLinks.map((item) => (
+                        <FormField
+                          key={item.id}
+                          control={form.control}
+                          name="quickLinks"
+                          render={({ field }) => {
+                            return (
+                              <FormItem
+                                key={item.id}
+                                className="flex flex-row items-start space-x-3 space-y-0"
+                              >
+                                <FormControl>
+                                  <Checkbox
+                                    checked={field.value?.includes(item.id)}
+                                    onCheckedChange={(checked) => {
+                                      return checked
+                                        ? field.onChange([...(field.value || []), item.id])
+                                        : field.onChange(
+                                            field.value?.filter(
+                                              (value) => value !== item.id
+                                            )
+                                          );
+                                    }}
+                                  />
+                                </FormControl>
+                                <FormLabel className="font-normal">
+                                  {t(item.label as any)}
+                                </FormLabel>
+                              </FormItem>
+                            );
+                          }}
+                        />
+                      ))}
+                    </div>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
               <CardTitle>{t('Primary Trip Type')}</CardTitle>
+              <CardDescription>{t("This helps us tailor your experience, whether you're here for work or play.")}</CardDescription>
             </CardHeader>
             <CardContent>
               <FormField

@@ -19,6 +19,7 @@ export type UserProfile = {
   dietaryRestrictions?: string;
   allergies?: string[];
   favoriteDishes?: string[];
+  quickLinks?: string[];
 };
 
 type UserProfileContextType = {
@@ -36,6 +37,7 @@ const defaultProfile: UserProfile = {
     tripType: "leisure",
     ecoSensitivity: "high",
     favoriteDishes: [],
+    quickLinks: ["eco-manager", "services", "experiences", "concierge"],
 };
 
 export function UserProfileProvider({ children }: { children: ReactNode }) {
@@ -47,10 +49,17 @@ export function UserProfileProvider({ children }: { children: ReactNode }) {
       const storedProfile = localStorage.getItem("userProfile");
       if (storedProfile) {
         const parsedProfile = JSON.parse(storedProfile);
-        setProfileState(prevState => ({ ...prevState, ...parsedProfile }));
+        // Ensure default quicklinks are set if they don't exist in stored profile
+        if (!parsedProfile.quickLinks) {
+          parsedProfile.quickLinks = defaultProfile.quickLinks;
+        }
+        setProfileState(prevState => ({ ...defaultProfile, ...parsedProfile }));
+      } else {
+        setProfileState(defaultProfile);
       }
     } catch (error) {
       console.error("Failed to load user profile from local storage", error);
+      setProfileState(defaultProfile);
     } finally {
         setIsLoading(false);
     }

@@ -14,6 +14,9 @@ import {
   Building2,
   HeartHandshake,
   Leaf,
+  LucideIcon,
+  Utensils,
+  Wind
 } from "lucide-react";
 import Link from "next/link";
 import { generateDynamicWelcomeMessage } from "@/ai/flows/dynamic-welcome-message";
@@ -22,38 +25,73 @@ import { useLanguage } from "@/context/language-context";
 import { useEffect, useState } from "react";
 import { useUserProfile } from "@/context/user-profile-context";
 
+type QuickLink = {
+  id: string;
+  href: string;
+  icon: LucideIcon;
+  title: string;
+  description: string;
+};
+
+const allQuickLinks: QuickLink[] = [
+  {
+    id: "eco-manager",
+    href: "/eco-manager",
+    icon: Leaf,
+    title: "Eco Manager",
+    description: "Track your impact.",
+  },
+  {
+    id: "services",
+    href: "/services",
+    icon: Building2,
+    title: "Sustainable Services",
+    description: "Book eco-friendly services.",
+  },
+  {
+    id: "experiences",
+    href: "/experiences",
+    icon: HeartHandshake,
+    title: "Local Experiences",
+    description: "Discover green activities.",
+  },
+  {
+    id: "concierge",
+    href: "/concierge",
+    icon: BotMessageSquare,
+    title: "AI Concierge",
+    description: "Ask me anything.",
+  },
+  {
+    id: "restaurant",
+    href: "/restaurant",
+    icon: Utensils,
+    title: "Restaurant",
+    description: "Discover our delicious menus.",
+  },
+  {
+    id: "wellness",
+    href: "/wellness",
+    icon: Wind,
+    title: "Wellness",
+    description: "Relax and rejuvenate.",
+  }
+];
+
+
 export default function DashboardPage() {
   const { t } = useLanguage();
   const { profile } = useUserProfile();
   const [welcomeMessage, setWelcomeMessage] = useState("");
 
-  const quickLinks = [
-    {
-      href: "/eco-manager",
-      icon: Leaf,
-      title: t("Eco Manager"),
-      description: t("Track your impact."),
-    },
-    {
-      href: "/services",
-      icon: Building2,
-      title: t("Sustainable Services"),
-      description: t("Book eco-friendly services."),
-    },
-    {
-      href: "/experiences",
-      icon: HeartHandshake,
-      title: t("Local Experiences"),
-      description: t("Discover green activities."),
-    },
-    {
-      href: "/concierge",
-      icon: BotMessageSquare,
-      title: t("AI Concierge"),
-      description: t("Ask me anything."),
-    },
-  ];
-  
+  const quickLinks = allQuickLinks
+    .filter(link => profile.quickLinks?.includes(link.id))
+    .map(link => ({
+      ...link,
+      title: t(link.title as any),
+      description: t(link.description as any)
+    }));
+
   useEffect(() => {
     async function getWelcomeMessage() {
         const welcomeMessageData = await generateDynamicWelcomeMessage({

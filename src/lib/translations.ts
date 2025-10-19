@@ -25,6 +25,8 @@ export const translations = {
     'Sustainable Services': 'Services Durables',
     'Local Experiences': 'Expériences Locales',
     'AI Concierge': 'Concierge IA',
+    'Discover our delicious menus.': 'Découvrez nos délicieux menus.',
+    'Relax and rejuvenate.': 'Détendez-vous et ressourcez-vous.',
     
     // Eco Manager
     'Visualize your positive impact on the environment.': 'Visualisez votre impact positif sur l\'environnement.',
@@ -136,6 +138,11 @@ export const translations = {
     'Wheat': 'Blé',
     'Other': 'Autre',
     'You have no favorite dishes yet. Star them in the restaurant menu!': 'Vous n\'avez pas encore de plats favoris. Marquez-les dans le menu du restaurant !',
+    'Customize your room for the perfect stay.': "Personnalisez votre chambre pour un séjour parfait.",
+    "Let us know about your dietary needs and allergies.": "Informez-nous de vos besoins alimentaires et allergies.",
+    "This helps us tailor your experience, whether you're here for work or play.": "Cela nous aide à personnaliser votre expérience, que vous soyez ici pour le travail ou les loisirs.",
+    'Dashboard Customization': "Personnalisation du tableau de bord",
+    "Select which quick links to display on your dashboard.": "Sélectionnez les liens rapides à afficher sur votre tableau de bord.",
 
     // Services
     'Book eco-friendly services to enhance your stay.': 'Réservez des services écologiques pour améliorer votre séjour.',
@@ -313,6 +320,8 @@ export const translations = {
     'Sustainable Services': 'Sustainable Services',
     'Local Experiences': 'Local Experiences',
     'AI Concierge': 'AI Concierge',
+    'Discover our delicious menus.': 'Discover our delicious menus.',
+    'Relax and rejuvenate.': 'Relax and rejuvenate.',
 
     // Eco Manager
     'Visualize your positive impact on the environment.': 'Visualize your positive impact on the environment.',
@@ -424,6 +433,12 @@ export const translations = {
     'Wheat': 'Wheat',
     'Other': 'Other',
     'You have no favorite dishes yet. Star them in the restaurant menu!': 'You have no favorite dishes yet. Star them in the restaurant menu!',
+    'Customize your room for the perfect stay.': "Customize your room for the perfect stay.",
+    "Let us know about your dietary needs and allergies.": "Let us know about your dietary needs and allergies.",
+    "This helps us tailor your experience, whether you're here for work or play.": "This helps us tailor your experience, whether you're here for work or play.",
+    'Dashboard Customization': "Dashboard Customization",
+    "Select which quick links to display on your dashboard.": "Select which quick links to display on your dashboard.",
+
 
     // Services
     'Book eco-friendly services to enhance your stay.': 'Book eco-friendly services to enhance your stay.',
@@ -601,6 +616,8 @@ export const translations = {
     'Sustainable Services': 'Servicios Sostenibles',
     'Local Experiences': 'Experiencias Locales',
     'AI Concierge': 'Conserje de IA',
+    'Discover our delicious menus.': 'Descubre nuestros deliciosos menús.',
+    'Relax and rejuvenate.': 'Relájate y renuévate.',
 
     // Eco Manager
     'Visualize your positive impact on the environment.': 'Visualiza tu impacto positivo en el medio ambiente.',
@@ -712,6 +729,12 @@ export const translations = {
     'Wheat': 'Trigo',
     'Other': 'Otro',
     'You have no favorite dishes yet. Star them in the restaurant menu!': 'Aún no tienes platos favoritos. ¡Márcalos en el menú del restaurante!',
+    'Customize your room for the perfect stay.': "Personaliza tu habitación para una estancia perfecta.",
+    "Let us know about your dietary needs and allergies.": "Infórmanos sobre tus necesidades dietéticas y alergias.",
+    "This helps us tailor your experience, whether you're here for work or play.": "Esto nos ayuda a personalizar tu experiencia, ya sea que estés aquí por trabajo o por placer.",
+    'Dashboard Customization': "Personalización del tablero",
+    "Select which quick links to display on your dashboard.": "Selecciona qué enlaces rápidos mostrar en tu tablero.",
+
 
     // Services
     'Book eco-friendly services to enhance your stay.': 'Reserva servicios ecológicos para mejorar tu estancia.',
