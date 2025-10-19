@@ -65,8 +65,6 @@ export const translations = {
     'Favorite Dishes': 'Plats Favoris',
     'Star your favorite meals for future stays.': 'Mettez en favoris vos plats préférés pour vos futurs séjours.',
     'Stay & Room Preferences': 'Préférences de Séjour et de Chambre',
-    'Arrival Date': 'Date d\'arrivée',
-    'Pick a date': 'Choisissez une date',
     'Bed Type': 'Type de lit',
     'Select a bed type': 'Sélectionnez un type de lit',
     'King': 'King',
@@ -107,7 +105,7 @@ export const translations = {
     'Halal': 'Halal',
     'Kosher': 'Casher',
     'Gluten-free': 'Sans gluten',
-    'Lactose-free': 'Sans lactose',
+    'Lactose-free': 'Sans lactosa',
     'No dietary restrictions': 'Aucune restriction alimentaire',
     'Allergens': 'Allergènes',
     'Nuts': 'Fruits à coque',
@@ -115,8 +113,6 @@ export const translations = {
     'Dairy': 'Produits laitiers',
     'Wheat': 'Blé',
     'Other': 'Autre',
-    'Online Check-in': 'Enregistrement en ligne',
-    'Proceed to Check-in': 'Procéder à l\'enregistrement',
     'You have no favorite dishes yet. Star them in the restaurant menu!': 'Vous n\'avez pas encore de plats favoris. Marquez-les dans le menu du restaurant !',
 
     // Services
@@ -303,8 +299,6 @@ export const translations = {
     'Favorite Dishes': 'Favorite Dishes',
     'Star your favorite meals for future stays.': 'Star your favorite meals for future stays.',
     'Stay & Room Preferences': 'Stay & Room Preferences',
-    'Arrival Date': 'Arrival Date',
-    'Pick a date': 'Pick a date',
     'Bed Type': 'Bed Type',
     'Select a bed type': 'Select a bed type',
     'King': 'King',
@@ -353,8 +347,6 @@ export const translations = {
     'Dairy': 'Dairy',
     'Wheat': 'Wheat',
     'Other': 'Other',
-    'Online Check-in': 'Online Check-in',
-    'Proceed to Check-in': 'Proceed to Check-in',
     'You have no favorite dishes yet. Star them in the restaurant menu!': 'You have no favorite dishes yet. Star them in the restaurant menu!',
 
     // Services
@@ -541,8 +533,6 @@ export const translations = {
     'Favorite Dishes': 'Platos Favoritos',
     'Star your favorite meals for future stays.': 'Guarda tus platos favoritos para futuras estancias.',
     'Stay & Room Preferences': 'Preferencias de Estancia y Habitación',
-    'Arrival Date': 'Fecha de llegada',
-    'Pick a date': 'Elige una fecha',
     'Bed Type': 'Tipo de cama',
     'Select a bed type': 'Selecciona un tipo de cama',
     'King': 'King',
@@ -591,8 +581,6 @@ export const translations = {
     'Dairy': 'Lácteos',
     'Wheat': 'Trigo',
     'Other': 'Otro',
-    'Online Check-in': 'Check-in en línea',
-    'Proceed to Check-in': 'Proceder al check-in',
     'You have no favorite dishes yet. Star them in the restaurant menu!': 'Aún no tienes platos favoritos. ¡Márcalos en el menú del restaurante!',
 
     // Services

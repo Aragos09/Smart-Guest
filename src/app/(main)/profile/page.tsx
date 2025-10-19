@@ -31,11 +31,7 @@ import { useLanguage } from "@/context/language-context";
 import type { Language } from "@/lib/translations";
 import { useUserProfile } from "@/context/user-profile-context";
 import { useEffect, useState } from "react";
-import { CalendarIcon, Star } from "lucide-react";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
-import { format } from "date-fns";
-import { cn } from "@/lib/utils";
+import { Star } from "lucide-react";
 import menuData from "@/lib/restaurant-menu.json";
 import signatureMenuJson from "@/lib/signature-menu.json";
 import type { MenuCategory, SignatureMenuData } from "@/lib/types";
@@ -69,7 +65,6 @@ const profileFormSchema = z.object({
   ecoSensitivity: z.enum(["low", "medium", "high"], {
     required_error: "Please select your eco-sensitivity level.",
   }),
-  arrivalDate: z.date().optional(),
   bedType: z.string().optional(),
   floorPreference: z.string().optional(),
   viewPreference: z.string().optional(),
@@ -87,43 +82,24 @@ export default function ProfilePage() {
   const { t, setLanguage, language } = useLanguage();
   const { toast } = useToast();
   const { profile, setProfile, isLoading } = useUserProfile();
-  const [isTodayArrival, setIsTodayArrival] = useState(false);
 
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
-    defaultValues: {
-      ...profile,
-      arrivalDate: profile.arrivalDate ? new Date(profile.arrivalDate) : undefined,
-    },
+    defaultValues: profile,
     mode: "onChange",
   });
   
   useEffect(() => {
     if (!isLoading) {
-      const defaultValues = {
-        ...profile,
-        arrivalDate: profile.arrivalDate ? new Date(profile.arrivalDate) : undefined,
-      };
-      form.reset(defaultValues);
-      
-      if (profile.arrivalDate) {
-        const arrival = new Date(profile.arrivalDate);
-        const today = new Date();
-        setIsTodayArrival(arrival.toDateString() === today.toDateString());
-      }
+      form.reset(profile);
     }
   }, [isLoading, profile, form]);
 
   function onSubmit(data: ProfileFormValues) {
-    const dataToSave = {
-        ...data,
-        arrivalDate: data.arrivalDate?.toISOString(),
-    }
-
     if (data.language !== language) {
       setLanguage(data.language as Language);
     }
-    setProfile(dataToSave as any);
+    setProfile(data as any);
     toast({
       title: t('Profile Updated'),
       description: t('Your preferences have been saved successfully.'),
@@ -228,65 +204,11 @@ export default function ProfilePage() {
              </CardContent>
           </Card>
           
-          {isTodayArrival && (
-            <Card>
-              <CardHeader>
-                <CardTitle>{t('Online Check-in')}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Button>{t('Proceed to Check-in')}</Button>
-              </CardContent>
-            </Card>
-          )}
-
           <Card>
             <CardHeader>
                 <CardTitle>{t('Stay & Room Preferences')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-8">
-                <FormField
-                    control={form.control}
-                    name="arrivalDate"
-                    render={({ field }) => (
-                        <FormItem className="flex flex-col">
-                        <FormLabel>{t('Arrival Date')}</FormLabel>
-                        <Popover>
-                            <PopoverTrigger asChild>
-                            <FormControl>
-                                <Button
-                                variant={"outline"}
-                                className={cn(
-                                    "w-[240px] pl-3 text-left font-normal",
-                                    !field.value && "text-muted-foreground"
-                                )}
-                                >
-                                {field.value ? (
-                                    format(field.value, "PPP")
-                                ) : (
-                                    <span>{t('Pick a date')}</span>
-                                )}
-                                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                                </Button>
-                            </FormControl>
-                            </PopoverTrigger>
-                            <PopoverContent className="w-auto p-0" align="start">
-                            <Calendar
-                                mode="single"
-                                selected={field.value}
-                                onSelect={(date) => {
-                                    field.onChange(date);
-                                    const today = new Date();
-                                    setIsTodayArrival(date?.toDateString() === today.toDateString());
-                                }}
-                                disabled={(date) => date < new Date()}
-                                initialFocus
-                            />
-                            </PopoverContent>
-                        </Popover>
-                        <FormMessage />
-                        </FormItem>
-                    )}
-                />
                 <FormField
                     control={form.control}
                     name="bedType"
@@ -463,7 +385,7 @@ export default function ProfilePage() {
                   render={() => (
                     <FormItem>
                       <div className="mb-4">
-                        <FormLabel className="text-base">{t('Allergies')}</FormLabel>
+                        <FormLabel className="text-base">{t('Allergens')}</FormLabel>
                       </div>
                       <div className="space-y-2">
                       {alergies.map((item) => (

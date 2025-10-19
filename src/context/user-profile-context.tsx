@@ -10,7 +10,6 @@ export type UserProfile = {
   language: Language;
   tripType: 'leisure' | 'business';
   ecoSensitivity: 'low' | 'medium' | 'high';
-  arrivalDate?: string;
   bedType?: string;
   floorPreference?: string;
   viewPreference?: string;
