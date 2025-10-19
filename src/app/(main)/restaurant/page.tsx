@@ -46,7 +46,7 @@ function SignatureMenuItemCard({ item }: { item: SignatureMenuItem }) {
       <div className="flex justify-between gap-4">
         <h3 className="font-semibold">{item.name}</h3>
         {item.price && (
-          <div className="text-lg font-bold text-primary">{item.price}€</div>
+          <div className="text-lg font-bold text-primary">{item.price.toFixed(2)}€</div>
         )}
       </div>
       {item.description && (
