@@ -140,7 +140,21 @@ export const translations = {
     // Services
     'Book eco-friendly services to enhance your stay.': 'Réservez des services écologiques pour améliorer votre séjour.',
     'Durable only': 'Durable seulement',
+    'Durable': 'Durable',
     'Reserve': 'Réserver',
+    'Free': 'Gratuit',
+    'unit': 'unité',
+    'Electric Bike Rental': 'Location de Vélo Électrique',
+    'Explore the city with zero emissions. Our e-bikes are perfect for a day of adventure.': 'Explorez la ville sans émissions. Nos vélos électriques sont parfaits pour une journée d\'aventure.',
+    'Farm-to-Table Dinner': 'Dîner de la Ferme à la Table',
+    'Enjoy a delicious 3-course meal made from locally sourced, organic ingredients.': 'Savourez un délicieux repas 3 services à base d\'ingrédients locaux et biologiques.',
+    'Eco-Friendly Laundry': 'Blanchisserie Écologique',
+    'Water-efficient and biodegradable detergents to keep your clothes fresh and the planet happy.': 'Détergents économes en eau et biodégradables pour garder vos vêtements frais et la planète heureuse.',
+    'Sustainable Housekeeping': 'Entretien Ménager Durable',
+    'Daily room cleaning using only non-toxic, eco-friendly products. Linen reuse is encouraged.': 'Nettoyage quotidien de la chambre en utilisant uniquement des produits non toxiques et écologiques. La réutilisation du linge est encouragée.',
+    'Energy-Wise': 'Éco-Énergétique',
+    'Water-Saver': 'Économe en Eau',
+    'Organic': 'Biologique',
 
     // Wellness
     'Wellness & Mindfulness': 'Bien-être & Pleine Conscience',
@@ -414,7 +428,21 @@ export const translations = {
     // Services
     'Book eco-friendly services to enhance your stay.': 'Book eco-friendly services to enhance your stay.',
     'Durable only': 'Durable only',
+    'Durable': 'Durable',
     'Reserve': 'Reserve',
+    'Free': 'Free',
+    'unit': 'unit',
+    'Electric Bike Rental': 'Electric Bike Rental',
+    'Explore the city with zero emissions. Our e-bikes are perfect for a day of adventure.': 'Explore the city with zero emissions. Our e-bikes are perfect for a day of adventure.',
+    'Farm-to-Table Dinner': 'Farm-to-Table Dinner',
+    'Enjoy a delicious 3-course meal made from locally sourced, organic ingredients.': 'Enjoy a delicious 3-course meal made from locally sourced, organic ingredients.',
+    'Eco-Friendly Laundry': 'Eco-Friendly Laundry',
+    'Water-efficient and biodegradable detergents to keep your clothes fresh and the planet happy.': 'Water-efficient and biodegradable detergents to keep your clothes fresh and the planet happy.',
+    'Sustainable Housekeeping': 'Sustainable Housekeeping',
+    'Daily room cleaning using only non-toxic, eco-friendly products. Linen reuse is encouraged.': 'Daily room cleaning using only non-toxic, eco-friendly products. Linen reuse is encouraged.',
+    'Energy-Wise': 'Energy-Wise',
+    'Water-Saver': 'Water-Saver',
+    'Organic': 'Organic',
 
     // Wellness
     'Wellness & Mindfulness': 'Wellness & Mindfulness',
@@ -688,7 +716,22 @@ export const translations = {
     // Services
     'Book eco-friendly services to enhance your stay.': 'Reserva servicios ecológicos para mejorar tu estancia.',
     'Durable only': 'Solo duraderos',
+    'Durable': 'Durable',
     'Reserve': 'Reservar',
+    'Free': 'Gratis',
+    'unit': 'unidad',
+    'Electric Bike Rental': 'Alquiler de Bicicletas Eléctricas',
+    'Explore the city with zero emissions. Our e-bikes are perfect for a day of adventure.': 'Explora la ciudad sin emisiones. Nuestras bicicletas eléctricas son perfectas para un día de aventura.',
+    'Farm-to-Table Dinner': 'Cena de la Granja a la Mesa',
+    'Enjoy a delicious 3-course meal made from locally sourced, organic ingredients.': 'Disfruta de una deliciosa comida de 3 platos elaborada con ingredientes locales y orgánicos.',
+    'Eco-Friendly Laundry': 'Lavandería Ecológica',
+    'Water-efficient and biodegradable detergents to keep your clothes fresh and the planet happy.': 'Detergentes eficientes en el uso del agua y biodegradables para mantener tu ropa fresca y el planeta feliz.',
+    'Sustainable Housekeeping': 'Limpieza Sostenible',
+    'Daily room cleaning using only non-toxic, eco-friendly products. Linen reuse is encouraged.': 'Limpieza diaria de la habitación utilizando solo productos no tóxicos y ecológicos. Se fomenta la reutilización de la ropa de cama.',
+    'Energy-Wise': 'Eficiencia Energética',
+    'Water-Saver': 'Ahorro de Agua',
+    'Organic': 'Orgánico',
+
 
     // Wellness
     'Wellness & Mindfulness': 'Bienestar y Mindfulness',

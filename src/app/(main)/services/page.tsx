@@ -86,24 +86,24 @@ function ServiceCard({ service }: { service: Service }) {
         />
       </div>
       <CardHeader>
-        <CardTitle>{service.name}</CardTitle>
-        <CardDescription>{service.description}</CardDescription>
+        <CardTitle>{t(service.name as any)}</CardTitle>
+        <CardDescription>{t(service.description as any)}</CardDescription>
       </CardHeader>
       <CardContent className="flex-grow">
         <Badge variant={labelInfo.variant as any}>
           <LabelIcon className="mr-2 h-4 w-4" />
-          {labelInfo.text}
+          {t(labelInfo.text as any)}
         </Badge>
         {service.isDurable && (
           <Badge variant="outline" className="ml-2">
-            Durable
+            {t('Durable')}
           </Badge>
         )}
       </CardContent>
       <CardFooter className="flex items-center justify-between">
         <p className="text-xl font-bold">
-          ${service.price}
-          {service.price > 0 && <span className="text-sm font-normal text-muted-foreground">/unit</span>}
+          {service.price > 0 ? `${service.price}€` : t('Free')}
+          {service.price > 0 && <span className="text-sm font-normal text-muted-foreground">/{t('unit')}</span>}
         </p>
         <Button>{t('Reserve')}</Button>
       </CardFooter>
