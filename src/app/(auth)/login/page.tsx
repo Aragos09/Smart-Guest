@@ -9,15 +9,19 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
+  CardFooter
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
+import Link from "next/link";
+import { useLanguage } from "@/context/language-context";
 
 export default function LoginPage() {
   const router = useRouter();
   const { toast } = useToast();
+  const { t } = useLanguage();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,22 +40,22 @@ export default function LoginPage() {
         </div>
         <CardTitle className="text-2xl font-headline">Smart Guest</CardTitle>
         <CardDescription>
-          Your AI-powered sustainable travel companion
+          {t('Your AI-powered sustainable travel companion')}
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleLogin}>
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">{t('Email')}</Label>
               <Input id="email" type="email" placeholder="name@example.com" required />
             </div>
             <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">{t('Password')}</Label>
               <Input id="password" type="password" placeholder="••••••••" required />
             </div>
             <Button type="submit" className="w-full">
-              Sign In
+              {t('Sign In')}
             </Button>
           </div>
         </form>
@@ -61,14 +65,22 @@ export default function LoginPage() {
         <div className="space-y-3">
           <Button variant="outline" className="w-full">
             <GoogleIcon className="mr-2 h-4 w-4" />
-            Continue with Google
+            {t('Continue with Google')}
           </Button>
           <Button variant="outline" className="w-full">
             <AppleIcon className="mr-2 h-4 w-4" />
-            Continue with Apple
+            {t('Continue with Apple')}
           </Button>
         </div>
       </CardContent>
+       <CardFooter className="flex-col gap-2 pt-6">
+        <p className="text-xs text-muted-foreground">
+          {t('Don\'t have an account? Sign up')}
+        </p>
+        <Button variant="outline" className="w-full" asChild>
+          <Link href="/signup">{t('create_account_button')}</Link>
+        </Button>
+      </CardFooter>
     </Card>
   );
 }
