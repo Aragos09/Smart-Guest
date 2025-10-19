@@ -15,7 +15,7 @@
         {"name": "Filet de bar rôti", "type": "Pescetarien", "price": 24, "eco_label": "Pêche durable"},
         {"name": "Risotto de champignons", "type": "Végétarien", "price": 20, "eco_label": "Bio"},
         {"name": "Curry vert de légumes", "type": "Vegan", "price": 18, "eco_label": "Bio / Équitable"},
-        {"name": "Burger végétal Smart Guest", "type": "Vegan", "price": 19, "eco_label": "Local / Bio"},
+        {"name": "Burger végétal", "type": "Vegan", "price": 19, "eco_label": "Local / Bio"},
         {"name": "Suprême de volaille fermière", "type": "Omnivore", "price": 23, "eco_label": "Label Rouge"}
       ]
     },
