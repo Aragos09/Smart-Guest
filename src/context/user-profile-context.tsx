@@ -19,6 +19,7 @@ export type UserProfile = {
   housekeepingSchedule?: string;
   dietaryRestrictions?: string;
   allergies?: string[];
+  favoriteDishes?: string[];
 };
 
 type UserProfileContextType = {
@@ -35,6 +36,7 @@ const defaultProfile: UserProfile = {
     language: "en",
     tripType: "leisure",
     ecoSensitivity: "high",
+    favoriteDishes: [],
 };
 
 export function UserProfileProvider({ children }: { children: ReactNode }) {
@@ -45,7 +47,8 @@ export function UserProfileProvider({ children }: { children: ReactNode }) {
     try {
       const storedProfile = localStorage.getItem("userProfile");
       if (storedProfile) {
-        setProfileState(JSON.parse(storedProfile));
+        const parsedProfile = JSON.parse(storedProfile);
+        setProfileState(prevState => ({ ...prevState, ...parsedProfile }));
       }
     } catch (error) {
       console.error("Failed to load user profile from local storage", error);
@@ -77,5 +80,3 @@ export function useUserProfile() {
   }
   return context;
 }
-
-    

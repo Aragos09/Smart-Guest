@@ -36,6 +36,10 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
+import menuData from "@/lib/restaurant-menu.json";
+import type { MenuCategory } from "@/lib/types";
+
+const { categories: menuCategories }: { categories: MenuCategory[] } = menuData;
 
 const alergies = [
   { id: "nuts", label: "Nuts" },
@@ -66,6 +70,7 @@ const profileFormSchema = z.object({
   housekeepingSchedule: z.string().optional(),
   dietaryRestrictions: z.string().optional(),
   allergies: z.array(z.string()).optional(),
+  favoriteDishes: z.array(z.string()).optional(),
 });
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
@@ -479,6 +484,65 @@ export default function ProfilePage() {
                 />
             </CardContent>
           </Card>
+          
+          <Card>
+            <CardHeader>
+              <CardTitle>Favorite Dishes</CardTitle>
+              <CardDescription>
+                Star your favorite meals for future stays.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <FormField
+                control={form.control}
+                name="favoriteDishes"
+                render={() => (
+                  <FormItem>
+                    {menuCategories.map((category) => (
+                      <div key={category.name}>
+                        <h3 className="mb-4 text-lg font-medium">{category.name}</h3>
+                        <div className="space-y-2">
+                          {category.items.map((item) => (
+                            <FormField
+                              key={item.name}
+                              control={form.control}
+                              name="favoriteDishes"
+                              render={({ field }) => (
+                                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                                  <FormControl>
+                                    <Checkbox
+                                      checked={field.value?.includes(item.name)}
+                                      onCheckedChange={(checked) => {
+                                        return checked
+                                          ? field.onChange([
+                                              ...(field.value || []),
+                                              item.name,
+                                            ])
+                                          : field.onChange(
+                                              field.value?.filter(
+                                                (value) => value !== item.name
+                                              )
+                                            );
+                                      }}
+                                    />
+                                  </FormControl>
+                                  <div className="space-y-1 leading-none">
+                                    <FormLabel className="font-normal">
+                                      {item.name}
+                                    </FormLabel>
+                                  </div>
+                                </FormItem>
+                              )}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </FormItem>
+                )}
+              />
+            </CardContent>
+          </Card>
 
           <Card>
             <CardHeader>
@@ -575,5 +639,3 @@ export default function ProfilePage() {
     </div>
   );
 }
-
-    
