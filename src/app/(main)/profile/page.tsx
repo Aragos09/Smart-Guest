@@ -67,7 +67,7 @@ const profileFormSchema = z.object({
   viewPreference: z.string().optional(),
   pillowType: z.string().optional(),
   roomFragrance: z.string().optional(),
-  housekeepingSchedule: zstring().optional(),
+  housekeepingSchedule: z.string().optional(),
   dietaryRestrictions: z.string().optional(),
   allergies: z.array(z.string()).optional(),
   favoriteDishes: z.array(z.string()).optional(),
@@ -422,7 +422,7 @@ export default function ProfilePage() {
                             </FormControl>
                             <SelectContent>
                                 <SelectItem value="vegan">{t('Vegan')}</SelectItem>
-                                <SelectItem value="vegetarian">{t('Vegetarian')}</SelectItem>
+                                <SelectItem value="vegetarian">{t('Végétarien')}</SelectItem>
                                 <SelectItem value="halal">{t('Halal')}</SelectItem>
                                 <SelectItem value="kosher">{t('Kosher')}</SelectItem>
                                 <SelectItem value="gluten-free">{t('Gluten-free')}</SelectItem>
