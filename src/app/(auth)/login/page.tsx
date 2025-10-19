@@ -1,7 +1,8 @@
+
 "use client";
 
 import { useRouter } from "next/navigation";
-import { AppleIcon, AppLogo, GoogleIcon } from "@/components/icons";
+import { AppleIcon, AppLogo } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -61,10 +62,6 @@ export default function LoginPage() {
           <span className="px-2 text-xs text-muted-foreground bg-card">OR</span>
         </Separator>
         <div className="space-y-3">
-          <Button variant="outline" className="w-full">
-            <GoogleIcon className="mr-2 h-4 w-4" />
-            {t('Continue with Google')}
-          </Button>
           <Button variant="outline" className="w-full">
             <AppleIcon className="mr-2 h-4 w-4" />
             {t('Continue with Apple')}
