@@ -10,18 +10,34 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
 import menuData from "@/lib/restaurant-menu.json";
 import signatureMenuJson from "@/lib/signature-menu.json";
-import type { MenuCategory, MenuItem, SignatureMenuData, SignatureMenuSection, SignatureMenuItem } from "@/lib/types";
+import type { MenuCategory, MenuItem, SignatureMenuData, SignatureMenuItem } from "@/lib/types";
 import { useLanguage } from "@/context/language-context";
-import { Utensils, Leaf, Fish, RotateCw, Box } from "lucide-react";
+import { useUserProfile } from "@/context/user-profile-context";
+import { Utensils, Leaf, Fish, RotateCw, Box, Star } from "lucide-react";
 
 const { categories }: { categories: MenuCategory[] } = menuData;
 const { menu: signatureMenu }: { menu: SignatureMenuData } = signatureMenuJson;
 
 function MenuItemCard({ item }: { item: MenuItem }) {
   const { t } = useLanguage();
+  const { profile, setProfile } = useUserProfile();
+
+  const isFavorite = profile.favoriteDishes?.includes(item.name);
+
+  const toggleFavorite = () => {
+    const favorites = profile.favoriteDishes || [];
+    let newFavorites;
+    if (isFavorite) {
+      newFavorites = favorites.filter((dish) => dish !== item.name);
+    } else {
+      newFavorites = [...favorites, item.name];
+    }
+    setProfile({ ...profile, favoriteDishes: newFavorites });
+  };
+
   return (
     <div className="flex justify-between gap-4 py-4">
       <div className="flex flex-col">
@@ -32,8 +48,13 @@ function MenuItemCard({ item }: { item: MenuItem }) {
           <Badge variant="outline">{t(item.eco_label as any)}</Badge>
         </div>
       </div>
-      <div className="text-lg font-bold text-primary">
-        {item.price > 0 ? `${item.price}€` : t('Offert')}
+      <div className="flex items-center gap-4">
+        <div className="text-lg font-bold text-primary">
+          {item.price > 0 ? `${item.price}€` : t('Offert')}
+        </div>
+        <Button variant="ghost" size="icon" onClick={toggleFavorite} aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}>
+            <Star className={`h-5 w-5 ${isFavorite ? "fill-yellow-400 text-yellow-400" : "text-muted-foreground"}`} />
+        </Button>
       </div>
     </div>
   );
@@ -41,13 +62,33 @@ function MenuItemCard({ item }: { item: MenuItem }) {
 
 function SignatureMenuItemCard({ item }: { item: SignatureMenuItem }) {
   const { t } = useLanguage();
+  const { profile, setProfile } = useUserProfile();
+
+  const isFavorite = profile.favoriteDishes?.includes(item.name);
+
+  const toggleFavorite = () => {
+    const favorites = profile.favoriteDishes || [];
+    let newFavorites;
+    if (isFavorite) {
+      newFavorites = favorites.filter((dish) => dish !== item.name);
+    } else {
+      newFavorites = [...favorites, item.name];
+    }
+    setProfile({ ...profile, favoriteDishes: newFavorites });
+  };
+
   return (
     <div className="flex flex-col gap-2 py-4">
       <div className="flex justify-between gap-4">
         <h3 className="font-semibold">{t(item.name as any)}</h3>
-        {item.price && (
-          <div className="text-lg font-bold text-primary">{item.price.toFixed(2)}€</div>
-        )}
+        <div className="flex items-center gap-4">
+          {item.price && (
+            <div className="text-lg font-bold text-primary">{item.price.toFixed(2)}€</div>
+          )}
+          <Button variant="ghost" size="icon" onClick={toggleFavorite} aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}>
+            <Star className={`h-5 w-5 ${isFavorite ? "fill-yellow-400 text-yellow-400" : "text-muted-foreground"}`} />
+          </Button>
+        </div>
       </div>
       {item.description && (
         <p className="text-sm text-muted-foreground">{t(item.description as any)}</p>
@@ -56,7 +97,7 @@ function SignatureMenuItemCard({ item }: { item: SignatureMenuItem }) {
         {item.allergens && item.allergens.length > 0 && (
           <p>
             <span className="font-medium text-foreground">{t('Allergens')}:</span>{" "}
-            {item.allergens.join(", ")}
+            {item.allergens.map(t).join(", ")}
           </p>
         )}
         {item.wine_pairing && (
@@ -168,5 +209,3 @@ export default function RestaurantPage() {
     </div>
   );
 }
-
-    

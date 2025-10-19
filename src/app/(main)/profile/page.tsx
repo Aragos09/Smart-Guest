@@ -31,15 +31,23 @@ import { useLanguage } from "@/context/language-context";
 import type { Language } from "@/lib/translations";
 import { useUserProfile } from "@/context/user-profile-context";
 import { useEffect, useState } from "react";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, Star } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import menuData from "@/lib/restaurant-menu.json";
-import type { MenuCategory } from "@/lib/types";
+import signatureMenuJson from "@/lib/signature-menu.json";
+import type { MenuCategory, SignatureMenuData } from "@/lib/types";
 
 const { categories: menuCategories }: { categories: MenuCategory[] } = menuData;
+const { menu: signatureMenu }: { menu: SignatureMenuData } = signatureMenuJson;
+
+const allDishes = [
+    ...menuCategories.flatMap(cat => cat.items.map(item => item.name)),
+    ...signatureMenu.sections.flatMap(sec => sec.items.map(item => item.name))
+];
+
 
 const alergies = [
   { id: "nuts", label: "Nuts" },
@@ -122,9 +130,23 @@ export default function ProfilePage() {
     });
   }
 
+  const toggleFavorite = (dishName: string) => {
+    const favorites = profile.favoriteDishes || [];
+    const newFavorites = favorites.includes(dishName)
+      ? favorites.filter((dish) => dish !== dishName)
+      : [...favorites, dishName];
+    
+    // Update both context and form state
+    setProfile({ ...profile, favoriteDishes: newFavorites });
+    form.setValue("favoriteDishes", newFavorites, { shouldDirty: true });
+  };
+
+
   if (isLoading) {
     return <div>Loading...</div>
   }
+
+  const favoriteDishes = profile.favoriteDishes || [];
 
   return (
     <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">
@@ -493,54 +515,27 @@ export default function ProfilePage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <FormField
-                control={form.control}
-                name="favoriteDishes"
-                render={() => (
-                  <FormItem>
-                    {menuCategories.map((category) => (
-                      <div key={category.name}>
-                        <h3 className="mb-4 text-lg font-medium">{t(category.name as any)}</h3>
-                        <div className="space-y-2">
-                          {category.items.map((item) => (
-                            <FormField
-                              key={item.name}
-                              control={form.control}
-                              name="favoriteDishes"
-                              render={({ field }) => (
-                                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
-                                  <FormControl>
-                                    <Checkbox
-                                      checked={field.value?.includes(item.name)}
-                                      onCheckedChange={(checked) => {
-                                        return checked
-                                          ? field.onChange([
-                                              ...(field.value || []),
-                                              item.name,
-                                            ])
-                                          : field.onChange(
-                                              field.value?.filter(
-                                                (value) => value !== item.name
-                                              )
-                                            );
-                                      }}
-                                    />
-                                  </FormControl>
-                                  <div className="space-y-1 leading-none">
-                                    <FormLabel className="font-normal">
-                                      {t(item.name as any)}
-                                    </FormLabel>
-                                  </div>
-                                </FormItem>
-                              )}
-                            />
-                          ))}
+                {favoriteDishes.length > 0 ? (
+                    <div className="space-y-2">
+                        {favoriteDishes.map((dishName) => (
+                        <div
+                            key={dishName}
+                            className="flex flex-row items-center justify-between space-x-3 space-y-0 rounded-md border p-4"
+                        >
+                            <p className="font-normal">{t(dishName as any)}</p>
+                            <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() => toggleFavorite(dishName)}
+                            >
+                            <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                            </Button>
                         </div>
-                      </div>
-                    ))}
-                  </FormItem>
+                        ))}
+                    </div>
+                ) : (
+                    <p className="text-muted-foreground">{t('You have no favorite dishes yet. Star them in the restaurant menu!')}</p>
                 )}
-              />
             </CardContent>
           </Card>
 
@@ -639,5 +634,3 @@ export default function ProfilePage() {
     </div>
   );
 }
-
-    

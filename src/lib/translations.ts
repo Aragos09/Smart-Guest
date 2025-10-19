@@ -108,7 +108,7 @@ export const translations = {
     'Gluten-free': 'Sans gluten',
     'Lactose-free': 'Sans lactose',
     'No dietary restrictions': 'Aucune restriction alimentaire',
-    'Allergies': 'Allergies',
+    'Allergens': 'Allergènes',
     'Nuts': 'Fruits à coque',
     'Shellfish': 'Crustacés',
     'Dairy': 'Produits laitiers',
@@ -116,6 +116,7 @@ export const translations = {
     'Other': 'Autre',
     'Online Check-in': 'Enregistrement en ligne',
     'Proceed to Check-in': 'Procéder à l\'enregistrement',
+    'You have no favorite dishes yet. Star them in the restaurant menu!': 'Vous n\'avez pas encore de plats favoris. Marquez-les dans le menu du restaurant !',
 
     // Services
     'Book eco-friendly services to enhance your stay.': 'Réservez des services écologiques pour améliorer votre séjour.',
@@ -344,7 +345,7 @@ export const translations = {
     'Gluten-free': 'Gluten-free',
     'Lactose-free': 'Lactose-free',
     'No dietary restrictions': 'No dietary restrictions',
-    'Allergies': 'Allergies',
+    'Allergens': 'Allergens',
     'Nuts': 'Nuts',
     'Shellfish': 'Shellfish',
     'Dairy': 'Dairy',
@@ -352,6 +353,7 @@ export const translations = {
     'Other': 'Other',
     'Online Check-in': 'Online Check-in',
     'Proceed to Check-in': 'Proceed to Check-in',
+    'You have no favorite dishes yet. Star them in the restaurant menu!': 'You have no favorite dishes yet. Star them in the restaurant menu!',
 
     // Services
     'Book eco-friendly services to enhance your stay.': 'Book eco-friendly services to enhance your stay.',
@@ -580,7 +582,7 @@ export const translations = {
     'Gluten-free': 'Sin gluten',
     'Lactose-free': 'Sin lactosa',
     'No dietary restrictions': 'Sin restricciones dietéticas',
-    'Allergies': 'Alergias',
+    'Allergens': 'Alérgenos',
     'Nuts': 'Frutos secos',
     'Shellfish': 'Mariscos',
     'Dairy': 'Lácteos',
@@ -588,6 +590,7 @@ export const translations = {
     'Other': 'Otro',
     'Online Check-in': 'Check-in en línea',
     'Proceed to Check-in': 'Proceder al check-in',
+    'You have no favorite dishes yet. Star them in the restaurant menu!': 'Aún no tienes platos favoritos. ¡Márcalos en el menú del restaurante!',
 
     // Services
     'Book eco-friendly services to enhance your stay.': 'Reserva servicios ecológicos para mejorar tu estancia.',
@@ -718,5 +721,3 @@ export const getTranslator = (lang: Language) => {
   };
   return t;
 };
-
-    
