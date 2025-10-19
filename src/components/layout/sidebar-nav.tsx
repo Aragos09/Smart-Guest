@@ -64,7 +64,7 @@ export function SidebarNav() {
             <SidebarMenu>
             {navItems.map((item) => (
                 <SidebarMenuItem key={item.href}>
-                <Link href={item.href} legacyBehavior passHref>
+                <Link href={item.href}>
                     <SidebarMenuButton
                     isActive={pathname === item.href}
                     tooltip={item.label}
@@ -81,7 +81,7 @@ export function SidebarNav() {
         <SidebarFooter className="mt-auto">
             <SidebarMenu>
                 <SidebarMenuItem>
-                    <Link href={settingsItem.href} legacyBehavior passHref>
+                    <Link href={settingsItem.href}>
                         <SidebarMenuButton
                         isActive={pathname === settingsItem.href}
                         tooltip={settingsItem.label}

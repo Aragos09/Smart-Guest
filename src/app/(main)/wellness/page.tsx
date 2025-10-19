@@ -11,7 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import {
-  Spa,
+  Sparkles,
   Youtube,
   Wind,
   Bed,
@@ -21,7 +21,7 @@ import {
 
 const activities = [
   {
-    icon: Spa,
+    icon: Sparkles,
     title: "Relaxing Massage",
     description: "Book a 60-minute session to unwind and de-stress.",
   },
