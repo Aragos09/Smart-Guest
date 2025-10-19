@@ -78,9 +78,9 @@ export const translations = {
     'Relaxing Playlists': 'Playlists Relaxantes',
     'Curated sounds to help you relax and focus.': 'Des sons sélectionnés pour vous aider à vous détendre et à vous concentrer.',
     'Play': 'Jouer',
-
+    
     // Restaurant
-    "Our Menu": "Notre Menu",
+    "Our Menu": "Notre Carte",
     "Discover our selection of delicious and sustainable dishes.": "Découvrez notre sélection de plats délicieux et durables.",
     "Offert": "Offert",
     "Entrées": "Entrées",
@@ -239,6 +239,9 @@ export const translations = {
     "Commerce équitable": "Fair trade",
     "Biodynamique": "Biodynamic",
     "Zéro déchet": "Zero waste",
+  },
+  es: {
+    'Our Menu': 'Nuestro menú',
   }
 };
 

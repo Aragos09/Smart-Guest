@@ -9,11 +9,16 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Separator } from "@/components/ui/separator";
 import menuData from "@/lib/restaurant-menu.json";
-import type { MenuCategory, MenuItem } from "@/lib/types";
+import signatureMenuJson from "@/lib/signature-menu.json";
+import type { MenuCategory, MenuItem, SignatureMenuData, SignatureMenuSection, SignatureMenuItem } from "@/lib/types";
 import { useLanguage } from "@/context/language-context";
+import { Utensils, Leaf, Fish, RotateCw, Box } from "lucide-react";
 
 const { categories }: { categories: MenuCategory[] } = menuData;
+const { menu: signatureMenu }: { menu: SignatureMenuData } = signatureMenuJson;
 
 function MenuItemCard({ item }: { item: MenuItem }) {
   const { t } = useLanguage();
@@ -34,35 +39,132 @@ function MenuItemCard({ item }: { item: MenuItem }) {
   );
 }
 
+function SignatureMenuItemCard({ item }: { item: SignatureMenuItem }) {
+  const { t } = useLanguage();
+  return (
+    <div className="flex flex-col gap-2 py-4">
+      <div className="flex justify-between gap-4">
+        <h3 className="font-semibold">{item.name}</h3>
+        {item.price && (
+          <div className="text-lg font-bold text-primary">{item.price}€</div>
+        )}
+      </div>
+      {item.description && (
+        <p className="text-sm text-muted-foreground">{item.description}</p>
+      )}
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
+        {item.allergens && item.allergens.length > 0 && (
+          <p>
+            <span className="font-medium text-foreground">Allergènes:</span>{" "}
+            {item.allergens.join(", ")}
+          </p>
+        )}
+        {item.wine_pairing && (
+          <p>
+            <span className="font-medium text-foreground">Accord vin:</span>{" "}
+            {item.wine_pairing}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function SustainableMenu() {
+  const { t } = useLanguage();
+  return (
+    <div className="space-y-8">
+      {categories.map((category) => (
+        <Card key={category.name}>
+          <CardHeader>
+            <CardTitle className="font-headline text-2xl">
+              {t(category.name as any)}
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="divide-y">
+            {category.items.map((item) => (
+              <MenuItemCard key={item.name} item={item} />
+            ))}
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+}
+
+function SignatureMenu() {
+  const { t } = useLanguage();
+  const sustainabilityItems = [
+    { icon: Leaf, text: signatureMenu.sustainability.local_products, label: "Produits Locaux" },
+    { icon: Fish, text: signatureMenu.sustainability.fish_label, label: "Pêche Durable" },
+    { icon: RotateCw, text: signatureMenu.sustainability.menu_rotation, label: "Rotation" },
+    { icon: Box, text: signatureMenu.sustainability.packaging, label: "Packaging" },
+  ]
+  return (
+    <div className="space-y-8">
+       <Card>
+          <CardHeader>
+            <CardTitle className="font-headline text-2xl">{signatureMenu.name}</CardTitle>
+            <CardDescription>{signatureMenu.description}</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+             <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+                {sustainabilityItems.map(item => (
+                   <div key={item.label} className="flex items-start space-x-3">
+                      <item.icon className="h-5 w-5 mt-0.5 text-primary"/>
+                      <div>
+                         <p className="text-sm font-semibold">{item.label}</p>
+                         <p className="text-sm text-muted-foreground">{item.text}</p>
+                      </div>
+                   </div>
+                ))}
+             </div>
+          </CardContent>
+       </Card>
+
+      {signatureMenu.sections.map((section) => (
+        <Card key={section.category}>
+          <CardHeader>
+            <CardTitle className="font-headline text-2xl">
+              {section.category}
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="divide-y">
+            {section.items.map((item) => (
+              <SignatureMenuItemCard key={item.name} item={item} />
+            ))}
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+}
+
 export default function RestaurantPage() {
   const { t } = useLanguage();
   return (
     <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">
       <div>
         <h1 className="text-3xl font-bold tracking-tight font-headline">
-          {t('Our Menu')}
+          {t('Restaurant')}
         </h1>
         <p className="text-muted-foreground">
           {t('Discover our selection of delicious and sustainable dishes.')}
         </p>
       </div>
 
-      <div className="space-y-8">
-        {categories.map((category) => (
-          <Card key={category.name}>
-            <CardHeader>
-              <CardTitle className="font-headline text-2xl">
-                {t(category.name as any)}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="divide-y">
-              {category.items.map((item) => (
-                <MenuItemCard key={item.name} item={item} />
-              ))}
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+      <Tabs defaultValue="sustainable">
+        <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger value="sustainable">{t('Our Menu')}</TabsTrigger>
+          <TabsTrigger value="signature">Menu Signature</TabsTrigger>
+        </TabsList>
+        <TabsContent value="sustainable">
+          <SustainableMenu />
+        </TabsContent>
+        <TabsContent value="signature">
+          <SignatureMenu />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }

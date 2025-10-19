@@ -44,3 +44,33 @@ export type MenuCategory = {
   name: string;
   items: MenuItem[];
 };
+
+export type SignatureMenuItem = {
+  name: string;
+  description?: string;
+  allergens?: string[];
+  wine_pairing?: string;
+  type?: string;
+  region?: string;
+  price?: number;
+};
+
+export type SignatureMenuSection = {
+  category: string;
+  items: SignatureMenuItem[];
+};
+
+export type SignatureMenuData = {
+  id: string;
+  name: string;
+  type: string;
+  description: string;
+  sustainability: {
+    local_products: string;
+    fish_label: string;
+    menu_rotation: string;
+    packaging: string;
+  };
+  sections: SignatureMenuSection[];
+  tags: string[];
+};

@@ -1,0 +1,149 @@
+{
+  "menu": {
+    "id": "signature_menu",
+    "name": "Menu Signature – Saveurs Contemporaines",
+    "type": "gastronomic",
+    "description": "Un menu raffiné mêlant tradition française et modernité, élaboré avec des produits locaux et de saison. Conçu pour une clientèle affaires et loisir recherchant une expérience culinaire haut de gamme.",
+    "sustainability": {
+      "local_products": "80% issus de producteurs régionaux",
+      "fish_label": "MSC (Marine Stewardship Council)",
+      "menu_rotation": "Chaque saison",
+      "packaging": "Zéro plastique pour le room service"
+    },
+    "sections": [
+      {
+        "category": "Amuse-bouche de bienvenue",
+        "items": [
+          {
+            "name": "Mini-croquette de homard à la citronnelle",
+            "description": "Servie avec espuma de yuzu et zestes de citron vert.",
+            "allergens": ["Crustacés", "Lactose"],
+            "wine_pairing": "Champagne brut nature"
+          },
+          {
+            "name": "Velouté de potiron aux éclats de noisettes caramélisées",
+            "description": "Préparé avec potiron bio et crème légère infusée à la sauge.",
+            "allergens": ["Noisettes", "Lactose"],
+            "wine_pairing": "Chardonnay de Bourgogne"
+          }
+        ]
+      },
+      {
+        "category": "Entrées",
+        "items": [
+          {
+            "name": "Tartare de saumon Label Rouge, avocat et perles de citron caviar",
+            "description": "Servi avec tuile de sésame noir et huile d’olive de Provence.",
+            "allergens": ["Poisson", "Sésame"],
+            "wine_pairing": "Sancerre blanc – Les Monts Damnés"
+          },
+          {
+            "name": "Foie gras de canard maison, chutney de figues et brioche toastée",
+            "description": "Préparé au torchon, accompagné d’un verre de Sauternes.",
+            "allergens": ["Gluten", "Lactose"],
+            "wine_pairing": "Sauternes – Château Rieussec"
+          },
+          {
+            "name": "Œuf parfait, crème de truffe et éclats de parmesan AOP",
+            "description": "Servi sur une mousseline de céleri fondante.",
+            "allergens": ["Œufs", "Lactose"],
+            "wine_pairing": "Chablis 1er Cru – Montée de Tonnerre"
+          }
+        ]
+      },
+      {
+        "category": "Plats principaux",
+        "items": [
+          {
+            "name": "Filet de bœuf français, jus corsé au vin rouge et purée de pommes vitelotte",
+            "description": "Accompagné de légumes racines glacés et chips de panais.",
+            "allergens": ["Aucun"],
+            "wine_pairing": "Saint-Émilion Grand Cru – Château Canon"
+          },
+          {
+            "name": "Dos de bar rôti, émulsion de champagne et risotto au citron confit",
+            "description": "Filet à peau croustillante, touche acidulée et fondante.",
+            "allergens": ["Poisson", "Lactose"],
+            "wine_pairing": "Chablis 1er Cru – Domaine Laroche"
+          },
+          {
+            "name": "Suprême de volaille fermière aux morilles, tagliatelles fraîches et asperges vertes",
+            "description": "Sauce crémeuse au vin jaune du Jura, cuisson basse température.",
+            "allergens": ["Gluten", "Lactose"],
+            "wine_pairing": "Côtes-du-Jura blanc – Domaine Rolet"
+          },
+          {
+            "name": "Côte d’agneau rôtie, purée de pois chiches au cumin et jus réduit au romarin",
+            "description": "Servie avec légumes confits et oignons rouges caramélisés.",
+            "allergens": ["Aucun"],
+            "wine_pairing": "Côtes-du-Rhône – Les Becs Fins"
+          }
+        ]
+      },
+      {
+        "category": "Interlude Fromager",
+        "items": [
+          {
+            "name": "Sélection de trois fromages affinés",
+            "description": "Comté 24 mois, Saint-Nectaire fermier, Rocamadour. Servis avec confiture de cerise noire et pain aux noix.",
+            "allergens": ["Lactose", "Gluten"],
+            "wine_pairing": "Bordeaux blanc sec – Château Carbonnieux"
+          }
+        ]
+      },
+      {
+        "category": "Desserts",
+        "items": [
+          {
+            "name": "Dôme chocolat noir 70%, cœur coulant praliné et crumble noisette",
+            "description": "Servi avec sorbet cacao et éclats d’amandes torréfiées.",
+            "allergens": ["Noisettes", "Lactose"],
+            "wine_pairing": "Porto Tawny 10 ans"
+          },
+          {
+            "name": "Tarte fine aux pommes caramélisées, glace vanille bourbon",
+            "description": "Fines lamelles de pommes, sirop léger à la cannelle.",
+            "allergens": ["Gluten", "Lactose"],
+            "wine_pairing": "Cidre brut fermier"
+          },
+          {
+            "name": "Mille-feuille pistache et framboises fraîches",
+            "description": "Feuilletage croustillant et crème légère à la pistache.",
+            "allergens": ["Gluten", "Lactose"],
+            "wine_pairing": "Champagne rosé"
+          }
+        ]
+      },
+      {
+        "category": "Vins et boissons",
+        "items": [
+          {
+            "name": "Chablis 1er Cru – Montée de Tonnerre",
+            "type": "Blanc",
+            "region": "Bourgogne, France"
+          },
+          {
+            "name": "Sancerre blanc – Les Monts Damnés",
+            "type": "Blanc",
+            "region": "Loire, France"
+          },
+          {
+            "name": "Saint-Émilion Grand Cru – Château Canon",
+            "type": "Rouge",
+            "region": "Bordeaux, France"
+          },
+          {
+            "name": "Côtes-du-Rhône – Les Becs Fins",
+            "type": "Rouge",
+            "region": "Vallée du Rhône, France"
+          },
+          {
+            "name": "Café gourmand",
+            "description": "Café arabica éthiopien, mini-macarons maison et truffe chocolat."
+          }
+        ]
+      }
+    ],
+    "tags": ["gastronomique", "local", "raffiné", "durable", "menu signature"]
+  }
+}
