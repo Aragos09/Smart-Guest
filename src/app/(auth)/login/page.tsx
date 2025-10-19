@@ -7,7 +7,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -70,11 +69,6 @@ export default function LoginPage() {
           </Button>
         </div>
       </CardContent>
-      <CardFooter className="flex justify-center">
-        <Button variant="link" onClick={() => router.push("/dashboard")}>
-          Continue as Guest
-        </Button>
-      </CardFooter>
     </Card>
   );
 }
