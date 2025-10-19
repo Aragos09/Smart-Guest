@@ -25,6 +25,7 @@ const DailyForecastSchema = z.object({
     icon: z.enum(["Sun", "CloudSun", "Cloud", "Rain", "Snow"]).describe('An icon name that best represents the weather conditions for the day.'),
     high: z.number().describe('The high temperature for the day in Celsius.'),
     low: z.number().describe('The low temperature for the day in Celsius.'),
+    description: z.string().describe('A very brief (5-10 word) description of the weather for that day.'),
 });
 
 const SummarizeWeatherOutputSchema = z.object({
@@ -69,7 +70,7 @@ export async function summarizeWeather(
       const prompt = ai.definePrompt({
         name: 'summarizeWeatherPrompt',
         output: { schema: SummarizeWeatherOutputSchema },
-        prompt: `Based on the following weather data, provide a short, friendly, and descriptive summary for a hotel guest. Also suggest an appropriate icon for the current weather and for each day in the forecast.
+        prompt: `Based on the following weather data, provide a short, friendly, and descriptive summary for a hotel guest. Also suggest an appropriate icon and a brief (5-10 word) description for the current weather and for each day in the forecast.
 
         The summary should be in ${language}.
         

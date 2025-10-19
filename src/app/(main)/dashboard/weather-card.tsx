@@ -15,8 +15,13 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  DialogDescription,
 } from "@/components/ui/dialog";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { CloudSun, Sun, Cloud, CloudRain, Snowflake } from "lucide-react";
 import { useLanguage } from "@/context/language-context";
 import { summarizeWeather, type SummarizeWeatherOutput } from "@/ai/flows/summarize-weather";
@@ -131,17 +136,24 @@ export function WeatherCard() {
                     </div>
                 </div>
             </div>
-            <div className="space-y-2">
+            <Accordion type="single" collapsible className="w-full">
                 {weather.forecast.map((day) => (
-                    <div key={day.day} className="flex items-center justify-between">
-                        <p className="w-12 font-medium">{t(day.day as any) || day.day}</p>
-                        {renderIcon(day.icon, "h-6 w-6")}
-                        <p className="text-sm text-muted-foreground">
-                            <span className="font-medium text-foreground">{day.high}°</span> / {day.low}°
-                        </p>
-                    </div>
+                    <AccordionItem value={day.day} key={day.day}>
+                        <AccordionTrigger>
+                          <div className="flex w-full items-center justify-between">
+                            <p className="w-12 font-medium">{t(day.day as any) || day.day}</p>
+                            {renderIcon(day.icon, "h-6 w-6")}
+                            <p className="text-sm text-muted-foreground">
+                                <span className="font-medium text-foreground">{day.high}°</span> / {day.low}°
+                            </p>
+                          </div>
+                        </AccordionTrigger>
+                        <AccordionContent>
+                          <p className="text-sm text-muted-foreground pl-1">{day.description}</p>
+                        </AccordionContent>
+                    </AccordionItem>
                 ))}
-            </div>
+            </Accordion>
           </div>
         </DialogContent>
       )}
