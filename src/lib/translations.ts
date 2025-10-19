@@ -1,3 +1,4 @@
+
 export const translations = {
   fr: {
     // Sidebar
@@ -62,7 +63,6 @@ export const translations = {
     'Your preferences have been saved successfully.': 'Vos préférences ont été enregistrées avec succès.',
 
     // Services
-    'Sustainable Services': 'Services Durables',
     'Book eco-friendly services to enhance your stay.': 'Réservez des services écologiques pour améliorer votre séjour.',
     'Durable only': 'Durable seulement',
     'Reserve': 'Réserver',
@@ -164,5 +164,8 @@ export const translations = {
 export type Language = keyof typeof translations;
 
 export const getTranslator = (lang: Language) => {
-  return (key: keyof typeof translations.en) => translations[lang][key] || key;
-}
+  const t = (key: keyof typeof translations.en) => {
+    return translations[lang]?.[key] || key;
+  };
+  return t;
+};
