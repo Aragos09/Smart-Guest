@@ -56,15 +56,15 @@ function ExperienceCard({ experience }: { experience: Experience }) {
       <div className="relative h-56 w-full">
         <Image
           src={experience.image}
-          alt={experience.name}
+          alt={t(experience.name as any)}
           fill
           className="object-cover"
           data-ai-hint={experience.imageHint}
         />
       </div>
       <CardHeader>
-        <CardTitle>{experience.name}</CardTitle>
-        <CardDescription>{experience.description}</CardDescription>
+        <CardTitle>{t(experience.name as any)}</CardTitle>
+        <CardDescription>{t(experience.description as any)}</CardDescription>
       </CardHeader>
       <CardFooter className="mt-auto">
         <Button variant="secondary" className="w-full">

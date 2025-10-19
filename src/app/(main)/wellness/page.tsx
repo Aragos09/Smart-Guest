@@ -88,8 +88,8 @@ export default function WellnessPage() {
                 <CardHeader className="flex-row items-center gap-4">
                   <activity.icon className="h-10 w-10 text-primary" />
                   <div>
-                    <CardTitle className="text-lg">{activity.title}</CardTitle>
-                    <CardDescription>{activity.description}</CardDescription>
+                    <CardTitle className="text-lg">{t(activity.title as any)}</CardTitle>
+                    <CardDescription>{t(activity.description as any)}</CardDescription>
                   </div>
                 </CardHeader>
                 <CardFooter className="mt-auto">
@@ -113,9 +113,9 @@ export default function WellnessPage() {
                  <div className="flex justify-between">
                     <div className="flex items-center gap-2">
                         <tracker.icon className="h-5 w-5 text-muted-foreground" />
-                        <span className="font-semibold">{tracker.title}</span>
+                        <span className="font-semibold">{t(tracker.title as any)}</span>
                     </div>
-                    <span className="text-sm text-muted-foreground">{tracker.unit}</span>
+                    <span className="text-sm text-muted-foreground">{t(tracker.unit as any)}</span>
                  </div>
                 <Progress value={tracker.value} />
               </div>
@@ -137,9 +137,9 @@ export default function WellnessPage() {
                 className="flex items-center justify-between rounded-lg border p-4"
               >
                 <div>
-                  <p className="font-semibold">{playlist.title}</p>
+                  <p className="font-semibold">{t(playlist.title as any)}</p>
                   <p className="text-sm text-muted-foreground">
-                    {playlist.description}
+                    {t(playlist.description as any)}
                   </p>
                 </div>
                 <Button variant="outline">{t('Play')}</Button>

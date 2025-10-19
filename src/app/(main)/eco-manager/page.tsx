@@ -1,3 +1,4 @@
+
 "use client";
 
 import {
@@ -37,17 +38,6 @@ const impactChartData = [
   { category: "Sourcing", impact: 73, target: 100 },
 ];
 
-const impactChartConfig = {
-  impact: {
-    label: "Your Impact",
-    color: "hsl(var(--primary))",
-  },
-  target: {
-    label: "Target",
-    color: "hsl(var(--muted-foreground))",
-  },
-} satisfies ChartConfig;
-
 const trendChartData = [
   { date: "Day 1", score: 65 },
   { date: "Day 2", score: 72 },
@@ -57,42 +47,59 @@ const trendChartData = [
   { date: "Day 6", score: 85 },
 ];
 
-const trendChartConfig = {
-  score: {
-    label: "EcoScore",
-    color: "hsl(var(--accent))",
-  },
-} satisfies ChartConfig;
-
-const badges = [
-  {
-    icon: WaterBadge,
-    title: "Water Saver",
-    description: "Used less water than average for 3 consecutive days.",
-    color: "text-blue-500",
-  },
-  {
-    icon: EnergyBadge,
-    title: "Energy Star",
-    description: "Consumed 15% less energy than the daily target.",
-    color: "text-yellow-500",
-  },
-  {
-    icon: RecycleBadge,
-    title: "Recycling Champion",
-    description: "Recycled over 5kg of waste.",
-    color: "text-green-500",
-  },
-  {
-    icon: LeafBadge,
-    title: "Eco Pioneer",
-    description: "Booked two or more sustainable services.",
-    color: "text-teal-500",
-  },
-];
-
 export default function EcoManagerPage() {
   const { t } = useLanguage();
+
+  const impactChartConfig = {
+    impact: {
+      label: t("Your Impact"),
+      color: "hsl(var(--primary))",
+    },
+    target: {
+      label: t("Target"),
+      color: "hsl(var(--muted-foreground))",
+    },
+  } satisfies ChartConfig;
+  
+  const trendChartConfig = {
+    score: {
+      label: t("EcoScore"),
+      color: "hsl(var(--accent))",
+    },
+  } satisfies ChartConfig;
+
+  const badges = [
+    {
+      icon: WaterBadge,
+      title: "Water Saver",
+      description: "Used less water than average for 3 consecutive days.",
+      color: "text-blue-500",
+    },
+    {
+      icon: EnergyBadge,
+      title: "Energy Star",
+      description: "Consumed 15% less energy than the daily target.",
+      color: "text-yellow-500",
+    },
+    {
+      icon: RecycleBadge,
+      title: "Recycling Champion",
+      description: "Recycled over 5kg of waste.",
+      color: "text-green-500",
+    },
+    {
+      icon: LeafBadge,
+      title: "Eco Pioneer",
+      description: "Booked two or more sustainable services.",
+      color: "text-teal-500",
+    },
+  ];
+
+  const localizedImpactData = impactChartData.map(item => ({
+    ...item,
+    category: t(item.category as any),
+  }));
+
   return (
     <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">
       <div className="flex items-center justify-between space-y-2">
@@ -113,7 +120,7 @@ export default function EcoManagerPage() {
           </CardHeader>
           <CardContent className="pl-2">
             <ChartContainer config={impactChartConfig} className="h-[300px] w-full">
-              <BarChart accessibilityLayer data={impactChartData} layout="vertical">
+              <BarChart accessibilityLayer data={localizedImpactData} layout="vertical">
                 <CartesianGrid horizontal={false} />
                 <XAxis type="number" hide />
                 <YAxis
@@ -130,14 +137,14 @@ export default function EcoManagerPage() {
                 />
                 <Bar
                   dataKey="impact"
-                  name="Your Impact"
+                  name={t('Your Impact')}
                   fill="var(--color-impact)"
                   radius={4}
                   barSize={20}
                 />
                 <Bar
                   dataKey="target"
-                  name="Target"
+                  name={t('Target')}
                   fill="var(--color-target)"
                   radius={4}
                   barSize={20}
@@ -206,9 +213,9 @@ export default function EcoManagerPage() {
               <div key={index} className="flex items-start space-x-4">
                 <badge.icon className={`h-12 w-12 shrink-0 ${badge.color}`} />
                 <div>
-                  <p className="font-semibold">{badge.title}</p>
+                  <p className="font-semibold">{t(badge.title as any)}</p>
                   <p className="text-sm text-muted-foreground">
-                    {badge.description}
+                    {t(badge.description as any)}
                   </p>
                 </div>
               </div>
