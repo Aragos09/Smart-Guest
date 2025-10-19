@@ -2,7 +2,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { AppleIcon, AppLogo } from "@/components/icons";
+import { AppLogo } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,9 +13,9 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/context/language-context";
+import Link from "next/link";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -58,16 +58,12 @@ export default function LoginPage() {
             </Button>
           </div>
         </form>
-        <Separator className="my-6">
-          <span className="px-2 text-xs text-muted-foreground bg-card">OR</span>
-        </Separator>
-        <div className="space-y-3">
-          <Button variant="outline" className="w-full">
-            <AppleIcon className="mr-2 h-4 w-4" />
-            {t('Continue with Apple')}
-          </Button>
-        </div>
       </CardContent>
+      <CardFooter className="flex-col gap-2 pt-6">
+          <Button variant="link" asChild>
+            <Link href="/signup">{t("Don't have an account? Sign up")}</Link>
+          </Button>
+      </CardFooter>
     </Card>
   );
 }
