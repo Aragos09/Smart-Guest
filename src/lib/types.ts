@@ -65,7 +65,7 @@ export type SignatureMenuSection = {
 
 export type SignatureMenuData = {
   id: string;
-  name: string;
+  name:string;
   type: string;
   description: string;
   sustainability: {
@@ -78,10 +78,16 @@ export type SignatureMenuData = {
   tags: string[];
 };
 
-export type RoomServiceItem = MenuItem;
+export type RoomServiceItem = {
+  name: string;
+  name_fr: string;
+  description_fr: string;
+  price_eur: number;
+  size?: string;
+};
 
 export type RoomServiceCategory = {
-  id: 'starters' | 'main-courses' | 'desserts' | 'drinks';
+  id: 'entrees' | 'plats' | 'desserts' | 'boissons';
   name: string;
   items: RoomServiceItem[];
 };

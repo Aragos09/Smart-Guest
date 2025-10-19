@@ -2,14 +2,14 @@
 "use client";
 
 import React, { createContext, useContext, useState, ReactNode, useMemo } from 'react';
-import type { RoomServiceItem } from '@/lib/types';
-import type { MenuItem } from '@/lib/types';
+import type { RoomServiceItem, MenuItem } from '@/lib/types';
 
 
 export type CartItem = (RoomServiceItem | MenuItem) & {
   id: string;
   quantity: number;
   image?: string;
+  price: number;
 };
 
 interface CartContextType {

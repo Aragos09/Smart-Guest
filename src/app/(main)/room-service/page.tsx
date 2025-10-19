@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from "react";
-import menuData from "@/lib/restaurant-menu.json";
+import menuData from "@/lib/room-service-menu.json";
 import { useLanguage } from "@/context/language-context";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -26,13 +26,12 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { useCart } from "@/context/cart-context";
-import type { MenuCategory as RoomServiceCategory, MenuItem as RoomServiceItem, CartItem } from "@/lib/types";
+import type { RoomServiceItem, CartItem } from "@/lib/types";
 import { Search, ShoppingCart, Plus, Minus, Trash2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 
-const { categories: menuCategories }: { categories: RoomServiceCategory[] } = menuData;
+const { room_service_menu: menu } = menuData;
 
 function MenuItemCard({ item }: { item: RoomServiceItem }) {
   const { t } = useLanguage();
@@ -41,30 +40,27 @@ function MenuItemCard({ item }: { item: RoomServiceItem }) {
 
   const handleAddToCart = () => {
     addToCart({
-      ...item,
-      id: item.name,
+      id: item.name_fr,
+      name: item.name_fr,
+      price: item.price_eur,
       quantity: 1,
-      image: `https://picsum.photos/seed/${item.name.replace(/\s+/g, '-').toLowerCase()}/600/400`,
-    });
+    } as CartItem);
     toast({
       title: t('Added to cart'),
-      description: `${t(item.name as any)} ${t('has been added to your order.')}`,
+      description: `${item.name_fr} ${t('has been added to your order.')}`,
     });
   };
 
   return (
     <Card className="overflow-hidden flex flex-col">
       <CardHeader>
-        <CardTitle>{t(item.name as any)}</CardTitle>
-        <CardDescription>
-          <Badge variant="outline">{t(item.eco_label as any)}</Badge>
-        </CardDescription>
+        <CardTitle>{item.name_fr}</CardTitle>
       </CardHeader>
       <CardContent className="flex-grow">
-        <p className="text-sm text-muted-foreground">{t(item.type as any)}</p>
+        <p className="text-sm text-muted-foreground">{item.description_fr}</p>
       </CardContent>
       <CardFooter className="flex items-center justify-between mt-auto">
-        <p className="text-lg font-bold">{item.price > 0 ? `${item.price.toFixed(2)}€` : t('Offert')}</p>
+        <p className="text-lg font-bold">{item.price_eur > 0 ? `${item.price_eur.toFixed(2)}€` : t('Offert')}</p>
         <Button onClick={handleAddToCart}>{t('Add')}</Button>
       </CardFooter>
     </Card>
@@ -161,31 +157,22 @@ function CartSheet() {
   );
 }
 
-
 export default function RoomServicePage() {
   const { t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState("");
   const { totalItems } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const categoryIdMap = {
-    "Entrées": "starters",
-    "Plats principaux": "main-courses",
-    "Desserts": "desserts",
-    "Boissons & Cocktails": "drinks"
-  };
-  
-  const filteredMenu = menuCategories.map(category => ({
-    ...category,
-    items: category.items.filter(item =>
-      t(item.name as any).toLowerCase().includes(searchTerm.toLowerCase()) ||
-      t(item.type as any).toLowerCase().includes(searchTerm.toLowerCase())
+  const categories = Object.entries(menu.categories).map(([id, items]) => ({
+    id,
+    name: t(id.charAt(0).toUpperCase() + id.slice(1) as any),
+    items: items.filter(item =>
+        item.name_fr.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.description_fr.toLowerCase().includes(searchTerm.toLowerCase())
     )
   })).filter(category => category.items.length > 0);
-  
-  const allCategories = menuCategories.map(cat => ({id: categoryIdMap[cat.name as keyof typeof categoryIdMap], name: cat.name}));
-  
-  const defaultTab = allCategories.length > 0 ? allCategories[0].id : "";
+
+  const defaultTab = categories.length > 0 ? categories[0].id : "";
 
   return (
     <div className="flex h-full flex-col">
@@ -206,24 +193,24 @@ export default function RoomServicePage() {
       <Tabs defaultValue={defaultTab} className="flex-1 flex flex-col">
         <div className="px-4 md:px-8">
             <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
-                {allCategories.map((category) => (
-                    <TabsTrigger key={category.id} value={category.id}>{t(category.name as any)}</TabsTrigger>
+                {Object.keys(menu.categories).map((cat) => (
+                    <TabsTrigger key={cat} value={cat}>{t(cat.charAt(0).toUpperCase() + cat.slice(1) as any)}</TabsTrigger>
                 ))}
             </TabsList>
         </div>
         <ScrollArea className="flex-1">
             <div className="p-4 md:p-8">
-                {filteredMenu.map((category) => (
-                    <TabsContent key={category.name} value={categoryIdMap[category.name as keyof typeof categoryIdMap]}>
+                {categories.map((category) => (
+                    <TabsContent key={category.id} value={category.id}>
                     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                         {category.items.map((item) => (
-                        <MenuItemCard key={item.name} item={item} />
+                        <MenuItemCard key={item.name_fr} item={item} />
                         ))}
                     </div>
                     </TabsContent>
                 ))}
                 {
-                  filteredMenu.length === 0 && (
+                  categories.length === 0 && (
                     <div className="text-center text-muted-foreground py-10">
                       {t('No dishes found.')}
                     </div>

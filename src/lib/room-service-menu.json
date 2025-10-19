@@ -1,109 +1,120 @@
 {
-  "categories": [
-    {
-      "id": "starters",
-      "name": "Starters",
-      "items": [
+  "room_service_menu": {
+    "categories": {
+      "entrees": [
         {
-          "id": "rs-caesar-salad",
-          "name": "Caesar Salad",
-          "description": "Crisp romaine lettuce with Caesar dressing, croutons, and Parmesan cheese.",
-          "price": 15,
-          "image": "https://picsum.photos/seed/caesar/600/400",
-          "imageHint": "Caesar salad",
-          "tags": ["vegetarian"]
+          "name_fr": "Velouté de potiron bio",
+          "description_fr": "Crème légère à la noisette, huile de truffe blanche",
+          "price_eur": 9.00
+        },
+        {
+          "name_fr": "Tartare de saumon et avocat",
+          "description_fr": "Citron vert, gingembre, pousses de roquette",
+          "price_eur": 13.50
+        },
+        {
+          "name_fr": "Burrata crémeuse & tomates confites",
+          "description_fr": "Basilic frais, huile d’olive de Provence",
+          "price_eur": 11.00
+        },
+        {
+          "name_fr": "Soupe froide de concombre et menthe",
+          "description_fr": "Servie avec croûtons à l’ail",
+          "price_eur": 8.50
+        }
+      ],
+      "plats": [
+        {
+          "name_fr": "Filet de bœuf grillé, jus corsé",
+          "description_fr": "Purée de panais, légumes de saison",
+          "price_eur": 28.00
+        },
+        {
+          "name_fr": "Risotto aux champignons sauvages (végétarien)",
+          "description_fr": "Parmesan affiné, huile de truffe blanche",
+          "price_eur": 21.00
+        },
+        {
+          "name_fr": "Saumon rôti, mousseline de petits pois",
+          "description_fr": "Sauce citron-gingembre, chips de betterave",
+          "price_eur": 23.00
+        },
+        {
+          "name_fr": "Poulet fermier rôti, sauce morilles",
+          "description_fr": "Purée de pommes de terre, petits légumes",
+          "price_eur": 22.50
+        },
+        {
+          "name_fr": "Tagliatelles fraîches à la crème de truffe noire",
+          "description_fr": "Copeaux de parmesan",
+          "price_eur": 19.00
+        }
+      ],
+      "desserts": [
+        {
+          "name_fr": "Mousse au chocolat noir Valrhona",
+          "description_fr": "Éclats de fève de cacao, chantilly légère",
+          "price_eur": 8.50
+        },
+        {
+          "name_fr": "Tartelette citron yuzu",
+          "description_fr": "Meringue italienne, coulis acidulé",
+          "price_eur": 9.00
+        },
+        {
+          "name_fr": "Panna cotta à la vanille Bourbon",
+          "description_fr": "Coulis de fruits rouges",
+          "price_eur": 8.00
+        },
+        {
+          "name_fr": "Assiette de fromages affinés AOP",
+          "description_fr": "Pain aux noix et confiture de figues",
+          "price_eur": 11.50
+        }
+      ],
+      "boissons": [
+        {
+          "name_fr": "Eau minérale (plate ou gazeuse)",
+          "size": "50cl",
+          "price_eur": 4.00
+        },
+        {
+          "name_fr": "Café expresso",
+          "price_eur": 3.50
+        },
+        {
+          "name_fr": "Cappuccino / Café latte",
+          "price_eur": 5.00
+        },
+        {
+          "name_fr": "Thé vert bio japonais",
+          "price_eur": 5.50
+        },
+        {
+          "name_fr": "Jus pressé minute (orange / pomme / carotte)",
+          "size": "30cl",
+          "price_eur": 6.50
+        },
+        {
+          "name_fr": "Vin rouge Saint-Émilion 2020",
+          "size": "12cl",
+          "price_eur": 11.00
+        },
+        {
+          "name_fr": "Champagne brut maison",
+          "size": "12cl",
+          "price_eur": 14.00
         }
       ]
     },
-    {
-      "id": "main-courses",
-      "name": "Main Courses",
-      "items": [
-        {
-          "id": "rs-club-sandwich",
-          "name": "Club Sandwich",
-          "description": "A classic triple-decker sandwich with chicken, bacon, lettuce, tomato, and mayonnaise.",
-          "price": 22,
-          "image": "https://picsum.photos/seed/club-sandwich/600/400",
-          "imageHint": "club sandwich",
-          "tags": []
-        },
-        {
-          "id": "rs-beef-burger",
-          "name": "Beef Burger",
-          "description": "Juicy beef patty with cheese, lettuce, tomato, and our special sauce on a brioche bun.",
-          "price": 25,
-          "image": "https://picsum.photos/seed/burger/600/400",
-          "imageHint": "beef burger",
-          "tags": []
-        },
-        {
-          "id": "rs-margherita-pizza",
-          "name": "Margherita Pizza",
-          "description": "Classic pizza with tomato sauce, fresh mozzarella, and basil.",
-          "price": 20,
-          "image": "https://picsum.photos/seed/pizza/600/400",
-          "imageHint": "Margherita pizza",
-          "tags": ["vegetarian"]
-        },
-        {
-          "id": "rs-spaghetti-carbonara",
-          "name": "Spaghetti Carbonara",
-          "description": "Spaghetti with a creamy sauce of eggs, cheese, and bacon.",
-          "price": 24,
-          "image": "https://picsum.photos/seed/carbonara/600/400",
-          "imageHint": "spaghetti carbonara",
-          "tags": []
-        }
-      ]
+    "eco_options": {
+      "delivery_mode_fr": "Livraison écoresponsable (vaisselle réutilisable, zéro plastique) +1.00€",
+      "local_products_fr": "Produits issus de producteurs régionaux",
+      "low_energy_cooking_fr": "Cuisson basse énergie (-10% empreinte carbone)"
     },
-    {
-      "id": "desserts",
-      "name": "Desserts",
-      "items": [
-        {
-          "id": "rs-lava-cake",
-          "name": "Chocolate Lava Cake",
-          "description": "Warm chocolate cake with a gooey molten center, served with vanilla ice cream.",
-          "price": 12,
-          "image": "https://picsum.photos/seed/lava-cake/600/400",
-          "imageHint": "lava cake",
-          "tags": ["vegetarian"]
-        },
-        {
-          "id": "rs-fruit-platter",
-          "name": "Fresh Fruit Platter",
-          "description": "A selection of seasonal fresh fruits.",
-          "price": 10,
-          "image": "https://picsum.photos/seed/fruit-platter/600/400",
-          "imageHint": "fruit platter",
-          "tags": ["vegan", "gluten-free"]
-        }
-      ]
-    },
-    {
-      "id": "drinks",
-      "name": "Drinks",
-      "items": [
-        {
-          "id": "rs-orange-juice",
-          "name": "Orange Juice",
-          "description": "Freshly squeezed orange juice.",
-          "price": 8,
-          "image": "https://picsum.photos/seed/orange-juice/600/400",
-          "imageHint": "orange juice",
-          "tags": ["vegan"]
-        },
-        {
-          "id": "rs-espresso",
-          "name": "Espresso",
-          "description": "A single shot of rich and intense espresso.",
-          "price": 5,
-          "image": "https://picsum.photos/seed/espresso/600/400",
-          "imageHint": "espresso",
-          "tags": ["vegan"]
-        }
-      ]
+    "service_info": {
+      "availability_fr": "Service disponible 24h/24",
+      "delivery_time_fr": "Temps moyen de livraison : 25 à 30 minutes"
     }
-  ]
+  }
 }
