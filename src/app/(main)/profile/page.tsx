@@ -60,7 +60,7 @@ const allQuickLinks = [
   { id: "concierge", label: "Concierge", icon: BotMessageSquare },
   { id: "restaurant", label: "Restaurant", icon: Utensils },
   { id: "wellness", label: "Wellness", icon: Wind },
-];
+  ];
 
 const profileFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
@@ -126,7 +126,6 @@ export default function ProfilePage() {
     setProfile({ ...profile, favoriteDishes: newFavorites });
     form.setValue("favoriteDishes", newFavorites, { shouldDirty: true });
   };
-
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -325,7 +324,7 @@ export default function ProfilePage() {
                             </FormControl>
                             <SelectContent>
                             <SelectItem value="none">{t('None')}</SelectItem>
-                            <SelectItem value="citrus">{t('Citrus')}</FormItem>
+                            <SelectItem value="citrus">{t('Citrus')}</SelectItem>
                             <SelectItem value="lavender">{t('Lavender')}</SelectItem>
                             <SelectItem value="fresh-linen">{t('Fresh linen')}</SelectItem>
                             </SelectContent>
@@ -627,3 +626,5 @@ export default function ProfilePage() {
     </div>
   );
 }
+
+    
