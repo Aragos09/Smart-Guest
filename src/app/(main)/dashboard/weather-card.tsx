@@ -15,6 +15,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogDescription,
 } from "@/components/ui/dialog";
 import { CloudSun, Sun, Cloud, CloudRain, Snowflake } from "lucide-react";
 import { useLanguage } from "@/context/language-context";
@@ -118,14 +119,14 @@ export function WeatherCard() {
       {weather && (
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>5-Day Forecast</DialogTitle>
+            <DialogTitle>{t('5-Day Forecast')}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
             <div className="flex items-center justify-between rounded-lg bg-muted p-4">
                 <div className="flex items-center gap-4">
                     {renderIcon(weather.icon, "h-12 w-12")}
                     <div>
-                        <p className="font-semibold">Now</p>
+                        <p className="font-semibold">{t('Now')}</p>
                         <p className="text-2xl font-bold">{weather.currentTemp}°C</p>
                     </div>
                 </div>

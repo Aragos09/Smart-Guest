@@ -36,6 +36,8 @@ export const translations = {
     'Tue': 'Mar',
     'Wed': 'Mer',
     'Thu': 'Jeu',
+    '5-Day Forecast': 'Prévisions à 5 jours',
+    'Now': 'Maintenant',
     
     // Eco Manager
     'Visualize your positive impact on the environment.': 'Visualisez votre impact positif sur l\'environnement.',
@@ -347,6 +349,8 @@ export const translations = {
     'Tue': 'Tue',
     'Wed': 'Wed',
     'Thu': 'Thu',
+    '5-Day Forecast': '5-Day Forecast',
+    'Now': 'Now',
 
     // Eco Manager
     'Visualize your positive impact on the environment.': 'Visualize your positive impact on the environment.',
@@ -659,6 +663,8 @@ export const translations = {
     'Tue': 'Mar',
     'Wed': 'Mié',
     'Thu': 'Jue',
+    '5-Day Forecast': 'Pronóstico para 5 días',
+    'Now': 'Ahora',
 
     // Eco Manager
     'Visualize your positive impact on the environment.': 'Visualiza tu impacto positivo en el medio ambiente.',
