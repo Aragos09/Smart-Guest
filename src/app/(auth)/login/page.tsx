@@ -9,13 +9,11 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-  CardFooter
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
-import Link from "next/link";
 import { useLanguage } from "@/context/language-context";
 
 export default function LoginPage() {
@@ -73,14 +71,6 @@ export default function LoginPage() {
           </Button>
         </div>
       </CardContent>
-       <CardFooter className="flex-col gap-2 pt-6">
-        <p className="text-xs text-muted-foreground">
-          {t('Don\'t have an account? Sign up')}
-        </p>
-        <Button variant="outline" className="w-full" asChild>
-          <Link href="/signup">{t('create_account_button')}</Link>
-        </Button>
-      </CardFooter>
     </Card>
   );
 }
