@@ -57,7 +57,7 @@ export function SidebarNav() {
                 <span className="text-lg font-bold text-sidebar-foreground">
                   Smart Guest
                 </span>
-                <span className="text-sm text-sidebar-foreground/70">{t('Hi')} {profile.name}!</span>
+                <span className="text-sm text-sidebar-foreground/70">{t('Hello')} {profile.name}!</span>
               </div>
             </div>
             <SidebarTrigger className="hidden md:flex" />

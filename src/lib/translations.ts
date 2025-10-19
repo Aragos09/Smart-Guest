@@ -10,7 +10,7 @@ export const translations = {
     'Wellness': 'Bien-être',
     'Concierge': 'Conciergerie',
     'Profile': 'Profil',
-    'Hi': 'Salut',
+    'Hello': 'Bonjour',
 
     // Dashboard
     'Welcome back': 'Bon retour',
@@ -248,7 +248,7 @@ export const translations = {
     'Wellness': 'Wellness',
     'Concierge': 'Concierge',
     'Profile': 'Profile',
-    'Hi': 'Hi',
+    'Hello': 'Hello',
 
     // Dashboard
     'Welcome back': 'Welcome back',
@@ -486,7 +486,7 @@ export const translations = {
     'Wellness': 'Bienestar',
     'Concierge': 'Conserje',
     'Profile': 'Perfil',
-    'Hi': 'Hola',
+    'Hello': 'Hola',
 
     // Dashboard
     'Welcome back': 'Bienvenido de nuevo',
