@@ -1,3 +1,4 @@
+
 import {
   Card,
   CardContent,
@@ -34,10 +35,10 @@ export default function RestaurantPage() {
     <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">
       <div>
         <h1 className="text-3xl font-bold tracking-tight font-headline">
-          Our Menu
+          Notre Menu
         </h1>
         <p className="text-muted-foreground">
-          Discover our selection of delicious and sustainable dishes.
+          Découvrez notre sélection de plats délicieux et durables.
         </p>
       </div>
 
