@@ -3,7 +3,7 @@
     "id": "signature_menu",
     "name": "Menu Signature – Saveurs Contemporaines",
     "type": "gastronomic",
-    "description": "Un menu raffiné mêlant tradition française et modernité, élaboré avec des produits locaux et de saison. Conçu pour une clientèle affaires et loisir recherchant une expérience culinaire haut de gamme.",
+    "description": "Un menu raffiné mêlant tradition française et modernité, élaboré avec des produits locaux et de saison.",
     "sustainability": {
       "local_products": "80% issus de producteurs régionaux",
       "fish_label": "MSC (Marine Stewardship Council)",
@@ -17,14 +17,14 @@
           {
             "name": "Mini-croquette de homard à la citronnelle",
             "description": "Servie avec espuma de yuzu et zestes de citron vert.",
-            "price": 12.50,
+            "price": 12.5,
             "allergens": ["Crustacés", "Lactose"],
             "wine_pairing": "Champagne brut nature"
           },
           {
             "name": "Velouté de potiron aux éclats de noisettes caramélisées",
             "description": "Préparé avec potiron bio et crème légère infusée à la sauge.",
-            "price": 10.00,
+            "price": 10,
             "allergens": ["Noisettes", "Lactose"],
             "wine_pairing": "Chardonnay de Bourgogne"
           }
@@ -36,21 +36,21 @@
           {
             "name": "Tartare de saumon Label Rouge, avocat et perles de citron caviar",
             "description": "Servi avec tuile de sésame noir et huile d’olive de Provence.",
-            "price": 18.00,
+            "price": 18,
             "allergens": ["Poisson", "Sésame"],
             "wine_pairing": "Sancerre blanc – Les Monts Damnés"
           },
           {
             "name": "Foie gras de canard maison, chutney de figues et brioche toastée",
             "description": "Préparé au torchon, accompagné d’un verre de Sauternes.",
-            "price": 22.00,
+            "price": 22,
             "allergens": ["Gluten", "Lactose"],
             "wine_pairing": "Sauternes – Château Rieussec"
           },
           {
             "name": "Œuf parfait, crème de truffe et éclats de parmesan AOP",
             "description": "Servi sur une mousseline de céleri fondante.",
-            "price": 16.00,
+            "price": 16,
             "allergens": ["Œufs", "Lactose"],
             "wine_pairing": "Chablis 1er Cru – Montée de Tonnerre"
           }
@@ -62,28 +62,28 @@
           {
             "name": "Filet de bœuf français, jus corsé au vin rouge et purée de pommes vitelotte",
             "description": "Accompagné de légumes racines glacés et chips de panais.",
-            "price": 32.00,
+            "price": 32,
             "allergens": [],
             "wine_pairing": "Saint-Émilion Grand Cru – Château Canon"
           },
           {
             "name": "Dos de bar rôti, émulsion de champagne et risotto au citron confit",
             "description": "Filet à peau croustillante, touche acidulée et fondante.",
-            "price": 28.00,
+            "price": 28,
             "allergens": ["Poisson", "Lactose"],
             "wine_pairing": "Chablis 1er Cru – Domaine Laroche"
           },
           {
             "name": "Suprême de volaille fermière aux morilles, tagliatelles fraîches et asperges vertes",
             "description": "Sauce crémeuse au vin jaune du Jura, cuisson basse température.",
-            "price": 26.00,
+            "price": 26,
             "allergens": ["Gluten", "Lactose"],
             "wine_pairing": "Côtes-du-Jura blanc – Domaine Rolet"
           },
           {
             "name": "Côte d’agneau rôtie, purée de pois chiches au cumin et jus réduit au romarin",
             "description": "Servie avec légumes confits et oignons rouges caramélisés.",
-            "price": 29.00,
+            "price": 29,
             "allergens": [],
             "wine_pairing": "Côtes-du-Rhône – Les Becs Fins"
           }
@@ -95,7 +95,7 @@
           {
             "name": "Sélection de trois fromages affinés",
             "description": "Comté 24 mois, Saint-Nectaire fermier, Rocamadour. Servis avec confiture de cerise noire et pain aux noix.",
-            "price": 14.00,
+            "price": 14,
             "allergens": ["Lactose", "Gluten"],
             "wine_pairing": "Bordeaux blanc sec – Château Carbonnieux"
           }
@@ -107,21 +107,21 @@
           {
             "name": "Dôme chocolat noir 70%, cœur coulant praliné et crumble noisette",
             "description": "Servi avec sorbet cacao et éclats d’amandes torréfiées.",
-            "price": 12.00,
+            "price": 12,
             "allergens": ["Noisettes", "Lactose"],
             "wine_pairing": "Porto Tawny 10 ans"
           },
           {
             "name": "Tarte fine aux pommes caramélisées, glace vanille bourbon",
             "description": "Fines lamelles de pommes, sirop léger à la cannelle.",
-            "price": 10.00,
+            "price": 10,
             "allergens": ["Gluten", "Lactose"],
             "wine_pairing": "Cidre brut fermier"
           },
           {
             "name": "Mille-feuille pistache et framboises fraîches",
             "description": "Feuilletage croustillant et crème légère à la pistache.",
-            "price": 11.00,
+            "price": 11,
             "allergens": ["Gluten", "Lactose"],
             "wine_pairing": "Champagne rosé"
           }
@@ -134,30 +134,30 @@
             "name": "Chablis 1er Cru – Montée de Tonnerre",
             "type": "Blanc",
             "region": "Bourgogne, France",
-            "price": 9.00
+            "price": 9
           },
           {
             "name": "Sancerre blanc – Les Monts Damnés",
             "type": "Blanc",
             "region": "Loire, France",
-            "price": 8.50
+            "price": 8.5
           },
           {
             "name": "Saint-Émilion Grand Cru – Château Canon",
             "type": "Rouge",
             "region": "Bordeaux, France",
-            "price": 11.00
+            "price": 11
           },
           {
             "name": "Côtes-du-Rhône – Les Becs Fins",
             "type": "Rouge",
             "region": "Vallée du Rhône, France",
-            "price": 7.50
+            "price": 7.5
           },
           {
             "name": "Café gourmand",
             "description": "Café arabica éthiopien, mini-macarons maison et truffe chocolat.",
-            "price": 6.00
+            "price": 6
           }
         ]
       }
