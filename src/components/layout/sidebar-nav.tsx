@@ -65,8 +65,12 @@ export function SidebarNav() {
 
         <SidebarContent>
             <SidebarMenu>
-            {navItems.map((item) => (
-                <SidebarMenuItem key={item.href}>
+            {navItems.map((item, index) => (
+                <SidebarMenuItem 
+                  key={item.href}
+                  className="animate-in fade-in-0 slide-in-from-left-2"
+                  style={{ animationDelay: `${index * 50}ms`, animationFillMode: 'backwards' }}
+                >
                 <Link href={item.href}>
                     <SidebarMenuButton
                     isActive={pathname === item.href}
