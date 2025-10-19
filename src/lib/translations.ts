@@ -80,7 +80,6 @@ export const translations = {
     'Play': 'Jouer',
     
     // Restaurant
-    "Our Menu": "Notre Carte",
     "Discover our selection of delicious and sustainable dishes.": "Découvrez notre sélection de plats délicieux et durables.",
     "Offert": "Offert",
     "Entrées": "Entrées",
@@ -119,7 +118,12 @@ export const translations = {
     "Commerce équitable": "Commerce équitable",
     "Biodynamique": "Biodynamique",
     "Zéro déchet": "Zéro déchet",
-    "Menu Vegetarian": "Menu Végétarien",
+    'Menu Vegetarian': 'Menu Végétarien',
+
+    // Concierge
+    'Ask me about sustainable travel, local tips, or hotel services.': 'Posez-moi des questions sur le voyage durable, les conseils locaux ou les services de l\'hôtel.',
+    "Ask a question...": "Posez une question...",
+    "Sorry, I'm having trouble connecting. Please try again later.": "Désolé, j'ai des difficultés à me connecter. Veuillez réessayer plus tard.",
   },
   en: {
     // Sidebar
@@ -201,7 +205,6 @@ export const translations = {
     'Play': 'Play',
     
     // Restaurant
-    "Our Menu": "Our Menu",
     "Discover our selection of delicious and sustainable dishes.": "Discover our selection of delicious and sustainable dishes.",
     "Offert": "Free",
     "Entrées": "Starters",
@@ -240,10 +243,137 @@ export const translations = {
     "Commerce équitable": "Fair trade",
     "Biodynamique": "Biodynamic",
     "Zéro déchet": "Zero waste",
-    "Menu Vegetarian": "Vegetarian Menu",
+    'Menu Vegetarian': 'Vegetarian Menu',
+    
+    // Concierge
+    'Ask me about sustainable travel, local tips, or hotel services.': 'Ask me about sustainable travel, local tips, or hotel services.',
+    "Ask a question...": "Ask a question...",
+    "Sorry, I'm having trouble connecting. Please try again later.": "Sorry, I'm having trouble connecting. Please try again later.",
   },
   es: {
-    'Our Menu': 'Nuestro menú',
+    // Sidebar
+    'Dashboard': 'Tablero',
+    'Eco Manager': 'Eco Manager',
+    'Services': 'Servicios',
+    'Experiences': 'Experiencias',
+    'Restaurant': 'Restaurante',
+    'Wellness': 'Bienestar',
+    'Concierge': 'Conserje',
+    'Profile': 'Perfil',
+
+    // Dashboard
+    'Welcome back': 'Bienvenido de nuevo',
+    'Your EcoScore': 'Tu EcoScore',
+    'A summary of your environmental impact during your stay.': 'Un resumen de tu impacto ambiental durante tu estancia.',
+    'Quick Links': 'Enlaces Rápidos',
+    'Navigate to key features of your Smart Guest experience.': 'Navega a las características clave de tu experiencia Smart Guest.',
+    'Track your impact.': 'Sigue tu impacto.',
+    'Book eco-friendly services.': 'Reserva servicios ecológicos.',
+    'Discover green activities.': 'Descubre actividades verdes.',
+    'Ask me anything.': 'Pregúntame cualquier cosa.',
+    'Sustainable Services': 'Servicios Sostenibles',
+    'Local Experiences': 'Experiencias Locales',
+    'AI Concierge': 'Conserje de IA',
+
+    // Eco Manager
+    'Visualize your positive impact on the environment.': 'Visualiza tu impacto positivo en el medio ambiente.',
+    'Impact Breakdown': 'Desglose de Impacto',
+    'Your consumption compared to daily eco-targets. (Lower is better)': 'Tu consumo en comparación con los objetivos ecológicos diarios. (Menor es mejor)',
+    'EcoScore Trend': 'Tendencia de EcoScore',
+    'Your daily EcoScore during your stay.': 'Tu EcoScore diario durante tu estancia.',
+    'Achievements': 'Logros',
+    "Badges you've earned for your eco-friendly choices.": "Insignias que has ganado por tus elecciones ecológicas.",
+
+    // Experiences
+    'Local Eco-Friendly Experiences': 'Experiencias Ecológicas Locales',
+    'Personalized recommendations for sustainable activities near you.': 'Recomendaciones personalizadas para actividades sostenibles cerca de ti.',
+    'Learn More': 'Saber más',
+
+    // Profile
+    'Profile Settings': 'Configuración de Perfil',
+    'Manage your account and personalization settings.': 'Administra tu cuenta y tus ajustes de personalización.',
+    'Personal Information': 'Información Personal',
+    'Update your personal details here.': 'Actualiza tus datos personales aquí.',
+    'Full Name': 'Nombre Completo',
+    'Your name': 'Tu nombre',
+    'Email': 'Correo electrónico',
+    'Preferred Language': 'Idioma Preferido',
+    'Select your language': 'Selecciona tu idioma',
+    'This will be used for all communications and in-app text.': 'Se utilizará para todas las comunicaciones y el texto en la aplicación.',
+    'Primary Trip Type': 'Tipo de Viaje Principal',
+    'Leisure': 'Ocio',
+    'Business': 'Negocios',
+    'Eco-Sensitivity Level': 'Nivel de Ecosensibilidad',
+    'High - I actively seek out the most sustainable options.': 'Alto - Busco activamente las opciones más sostenibles.',
+    'Medium - I prefer sustainable options when convenient.': 'Medio - Prefiero las opciones sostenibles cuando es conveniente.',
+    "Low - I'm just starting to learn about eco-friendly travel.": 'Bajo - Estoy empezando a aprender sobre viajes ecológicos.',
+    'Helps us tailor recommendations to your preferences.': 'Nos ayuda a adaptar las recomendaciones a tus preferencias.',
+    'Update Profile': 'Actualizar Perfil',
+    'Profile Updated': 'Perfil Actualizado',
+    'Your preferences have been saved successfully.': 'Tus preferencias se han guardado correctamente.',
+
+    // Services
+    'Book eco-friendly services to enhance your stay.': 'Reserva servicios ecológicos para mejorar tu estancia.',
+    'Durable only': 'Solo duraderos',
+    'Reserve': 'Reservar',
+
+    // Wellness
+    'Wellness & Mindfulness': 'Bienestar y Mindfulness',
+    'Your personal space for relaxation and well-being.': 'Tu espacio personal para la relajación y el bienestar.',
+    'Personalized Activities': 'Actividades Personalizadas',
+    'Based on your profile, here are some recommended activities.': 'Según tu perfil, aquí tienes algunas actividades recomendadas.',
+    'Book Now': 'Reservar ahora',
+    'Daily Wellness Tracking': 'Seguimiento Diario de Bienestar',
+    'Monitor your daily goals for a healthier you.': 'Monitorea tus metas diarias para una vida más saludable.',
+    'Relaxing Playlists': 'Playlists Relajantes',
+    'Curated sounds to help you relax and focus.': 'Sonidos seleccionados para ayudarte a relajarte y concentrarte.',
+    'Play': 'Reproducir',
+
+    // Restaurant
+    'Discover our selection of delicious and sustainable dishes.': 'Descubre nuestra selección de platos deliciosos y sostenibles.',
+    "Offert": "Gratis",
+    "Entrées": "Entrantes",
+    "Velouté de potimarron et lait de coco": "Sopa de calabaza y leche de coco",
+    "Tartare de saumon à la mangue": "Tartar de salmón con mango",
+    "Carpaccio de betterave et chèvre frais": "Carpaccio de remolacha y queso de cabra fresco",
+    "Gaspacho vert detox": "Gazpacho verde detox",
+    "Plats principaux": "Platos Principales",
+    "Filet de bar rôti": "Filete de lubina asado",
+    "Risotto de champignons": "Risotto de champiñones",
+    "Curry vert de légumes": "Curry verde de verduras",
+    "Burger végétal Smart Guest": "Hamburguesa vegetal Smart Guest",
+    "Suprême de volaille fermière": "Suprema de pollo de corral",
+    "Desserts": "Postres",
+    "Mousse au chocolat noir": "Mousse de chocolate negro",
+    "Tartelette citron meringuée": "Tarta de limón con merengue",
+    "Assiette de fruits de saison": "Plato de frutas de temporada",
+    "Crème brûlée à la vanille": "Crème brûlée de vainilla",
+    "Boissons & Cocktails": "Bebidas y Cócteles",
+    "Smoothie vert detox": "Batido verde detox",
+    "Cocktail Green Spirit": "Cóctel Green Spirit",
+    "Vin blanc biodynamique": "Vino blanco biodinámico",
+    "Eau filtrée Smart Guest": "Agua filtrada Smart Guest",
+    "Vegan": "Vegano",
+    "Pescetarien": "Pescatariano",
+    "Végétarien": "Vegetariano",
+    "Omnivore": "Omnívoro",
+    "Vegan-friendly": "Apto para veganos",
+    "Local/Bio": "Local/Orgánico",
+    "Label Rouge": "Etiqueta Roja",
+    "Local": "Local",
+    "Bio": "Orgánico",
+    "Pêche durable": "Pesca sostenible",
+    "Bio / Équitable": "Orgánico / Comercio justo",
+    "Local / Bio": "Local / Orgánico",
+    "Commerce équitable": "Comercio justo",
+    "Biodynamique": "Biodinámico",
+    "Zéro déchet": "Cero residuos",
+    'Menu Vegetarian': 'Menú Vegetariano',
+
+    // Concierge
+    'Ask me about sustainable travel, local tips, or hotel services.': 'Pregúntame sobre viajes sostenibles, consejos locales o servicios del hotel.',
+    "Ask a question...": "Haz una pregunta...",
+    "Sorry, I'm having trouble connecting. Please try again later.": "Lo siento, tengo problemas para conectarme. Por favor, inténtalo de nuevo más tarde.",
   }
 };
 
@@ -251,7 +381,7 @@ export type Language = keyof typeof translations;
 
 export const getTranslator = (lang: Language) => {
   const t = (key: keyof typeof translations.en) => {
-    return translations[lang]?.[key] || key;
+    return translations[lang]?.[key] || translations['en']?.[key] || key;
   };
   return t;
 };

@@ -11,6 +11,7 @@ import { Send, User, Bot } from "lucide-react";
 import type { Message } from "@/lib/types";
 import { answerUserQuery } from "@/ai/flows/answer-user-queries";
 import { useUserProfile } from "@/context/user-profile-context";
+import { useLanguage } from "@/context/language-context";
 
 export default function ConciergePage() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -18,6 +19,7 @@ export default function ConciergePage() {
   const [isLoading, setIsLoading] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const { profile } = useUserProfile();
+  const { t } = useLanguage();
 
   useEffect(() => {
     if (scrollAreaRef.current) {
@@ -60,7 +62,7 @@ export default function ConciergePage() {
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: "assistant",
-        content: "Sorry, I'm having trouble connecting. Please try again later.",
+        content: t("Sorry, I'm having trouble connecting. Please try again later."),
       };
       setMessages((prev) => [...prev, errorMessage]);
       console.error("Error fetching AI response:", error);
@@ -72,9 +74,9 @@ export default function ConciergePage() {
   return (
     <div className="flex h-[calc(100vh-2rem)] flex-col p-4">
       <header className="mb-4">
-        <h1 className="text-2xl font-bold font-headline">AI Concierge</h1>
+        <h1 className="text-2xl font-bold font-headline">{t('AI Concierge')}</h1>
         <p className="text-muted-foreground">
-          Ask me about sustainable travel, local tips, or hotel services.
+          {t('Ask me about sustainable travel, local tips, or hotel services.')}
         </p>
       </header>
       <ScrollArea className="flex-1" ref={scrollAreaRef}>
@@ -133,7 +135,7 @@ export default function ConciergePage() {
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask a question..."
+            placeholder={t('Ask a question...')}
             className="flex-1"
             disabled={isLoading}
           />
@@ -144,3 +146,4 @@ export default function ConciergePage() {
       </div>
     </div>
   );
+}
