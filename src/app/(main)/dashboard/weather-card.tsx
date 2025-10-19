@@ -130,7 +130,6 @@ export function WeatherCard() {
                         <p className="text-2xl font-bold">{weather.currentTemp}°C</p>
                     </div>
                 </div>
-                <p className="text-sm text-muted-foreground">{weather.summary}</p>
             </div>
             <div className="space-y-2">
                 {weather.forecast.map((day) => (
