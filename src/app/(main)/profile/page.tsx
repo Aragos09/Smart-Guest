@@ -31,7 +31,7 @@ import { useLanguage } from "@/context/language-context";
 import type { Language } from "@/lib/translations";
 import { useUserProfile } from "@/context/user-profile-context";
 import { useEffect } from "react";
-import { Leaf, Building2, HeartHandshake, BotMessageSquare, Utensils, Wind, Star } from "lucide-react";
+import { Leaf, Building2, HeartHandshake, BotMessageSquare, Utensils, Wind, Star, Sparkles } from "lucide-react";
 import menuData from "@/lib/restaurant-menu.json";
 import signatureMenuJson from "@/lib/signature-menu.json";
 import type { MenuCategory, SignatureMenuData } from "@/lib/types";
@@ -532,6 +532,24 @@ export default function ProfilePage() {
 
           <Card>
             <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Sparkles className="h-6 w-6 text-primary" />
+                {t('Dynamic Preferences')}
+              </CardTitle>
+              <CardDescription>{t("Allow the app to auto-update preferences based on your behavior.")}</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-2 text-sm text-muted-foreground">
+              <p>{t("The app learns from your actions to personalize your experience further. For example:")}</p>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>{t("Detects that you always order vegan dishes → recommends vegan restaurants automatically.")}</li>
+                <li>{t("Learns your preferred check-in times → adjusts reminders.")}</li>
+                <li>{t("Notices a lower light preference at night → auto-dims room lights.")}</li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
               <CardTitle>{t('Primary Trip Type')}</CardTitle>
               <CardDescription>{t("This helps us tailor your experience, whether you're here for work or play.")}</CardDescription>
             </CardHeader>
@@ -626,5 +644,3 @@ export default function ProfilePage() {
     </div>
   );
 }
-
-    

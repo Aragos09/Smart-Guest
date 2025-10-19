@@ -53,7 +53,7 @@ export const translations = {
     
     // Experiences
     'Local Eco-Friendly Experiences': 'Expériences Écologiques Locales',
-    'Personalized recommendations for sustainable activities near you.': 'Recommandations personnalisées pour des activités durables près de chez vous.',
+    'Personalized recommendations for sustainable activities near you.': 'Recommandations personalisées pour des activités durables près de chez vous.',
     'Learn More': 'En savoir plus',
     'Guided Nature Hike': 'Randonnée Guidée en Nature',
     'Explore the breathtaking local trails with an expert guide. Learn about the native flora and fauna.': 'Explorez les sentiers locaux époustouflants avec un guide expert. Découvrez la flore et la faune indigènes.',
@@ -143,6 +143,13 @@ export const translations = {
     "This helps us tailor your experience, whether you're here for work or play.": "Cela nous aide à personnaliser votre expérience, que vous soyez ici pour le travail ou les loisirs.",
     'Dashboard Customization': "Personnalisation du tableau de bord",
     "Select which quick links to display on your dashboard.": "Sélectionnez les liens rapides à afficher sur votre tableau de bord.",
+    'Dynamic Preferences': 'Préférences Dynamiques',
+    'Allow the app to auto-update preferences based on your behavior.': 'Autorisez l\'application à mettre à jour automatiquement les préférences en fonction de votre comportement.',
+    'The app learns from your actions to personalize your experience further. For example:': 'L\'application apprend de vos actions pour personnaliser davantage votre expérience. Par exemple :',
+    'Detects that you always order vegan dishes → recommends vegan restaurants automatically.': 'Détecte que vous commandez toujours des plats végétaliens → recommande automatiquement des restaurants végétaliens.',
+    'Learns your preferred check-in times → adjusts reminders.': 'Apprend vos heures d\'enregistrement préférées → ajuste les rappels.',
+    'Notices a lower light preference at night → auto-dims room lights.': 'Remarque une préférence pour une lumière plus faible la nuit → atténue automatiquement les lumières de la chambre.',
+
 
     // Services
     'Book eco-friendly services to enhance your stay.': 'Réservez des services écologiques pour améliorer votre séjour.',
@@ -438,6 +445,12 @@ export const translations = {
     "This helps us tailor your experience, whether you're here for work or play.": "This helps us tailor your experience, whether you're here for work or play.",
     'Dashboard Customization': "Dashboard Customization",
     "Select which quick links to display on your dashboard.": "Select which quick links to display on your dashboard.",
+    'Dynamic Preferences': 'Dynamic Preferences',
+    'Allow the app to auto-update preferences based on your behavior.': 'Allow the app to auto-update preferences based on your behavior.',
+    'The app learns from your actions to personalize your experience further. For example:': 'The app learns from your actions to personalize your experience further. For example:',
+    'Detects that you always order vegan dishes → recommends vegan restaurants automatically.': 'Detects that you always order vegan dishes → recommends vegan restaurants automatically.',
+    'Learns your preferred check-in times → adjusts reminders.': 'Learns your preferred check-in times → adjusts reminders.',
+    'Notices a lower light preference at night → auto-dims room lights.': 'Notices a lower light preference at night → auto-dims room lights.',
 
 
     // Services
@@ -734,6 +747,12 @@ export const translations = {
     "This helps us tailor your experience, whether you're here for work or play.": "Esto nos ayuda a personalizar tu experiencia, ya sea que estés aquí por trabajo o por placer.",
     'Dashboard Customization': "Personalización del tablero",
     "Select which quick links to display on your dashboard.": "Selecciona qué enlaces rápidos mostrar en tu tablero.",
+    'Dynamic Preferences': 'Preferencias Dinámicas',
+    'Allow the app to auto-update preferences based on your behavior.': 'Permite que la aplicación actualice automáticamente las preferencias según tu comportamiento.',
+    'The app learns from your actions to personalize your experience further. For example:': 'La aplicación aprende de tus acciones para personalizar aún más tu experiencia. Por ejemplo:',
+    'Detects that you always order vegan dishes → recommends vegan restaurants automatically.': 'Detecta que siempre pides platos veganos → recomienda restaurantes veganos automáticamente.',
+    'Learns your preferred check-in times → adjusts reminders.': 'Aprende tus horas de check-in preferidas → ajusta los recordatorios.',
+    'Notices a lower light preference at night → auto-dims room lights.': 'Nota una preferencia por una luz más baja por la noche → atenúa automáticamente las luces de la habitación.',
 
 
     // Services
