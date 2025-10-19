@@ -27,6 +27,10 @@ export const translations = {
     'AI Concierge': 'Concierge IA',
     'Discover our delicious menus.': 'Découvrez nos délicieux menus.',
     'Relax and rejuvenate.': 'Détendez-vous et ressourcez-vous.',
+    'Local Weather': 'Météo Locale',
+    'A quick look at the current weather.': 'Un aperçu de la météo actuelle.',
+    "Could not fetch weather data.": "Impossible de récupérer les données météo.",
+    "Geolocation is not available.": "La géolocalisation n'est pas disponible.",
     
     // Eco Manager
     'Visualize your positive impact on the environment.': 'Visualisez votre impact positif sur l\'environnement.',
@@ -329,6 +333,10 @@ export const translations = {
     'AI Concierge': 'AI Concierge',
     'Discover our delicious menus.': 'Discover our delicious menus.',
     'Relax and rejuvenate.': 'Relax and rejuvenate.',
+    'Local Weather': 'Local Weather',
+    'A quick look at the current weather.': 'A quick look at the current weather.',
+    "Could not fetch weather data.": "Could not fetch weather data.",
+    "Geolocation is not available.": "Geolocation is not available.",
 
     // Eco Manager
     'Visualize your positive impact on the environment.': 'Visualize your positive impact on the environment.',
@@ -578,7 +586,7 @@ export const translations = {
     'Chablis 1er Cru – Domaine Laroche': 'Chablis 1er Cru – Domaine Laroche',
     'Suprême de volaille fermière aux morilles, tagliatelles fraîches et asperges vertes': 'Farmhouse chicken supreme with morels, fresh tagliatelle and green asparagus',
     'Sauce crémeuse au vin jaune du Jura, cuisson basse température.': 'Creamy sauce with Jura yellow wine, low temperature cooking.',
-    'Côtes-du-Jura blanc – Domaine Rolet': 'Côtes-du-Jura blanc – Domaine Rolet',
+    'Côtes-du-Jura blanc – Domaine Rolet': 'Côtes-du-Jura blanco – Domaine Rolet',
     'Côte d’agneau rôtie, purée de pois chiches au cumin et jus réduit au romarin': 'Roasted lamb chop, cumin chickpea purée and rosemary reduced jus',
     'Servie avec légumes confits et oignons rouges caramélisés.': 'Served with candied vegetables and caramelized red onions.',
     'Côtes-du-Rhône – Les Becs Fins': 'Côtes-du-Rhône – Les Becs Fins',
@@ -631,6 +639,10 @@ export const translations = {
     'AI Concierge': 'Conserje de IA',
     'Discover our delicious menus.': 'Descubre nuestros deliciosos menús.',
     'Relax and rejuvenate.': 'Relájate y renuévate.',
+    'Local Weather': 'Tiempo Local',
+    'A quick look at the current weather.': 'Un vistazo rápido al tiempo actual.',
+    "Could not fetch weather data.": "No se pudieron obtener los datos del tiempo.",
+    "Geolocation is not available.": "La geolocalización no está disponible.",
 
     // Eco Manager
     'Visualize your positive impact on the environment.': 'Visualiza tu impacto positivo en el medio ambiente.',

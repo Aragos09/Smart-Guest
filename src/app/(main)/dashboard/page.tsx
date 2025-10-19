@@ -24,6 +24,7 @@ import { useLanguage } from "@/context/language-context";
 import { useUserProfile } from "@/context/user-profile-context";
 import { useEffect, useState } from "react";
 import { generateDynamicWelcomeMessage } from "@/ai/flows/dynamic-welcome-message";
+import { WeatherCard } from "./weather-card";
 
 type QuickLink = {
   id: string;
@@ -99,7 +100,7 @@ export default function DashboardPage() {
       } catch (error) {
         console.error("Error generating welcome message:", error);
         // Fallback message
-        setWelcomeMessage(`Welcome back, ${profile.name}! We're glad to see you again.`);
+        setWelcomeMessage(`Welcome back! We're glad to see you again.`);
       }
     }
 
@@ -141,6 +142,7 @@ export default function DashboardPage() {
             <EcoScoreChart />
           </CardContent>
         </Card>
+        <WeatherCard />
         <Card className="lg:col-span-2">
           <CardHeader>
             <CardTitle>{t('Quick Links')}</CardTitle>
