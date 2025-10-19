@@ -2,8 +2,7 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
-import menu from "@/lib/restaurant-menu.json";
+import menuData from "@/lib/restaurant-menu.json";
 import { useLanguage } from "@/context/language-context";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -31,42 +30,42 @@ import type { MenuCategory as RoomServiceCategory, MenuItem as RoomServiceItem, 
 import { Search, ShoppingCart, Plus, Minus, Trash2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 
-const menuData: { categories: RoomServiceCategory[] } = menu;
+const { categories: menuCategories }: { categories: RoomServiceCategory[] } = menuData;
 
 function MenuItemCard({ item }: { item: RoomServiceItem }) {
   const { t } = useLanguage();
   const { addToCart } = useCart();
+  const { toast } = useToast();
 
-  const cartItem: CartItem = {
-    ...item,
-    id: item.name, // Using name as ID since it's unique in the context of this menu
-    description: item.type, // Re-purposing description for cart
-    image: `https://picsum.photos/seed/${item.name.replace(/\s+/g, '-').toLowerCase()}/600/400`,
-    imageHint: item.name,
-    tags: [item.eco_label]
+  const handleAddToCart = () => {
+    addToCart({
+      ...item,
+      id: item.name,
+      quantity: 1,
+      image: `https://picsum.photos/seed/${item.name.replace(/\s+/g, '-').toLowerCase()}/600/400`,
+    });
+    toast({
+      title: t('Added to cart'),
+      description: `${t(item.name as any)} ${t('has been added to your order.')}`,
+    });
   };
 
   return (
-    <Card className="overflow-hidden">
-       <div className="relative h-40 w-full">
-        <Image
-          src={cartItem.image}
-          alt={t(item.name as any)}
-          fill
-          className="object-cover"
-          data-ai-hint={item.name}
-        />
-      </div>
+    <Card className="overflow-hidden flex flex-col">
       <CardHeader>
         <CardTitle>{t(item.name as any)}</CardTitle>
-        <CardDescription className="h-10">
+        <CardDescription>
           <Badge variant="outline">{t(item.eco_label as any)}</Badge>
         </CardDescription>
       </CardHeader>
-      <CardFooter className="flex items-center justify-between">
+      <CardContent className="flex-grow">
+        <p className="text-sm text-muted-foreground">{t(item.type as any)}</p>
+      </CardContent>
+      <CardFooter className="flex items-center justify-between mt-auto">
         <p className="text-lg font-bold">{item.price > 0 ? `${item.price.toFixed(2)}€` : t('Offert')}</p>
-        <Button onClick={() => addToCart(cartItem)}>{t('Add')}</Button>
+        <Button onClick={handleAddToCart}>{t('Add')}</Button>
       </CardFooter>
     </Card>
   );
@@ -99,13 +98,13 @@ function CartSheet() {
             <div className="px-6">
                 {cart.map((item) => (
                     <div key={item.id} className="flex items-center gap-4 py-4">
-                        <Image
+                        {item.image && <Image
                         src={item.image}
                         alt={t(item.name as any)}
                         width={64}
                         height={64}
                         className="rounded-md object-cover"
-                        />
+                        />}
                         <div className="flex-1">
                         <p className="font-semibold">{t(item.name as any)}</p>
                         <p className="text-sm text-muted-foreground">{item.price.toFixed(2)}€</p>
@@ -169,7 +168,14 @@ export default function RoomServicePage() {
   const { totalItems } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const filteredMenu = menuData.categories.map(category => ({
+  const categoryIdMap = {
+    "Entrées": "starters",
+    "Plats principaux": "main-courses",
+    "Desserts": "desserts",
+    "Boissons & Cocktails": "drinks"
+  };
+  
+  const filteredMenu = menuCategories.map(category => ({
     ...category,
     items: category.items.filter(item =>
       t(item.name as any).toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -177,12 +183,9 @@ export default function RoomServicePage() {
     )
   })).filter(category => category.items.length > 0);
   
-  const categoryIdMap = {
-    "Entrées": "starters",
-    "Plats principaux": "main-courses",
-    "Desserts": "desserts",
-    "Boissons & Cocktails": "drinks"
-  };
+  const allCategories = menuCategories.map(cat => ({id: categoryIdMap[cat.name as keyof typeof categoryIdMap], name: cat.name}));
+  
+  const defaultTab = allCategories.length > 0 ? allCategories[0].id : "";
 
   return (
     <div className="flex h-full flex-col">
@@ -200,11 +203,11 @@ export default function RoomServicePage() {
         </div>
       </div>
 
-      <Tabs defaultValue="starters" className="flex-1 flex flex-col">
+      <Tabs defaultValue={defaultTab} className="flex-1 flex flex-col">
         <div className="px-4 md:px-8">
             <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
-                {menuData.categories.map((category) => (
-                    <TabsTrigger key={category.name} value={categoryIdMap[category.name as keyof typeof categoryIdMap]}>{t(category.name as any)}</TabsTrigger>
+                {allCategories.map((category) => (
+                    <TabsTrigger key={category.id} value={category.id}>{t(category.name as any)}</TabsTrigger>
                 ))}
             </TabsList>
         </div>
@@ -219,6 +222,13 @@ export default function RoomServicePage() {
                     </div>
                     </TabsContent>
                 ))}
+                {
+                  filteredMenu.length === 0 && (
+                    <div className="text-center text-muted-foreground py-10">
+                      {t('No dishes found.')}
+                    </div>
+                  )
+                }
             </div>
         </ScrollArea>
       </Tabs>

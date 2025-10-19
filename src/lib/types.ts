@@ -78,15 +78,7 @@ export type SignatureMenuData = {
   tags: string[];
 };
 
-export type RoomServiceItem = {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-  imageHint: string;
-  tags: string[];
-};
+export type RoomServiceItem = MenuItem;
 
 export type RoomServiceCategory = {
   id: 'starters' | 'main-courses' | 'desserts' | 'drinks';
