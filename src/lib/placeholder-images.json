@@ -53,6 +53,12 @@
       "description": "A stunning modern hotel lobby with natural elements.",
       "imageUrl": "https://images.unsplash.com/photo-1546967900-1bea5f16b69d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8aG90ZWwlMjBsb2JieXxlbnwwfHx8fDE3NjA3MzQxMzh8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "hotel lobby"
+    },
+    {
+      "id": "room-service-cover",
+      "description": "A delicious room service meal on a tray.",
+      "imageUrl": "https://images.unsplash.com/photo-1598214886806-c87b84b7078b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxob3RlbCUyMHJvb20lMjBzZXJ2aWNlfGVufDB8fHx8MTc2MDc2NjAwN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "room service"
     }
   ]
 }

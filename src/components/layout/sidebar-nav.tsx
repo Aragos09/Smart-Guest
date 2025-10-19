@@ -12,6 +12,7 @@ import {
   Settings,
   Utensils,
   Wind,
+  ShoppingBasket
 } from "lucide-react";
 import { AppLogo } from "@/components/icons";
 import {
@@ -38,6 +39,7 @@ export function SidebarNav() {
     { href: "/services", icon: Building2, label: t("Services") },
     { href: "/experiences", icon: HeartHandshake, label: t("Experiences") },
     { href: "/restaurant", icon: Utensils, label: t("Restaurant") },
+    { href: "/room-service", icon: ShoppingBasket, label: t("Room Service") },
     { href: "/wellness", icon: Wind, label: t("Wellness") },
     { href: "/concierge", icon: BotMessageSquare, label: t("Concierge") },
   ];

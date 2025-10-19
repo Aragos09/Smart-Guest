@@ -4,6 +4,7 @@ import { SidebarNav } from "@/components/layout/sidebar-nav";
 import { LanguageProvider } from "@/context/language-context";
 import { UserProfileProvider } from "@/context/user-profile-context";
 import { DynamicBackground } from "@/components/layout/dynamic-background";
+import { CartProvider } from "@/context/cart-context";
 
 export default function MainLayout({
   children,
@@ -13,13 +14,15 @@ export default function MainLayout({
   return (
     <UserProfileProvider>
       <LanguageProvider>
-        <SidebarProvider>
-          <DynamicBackground />
-          <SidebarNav />
-          <SidebarInset>
-            {children}
-          </SidebarInset>
-        </SidebarProvider>
+        <CartProvider>
+          <SidebarProvider>
+            <DynamicBackground />
+            <SidebarNav />
+            <SidebarInset>
+              {children}
+            </SidebarInset>
+          </SidebarProvider>
+        </CartProvider>
       </LanguageProvider>
     </UserProfileProvider>
   );
