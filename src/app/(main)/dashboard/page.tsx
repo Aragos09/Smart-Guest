@@ -1,3 +1,4 @@
+
 "use client";
 
 import {
@@ -19,9 +20,11 @@ import { generateDynamicWelcomeMessage } from "@/ai/flows/dynamic-welcome-messag
 import { EcoScoreChart } from "./eco-score-chart";
 import { useLanguage } from "@/context/language-context";
 import { useEffect, useState } from "react";
+import { useUserProfile } from "@/context/user-profile-context";
 
 export default function DashboardPage() {
   const { t } = useLanguage();
+  const { profile } = useUserProfile();
   const [welcomeMessage, setWelcomeMessage] = useState("");
 
   const quickLinks = [
@@ -54,23 +57,25 @@ export default function DashboardPage() {
   useEffect(() => {
     async function getWelcomeMessage() {
         const welcomeMessageData = await generateDynamicWelcomeMessage({
-            userName: "Alex",
+            userName: profile.name,
             travelHistory: "Frequent business traveler, last stayed in our eco-suite.",
-            userPreferences: "Prefers quiet rooms, plant-based meals, and digital check-ins.",
-            ecoSensitivity: "high",
+            userPreferences: `Prefers quiet rooms, plant-based meals, and digital check-ins. Trip type: ${profile.tripType}`,
+            ecoSensitivity: profile.ecoSensitivity,
             newOptions: "We've introduced a new rooftop garden and electric scooter rentals.",
         });
         setWelcomeMessage(welcomeMessageData.welcomeMessage);
     }
-    getWelcomeMessage();
-  }, []);
+    if (profile.name) {
+      getWelcomeMessage();
+    }
+  }, [profile]);
 
   return (
     <div className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
       <Card>
         <CardHeader>
           <CardTitle className="font-headline text-3xl">
-            {t('Welcome back')}, Alex!
+            {t('Welcome back')}, {profile.name}!
           </CardTitle>
           <CardDescription>
             {welcomeMessage}

@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useRef, useEffect } from "react";
@@ -9,12 +10,14 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Send, User, Bot } from "lucide-react";
 import type { Message } from "@/lib/types";
 import { answerUserQuery } from "@/ai/flows/answer-user-queries";
+import { useUserProfile } from "@/context/user-profile-context";
 
 export default function ConciergePage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const { profile } = useUserProfile();
 
   useEffect(() => {
     if (scrollAreaRef.current) {
@@ -40,9 +43,9 @@ export default function ConciergePage() {
       const response = await answerUserQuery({
         query: input,
         userProfile: {
-          language: "en",
-          tripType: "leisure",
-          ecoSensitivity: "high",
+          language: profile.language,
+          tripType: profile.tripType,
+          ecoSensitivity: profile.ecoSensitivity,
         },
         knowledgeBase: "Our hotel uses solar panels for hot water, offers a linen reuse program, and sources 80% of its restaurant ingredients from local farms within a 50-mile radius. We have EV charging stations available for a small fee.",
       });
@@ -101,9 +104,8 @@ export default function ConciergePage() {
               </div>
               {message.role === "user" && (
                 <Avatar className="h-8 w-8">
-                  <AvatarFallback>
-                    <User className="h-5 w-5" />
-                  </AvatarFallback>
+                  <AvatarImage src="https://picsum.photos/seed/avatar/200" alt={profile.name} />
+                  <AvatarFallback>{profile.name?.charAt(0).toUpperCase()}</AvatarFallback>
                 </Avatar>
               )}
             </div>
@@ -142,4 +144,3 @@ export default function ConciergePage() {
       </div>
     </div>
   );
-}

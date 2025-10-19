@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -15,6 +16,7 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import type { Experience } from "@/lib/types";
 import { useLanguage } from "@/context/language-context";
 import { useEffect, useState } from "react";
+import { useUserProfile } from "@/context/user-profile-context";
 
 const mockExperiences: Experience[] = [
   {
@@ -74,16 +76,17 @@ function ExperienceCard({ experience }: { experience: Experience }) {
 }
 
 export default function ExperiencesPage() {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const [displayExperiences, setDisplayExperiences] = useState<Experience[]>(mockExperiences);
+  const { profile } = useUserProfile();
 
   useEffect(() => {
     async function getRecommendations() {
       // In a real app, these values would be dynamic.
       const recommendationInput = {
-        language: language,
-        tripType: "leisure",
-        ecoSensitivity: "high" as "high" | "medium" | "low",
+        language: profile.language,
+        tripType: profile.tripType,
+        ecoSensitivity: profile.ecoSensitivity,
         geolocation: { latitude: 34.0522, longitude: -118.2437 }, // Los Angeles
         weatherCondition: "Sunny",
         userProfile: "User enjoys outdoor activities and cultural experiences. Interested in photography."
@@ -101,8 +104,10 @@ export default function ExperiencesPage() {
       setDisplayExperiences(recommendedExperiences.length > 0 ? recommendedExperiences : mockExperiences);
     }
     
-    getRecommendations();
-  }, [language]);
+    if (profile) {
+      getRecommendations();
+    }
+  }, [profile]);
 
 
   return (

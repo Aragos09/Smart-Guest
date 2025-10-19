@@ -1,3 +1,4 @@
+
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -27,6 +28,8 @@ import { useToast } from "@/hooks/use-toast";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useLanguage } from "@/context/language-context";
 import type { Language } from "@/lib/translations";
+import { useUserProfile } from "@/context/user-profile-context";
+import { useEffect } from "react";
 
 const profileFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
@@ -45,29 +48,35 @@ const profileFormSchema = z.object({
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
 export default function ProfilePage() {
-  const { t, language, setLanguage } = useLanguage();
+  const { t, setLanguage, language } = useLanguage();
   const { toast } = useToast();
-
-  const defaultValues: Partial<ProfileFormValues> = {
-    name: "Alex Doe",
-    email: "alex.doe@example.com",
-    language: language,
-    tripType: "leisure",
-    ecoSensitivity: "high",
-  };
+  const { profile, setProfile, isLoading } = useUserProfile();
 
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
-    defaultValues,
+    defaultValues: profile,
     mode: "onChange",
   });
+  
+  useEffect(() => {
+    if (!isLoading) {
+      form.reset(profile);
+    }
+  }, [isLoading, profile, form]);
 
   function onSubmit(data: ProfileFormValues) {
-    setLanguage(data.language as Language);
+    if (data.language !== language) {
+      setLanguage(data.language as Language);
+    }
+    setProfile(data);
     toast({
       title: t('Profile Updated'),
       description: t('Your preferences have been saved successfully.'),
     });
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>
   }
 
   return (
@@ -90,8 +99,8 @@ export default function ProfilePage() {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <div className="flex items-center space-x-6">
                 <Avatar className="h-20 w-20">
-                  <AvatarImage src="https://picsum.photos/seed/avatar/200" alt="Alex Doe" />
-                  <AvatarFallback>AD</AvatarFallback>
+                  <AvatarImage src="https://picsum.photos/seed/avatar/200" alt={profile.name} />
+                  <AvatarFallback>{profile.name?.charAt(0).toUpperCase()}</AvatarFallback>
                 </Avatar>
                 <FormField
                   control={form.control}
