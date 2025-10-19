@@ -44,25 +44,25 @@ function SignatureMenuItemCard({ item }: { item: SignatureMenuItem }) {
   return (
     <div className="flex flex-col gap-2 py-4">
       <div className="flex justify-between gap-4">
-        <h3 className="font-semibold">{item.name}</h3>
+        <h3 className="font-semibold">{t(item.name as any)}</h3>
         {item.price && (
           <div className="text-lg font-bold text-primary">{item.price.toFixed(2)}€</div>
         )}
       </div>
       {item.description && (
-        <p className="text-sm text-muted-foreground">{item.description}</p>
+        <p className="text-sm text-muted-foreground">{t(item.description as any)}</p>
       )}
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
         {item.allergens && item.allergens.length > 0 && (
           <p>
-            <span className="font-medium text-foreground">Allergènes:</span>{" "}
+            <span className="font-medium text-foreground">{t('Allergens')}:</span>{" "}
             {item.allergens.join(", ")}
           </p>
         )}
         {item.wine_pairing && (
           <p>
-            <span className="font-medium text-foreground">Accord vin:</span>{" "}
-            {item.wine_pairing}
+            <span className="font-medium text-foreground">{t('Wine Pairing')}:</span>{" "}
+            {t(item.wine_pairing as any)}
           </p>
         )}
       </div>
@@ -95,8 +95,8 @@ function SustainableMenu() {
 function SignatureMenu() {
   const { t } = useLanguage();
   const sustainabilityItems = [
-    { icon: Leaf, text: signatureMenu.sustainability.local_products, label: "Produits Locaux" },
-    { icon: Fish, text: signatureMenu.sustainability.fish_label, label: "Pêche Durable" },
+    { icon: Leaf, text: signatureMenu.sustainability.local_products, label: "Local Products" },
+    { icon: Fish, text: signatureMenu.sustainability.fish_label, label: "Sustainable Fishing" },
     { icon: RotateCw, text: signatureMenu.sustainability.menu_rotation, label: "Rotation" },
     { icon: Box, text: signatureMenu.sustainability.packaging, label: "Packaging" },
   ]
@@ -104,8 +104,8 @@ function SignatureMenu() {
     <div className="space-y-8">
        <Card>
           <CardHeader>
-            <CardTitle className="font-headline text-2xl">{signatureMenu.name}</CardTitle>
-            <CardDescription>{signatureMenu.description}</CardDescription>
+            <CardTitle className="font-headline text-2xl">{t(signatureMenu.name as any)}</CardTitle>
+            <CardDescription>{t(signatureMenu.description as any)}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
              <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
@@ -113,8 +113,8 @@ function SignatureMenu() {
                    <div key={item.label} className="flex items-start space-x-3">
                       <item.icon className="h-5 w-5 mt-0.5 text-primary"/>
                       <div>
-                         <p className="text-sm font-semibold">{item.label}</p>
-                         <p className="text-sm text-muted-foreground">{item.text}</p>
+                         <p className="text-sm font-semibold">{t(item.label as any)}</p>
+                         <p className="text-sm text-muted-foreground">{t(item.text as any)}</p>
                       </div>
                    </div>
                 ))}
@@ -126,7 +126,7 @@ function SignatureMenu() {
         <Card key={section.category}>
           <CardHeader>
             <CardTitle className="font-headline text-2xl">
-              {section.category}
+              {t(section.category as any)}
             </CardTitle>
           </CardHeader>
           <CardContent className="divide-y">
@@ -156,7 +156,7 @@ export default function RestaurantPage() {
       <Tabs defaultValue="sustainable">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="sustainable">{t('Menu Vegetarian')}</TabsTrigger>
-          <TabsTrigger value="signature">Menu Signature</TabsTrigger>
+          <TabsTrigger value="signature">{t('Menu Signature')}</TabsTrigger>
         </TabsList>
         <TabsContent value="sustainable">
           <SustainableMenu />
@@ -168,3 +168,5 @@ export default function RestaurantPage() {
     </div>
   );
 }
+
+    
