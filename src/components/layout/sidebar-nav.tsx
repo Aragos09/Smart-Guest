@@ -50,13 +50,15 @@ export function SidebarNav() {
 
   return (
     <Sidebar collapsible="icon" className="group-data-[variant=inset]:bg-transparent group-data-[variant=inset]:border-none dark:group-data-[variant=inset]:bg-transparent">
-        <SidebarHeader className="flex items-center gap-2">
-            <AppLogo className="size-8 shrink-0 text-sidebar-primary dark:text-sidebar-primary" />
-            <div className="flex flex-1 flex-col">
-              <span className="text-lg font-bold text-sidebar-foreground">
-                Smart Guest
-              </span>
-              <span className="text-xs text-sidebar-foreground/70">{t('Hi')} {profile.name}!</span>
+        <SidebarHeader className="flex items-center justify-between gap-2">
+            <div className="flex flex-1 flex-col items-center gap-2 text-center">
+              <AppLogo className="size-8 shrink-0 text-sidebar-primary dark:text-sidebar-primary" />
+              <div className="flex flex-col">
+                <span className="text-lg font-bold text-sidebar-foreground">
+                  Smart Guest
+                </span>
+                <span className="text-sm text-sidebar-foreground/70">{t('Hi')} {profile.name}!</span>
+              </div>
             </div>
             <SidebarTrigger className="hidden md:flex" />
         </SidebarHeader>
