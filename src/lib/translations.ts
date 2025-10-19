@@ -31,6 +31,11 @@ export const translations = {
     'A quick look at the current weather.': 'Un aperçu de la météo actuelle.',
     "Could not fetch weather data.": "Impossible de récupérer les données météo.",
     "Geolocation is not available.": "La géolocalisation n'est pas disponible.",
+    'Today': 'Aujourd\'hui',
+    'Mon': 'Lun',
+    'Tue': 'Mar',
+    'Wed': 'Mer',
+    'Thu': 'Jeu',
     
     // Eco Manager
     'Visualize your positive impact on the environment.': 'Visualisez votre impact positif sur l\'environnement.',
@@ -337,6 +342,11 @@ export const translations = {
     'A quick look at the current weather.': 'A quick look at the current weather.',
     "Could not fetch weather data.": "Could not fetch weather data.",
     "Geolocation is not available.": "Geolocation is not available.",
+    'Today': 'Today',
+    'Mon': 'Mon',
+    'Tue': 'Tue',
+    'Wed': 'Wed',
+    'Thu': 'Thu',
 
     // Eco Manager
     'Visualize your positive impact on the environment.': 'Visualize your positive impact on the environment.',
@@ -480,6 +490,7 @@ export const translations = {
     'Water-Saver': 'Water-Saver',
     'Organic': 'Organic',
 
+
     // Wellness
     'Wellness & Mindfulness': 'Wellness & Mindfulness',
     'Your personal space for relaxation and well-being.': 'Your personal space for relaxation and well-being.',
@@ -509,7 +520,7 @@ export const translations = {
     '2L goal': '2L goal',
     'Mindfulness': 'Mindfulness',
     '10m goal': '10m goal',
-    
+
     // Restaurant
     'Discover our selection of delicious and sustainable dishes.': 'Discover our selection of delicious and sustainable dishes.',
     "Offert": "Free",
@@ -643,6 +654,11 @@ export const translations = {
     'A quick look at the current weather.': 'Un vistazo rápido al tiempo actual.',
     "Could not fetch weather data.": "No se pudieron obtener los datos del tiempo.",
     "Geolocation is not available.": "La geolocalización no está disponible.",
+    'Today': 'Hoy',
+    'Mon': 'Lun',
+    'Tue': 'Mar',
+    'Wed': 'Mié',
+    'Thu': 'Jue',
 
     // Eco Manager
     'Visualize your positive impact on the environment.': 'Visualiza tu impacto positivo en el medio ambiente.',

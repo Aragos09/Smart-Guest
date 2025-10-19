@@ -9,41 +9,63 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { CloudSun, Sun, Cloud, CloudRain, Snowflake } from "lucide-react";
 import { useLanguage } from "@/context/language-context";
-import { summarizeWeather } from "@/ai/flows/summarize-weather";
+import { summarizeWeather, type SummarizeWeatherOutput } from "@/ai/flows/summarize-weather";
 import { Skeleton } from "@/components/ui/skeleton";
-import Link from "next/link";
 
 type Coordinates = {
   latitude: number;
   longitude: number;
 };
 
+const renderIcon = (iconName: string, className: string = "h-16 w-16") => {
+  switch (iconName.toLowerCase()) {
+    case "sun":
+      return <Sun className={`${className} text-yellow-500`} />;
+    case "cloud":
+      return <Cloud className={`${className} text-gray-400`} />;
+    case "rain":
+      return <CloudRain className={`${className} text-blue-400`} />;
+    case "snow":
+      return <Snowflake className={`${className} text-sky-300`} />;
+    default:
+      return <CloudSun className={`${className} text-orange-400`} />;
+  }
+};
+
 export function WeatherCard() {
   const { t, language } = useLanguage();
-  const [weatherSummary, setWeatherSummary] = useState("");
-  const [weatherIcon, setWeatherIcon] = useState("CloudSun");
+  const [weather, setWeather] = useState<SummarizeWeatherOutput | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [coords, setCoords] = useState<Coordinates | null>(null);
 
   useEffect(() => {
     async function getWeather(position: GeolocationPosition) {
+      setIsLoading(true);
       try {
-        const { summary, icon } = await summarizeWeather({
+        const result = await summarizeWeather({
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
           language,
         });
-        setWeatherSummary(summary);
-        setWeatherIcon(icon);
+        setWeather(result);
         setCoords({
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
         });
+        setError(null);
       } catch (error) {
         console.error("Error getting weather summary:", error);
-        setWeatherSummary(t("Could not fetch weather data."));
+        setError(t("Could not fetch weather data."));
       } finally {
         setIsLoading(false);
       }
@@ -51,7 +73,7 @@ export function WeatherCard() {
 
     function handleGeoError(error: GeolocationPositionError) {
       console.error("Geolocation error:", error);
-      setWeatherSummary(t("Geolocation is not available."));
+      setError(t("Geolocation is not available."));
       setIsLoading(false);
     }
     
@@ -59,27 +81,8 @@ export function WeatherCard() {
 
   }, [language, t]);
 
-  const renderIcon = () => {
-    switch (weatherIcon.toLowerCase()) {
-      case "sun":
-        return <Sun className="h-16 w-16 text-yellow-500" />;
-      case "cloud":
-        return <Cloud className="h-16 w-16 text-gray-400" />;
-      case "rain":
-        return <CloudRain className="h-16 w-16 text-blue-400" />;
-      case "snow":
-        return <Snowflake className="h-16 w-16 text-sky-300" />;
-      default:
-        return <CloudSun className="h-16 w-16 text-orange-400" />;
-    }
-  };
-
-  const weatherUrl = coords
-    ? `https://www.google.com/search?q=weather+${coords.latitude},${coords.longitude}`
-    : "#";
-
   const cardContent = (
-    <Card className="lg:col-span-2 h-full transition-all hover:bg-muted/50">
+    <>
       <CardHeader>
         <CardTitle>{t("Local Weather")}</CardTitle>
         <CardDescription>{t("A quick look at the current weather.")}</CardDescription>
@@ -93,23 +96,55 @@ export function WeatherCard() {
                 <Skeleton className="h-4 w-[200px]" />
             </div>
           </>
+        ) : error || !weather ? (
+          <p className="text-sm text-destructive">{error}</p>
         ) : (
           <>
-            {renderIcon()}
-            <p className="flex-1 text-muted-foreground">{weatherSummary}</p>
+            {renderIcon(weather.icon)}
+            <p className="flex-1 text-muted-foreground">{weather.summary}</p>
           </>
         )}
       </CardContent>
-    </Card>
+    </>
   );
 
-  return isLoading || !coords ? (
-    <div className="lg:col-span-2">
-      {cardContent}
-    </div>
-  ) : (
-    <Link href={weatherUrl} target="_blank" rel="noopener noreferrer" className="lg:col-span-2">
-      {cardContent}
-    </Link>
+  return (
+    <Dialog>
+      <DialogTrigger asChild disabled={isLoading || !!error}>
+        <Card className="lg:col-span-2 h-full transition-all hover:bg-muted/50 cursor-pointer">
+          {cardContent}
+        </Card>
+      </DialogTrigger>
+      {weather && (
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>5-Day Forecast</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between rounded-lg bg-muted p-4">
+                <div className="flex items-center gap-4">
+                    {renderIcon(weather.icon, "h-12 w-12")}
+                    <div>
+                        <p className="font-semibold">Now</p>
+                        <p className="text-2xl font-bold">{weather.currentTemp}°C</p>
+                    </div>
+                </div>
+                <p className="text-sm text-muted-foreground">{weather.summary}</p>
+            </div>
+            <div className="space-y-2">
+                {weather.forecast.map((day) => (
+                    <div key={day.day} className="flex items-center justify-between">
+                        <p className="w-12 font-medium">{t(day.day as any) || day.day}</p>
+                        {renderIcon(day.icon, "h-6 w-6")}
+                        <p className="text-sm text-muted-foreground">
+                            <span className="font-medium text-foreground">{day.high}°</span> / {day.low}°
+                        </p>
+                    </div>
+                ))}
+            </div>
+          </div>
+        </DialogContent>
+      )}
+    </Dialog>
   );
 }
