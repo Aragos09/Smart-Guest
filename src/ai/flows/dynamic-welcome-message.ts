@@ -37,7 +37,7 @@ const prompt = ai.definePrompt({
   output: {schema: DynamicWelcomeMessageOutputSchema},
   prompt: `You are an AI assistant that generates dynamic welcome messages for returning users.
 
-  Based on the user's name, travel history, user preferences, and eco-sensitivity, create a personalized welcome message.
+  Based on the user's travel history, user preferences, and eco-sensitivity, create a personalized welcome message. Do not include a salutation or the user's name in your response.
   Also include a summary of new eco-friendly options and recommendations for the area.
 
   Crucially, you must adapt the tone and content based on the user's eco-sensitivity level:
