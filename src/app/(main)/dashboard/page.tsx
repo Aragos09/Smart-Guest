@@ -19,10 +19,8 @@ import {
   Wind
 } from "lucide-react";
 import Link from "next/link";
-import { generateDynamicWelcomeMessage } from "@/ai/flows/dynamic-welcome-message";
 import { EcoScoreChart } from "./eco-score-chart";
 import { useLanguage } from "@/context/language-context";
-import { useEffect, useState } from "react";
 import { useUserProfile } from "@/context/user-profile-context";
 
 type QuickLink = {
@@ -82,7 +80,6 @@ const allQuickLinks: QuickLink[] = [
 export default function DashboardPage() {
   const { t } = useLanguage();
   const { profile } = useUserProfile();
-  const [welcomeMessage, setWelcomeMessage] = useState("");
 
   const quickLinks = allQuickLinks
     .filter(link => profile.quickLinks?.includes(link.id))
@@ -92,21 +89,7 @@ export default function DashboardPage() {
       description: t(link.description as any)
     }));
 
-  useEffect(() => {
-    async function getWelcomeMessage() {
-        const welcomeMessageData = await generateDynamicWelcomeMessage({
-            userName: profile.name,
-            travelHistory: "Frequent business traveler, last stayed in our eco-suite.",
-            userPreferences: `Prefers quiet rooms, plant-based meals, and digital check-ins. Trip type: ${profile.tripType}`,
-            ecoSensitivity: profile.ecoSensitivity,
-            newOptions: "We've introduced a new rooftop garden and electric scooter rentals.",
-        });
-        setWelcomeMessage(welcomeMessageData.welcomeMessage);
-    }
-    if (profile.name) {
-      getWelcomeMessage();
-    }
-  }, [profile]);
+  const welcomeMessageKey = "Welcome back, {name}! We're delighted to have you return, especially for a leisure trip after your last stay in our eco-suite. Your digital check-in is all set, and we've ensured you have a quiet room for a truly relaxing experience. Don't forget to explore our expanded plant-based meal options. For your leisure, we've just opened our beautiful new rooftop garden, perfect for a peaceful escape. You might also enjoy our new electric scooter rentals to explore the area sustainably. We hope you have a wonderful and refreshing stay!";
 
   return (
     <div className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
@@ -116,7 +99,7 @@ export default function DashboardPage() {
             {t('Welcome back')}, {profile.name}!
           </CardTitle>
           <CardDescription>
-            {welcomeMessage}
+            {t(welcomeMessageKey as any).replace('{name}', profile.name)}
           </CardDescription>
         </CardHeader>
       </Card>

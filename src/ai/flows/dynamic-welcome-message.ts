@@ -1,3 +1,4 @@
+
 'use server';
 
 /**
@@ -17,6 +18,7 @@ const DynamicWelcomeMessageInputSchema = z.object({
   userPreferences: z.string().describe('The user preferences.'),
   ecoSensitivity: z.string().describe('The user eco sensitivity.'),
   newOptions: z.string().describe('A summary of new eco-friendly options and recommendations for the area'),
+  language: z.string().describe('The language to generate the message in.')
 });
 export type DynamicWelcomeMessageInput = z.infer<typeof DynamicWelcomeMessageInputSchema>;
 
@@ -37,6 +39,8 @@ const prompt = ai.definePrompt({
 
   Based on the user's name, travel history, user preferences, and eco-sensitivity, create a personalized welcome message.
   Also include a summary of new eco-friendly options and recommendations for the area.
+
+  The message should be in the following language: {{{language}}}
 
   User Name: {{{userName}}}
   Travel History: {{{travelHistory}}}
