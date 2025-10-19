@@ -119,6 +119,7 @@ export const translations = {
     "Commerce équitable": "Commerce équitable",
     "Biodynamique": "Biodynamique",
     "Zéro déchet": "Zéro déchet",
+    "Menu Vegetarian": "Menu Végétarien",
   },
   en: {
     // Sidebar
@@ -239,6 +240,7 @@ export const translations = {
     "Commerce équitable": "Fair trade",
     "Biodynamique": "Biodynamic",
     "Zéro déchet": "Zero waste",
+    "Menu Vegetarian": "Vegetarian Menu",
   },
   es: {
     'Our Menu': 'Nuestro menú',

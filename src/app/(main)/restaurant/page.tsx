@@ -155,7 +155,7 @@ export default function RestaurantPage() {
 
       <Tabs defaultValue="sustainable">
         <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="sustainable">{t('Our Menu')}</TabsTrigger>
+          <TabsTrigger value="sustainable">{t('Menu Vegetarian')}</TabsTrigger>
           <TabsTrigger value="signature">Menu Signature</TabsTrigger>
         </TabsList>
         <TabsContent value="sustainable">
