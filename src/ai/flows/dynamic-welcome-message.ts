@@ -16,7 +16,7 @@ const DynamicWelcomeMessageInputSchema = z.object({
   userName: z.string().describe('The name of the user.'),
   travelHistory: z.string().describe('The user travel history.'),
   userPreferences: z.string().describe('The user preferences.'),
-  ecoSensitivity: z.string().describe('The user eco sensitivity.'),
+  ecoSensitivity: z.enum(['low', 'medium', 'high']).describe('The user eco sensitivity level.'),
   newOptions: z.string().describe('A summary of new eco-friendly options and recommendations for the area'),
   language: z.string().describe('The language to generate the message in.')
 });
@@ -40,7 +40,12 @@ const prompt = ai.definePrompt({
   Based on the user's name, travel history, user preferences, and eco-sensitivity, create a personalized welcome message.
   Also include a summary of new eco-friendly options and recommendations for the area.
 
-  The message should be in the following language: {{{language}}}
+  Crucially, you must adapt the tone and content based on the user's eco-sensitivity level:
+  - If ecoSensitivity is 'high', be enthusiastic about the new eco-options and frame them as exciting opportunities for sustainable living.
+  - If ecoSensitivity is 'medium', mention the new options in a balanced way, highlighting both convenience and sustainability.
+  - If ecoSensitivity is 'low', introduce the new options subtly, focusing on their benefits for comfort and experience (e.g., "try our new e-scooters for a fun way to see the city"). Avoid overly "green" language.
+
+  The message must be in the following language: {{{language}}}
 
   User Name: {{{userName}}}
   Travel History: {{{travelHistory}}}
