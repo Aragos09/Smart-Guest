@@ -3,14 +3,18 @@
 
 import React, { createContext, useContext, useState, ReactNode, useMemo } from 'react';
 import type { RoomServiceItem } from '@/lib/types';
+import type { MenuItem } from '@/lib/types';
 
-export type CartItem = RoomServiceItem & {
+
+export type CartItem = (RoomServiceItem | MenuItem) & {
+  id: string;
   quantity: number;
+  image?: string;
 };
 
 interface CartContextType {
   cart: CartItem[];
-  addToCart: (item: RoomServiceItem) => void;
+  addToCart: (item: CartItem) => void;
   removeFromCart: (itemId: string) => void;
   updateQuantity: (itemId: string, quantity: number) => void;
   clearCart: () => void;
@@ -23,7 +27,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([]);
 
-  const addToCart = (item: RoomServiceItem) => {
+  const addToCart = (item: CartItem) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((cartItem) => cartItem.id === item.id);
       if (existingItem) {

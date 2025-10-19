@@ -1,4 +1,7 @@
 import type { Language } from "./translations";
+import type { CartItem as CartContextCartItem } from "@/context/cart-context";
+
+export type CartItem = CartContextCartItem;
 
 export type UserProfile = {
   name: string;

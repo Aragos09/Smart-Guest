@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import menu from "@/lib/room-service-menu.json";
+import menu from "@/lib/restaurant-menu.json";
 import { useLanguage } from "@/context/language-context";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -27,9 +27,10 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { useCart } from "@/context/cart-context";
-import type { RoomServiceCategory, RoomServiceItem } from "@/lib/types";
+import type { MenuCategory as RoomServiceCategory, MenuItem as RoomServiceItem, CartItem } from "@/lib/types";
 import { Search, ShoppingCart, Plus, Minus, Trash2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Badge } from "@/components/ui/badge";
 
 const menuData: { categories: RoomServiceCategory[] } = menu;
 
@@ -37,24 +38,35 @@ function MenuItemCard({ item }: { item: RoomServiceItem }) {
   const { t } = useLanguage();
   const { addToCart } = useCart();
 
+  const cartItem: CartItem = {
+    ...item,
+    id: item.name, // Using name as ID since it's unique in the context of this menu
+    description: item.type, // Re-purposing description for cart
+    image: `https://picsum.photos/seed/${item.name.replace(/\s+/g, '-').toLowerCase()}/600/400`,
+    imageHint: item.name,
+    tags: [item.eco_label]
+  };
+
   return (
     <Card className="overflow-hidden">
-      <div className="relative h-40 w-full">
+       <div className="relative h-40 w-full">
         <Image
-          src={item.image}
+          src={cartItem.image}
           alt={t(item.name as any)}
           fill
           className="object-cover"
-          data-ai-hint={item.imageHint}
+          data-ai-hint={item.name}
         />
       </div>
       <CardHeader>
         <CardTitle>{t(item.name as any)}</CardTitle>
-        <CardDescription className="h-10">{t(item.description as any)}</CardDescription>
+        <CardDescription className="h-10">
+          <Badge variant="outline">{t(item.eco_label as any)}</Badge>
+        </CardDescription>
       </CardHeader>
       <CardFooter className="flex items-center justify-between">
-        <p className="text-lg font-bold">{item.price.toFixed(2)}€</p>
-        <Button onClick={() => addToCart(item)}>{t('Add')}</Button>
+        <p className="text-lg font-bold">{item.price > 0 ? `${item.price.toFixed(2)}€` : t('Offert')}</p>
+        <Button onClick={() => addToCart(cartItem)}>{t('Add')}</Button>
       </CardFooter>
     </Card>
   );
@@ -161,9 +173,16 @@ export default function RoomServicePage() {
     ...category,
     items: category.items.filter(item =>
       t(item.name as any).toLowerCase().includes(searchTerm.toLowerCase()) ||
-      t(item.description as any).toLowerCase().includes(searchTerm.toLowerCase())
+      t(item.type as any).toLowerCase().includes(searchTerm.toLowerCase())
     )
   })).filter(category => category.items.length > 0);
+  
+  const categoryIdMap = {
+    "Entrées": "starters",
+    "Plats principaux": "main-courses",
+    "Desserts": "desserts",
+    "Boissons & Cocktails": "drinks"
+  };
 
   return (
     <div className="flex h-full flex-col">
@@ -185,17 +204,17 @@ export default function RoomServicePage() {
         <div className="px-4 md:px-8">
             <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
                 {menuData.categories.map((category) => (
-                    <TabsTrigger key={category.id} value={category.id}>{t(category.name as any)}</TabsTrigger>
+                    <TabsTrigger key={category.name} value={categoryIdMap[category.name as keyof typeof categoryIdMap]}>{t(category.name as any)}</TabsTrigger>
                 ))}
             </TabsList>
         </div>
         <ScrollArea className="flex-1">
             <div className="p-4 md:p-8">
                 {filteredMenu.map((category) => (
-                    <TabsContent key={category.id} value={category.id}>
+                    <TabsContent key={category.name} value={categoryIdMap[category.name as keyof typeof categoryIdMap]}>
                     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                         {category.items.map((item) => (
-                        <MenuItemCard key={item.id} item={item} />
+                        <MenuItemCard key={item.name} item={item} />
                         ))}
                     </div>
                     </TabsContent>
