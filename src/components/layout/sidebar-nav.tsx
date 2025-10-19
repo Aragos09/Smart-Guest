@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -24,10 +25,12 @@ import {
   SidebarContent,
 } from "@/components/ui/sidebar";
 import { useLanguage } from "@/context/language-context";
+import { useUserProfile } from "@/context/user-profile-context";
 
 export function SidebarNav() {
   const pathname = usePathname();
   const { t } = useLanguage();
+  const { profile } = useUserProfile();
 
   const navItems = [
     { href: "/dashboard", icon: LayoutDashboard, label: t("Dashboard") },
@@ -53,6 +56,7 @@ export function SidebarNav() {
               <span className="text-lg font-bold text-sidebar-foreground">
                 Smart Guest
               </span>
+              <span className="text-xs text-sidebar-foreground/70">{t('Hi')} {profile.name}!</span>
             </div>
             <SidebarTrigger className="hidden md:flex" />
         </SidebarHeader>
