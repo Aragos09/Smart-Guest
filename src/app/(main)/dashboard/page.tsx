@@ -23,7 +23,7 @@ import Link from "next/link";
 import { EcoScoreChart } from "./eco-score-chart";
 import { useLanguage } from "@/context/language-context";
 import { useUserProfile } from "@/context/user-profile-context";
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { generateDynamicWelcomeMessage } from "@/ai/flows/dynamic-welcome-message";
 import { WeatherCard } from "./weather-card";
 
@@ -40,55 +40,54 @@ const allQuickLinks: QuickLink[] = [
     id: "eco-manager",
     href: "/eco-manager",
     icon: Leaf,
-    title: "Eco Manager",
-    description: "Track your impact.",
+    title: "eco_manager_title",
+    description: "eco_manager_description",
   },
   {
     id: "services",
     href: "/services",
     icon: Building2,
-    title: "Sustainable Services",
-    description: "Book eco-friendly services.",
+    title: "services_title",
+    description: "services_description",
   },
   {
     id: "experiences",
     href: "/experiences",
     icon: HeartHandshake,
-    title: "Local Experiences",
-    description: "Discover green activities.",
+    title: "experiences_title",
+    description: "experiences_description",
   },
   {
     id: "concierge",
     href: "/concierge",
     icon: BotMessageSquare,
-    title: "AI Concierge",
-    description: "Ask me anything.",
+    title: "concierge_title",
+    description: "concierge_description",
   },
   {
     id: "restaurant",
     href: "/restaurant",
     icon: Utensils,
-    title: "Restaurant",
-    description: "Discover our delicious menus.",
+    title: "restaurant_title",
+    description: "restaurant_description",
   },
   {
     id: "room-service",
     href: "/room-service",
     icon: ShoppingBasket,
-    title: "Room Service",
-    description: "Order from your room.",
+    title: "room_service_title",
+    description: "room_service_description",
   },
   {
     id: "wellness",
     href: "/wellness",
     icon: Wind,
-    title: "Wellness",
-    description: "Relax and rejuvenate.",
+    title: "wellness_title",
+    description: "wellness_description",
   }
 ];
 
-
-export default function DashboardPage() {
+const DashboardPage = memo(function DashboardPage({ params }: { params: { locale: string }}) {
   const { t } = useLanguage();
   const { profile } = useUserProfile();
   const [welcomeMessage, setWelcomeMessage] = useState("Loading your personalized welcome...");
@@ -119,15 +118,14 @@ export default function DashboardPage() {
 
 
   const quickLinks = allQuickLinks
-    .filter(link => profile.quickLinks?.includes(link.id))
-    .map(link => ({...link, title: t(link.title as any), description: t(link.description as any)}));
+    .filter(link => profile.quickLinks?.includes(link.id));
 
   return (
     <div className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
       <Card>
         <CardHeader>
           <CardTitle className="font-headline text-3xl">
-            {t('Welcome back')}, {profile.name}!
+            {t('welcome_back_user')}, {profile.name}!
           </CardTitle>
           <CardDescription>
             {welcomeMessage}
@@ -137,9 +135,9 @@ export default function DashboardPage() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle>{t('Your EcoScore')}</CardTitle>
+            <CardTitle>{t('ecoscore_title')}</CardTitle>
             <CardDescription>
-              {t('A summary of your environmental impact during your stay.')}
+              {t('ecoscore_description')}
             </CardDescription>
           </CardHeader>
           <CardContent className="pb-8">
@@ -149,9 +147,9 @@ export default function DashboardPage() {
         <WeatherCard />
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle>{t('Quick Links')}</CardTitle>
+            <CardTitle>{t('quick_links_title')}</CardTitle>
             <CardDescription>
-              {t('Navigate to key features of your Smart Guest experience.')}
+              {t('quick_links_description')}
             </CardDescription>
           </CardHeader>
           <CardContent className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -163,9 +161,9 @@ export default function DashboardPage() {
                     <ArrowRight className="h-5 w-5 text-muted-foreground transition-transform group-hover:translate-x-1" />
                   </div>
                   <div className="mt-4">
-                    <p className="font-semibold">{link.title}</p>
+                    <p className="font-semibold">{t(link.title as any)}</p>
                     <p className="text-sm text-muted-foreground">
-                      {link.description}
+                      {t(link.description as any)}
                     </p>
                   </div>
                 </div>
@@ -176,4 +174,6 @@ export default function DashboardPage() {
       </div>
     </div>
   );
-}
+});
+
+export default DashboardPage;

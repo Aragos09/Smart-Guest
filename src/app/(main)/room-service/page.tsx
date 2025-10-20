@@ -1,10 +1,8 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, memo } from "react";
 import menuData from "@/lib/room-service-menu.json";
-import veganMenuData from "@/lib/room-service-menu-vegan.json";
-import beveragesMenuData from "@/lib/room-service-beverages.json";
 import { useLanguage } from "@/context/language-context";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -30,26 +28,25 @@ import { useCart } from "@/context/cart-context";
 import type { RoomServiceItem, RoomServiceMenu } from "@/lib/types";
 import { Search, ShoppingCart, Plus, Minus, Trash2, ArrowLeft, Martini, Vegan, Utensils } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const { room_service_menu: classicMenu } = menuData;
-const { room_service_menu_vegan: veganMenu } = veganMenuData;
-const { room_service_beverages_signature: beveragesMenu } = beveragesMenuData;
+const { classic, vegan, beverages } = menuData;
 
-function MenuItemCard({ item }: { item: RoomServiceItem }) {
+function MenuItemCard({ item, menuType }: { item: RoomServiceItem, menuType: string }) {
   const { t } = useLanguage();
   const { addToCart } = useCart();
   const { toast } = useToast();
 
   const handleAddToCart = () => {
     addToCart({
-      id: item.name_fr,
+      id: `${menuType}-${item.name_fr}`,
       name: item.name_fr,
       price: item.price_eur,
       quantity: 1,
     });
     toast({
-      title: t('Added to cart'),
-      description: `${t(item.name_fr as any)} ${t('has been added to your order.')}`,
+      title: t('added_to_cart_toast_title'),
+      description: `${t(item.name_fr as any)} ${t('added_to_cart_toast_desc')}`,
     });
   };
 
@@ -62,8 +59,8 @@ function MenuItemCard({ item }: { item: RoomServiceItem }) {
         <p className="text-sm text-muted-foreground">{t(item.description_fr as any)}</p>
       </CardContent>
       <CardFooter className="flex items-center justify-between mt-auto">
-        <p className="text-lg font-bold">{item.price_eur > 0 ? `${item.price_eur.toFixed(2)}€` : t('Offert')}</p>
-        <Button onClick={handleAddToCart}>{t('Add')}</Button>
+        <p className="text-lg font-bold">{item.price_eur > 0 ? `${item.price_eur.toFixed(2)}€` : t('free_price')}</p>
+        <Button onClick={handleAddToCart}>{t('add_to_cart_button')}</Button>
       </CardFooter>
     </Card>
   );
@@ -76,8 +73,8 @@ function CartSheet() {
 
   const handleCheckout = () => {
     toast({
-      title: t("Your order has been placed!"),
-      description: t("Estimated delivery time: 25 minutes."),
+      title: t("order_placed_toast_title"),
+      description: t("order_placed_toast_desc"),
     });
     clearCart();
   };
@@ -85,11 +82,11 @@ function CartSheet() {
   return (
     <SheetContent className="flex flex-col">
       <SheetHeader>
-        <SheetTitle>{t("My Order")}</SheetTitle>
+        <SheetTitle>{t("my_order_title")}</SheetTitle>
       </SheetHeader>
       {cart.length === 0 ? (
         <div className="flex flex-1 items-center justify-center">
-          <p className="text-muted-foreground">{t("Your cart is empty.")}</p>
+          <p className="text-muted-foreground">{t("empty_cart_message")}</p>
         </div>
       ) : (
         <ScrollArea className="flex-1 -mx-6">
@@ -136,15 +133,15 @@ function CartSheet() {
         <SheetFooter className="mt-auto flex flex-col gap-4 !text-left">
           <Separator />
           <div className="flex justify-between font-semibold">
-            <span>{t("Subtotal")}</span>
+            <span>{t("subtotal_label")}</span>
             <span>{totalPrice.toFixed(2)}€</span>
           </div>
           <div className="flex justify-between text-lg font-bold">
-            <span>{t("Total")}</span>
+            <span>{t("total_label")}</span>
             <span>{totalPrice.toFixed(2)}€</span>
           </div>
           <SheetClose asChild>
-            <Button size="lg" onClick={handleCheckout}>{t("Checkout")}</Button>
+            <Button size="lg" onClick={handleCheckout}>{t("checkout_button")}</Button>
           </SheetClose>
         </SheetFooter>
       )}
@@ -152,14 +149,13 @@ function CartSheet() {
   );
 }
 
-function MenuDisplay({ menu, onBack }: { menu: RoomServiceMenu, onBack: () => void }) {
+function MenuDisplay({ menu, menuType, searchTerm }: { menu: RoomServiceMenu, menuType: string, searchTerm: string }) {
   const { t } = useLanguage();
-  const [searchTerm, setSearchTerm] = useState("");
 
-  const categories = Object.entries(menu.categories).map(([id, items]) => ({
+  const categories = Object.entries(menu.categories).map(([id, cat]) => ({
     id,
-    name: id,
-    items,
+    name: cat.name_fr,
+    items: cat.items,
   }));
 
   const filteredCategories = categories.map(category => ({
@@ -172,83 +168,70 @@ function MenuDisplay({ menu, onBack }: { menu: RoomServiceMenu, onBack: () => vo
 
   return (
     <div className="space-y-4">
-      <div className="relative">
-          <Button variant="ghost" size="icon" className="absolute -left-12 top-1/2 -translate-y-1/2" onClick={onBack}>
-              <ArrowLeft className="h-5 w-5" />
-          </Button>
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-          <Input
-              placeholder={t("Search for dishes...")}
-              className="pl-10"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-          />
-      </div>
-
       {filteredCategories.length > 0 ? (
         filteredCategories.map(category => (
           <div key={category.id}>
             <h2 className="text-2xl font-bold tracking-tight font-headline mt-6 mb-4">{t(category.name as any)}</h2>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {category.items.map((item: RoomServiceItem) => (
-                  <MenuItemCard key={item.name_fr} item={item} />
+                  <MenuItemCard key={item.name_fr} item={item} menuType={menuType} />
                 ))}
             </div>
           </div>
         ))
       ) : (
         <div className="text-center text-muted-foreground py-10">
-          {t('No dishes found.')}
+          {t('no_dishes_found')}
         </div>
       )}
     </div>
   );
 }
 
-
-export default function RoomServicePage() {
+const RoomServicePage = memo(function RoomServicePage({ params }: { params: { locale: string }}) {
   const { t } = useLanguage();
   const { totalItems } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [selectedMenu, setSelectedMenu] = useState<"classic" | "vegan" | "beverages" | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const menuChoices = [
-    { id: "classic", label: "Classic Menu", description: "A selection of timeless favorites and comforting classics.", icon: Utensils, menu: classicMenu },
-    { id: "vegan", label: "Vegan Menu", description: "Delicious and creative plant-based dishes.", icon: Vegan, menu: veganMenu },
-    { id: "beverages", label: "Signature & Mocktails", description: "Artisanal cocktails and refreshing mocktails.", icon: Martini, menu: beveragesMenu }
+    { id: "classic", label: "classic_menu_title", icon: Utensils, menu: classic },
+    { id: "vegan", label: "vegan_menu_title", icon: Vegan, menu: vegan },
+    { id: "beverages", label: "beverages_menu_title", icon: Martini, menu: beverages }
   ];
-
-  const currentMenu = menuChoices.find(m => m.id === selectedMenu)?.menu;
 
   return (
     <div className="h-full flex flex-col">
       <div className="flex-1 p-4 md:p-8">
-        <h1 className="text-3xl font-bold tracking-tight font-headline">{t("Room Service")}</h1>
-        <p className="text-muted-foreground mb-8">{t("Order from your room, 24/7.")}</p>
+        <h1 className="text-3xl font-bold tracking-tight font-headline">{t("room_service_title")}</h1>
+        <p className="text-muted-foreground mb-8">{t("room_service_subtitle")}</p>
 
-        {!selectedMenu ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {menuChoices.map((choice) => (
-                    <Card key={choice.id} className="cursor-pointer hover:shadow-lg transition-shadow" onClick={() => setSelectedMenu(choice.id as any)}>
-                        <CardHeader>
-                            <choice.icon className="h-10 w-10 text-primary mb-2" />
-                            <CardTitle>{t(choice.label as any)}</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <CardDescription>{t(choice.description as any)}</CardDescription>
-                        </CardContent>
-                    </Card>
-                ))}
+        <Tabs defaultValue="classic" className="space-y-4">
+          <div className="flex justify-between items-center">
+            <TabsList>
+              {menuChoices.map(choice => (
+                <TabsTrigger key={choice.id} value={choice.id}>
+                  <choice.icon className="mr-2 h-4 w-4" />
+                  {t(choice.label as any)}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+            <div className="relative w-full max-w-sm">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <Input
+                  placeholder={t("search_dishes_placeholder")}
+                  className="pl-10"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+              />
             </div>
-        ) : (
-            currentMenu && <MenuDisplay menu={currentMenu} onBack={() => setSelectedMenu(null)} />
-        )}
-
-        { !selectedMenu && (
-            <div className="text-center mt-12 text-muted-foreground">
-                <p>{t('Please select a menu to start your order.')}</p>
-            </div>
-        )}
+          </div>
+          {menuChoices.map(choice => (
+            <TabsContent key={choice.id} value={choice.id}>
+              <MenuDisplay menu={choice.menu} menuType={choice.id} searchTerm={searchTerm} />
+            </TabsContent>
+          ))}
+        </Tabs>
       </div>
 
       <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
@@ -259,10 +242,12 @@ export default function RoomServicePage() {
           <div className="sticky bottom-0 z-10 w-full p-4 bg-background/80 backdrop-blur-sm border-t">
           <Button className="w-full text-lg h-14" onClick={() => setIsCartOpen(true)}>
               <ShoppingCart className="mr-2 h-5 w-5" />
-              {t('My Order')} ({totalItems})
+              {t('my_order_title')} ({totalItems})
           </Button>
           </div>
       )}
     </div>
   );
-}
+});
+
+export default RoomServicePage;

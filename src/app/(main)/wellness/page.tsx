@@ -20,66 +20,67 @@ import {
   Smile,
 } from "lucide-react";
 import { useLanguage } from "@/context/language-context";
+import { memo } from "react";
 
 const activities = [
   {
     icon: Sparkles,
-    title: "Relaxing Massage",
-    description: "Book a 60-minute session to unwind and de-stress.",
+    title: "relaxing_massage_title",
+    description: "relaxing_massage_desc",
   },
   {
     icon: Wind,
-    title: "Guided Meditation",
-    description: "Join our morning session to find your inner peace.",
+    title: "guided_meditation_title",
+    description: "guided_meditation_desc",
   },
   {
     icon: Youtube,
-    title: "Yoga Class",
-    description: "A vinyasa flow class suitable for all levels.",
+    title: "yoga_class_title",
+    description: "yoga_class_desc",
   },
 ];
 
 const playlists = [
   {
-    title: "Peaceful Morning",
-    description: "Start your day with calm and focus.",
+    title: "peaceful_morning_playlist",
+    description: "peaceful_morning_playlist_desc",
   },
   {
-    title: "Ambient Focus",
-    description: "Enhance your concentration and productivity.",
+    title: "ambient_focus_playlist",
+    description: "ambient_focus_playlist_desc",
   },
   {
-    title: "Deep Sleep",
-    description: "Drift off to sleep with soothing soundscapes.",
+    title: "deep_sleep_playlist",
+    description: "deep_sleep_playlist_desc",
   },
 ];
 
 const wellnessTrackers = [
-  { icon: Bed, title: "Sleep", value: 75, unit: "8h goal" },
-  { icon: GlassWater, title: "Hydration", value: 60, unit: "2L goal" },
-  { icon: Smile, title: "Mindfulness", value: 90, unit: "10m goal" },
+  { icon: Bed, title: "sleep_tracker", value: 75, unit: "sleep_tracker_goal" },
+  { icon: GlassWater, title: "hydration_tracker", value: 60, unit: "hydration_tracker_goal" },
+  { icon: Smile, title: "mindfulness_tracker", value: 90, unit: "mindfulness_tracker_goal" },
 ];
 
-export default function WellnessPage() {
+const WellnessPage = memo(function WellnessPage({ params }: { params: { locale: string }}) {
   const { t } = useLanguage();
   return (
     <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">
       <div className="flex items-center justify-between space-y-2">
         <div>
           <h1 className="text-3xl font-bold tracking-tight font-headline">
-            {t('Wellness & Mindfulness')}
+            {t('wellness_title')}
           </h1>
           <p className="text-muted-foreground">
-            {t('Your personal space for relaxation and well-being.')}
+            {t('wellness_subtitle')}
           </p>
         </div>
       </div>
       <div className="grid gap-8">
         <Card>
           <CardHeader>
-            <CardTitle>{t('Personalized Activities')}</CardTitle>
+            <CardTitle>{t('personalized_activities_title')}</CardTitle>
             <CardDescription>
-              {t('Based on your profile, here are some recommended activities.')}
+              {t('personalized_activities_desc')}
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-6 md:grid-cols-3">
@@ -93,7 +94,7 @@ export default function WellnessPage() {
                   </div>
                 </CardHeader>
                 <CardFooter className="mt-auto">
-                  <Button className="w-full">{t('Book Now')}</Button>
+                  <Button className="w-full">{t('book_now_button')}</Button>
                 </CardFooter>
               </Card>
             ))}
@@ -102,9 +103,9 @@ export default function WellnessPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>{t('Daily Wellness Tracking')}</CardTitle>
+            <CardTitle>{t('wellness_tracking_title')}</CardTitle>
             <CardDescription>
-              {t('Monitor your daily goals for a healthier you.')}
+              {t('wellness_tracking_desc')}
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-6 md:grid-cols-3">
@@ -125,9 +126,9 @@ export default function WellnessPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>{t('Relaxing Playlists')}</CardTitle>
+            <CardTitle>{t('relaxing_playlists_title')}</CardTitle>
             <CardDescription>
-              {t('Curated sounds to help you relax and focus.')}
+              {t('relaxing_playlists_desc')}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -142,7 +143,7 @@ export default function WellnessPage() {
                     {t(playlist.description as any)}
                   </p>
                 </div>
-                <Button variant="outline">{t('Play')}</Button>
+                <Button variant="outline">{t('play_button')}</Button>
               </div>
             ))}
           </CardContent>
@@ -150,4 +151,6 @@ export default function WellnessPage() {
       </div>
     </div>
   );
-}
+});
+
+export default WellnessPage;

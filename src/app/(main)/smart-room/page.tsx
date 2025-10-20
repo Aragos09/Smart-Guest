@@ -210,7 +210,7 @@ function SmartRoomControls() {
 }
 
 
-const SmartRoomPage = memo(function SmartRoomPage() {
+const SmartRoomPage = memo(function SmartRoomPage({ params }: { params: { locale: string }}) {
   const { t } = useLanguage();
   const [isConnected, setIsConnected] = useState(false);
   const [isConnecting, setIsConnecting] = useState(false);

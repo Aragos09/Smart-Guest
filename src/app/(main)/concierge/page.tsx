@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, memo } from "react";
 import type { FormEvent } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -13,7 +13,7 @@ import { answerUserQuery } from "@/ai/flows/answer-user-queries";
 import { useUserProfile } from "@/context/user-profile-context";
 import { useLanguage } from "@/context/language-context";
 
-export default function ConciergePage() {
+const ConciergePage = memo(function ConciergePage({ params }: { params: { locale: string }}) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -62,7 +62,7 @@ export default function ConciergePage() {
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: "assistant",
-        content: t("Sorry, I'm having trouble connecting. Please try again later."),
+        content: t("concierge_error"),
       };
       setMessages((prev) => [...prev, errorMessage]);
       console.error("Error fetching AI response:", error);
@@ -74,9 +74,9 @@ export default function ConciergePage() {
   return (
     <div className="flex h-[calc(100vh-2rem)] flex-col p-4">
       <header className="mb-4">
-        <h1 className="text-2xl font-bold font-headline">{t('AI Concierge')}</h1>
+        <h1 className="text-2xl font-bold font-headline">{t('concierge_title')}</h1>
         <p className="text-muted-foreground">
-          {t('Ask me about sustainable travel, local tips, or hotel services.')}
+          {t('concierge_subtitle')}
         </p>
       </header>
       <ScrollArea className="flex-1" ref={scrollAreaRef}>
@@ -135,7 +135,7 @@ export default function ConciergePage() {
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder={t('Ask a question...')}
+            placeholder={t('concierge_placeholder')}
             className="flex-1"
             disabled={isLoading}
           />
@@ -146,4 +146,6 @@ export default function ConciergePage() {
       </div>
     </div>
   );
-}
+});
+
+export default ConciergePage;
