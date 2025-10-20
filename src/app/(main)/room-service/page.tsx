@@ -175,7 +175,7 @@ function MenuDisplay({ menu, menuType, searchTerm }: { menu: RoomServiceMenu, me
   return (
     <div>
       {filteredCategories.length > 0 ? (
-        <Accordion type="multiple" defaultValue={filteredCategories.map(c => t(c.name as any))} className="w-full space-y-4">
+        <Accordion type="multiple" className="w-full space-y-4">
           {filteredCategories.map(category => (
             <AccordionItem value={t(category.name as any)} key={category.id}>
               <AccordionTrigger className="text-2xl font-headline font-bold rounded-lg bg-card p-4 border data-[state=open]:border-b-0 data-[state=open]:rounded-b-none">
