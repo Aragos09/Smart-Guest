@@ -247,8 +247,6 @@ export const translations = {
     'meditation_desc': 'Accessible via l’application ou en salle bien-être (30 min).',
     'green_stay_name': 'Option Séjour Vert',
     'green_stay_desc': 'Réduction de 10 % si vous renoncez au ménage quotidien.',
-    'smart_sorting_name': 'Tri intelligent en chambre',
-    'smart_sorting_desc': 'Poubelles connectées à capteurs pour un tri facilité et récompensé.',
     'towel_exchange_name': 'Échange de serviettes à la demande',
     'towel_exchange_desc': 'Gestion durable du linge via l’application (alertes automatiques IA).',
     'plant_tree_name': 'Programme Planter un Arbre',
@@ -260,7 +258,6 @@ export const translations = {
     'eco_cleaning_commitment': 'Produits d’entretien écologiques certifiés EU Ecolabel',
     'paperless_commitment': 'Communication digitale zéro papier (factures, room directory, etc.)',
     'local_partners_commitment': 'Partenariats avec artisans locaux pour cosmétiques, textiles et restauration',
-
 
     // Wellness
     'wellness_subtitle': 'Votre espace personnel pour la relaxation et le bien-être.',
@@ -795,8 +792,6 @@ export const translations = {
     'meditation_desc': 'Accessible via the app or in the wellness room (30 min).',
     'green_stay_name': 'Green Stay Option',
     'green_stay_desc': '10% discount if you opt out of daily housekeeping.',
-    'smart_sorting_name': 'Smart In-Room Sorting',
-    'smart_sorting_desc': 'Connected bins with sensors for easy and rewarded sorting.',
     'towel_exchange_name': 'On-Demand Towel Exchange',
     'towel_exchange_desc': 'Sustainable linen management via the app (automatic AI alerts).',
     'plant_tree_name': 'Plant a Tree Program',

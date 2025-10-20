@@ -57,11 +57,6 @@
         "type": "bonus"
       },
       {
-        "name": "smart_sorting_name",
-        "description": "smart_sorting_desc",
-        "price_eur": 0.00
-      },
-      {
         "name": "towel_exchange_name",
         "description": "towel_exchange_desc",
         "price_eur": 0.00
