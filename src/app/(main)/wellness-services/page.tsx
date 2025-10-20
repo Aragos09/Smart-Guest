@@ -48,7 +48,7 @@ const ServiceCard = memo(function ServiceCard({ item }: { item: WellnessService 
   );
 });
 
-const WellnessServicesPage = memo(function WellnessServicesPage() {
+const WellnessServicesPage = memo(function WellnessServicesPage({ params }: { params: { locale: string }}) {
   const { t } = useLanguage();
 
   const categories: WellnessServiceCategory[] = [
@@ -57,7 +57,7 @@ const WellnessServicesPage = memo(function WellnessServicesPage() {
     { name:t("eco_services_category"), icon: Leaf, items: wellnessServices.eco_services },
   ];
 
-  const commitments = Object.values(ecoCommitments);
+  const commitments = ecoCommitments ? Object.values(ecoCommitments) : [];
 
   return (
     <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">
