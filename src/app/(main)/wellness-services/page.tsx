@@ -54,7 +54,7 @@ const WellnessServicesPage = memo(function WellnessServicesPage({ params }: { pa
     { name: "eco_services_category", icon: Leaf, items: wellnessServices.eco_services },
   ];
 
-  const commitments = ecoCommitments ? Object.keys(ecoCommitments) : [];
+  const commitments = ecoCommitments ? Object.entries(ecoCommitments) : [];
 
   return (
     <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">
@@ -81,7 +81,7 @@ const WellnessServicesPage = memo(function WellnessServicesPage({ params }: { pa
             <AccordionContent className="border border-t-0 rounded-b-lg bg-card p-4">
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {category.items.map((item) => (
-                  <ServiceCard key={item.name} item={item} />
+                  <ServiceCard key={`${category.name}-${item.name}`} item={item} />
                 ))}
               </div>
             </AccordionContent>
@@ -94,10 +94,10 @@ const WellnessServicesPage = memo(function WellnessServicesPage({ params }: { pa
           <CardTitle>{t('eco_commitments_title')}</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-4 sm:grid-cols-2">
-          {commitments.map((commitmentKey, index) => (
-            <div key={index} className="flex items-start gap-3">
+          {commitments.map(([key, value]) => (
+            <div key={key} className="flex items-start gap-3">
               <CheckCircle2 className="h-5 w-5 mt-1 text-green-500 flex-shrink-0" />
-              <p className="text-sm text-muted-foreground">{t(commitmentKey as any)}</p>
+              <p className="text-sm text-muted-foreground">{t(value as any)}</p>
             </div>
           ))}
         </CardContent>
