@@ -143,6 +143,21 @@ function StatusControls({ doNotDisturb, setDoNotDisturb, makeUpRoom, setMakeUpRo
     setMakeUpRoom: (value: boolean) => void;
 }) {
     const { t } = useLanguage();
+
+    const handleDndChange = (checked: boolean) => {
+        setDoNotDisturb(checked);
+        if (checked) {
+            setMakeUpRoom(false);
+        }
+    };
+
+    const handleMakeUpRoomChange = (checked: boolean) => {
+        setMakeUpRoom(checked);
+        if (checked) {
+            setDoNotDisturb(false);
+        }
+    };
+    
     return (
          <div className="space-y-4 pt-4">
               <div className="flex items-center justify-between rounded-lg border p-4">
@@ -152,7 +167,7 @@ function StatusControls({ doNotDisturb, setDoNotDisturb, makeUpRoom, setMakeUpRo
                   <Switch
                       id="dnd-switch"
                       checked={doNotDisturb}
-                      onCheckedChange={setDoNotDisturb}
+                      onCheckedChange={handleDndChange}
                   />
               </div>
               <div className="flex items-center justify-between rounded-lg border p-4">
@@ -162,7 +177,7 @@ function StatusControls({ doNotDisturb, setDoNotDisturb, makeUpRoom, setMakeUpRo
                   <Switch
                       id="makeup-switch"
                       checked={makeUpRoom}
-                      onCheckedChange={setMakeUpRoom}
+                      onCheckedChange={handleMakeUpRoomChange}
                   />
               </div>
           </div>
