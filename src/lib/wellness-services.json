@@ -83,7 +83,6 @@
     "energy": "renewable_energy_commitment",
     "cleaning": "eco_cleaning_commitment",
     "paperless": "paperless_commitment",
-    "local_partners": "local_partners_commitment",
-    "ai_energy": "ai_energy_commitment"
+    "local_partners": "local_partners_commitment"
   }
 }

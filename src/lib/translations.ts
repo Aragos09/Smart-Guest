@@ -260,7 +260,6 @@ export const translations = {
     'eco_cleaning_commitment': 'Produits d’entretien écologiques certifiés EU Ecolabel',
     'paperless_commitment': 'Communication digitale zéro papier (factures, room directory, etc.)',
     'local_partners_commitment': 'Partenariats avec artisans locaux pour cosmétiques, textiles et restauration',
-    'ai_energy_commitment': 'IA prédictive pour optimiser la consommation énergétique des chambres',
 
 
     // Wellness
@@ -809,7 +808,6 @@ export const translations = {
     'eco_cleaning_commitment': 'Ecological cleaning products certified with EU Ecolabel',
     'paperless_commitment': 'Zero-paper digital communication (invoices, room directory, etc.)',
     'local_partners_commitment': 'Partnerships with local artisans for cosmetics, textiles, and food',
-    'ai_energy_commitment': 'Predictive AI to optimize room energy consumption',
 
     // Wellness
     'wellness_subtitle': 'Your personal space for relaxation and well-being.',
