@@ -119,8 +119,8 @@ export type RoomServiceCategory = {
 };
 
 export type WellnessService = {
-  name_fr: string;
-  description_fr: string;
+  name: string;
+  description: string;
   price_eur: number;
   type?: "bonus";
 };

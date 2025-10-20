@@ -82,7 +82,7 @@ const WellnessServicesPage = memo(function WellnessServicesPage({ params }: { pa
             <AccordionContent className="border border-t-0 rounded-b-lg bg-card p-4">
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {category.items.map((item) => (
-                  <ServiceCard key={`${category.name}-${item.name}`} item={item} />
+                  <ServiceCard key={item.name} item={item} />
                 ))}
               </div>
             </AccordionContent>

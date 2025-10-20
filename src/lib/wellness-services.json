@@ -2,78 +2,78 @@
   "wellness_services": {
     "spa": [
       {
-        "name_fr": "spa_access_name",
-        "description_fr": "spa_access_desc",
+        "name": "spa_access_name",
+        "description": "spa_access_desc",
         "price_eur": 25.00
       },
       {
-        "name_fr": "relaxing_massage_name",
-        "description_fr": "relaxing_massage_desc",
+        "name": "relaxing_massage_name",
+        "description": "relaxing_massage_desc",
         "price_eur": 65.00
       },
       {
-        "name_fr": "rebalancing_massage_name",
-        "description_fr": "rebalancing_massage_desc",
+        "name": "rebalancing_massage_name",
+        "description": "rebalancing_massage_desc",
         "price_eur": 80.00
       },
       {
-        "name_fr": "facial_name",
-        "description_fr": "facial_desc",
+        "name": "facial_name",
+        "description": "facial_desc",
         "price_eur": 70.00
       },
       {
-        "name_fr": "yoga_name",
-        "description_fr": "yoga_desc",
+        "name": "yoga_name",
+        "description": "yoga_desc",
         "price_eur": 20.00
       }
     ],
     "fitness": [
       {
-        "name_fr": "gym_access_name",
-        "description_fr": "gym_access_desc",
+        "name": "gym_access_name",
+        "description": "gym_access_desc",
         "price_eur": 0.00
       },
       {
-        "name_fr": "coaching_name",
-        "description_fr": "coaching_desc",
+        "name": "coaching_name",
+        "description": "coaching_desc",
         "price_eur": 50.00
       },
       {
-        "name_fr": "ebike_rental_name",
-        "description_fr": "ebike_rental_desc",
+        "name": "ebike_rental_name",
+        "description": "ebike_rental_desc",
         "price_eur": 15.00
       },
       {
-        "name_fr": "meditation_name",
-        "description_fr": "meditation_desc",
+        "name": "meditation_name",
+        "description": "meditation_desc",
         "price_eur": 10.00
       }
     ],
     "eco_services": [
       {
-        "name_fr": "green_stay_name",
-        "description_fr": "green_stay_desc",
+        "name": "green_stay_name",
+        "description": "green_stay_desc",
         "price_eur": 0.00,
         "type": "bonus"
       },
       {
-        "name_fr": "smart_sorting_name",
-        "description_fr": "smart_sorting_desc",
+        "name": "smart_sorting_name",
+        "description": "smart_sorting_desc",
         "price_eur": 0.00
       },
       {
-        "name_fr": "towel_exchange_name",
-        "description_fr": "towel_exchange_desc",
+        "name": "towel_exchange_name",
+        "description": "towel_exchange_desc",
         "price_eur": 0.00
       },
       {
-        "name_fr": "plant_tree_name",
-        "description_fr": "plant_tree_desc",
+        "name": "plant_tree_name",
+        "description": "plant_tree_desc",
         "price_eur": 1.00
       },
       {
-        "name_fr": "eco_shuttle_name",
-        "description_fr": "eco_shuttle_desc",
+        "name": "eco_shuttle_name",
+        "description": "eco_shuttle_desc",
         "price_eur": 5.00
       }
     ]
