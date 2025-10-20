@@ -34,7 +34,7 @@ function LightingControls() {
   return (
     <div className="space-y-6 pt-4">
       <div className="space-y-2">
-        <Label htmlFor="brightness">Luminosité</Label>
+        <Label htmlFor="brightness">{t('brightness_label')}</Label>
         <Slider
           id="brightness"
           value={[brightness]}
@@ -45,7 +45,7 @@ function LightingControls() {
         <div className="text-center text-sm text-muted-foreground">{brightness}%</div>
       </div>
       <div className="space-y-2">
-        <Label htmlFor="color-temp">Température de couleur</Label>
+        <Label htmlFor="color-temp">{t('color_temperature_label')}</Label>
         <Slider
           id="color-temp"
           value={[colorTemperature]}
@@ -69,10 +69,10 @@ function AmbianceControls() {
     };
 
     const ambiancePresets = [
-        { id: "reading", icon: BookOpen, label: "Lecture" },
-        { id: "relax", icon: Moon, label: "Détente" },
-        { id: "energize", icon: Lightbulb, label: "Énergie" },
-        { id: "movie", icon: Tv, label: "Film" },
+        { id: "reading", icon: BookOpen, label: t('reading_preset') },
+        { id: "relax", icon: Moon, label: t('relax_preset') },
+        { id: "energize", icon: Lightbulb, label: t('energize_preset') },
+        { id: "movie", icon: Tv, label: t('movie_preset') },
     ];
     return (
         <div className="grid grid-cols-2 gap-4 pt-4">
@@ -106,7 +106,7 @@ function ClimateControls() {
           </Button>
           <div className="text-center">
             <p className="text-6xl font-bold">{temperature}°C</p>
-            <p className="text-sm text-muted-foreground">Température</p>
+            <p className="text-sm text-muted-foreground">{t('temperature_label')}</p>
           </div>
           <Button
             variant="outline"
@@ -126,11 +126,11 @@ function BlindsControls() {
         <div className="flex justify-center gap-4 pt-4">
           <Button variant="outline" size="lg" className="h-24 w-32 flex-col gap-2">
             <Sun className="h-8 w-8"/>
-            Ouvrir
+            {t('open_button')}
           </Button>
           <Button variant="outline" size="lg" className="h-24 w-32 flex-col gap-2">
             <Moon className="h-8 w-8"/>
-            Fermer
+            {t('close_button')}
           </Button>
         </div>
     );
@@ -148,22 +148,32 @@ function StatusControls({ doNotDisturb, setDoNotDisturb, makeUpRoom, setMakeUpRo
          <div className="space-y-4 pt-4">
               <div className="flex items-center justify-between rounded-lg border p-4">
                   <Label htmlFor="dnd-switch" className="flex-1 font-medium">
-                      Ne pas déranger
+                      {t('do_not_disturb_label')}
                   </Label>
                   <Switch
                       id="dnd-switch"
                       checked={doNotDisturb}
-                      onCheckedChange={setDoNotDisturb}
+                      onCheckedChange={(checked) => {
+                        setDoNotDisturb(checked);
+                        if (checked && makeUpRoom) {
+                          setMakeUpRoom(false);
+                        }
+                      }}
                   />
               </div>
               <div className="flex items-center justify-between rounded-lg border p-4">
                   <Label htmlFor="makeup-switch" className="flex-1 font-medium">
-                      Faire la chambre
+                      {t('make_up_room_label')}
                   </Label>
                   <Switch
                       id="makeup-switch"
                       checked={makeUpRoom}
-                      onCheckedChange={setMakeUpRoom}
+                      onCheckedChange={(checked) => {
+                        setMakeUpRoom(checked);
+                        if (checked && doNotDisturb) {
+                          setDoNotDisturb(false);
+                        }
+                      }}
                   />
               </div>
           </div>
@@ -177,12 +187,26 @@ function SmartRoomControls() {
   const [doNotDisturb, setDoNotDisturb] = useState(false);
   const [makeUpRoom, setMakeUpRoom] = useState(false);
   
+  useEffect(() => {
+    if (doNotDisturb) {
+      const timer = setTimeout(() => setDoNotDisturb(false), 24 * 60 * 60 * 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [doNotDisturb]);
+
+  useEffect(() => {
+    if (makeUpRoom) {
+      const timer = setTimeout(() => setMakeUpRoom(false), 24 * 60 * 60 * 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [makeUpRoom]);
+  
   const controls: { id: ControlType; icon: React.ElementType; label: string; description: string; content: React.ReactNode, activeState?: boolean, activeIcon?: React.ElementType, activeText?: string }[] = [
-    { id: 'lighting', icon: Lightbulb, label: 'Éclairage', description: 'Ajustez la luminosité et la température de couleur.', content: <LightingControls /> },
-    { id: 'climate', icon: Thermometer, label: 'Climat', description: 'Réglez la température parfaite pour votre chambre.', content: <ClimateControls /> },
-    { id: 'ambiance', icon: Wind, label: 'Ambiance', description: 'Créez l\'ambiance d\'un simple toucher.', content: <AmbianceControls /> },
-    { id: 'blinds', icon: Sun, label: 'Stores', description: 'Contrôlez la lumière naturelle.', content: <BlindsControls /> },
-    { id: 'status', icon: User, label: 'Statut de la Chambre', description: 'Informez le personnel de vos besoins.', content: <StatusControls doNotDisturb={doNotDisturb} setDoNotDisturb={setDoNotDisturb} makeUpRoom={makeUpRoom} setMakeUpRoom={setMakeUpRoom} />, activeState: doNotDisturb || makeUpRoom, activeIcon: doNotDisturb ? BellOff : SparklesIcon, activeText: doNotDisturb ? 'Ne pas déranger' : 'Faire la chambre' },
+    { id: 'lighting', icon: Lightbulb, label: t('lighting_title'), description: t('lighting_title_description'), content: <LightingControls /> },
+    { id: 'climate', icon: Thermometer, label: t('climate_title'), description: t('climate_title_description'), content: <ClimateControls /> },
+    { id: 'ambiance', icon: Wind, label: t('ambiance_title'), description: t('ambiance_title_description'), content: <AmbianceControls /> },
+    { id: 'blinds', icon: Sun, label: t('blinds_title'), description: t('blinds_title_description'), content: <BlindsControls /> },
+    { id: 'status', icon: User, label: t('room_status_title'), description: t('room_status_title_description'), content: <StatusControls doNotDisturb={doNotDisturb} setDoNotDisturb={setDoNotDisturb} makeUpRoom={makeUpRoom} setMakeUpRoom={setMakeUpRoom} />, activeState: doNotDisturb || makeUpRoom, activeIcon: doNotDisturb ? BellOff : SparklesIcon, activeText: doNotDisturb ? t('do_not_disturb_label') : t('make_up_room_label') },
   ];
 
   return (
@@ -250,8 +274,8 @@ const SmartRoomPage = memo(function SmartRoomPage() {
           <div className="flex items-center justify-center pt-20">
               <Card className="w-full max-w-md text-center">
                   <CardHeader>
-                      <CardTitle className="text-2xl">Se Connecter à la Chambre</CardTitle>
-                      <CardDescription>Appuyez sur le bouton pour vous connecter aux systèmes de votre chambre.</CardDescription>
+                      <CardTitle className="text-2xl">{t('connect_to_room_title')}</CardTitle>
+                      <CardDescription>{t('connect_to_room_desc')}</CardDescription>
                   </CardHeader>
                   <CardContent className="flex justify-center">
                       <Wifi className="h-24 w-24 text-muted-foreground" />
@@ -259,7 +283,7 @@ const SmartRoomPage = memo(function SmartRoomPage() {
                   <CardFooter>
                       <Button className="w-full" onClick={handleConnect} disabled={isConnecting}>
                           {isConnecting && <Loader className="mr-2 h-4 w-4 animate-spin" />}
-                          {isConnecting ? "Connexion en cours..." : "Se connecter"}
+                          {isConnecting ? t('connecting_button') : t('connect_button')}
                       </Button>
                   </CardFooter>
               </Card>
@@ -274,4 +298,3 @@ const SmartRoomPage = memo(function SmartRoomPage() {
 export default SmartRoomPage;
 
     
-
