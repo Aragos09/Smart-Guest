@@ -1,120 +1,285 @@
-    {
-  "room_service_menu": {
+
+{
+  "classic": {
     "categories": {
-      "entrees": [
-        {
-          "name_fr": "Velouté de potiron bio",
-          "description_fr": "Crème légère à la noisette, huile de truffe blanche",
-          "price_eur": 9.00
-        },
-        {
-          "name_fr": "Tartare de saumon et avocat",
-          "description_fr": "Citron vert, gingembre, pousses de roquette",
-          "price_eur": 13.50
-        },
-        {
-          "name_fr": "Burrata crémeuse & tomates confites",
-          "description_fr": "Basilic frais, huile d’olive de Provence",
-          "price_eur": 11.00
-        },
-        {
-          "name_fr": "Soupe froide de concombre et menthe",
-          "description_fr": "Servie avec croûtons à l’ail",
-          "price_eur": 8.50
-        }
-      ],
-      "plats": [
-        {
-          "name_fr": "Filet de bœuf grillé, jus corsé",
-          "description_fr": "Purée de panais, légumes de saison",
-          "price_eur": 28.00
-        },
-        {
-          "name_fr": "Risotto aux champignons sauvages (végétarien)",
-          "description_fr": "Parmesan affiné, huile de truffe blanche",
-          "price_eur": 21.00
-        },
-        {
-          "name_fr": "Saumon rôti, mousseline de petits pois",
-          "description_fr": "Sauce citron-gingembre, chips de betterave",
-          "price_eur": 23.00
-        },
-        {
-          "name_fr": "Poulet fermier rôti, sauce morilles",
-          "description_fr": "Purée de pommes de terre, petits légumes",
-          "price_eur": 22.50
-        },
-        {
-          "name_fr": "Tagliatelles fraîches à la crème de truffe noire",
-          "description_fr": "Copeaux de parmesan",
-          "price_eur": 19.00
-        }
-      ],
-      "desserts": [
-        {
-          "name_fr": "Mousse au chocolat noir Valrhona",
-          "description_fr": "Éclats de fève de cacao, chantilly légère",
-          "price_eur": 8.50
-        },
-        {
-          "name_fr": "Tartelette citron yuzu",
-          "description_fr": "Meringue italienne, coulis acidulé",
-          "price_eur": 9.00
-        },
-        {
-          "name_fr": "Panna cotta à la vanille Bourbon",
-          "description_fr": "Coulis de fruits rouges",
-          "price_eur": 8.00
-        },
-        {
-          "name_fr": "Assiette de fromages affinés AOP",
-          "description_fr": "Pain aux noix et confiture de figues",
-          "price_eur": 11.50
-        }
-      ],
-      "boissons": [
-        {
-          "name_fr": "Eau minérale (plate ou gazeuse)",
-          "size": "50cl",
-          "price_eur": 4.00
-        },
-        {
-          "name_fr": "Café expresso",
-          "price_eur": 3.50
-        },
-        {
-          "name_fr": "Cappuccino / Café latte",
-          "price_eur": 5.00
-        },
-        {
-          "name_fr": "Thé vert bio japonais",
-          "price_eur": 5.50
-        },
-        {
-          "name_fr": "Jus pressé minute (orange / pomme / carotte)",
-          "size": "30cl",
-          "price_eur": 6.50
-        },
-        {
-          "name_fr": "Vin rouge Saint-Émilion 2020",
-          "size": "12cl",
-          "price_eur": 11.00
-        },
-        {
-          "name_fr": "Champagne brut maison",
-          "size": "12cl",
-          "price_eur": 14.00
-        }
-      ]
-    },
-    "eco_options": {
-      "delivery_mode_fr": "Livraison écoresponsable (vaisselle réutilisable, zéro plastique) +1.00€",
-      "local_products_fr": "Produits issus de producteurs régionaux",
-      "low_energy_cooking_fr": "Cuisson basse énergie (-10% empreinte carbone)"
-    },
-    "service_info": {
-      "availability_fr": "Service disponible 24h/24",
-      "delivery_time_fr": "Temps moyen de livraison : 25 à 30 minutes"
+      "entrees": {
+        "name_fr": "room_service_entrees",
+        "items": [
+          {
+            "name_fr": "pumpkin_soup_bio_name",
+            "description_fr": "pumpkin_soup_bio_desc",
+            "price_eur": 9.00
+          },
+          {
+            "name_fr": "salmon_avocado_tartare_name",
+            "description_fr": "salmon_avocado_tartare_desc",
+            "price_eur": 13.50
+          },
+          {
+            "name_fr": "creamy_burrata_name",
+            "description_fr": "creamy_burrata_desc",
+            "price_eur": 11.00
+          },
+          {
+            "name_fr": "cold_cucumber_soup_name",
+            "description_fr": "cold_cucumber_soup_desc",
+            "price_eur": 8.50
+          }
+        ]
+      },
+      "plats": {
+        "name_fr": "room_service_plats",
+        "items": [
+          {
+            "name_fr": "grilled_beef_filet_name",
+            "description_fr": "grilled_beef_filet_desc",
+            "price_eur": 28.00
+          },
+          {
+            "name_fr": "wild_mushroom_risotto_name",
+            "description_fr": "wild_mushroom_risotto_desc",
+            "price_eur": 21.00
+          },
+          {
+            "name_fr": "roasted_salmon_peas_name",
+            "description_fr": "roasted_salmon_peas_desc",
+            "price_eur": 23.00
+          },
+          {
+            "name_fr": "roasted_farm_chicken_name",
+            "description_fr": "roasted_farm_chicken_desc",
+            "price_eur": 22.50
+          },
+          {
+            "name_fr": "fresh_truffle_tagliatelle_name",
+            "description_fr": "fresh_truffle_tagliatelle_desc",
+            "price_eur": 19.00
+          }
+        ]
+      },
+      "desserts": {
+        "name_fr": "room_service_desserts",
+        "items": [
+          {
+            "name_fr": "valrhona_chocolate_mousse_name",
+            "description_fr": "valrhona_chocolate_mousse_desc",
+            "price_eur": 8.50
+          },
+          {
+            "name_fr": "yuzu_lemon_tartlet_name",
+            "description_fr": "yuzu_lemon_tartlet_desc",
+            "price_eur": 9.00
+          },
+          {
+            "name_fr": "bourbon_vanilla_panna_cotta_name",
+            "description_fr": "bourbon_vanilla_panna_cotta_desc",
+            "price_eur": 8.00
+          },
+          {
+            "name_fr": "aop_cheese_platter_name",
+            "description_fr": "aop_cheese_platter_desc",
+            "price_eur": 11.50
+          }
+        ]
+      }
+    }
+  },
+  "vegan": {
+    "categories": {
+      "entrees": {
+        "name_fr": "room_service_entrees",
+        "items": [
+          {
+            "name_fr": "crunchy_vegetable_ceviche_name",
+            "description_fr": "crunchy_vegetable_ceviche_desc",
+            "price_eur": 10.00
+          },
+          {
+            "name_fr": "lentil_mushroom_terrine_name",
+            "description_fr": "lentil_mushroom_terrine_desc",
+            "price_eur": 9.50
+          },
+          {
+            "name_fr": "tricolor_quinoa_salad_name",
+            "description_fr": "tricolor_quinoa_salad_desc",
+            "price_eur": 11.00
+          },
+          {
+            "name_fr": "cold_carrot_ginger_soup_name",
+            "description_fr": "cold_carrot_ginger_soup_desc",
+            "price_eur": 8.50
+          }
+        ]
+      },
+      "plats": {
+        "name_fr": "room_service_plats",
+        "items": [
+          {
+            "name_fr": "thai_green_curry_name",
+            "description_fr": "thai_green_curry_desc",
+            "price_eur": 19.50
+          },
+          {
+            "name_fr": "gourmet_vegan_burger_name",
+            "description_fr": "gourmet_vegan_burger_desc",
+            "price_eur": 21.00
+          },
+          {
+            "name_fr": "grilled_vegetable_lasagna_name",
+            "description_fr": "grilled_vegetable_lasagna_desc",
+            "price_eur": 18.50
+          },
+          {
+            "name_fr": "roasted_tofu_black_sesame_name",
+            "description_fr": "roasted_tofu_black_sesame_desc",
+            "price_eur": 20.00
+          },
+          {
+            "name_fr": "balanced_poke_bowl_name",
+            "description_fr": "balanced_poke_bowl_desc",
+            "price_eur": 17.50
+          }
+        ]
+      },
+      "desserts": {
+        "name_fr": "room_service_desserts",
+        "items": [
+          {
+            "name_fr": "raw_chocolate_date_tart_name",
+            "description_fr": "raw_chocolate_date_desc",
+            "price_eur": 9.00
+          },
+          {
+            "name_fr": "vegan_lime_cheesecake_name",
+            "description_fr": "vegan_lime_cheesecake_desc",
+            "price_eur": 8.50
+          },
+          {
+            "name_fr": "mango_coconut_mousse_name",
+            "description_fr": "mango_coconut_mousse_desc",
+            "price_eur": 8.00
+          },
+          {
+            "name_fr": "gluten_free_brownie_name",
+            "description_fr": "gluten_free_brownie_desc",
+            "price_eur": 9.50
+          }
+        ]
+      }
+    }
+  },
+  "beverages": {
+    "categories": {
+      "mocktails": {
+        "name_fr": "room_service_mocktails",
+        "items": [
+          {
+            "name_fr": "green_detox_elixir_name",
+            "description_fr": "green_detox_elixir_desc",
+            "price_eur": 7.50
+          },
+          {
+            "name_fr": "tropical_sunrise_name",
+            "description_fr": "tropical_sunrise_desc",
+            "price_eur": 8.00
+          },
+          {
+            "name_fr": "coconut_dream_name",
+            "description_fr": "coconut_dream_desc",
+            "price_eur": 7.50
+          },
+          {
+            "name_fr": "berry_harmony_name",
+            "description_fr": "berry_harmony_desc",
+            "price_eur": 8.50
+          },
+          {
+            "name_fr": "minty_citrus_fizz_name",
+            "description_fr": "minty_citrus_fizz_desc",
+            "price_eur": 7.00
+          }
+        ]
+      },
+      "cocktails": {
+        "name_fr": "room_service_cocktails",
+        "items": [
+          {
+            "name_fr": "smart_negroni_name",
+            "description_fr": "smart_negroni_desc",
+            "price_eur": 12.00
+          },
+          {
+            "name_fr": "eco_spritz_name",
+            "description_fr": "eco_spritz_desc",
+            "price_eur": 11.50
+          },
+          {
+            "name_fr": "tropical_verde_name",
+            "description_fr": "tropical_verde_desc",
+            "price_eur": 12.50
+          },
+          {
+            "name_fr": "french_garden_name",
+            "description_fr": "french_garden_desc",
+            "price_eur": 11.00
+          },
+          {
+            "name_fr": "golden_glow_name",
+            "description_fr": "golden_glow_desc",
+            "price_eur": 13.00
+          }
+        ]
+      },
+      "infusions_thes": {
+        "name_fr": "room_service_infusions_teas",
+        "items": [
+          {
+            "name_fr": "relaxing_infusion_name",
+            "description_fr": "relaxing_infusion_desc",
+            "price_eur": 5.50
+          },
+          {
+            "name_fr": "matcha_green_tea_name",
+            "description_fr": "matcha_green_tea_desc",
+            "price_eur": 6.00
+          },
+          {
+            "name_fr": "bourbon_vanilla_rooibos_name",
+            "description_fr": "bourbon_vanilla_rooibos_desc",
+            "price_eur": 5.50
+          },
+          {
+            "name_fr": "balance_vitality_herbal_tea_name",
+            "description_fr": "balance_vitality_herbal_tea_desc",
+            "price_eur": 5.00
+          }
+        ]
+      },
+      "jus_presses": {
+        "name_fr": "room_service_pressed_juices",
+        "items": [
+          {
+            "name_fr": "green_vitality_juice_name",
+            "description_fr": "green_vitality_juice_desc",
+            "price_eur": 6.50
+          },
+          {
+            "name_fr": "red_passion_juice_name",
+            "description_fr": "red_passion_juice_desc",
+            "price_eur": 6.00
+          },
+          {
+            "name_fr": "pure_organic_orange_juice_name",
+            "description_fr": "pure_organic_orange_juice_desc",
+            "price_eur": 5.50
+          },
+          {
+            "name_fr": "immunity_shot_name",
+            "description_fr": "immunity_shot_desc",
+            "price_eur": 4.00
+          }
+        ]
+      }
     }
   }
 }

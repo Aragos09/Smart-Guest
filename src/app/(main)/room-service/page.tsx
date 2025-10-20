@@ -228,7 +228,7 @@ const RoomServicePage = memo(function RoomServicePage({ params }: { params: { lo
           </div>
           {menuChoices.map(choice => (
             <TabsContent key={choice.id} value={choice.id}>
-              <MenuDisplay menu={choice.menu} menuType={choice.id} searchTerm={searchTerm} />
+              <MenuDisplay menu={choice.menu as RoomServiceMenu} menuType={choice.id} searchTerm={searchTerm} />
             </TabsContent>
           ))}
         </Tabs>
