@@ -1,120 +1,142 @@
 {
-  "room_service_menu": {
-    "categories": {
-      "entrees": [
-        {
-          "name_fr": "Velouté de potiron bio",
-          "description_fr": "Crème légère à la noisette, huile de truffe blanche",
-          "price_eur": 9.00
-        },
-        {
-          "name_fr": "Tartare de saumon et avocat",
-          "description_fr": "Citron vert, gingembre, pousses de roquette",
-          "price_eur": 13.50
-        },
-        {
-          "name_fr": "Burrata crémeuse & tomates confites",
-          "description_fr": "Basilic frais, huile d’olive de Provence",
-          "price_eur": 11.00
-        },
-        {
-          "name_fr": "Soupe froide de concombre et menthe",
-          "description_fr": "Servie avec croûtons à l’ail",
-          "price_eur": 8.50
-        }
-      ],
-      "plats": [
-        {
-          "name_fr": "Filet de bœuf grillé, jus corsé",
-          "description_fr": "Purée de panais, légumes de saison",
-          "price_eur": 28.00
-        },
-        {
-          "name_fr": "Risotto aux champignons sauvages (végétarien)",
-          "description_fr": "Parmesan affiné, huile de truffe blanche",
-          "price_eur": 21.00
-        },
-        {
-          "name_fr": "Saumon rôti, mousseline de petits pois",
-          "description_fr": "Sauce citron-gingembre, chips de betterave",
-          "price_eur": 23.00
-        },
-        {
-          "name_fr": "Poulet fermier rôti, sauce morilles",
-          "description_fr": "Purée de pommes de terre, petits légumes",
-          "price_eur": 22.50
-        },
-        {
-          "name_fr": "Tagliatelles fraîches à la crème de truffe noire",
-          "description_fr": "Copeaux de parmesan",
-          "price_eur": 19.00
-        }
-      ],
-      "desserts": [
-        {
-          "name_fr": "Mousse au chocolat noir Valrhona",
-          "description_fr": "Éclats de fève de cacao, chantilly légère",
-          "price_eur": 8.50
-        },
-        {
-          "name_fr": "Tartelette citron yuzu",
-          "description_fr": "Meringue italienne, coulis acidulé",
-          "price_eur": 9.00
-        },
-        {
-          "name_fr": "Panna cotta à la vanille Bourbon",
-          "description_fr": "Coulis de fruits rouges",
-          "price_eur": 8.00
-        },
-        {
-          "name_fr": "Assiette de fromages affinés AOP",
-          "description_fr": "Pain aux noix et confiture de figues",
-          "price_eur": 11.50
-        }
-      ],
-      "boissons": [
-        {
-          "name_fr": "Eau minérale (plate ou gazeuse)",
-          "size": "50cl",
-          "price_eur": 4.00
-        },
-        {
-          "name_fr": "Café expresso",
-          "price_eur": 3.50
-        },
-        {
-          "name_fr": "Cappuccino / Café latte",
-          "price_eur": 5.00
-        },
-        {
-          "name_fr": "Thé vert bio japonais",
-          "price_eur": 5.50
-        },
-        {
-          "name_fr": "Jus pressé minute (orange / pomme / carotte)",
-          "size": "30cl",
-          "price_eur": 6.50
-        },
-        {
-          "name_fr": "Vin rouge Saint-Émilion 2020",
-          "size": "12cl",
-          "price_eur": 11.00
-        },
-        {
-          "name_fr": "Champagne brut maison",
-          "size": "12cl",
-          "price_eur": 14.00
-        }
-      ]
-    },
-    "eco_options": {
-      "delivery_mode_fr": "Livraison écoresponsable (vaisselle réutilisable, zéro plastique) +1.00€",
-      "local_products_fr": "Produits issus de producteurs régionaux",
-      "low_energy_cooking_fr": "Cuisson basse énergie (-10% empreinte carbone)"
-    },
-    "service_info": {
-      "availability_fr": "Service disponible 24h/24",
-      "delivery_time_fr": "Temps moyen de livraison : 25 à 30 minutes"
-    }
+  "classicMenu": {
+    "categories": [
+      {
+        "id": "entrees",
+        "name": "entrees",
+        "items": [
+          { "name": "Velouté de potiron bio", "description": "Crème légère à la noisette, huile de truffe blanche", "price": 9.00 },
+          { "name": "Tartare de saumon et avocat", "description": "Citron vert, gingembre, pousses de roquette", "price": 13.50 },
+          { "name": "Burrata crémeuse & tomates confites", "description": "Basilic frais, huile d’olive de Provence", "price": 11.00 },
+          { "name": "Soupe froide de concombre et menthe", "description": "Servie avec croûtons à l’ail", "price": 8.50 }
+        ]
+      },
+      {
+        "id": "plats",
+        "name": "plats",
+        "items": [
+          { "name": "Filet de bœuf grillé, jus corsé", "description": "Purée de panais, légumes de saison", "price": 28.00 },
+          { "name": "Risotto aux champignons sauvages (végétarien)", "description": "Parmesan affiné, huile de truffe blanche", "price": 21.00 },
+          { "name": "Saumon rôti, mousseline de petits pois", "description": "Sauce citron-gingembre, chips de betterave", "price": 23.00 },
+          { "name": "Poulet fermier rôti, sauce morilles", "description": "Purée de pommes de terre, petits légumes", "price": 22.50 },
+          { "name": "Tagliatelles fraîches à la crème de truffe noire", "description": "Copeaux de parmesan", "price": 19.00 }
+        ]
+      },
+      {
+        "id": "desserts",
+        "name": "desserts",
+        "items": [
+          { "name": "Mousse au chocolat noir Valrhona", "description": "Éclats de fève de cacao, chantilly légère", "price": 8.50 },
+          { "name": "Tartelette citron yuzu", "description": "Meringue italienne, coulis acidulé", "price": 9.00 },
+          { "name": "Panna cotta à la vanille Bourbon", "description": "Coulis de fruits rouges", "price": 8.00 },
+          { "name": "Assiette de fromages affinés AOP", "description": "Pain aux noix et confiture de figues", "price": 11.50 }
+        ]
+      },
+      {
+        "id": "boissons",
+        "name": "boissons",
+        "items": [
+          { "name": "Eau minérale (plate ou gazeuse)", "description": "", "size": "50cl", "price": 4.00 },
+          { "name": "Café expresso", "description": "", "price": 3.50 },
+          { "name": "Cappuccino / Café latte", "description": "", "price": 5.00 },
+          { "name": "Thé vert bio japonais", "description": "", "price": 5.50 },
+          { "name": "Jus pressé minute (orange / pomme / carotte)", "description": "", "size": "30cl", "price": 6.50 },
+          { "name": "Vin rouge Saint-Émilion 2020", "description": "", "size": "12cl", "price": 11.00 },
+          { "name": "Champagne brut maison", "description": "", "size": "12cl", "price": 14.00 }
+        ]
+      }
+    ]
+  },
+  "veganMenu": {
+    "categories": [
+      {
+        "id": "entrees",
+        "name": "entrees",
+        "items": [
+          { "name": "Ceviche de légumes croquants", "description": "Légumes de saison marinés au citron vert, lait de coco, coriandre fraîche", "price": 10.00 },
+          { "name": "Terrine végétale aux lentilles et champignons", "description": "Servie avec chutney de mangue et toasts grillés", "price": 9.50 },
+          { "name": "Salade de quinoa tricolore", "description": "Grenade, avocat, fèves edamame, vinaigrette sésame-citron", "price": 11.00 },
+          { "name": "Soupe froide de carotte et gingembre", "description": "Parfumée au lait d’amande et coriandre", "price": 8.50 }
+        ]
+      },
+      {
+        "id": "plats",
+        "name": "plats",
+        "items": [
+          { "name": "Curry thaï vert aux légumes bio", "description": "Lait de coco, citronnelle, riz jasmin", "price": 19.50 },
+          { "name": "Burger vegan gourmet", "description": "Galette de pois chiches, avocat, oignons rouges, sauce tahini, frites de patate douce", "price": 21.00 },
+          { "name": "Lasagnes de légumes grillés", "description": "Béchamel végétale, pesto de basilic maison", "price": 18.50 },
+          { "name": "Tofu rôti au sésame noir", "description": "Purée de patates douces, légumes vapeur, réduction soja-miel vegan", "price": 20.00 },
+          { "name": "Poke bowl équilibré", "description": "Riz complet, edamame, mangue, chou rouge, graines de chia, sauce soja-gingembre", "price": 17.50 }
+        ]
+      },
+      {
+        "id": "desserts",
+        "name": "desserts",
+        "items": [
+          { "name": "Tarte au chocolat cru et dattes", "description": "Ganache cacao-avocat, base aux noix de cajou", "price": 9.00 },
+          { "name": "Cheesecake vegan au citron vert", "description": "Base coco-amande, coulis de framboise", "price": 8.50 },
+          { "name": "Mousse de mangue et lait de coco", "description": "Servie fraîche, zestes de citron vert", "price": 8.00 },
+          { "name": "Brownie sans gluten", "description": "Cacao pur, noix de pécan, sirop d’érable", "price": 9.50 }
+        ]
+      },
+      {
+        "id": "boissons",
+        "name": "boissons",
+        "items": [
+          { "name": "Kombucha artisanal (gingembre / hibiscus)", "description": "", "size": "33cl", "price": 6.00 },
+          { "name": "Smoothie Énergie verte", "description": "Épinards, kiwi, pomme, spiruline", "price": 6.50 },
+          { "name": "Eau de coco bio", "description": "", "size": "33cl", "price": 5.00 },
+          { "name": "Infusion glacée maison", "description": "Menthe, citron, miel d’agave", "price": 4.50 },
+          { "name": "Vin blanc vegan Côtes-du-Rhône 2021", "description": "", "size": "12cl", "price": 9.00 }
+        ]
+      }
+    ]
+  },
+  "beveragesMenu": {
+    "categories": [
+      {
+        "id": "mocktails",
+        "name": "Mocktails",
+        "items": [
+          { "name": "Green Detox Elixir", "description": "Concombre, pomme verte, citron vert, spiruline, eau pétillante. Rafraîchissant et purifiant.", "price": 7.50 },
+          { "name": "Tropical Sunrise", "description": "Jus d’ananas frais, mangue, fruit de la passion, sirop d’agave, touche de curcuma.", "price": 8.00 },
+          { "name": "Coconut Dream", "description": "Lait de coco, citron vert, menthe fraîche, sirop de vanille.", "price": 7.50 },
+          { "name": "Berry Harmony", "description": "Framboise, mûre, hibiscus infusé, sirop de datte, eau gazeuse.", "price": 8.50 },
+          { "name": "Minty Citrus Fizz", "description": "Citron, menthe bio, gingembre, eau pétillante, miel végétal.", "price": 7.00 }
+        ]
+      },
+      {
+        "id": "cocktails",
+        "name": "Cocktails",
+        "items": [
+          { "name": "Smart Negroni", "description": "Gin biologique français, vermouth artisanal, bitter orange, glaçons transparents.", "price": 12.00 },
+          { "name": "Eco Spritz", "description": "Prosecco vegan, purée d’orange sanguine, sirop d’agave, soda maison.", "price": 11.50 },
+          { "name": "Tropical Verde", "description": "Rhum blanc bio, ananas frais, basilic, citron vert, sucre de canne équitable.", "price": 12.50 },
+          { "name": "French Garden", "description": "Vodka locale infusée au concombre, sirop de lavande, tonic artisanal.", "price": 11.00 },
+          { "name": "Golden Glow", "description": "Whisky infusé au gingembre, miel vegan, citron, cannelle.", "price": 13.00 }
+        ]
+      },
+      {
+        "id": "infusions_thes",
+        "name": "Infusions & Thés",
+        "items": [
+          { "name": "Infusion relaxante camomille & citronnelle", "description": "Récolte locale, 100 % bio, servie chaude ou glacée.", "price": 5.50 },
+          { "name": "Thé vert Matcha Kyoto", "description": "Préparé à la main, fouetté au bambou.", "price": 6.00 },
+          { "name": "Rooibos vanille Bourbon", "description": "Naturellement sans théine, saveur ronde et douce.", "price": 5.50 },
+          { "name": "Tisane Équilibre & Vitalité", "description": "Mélisse, ortie, menthe poivrée, gingembre bio.", "price": 5.00 }
+        ]
+      },
+      {
+        "id": "jus_presses",
+        "name": "Jus Pressés",
+        "items": [
+          { "name": "Vitalité Verte", "description": "Pomme, céleri, épinards, citron.", "price": 6.50 },
+          { "name": "Rouge Passion", "description": "Betterave, fraise, orange, citron vert.", "price": 6.00 },
+          { "name": "Pure Orange Bio", "description": "Oranges locales pressées à froid.", "price": 5.50 },
+          { "name": "Immunity Shot", "description": "Gingembre, citron, curcuma, poivre noir.", "price": 4.00 }
+        ]
+      }
+    ]
   }
 }

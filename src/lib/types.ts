@@ -9,6 +9,16 @@ export type UserProfile = {
   language: Language;
   tripType: 'business' | 'leisure';
   ecoSensitivity: 'low' | 'medium' | 'high';
+  bedType?: string;
+  floorPreference?: string;
+  viewPreference?: string;
+  pillowType?: string;
+  roomFragrance?: string;
+  housekeepingSchedule?: string;
+  dietaryRestrictions?: string;
+  allergies?: string[];
+  favoriteDishes?: string[];
+  quickLinks?: string[];
 };
 
 export type Service = {
@@ -44,6 +54,7 @@ export type MenuItem = {
 };
 
 export type MenuCategory = {
+  id: string;
   name: string;
   items: MenuItem[];
 };
@@ -80,14 +91,13 @@ export type SignatureMenuData = {
 
 export type RoomServiceItem = {
   name: string;
-  name_fr: string;
-  description_fr: string;
-  price_eur: number;
+  description: string;
+  price: number;
   size?: string;
 };
 
 export type RoomServiceCategory = {
-  id: 'entrees' | 'plats' | 'desserts' | 'boissons';
+  id: string;
   name: string;
   items: RoomServiceItem[];
 };
