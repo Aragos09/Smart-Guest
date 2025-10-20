@@ -24,6 +24,22 @@ function SmartRoomControls() {
   const [colorTemperature, setColorTemperature] = useState(4000);
   const [doNotDisturb, setDoNotDisturb] = useState(false);
   const [makeUpRoom, setMakeUpRoom] = useState(false);
+  const [selectedAmbiance, setSelectedAmbiance] = useState<string | null>(null);
+
+  const handleAmbianceClick = (ambiance: string) => {
+    if (selectedAmbiance === ambiance) {
+      setSelectedAmbiance(null);
+    } else {
+      setSelectedAmbiance(ambiance);
+    }
+  };
+
+  const ambiancePresets = [
+    { id: "reading", icon: BookOpen, label: "reading_preset" },
+    { id: "relax", icon: Moon, label: "relax_preset" },
+    { id: "energize", icon: Lightbulb, label: "energize_preset" },
+    { id: "movie", icon: Tv, label: "movie_preset" },
+  ];
 
   return (
     <div className="grid gap-6 lg:grid-cols-2">
@@ -65,22 +81,17 @@ function SmartRoomControls() {
           <CardDescription>{t('ambiance_description')}</CardDescription>
         </CardHeader>
         <CardContent className="grid grid-cols-2 gap-4">
-          <Button variant="outline" className="flex flex-col h-20">
-            <BookOpen className="h-6 w-6 mb-1" />
-            {t('reading_preset')}
-          </Button>
-          <Button variant="outline" className="flex flex-col h-20">
-            <Moon className="h-6 w-6 mb-1" />
-            {t('relax_preset')}
-          </Button>
-          <Button variant="outline" className="flex flex-col h-20">
-            <Lightbulb className="h-6 w-6 mb-1" />
-            {t('energize_preset')}
-          </Button>
-          <Button variant="outline" className="flex flex-col h-20">
-            <Tv className="h-6 w-6 mb-1" />
-            {t('movie_preset')}
-          </Button>
+          {ambiancePresets.map((preset) => (
+            <Button
+              key={preset.id}
+              variant={selectedAmbiance === preset.id ? "default" : "outline"}
+              className="flex flex-col h-20"
+              onClick={() => handleAmbianceClick(preset.id)}
+            >
+              <preset.icon className="h-6 w-6 mb-1" />
+              {t(preset.label as any)}
+            </Button>
+          ))}
         </CardContent>
       </Card>
 
