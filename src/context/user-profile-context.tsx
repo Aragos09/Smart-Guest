@@ -78,12 +78,9 @@ export function UserProfileProvider({ children }: { children: ReactNode }) {
   };
 
   const logout = () => {
-    try {
-      localStorage.removeItem("userProfile");
-      setProfileState(defaultProfile);
-    } catch (error) {
-      console.error("Failed to clear user profile from local storage", error);
-    }
+    // Only reset the in-memory state to default, don't clear localStorage.
+    // This presumes the login flow will correctly load the profile for the next user.
+    setProfileState(defaultProfile);
   };
 
   return (
