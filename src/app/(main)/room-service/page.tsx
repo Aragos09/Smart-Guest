@@ -35,6 +35,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useInvoice } from "@/context/invoice-context";
 
 const { classic, vegan, beverages }: { classic: RoomServiceMenu, vegan: RoomServiceMenu, beverages: RoomServiceMenu } = menuData;
 
@@ -76,8 +77,10 @@ function CartSheet() {
   const { t } = useLanguage();
   const { toast } = useToast();
   const { cart, removeFromCart, updateQuantity, clearCart, totalPrice } = useCart();
+  const { addItemsToInvoice } = useInvoice();
 
   const handleCheckout = () => {
+    addItemsToInvoice(cart);
     toast({
       title: t("order_placed_toast_title"),
       description: t("order_placed_toast_desc"),
@@ -263,5 +266,3 @@ const RoomServicePage = memo(function RoomServicePage({ params }: { params: { lo
 });
 
 export default RoomServicePage;
-
-    

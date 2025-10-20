@@ -4,6 +4,10 @@ import type { CartItem as CartContextCartItem } from "@/context/cart-context";
 
 export type CartItem = CartContextCartItem;
 
+export type InvoiceItem = CartItem & {
+    date: string;
+};
+
 export type UserProfile = {
   name: string;
   email: string;

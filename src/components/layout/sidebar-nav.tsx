@@ -16,6 +16,7 @@ import {
   Home,
   Sparkles,
   LogOut,
+  Receipt,
 } from "lucide-react";
 import { AppLogo } from "@/components/icons";
 import {
@@ -47,6 +48,7 @@ function SidebarNav() {
     { href: "/experiences", icon: HeartHandshake, label: "experiences_title" },
     { href: "/restaurant", icon: Utensils, label: "restaurant_title" },
     { href: "/room-service", icon: ShoppingBasket, label: "room_service_title" },
+    { href: "/invoice", icon: Receipt, label: "invoice_title" },
     { href: "/concierge", icon: BotMessageSquare, label: "concierge_title" },
   ];
 

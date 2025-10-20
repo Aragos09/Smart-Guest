@@ -56,6 +56,7 @@ export const translations = {
     'room_service_title': 'Room Service',
     'smart_room_title': 'Smart Room',
     'wellness_services_title': 'Wellness & Services',
+    'invoice_title': 'Invoice',
 
     // Dashboard
     'welcome_back_user': 'Welcome back',
@@ -561,6 +562,16 @@ export const translations = {
     "check_in_status_label": "Status",
     "check_in_status_pending": "Awaiting hotel confirmation",
     "check_in_status_too_early": "Not yet check-in day",
+    
+    // Invoice
+    "invoice_subtitle": "A detailed summary of all charges during your stay.",
+    "invoice_table_date": "Date",
+    "invoice_table_item": "Item",
+    "invoice_table_quantity": "Quantity",
+    "invoice_table_unit_price": "Unit Price",
+    "invoice_table_total_price": "Total",
+    "invoice_grand_total": "Grand Total",
+    "invoice_empty_message": "Your invoice is currently empty. Charges from services and room service will appear here.",
   },
   fr: {
     // Common
@@ -618,6 +629,7 @@ export const translations = {
     'room_service_title': 'Room Service',
     'smart_room_title': 'Chambre Connectée',
     'wellness_services_title': 'Bien-être & Services',
+    'invoice_title': 'Facture',
 
     // Dashboard
     'welcome_back_user': 'Bon retour',
@@ -1123,6 +1135,16 @@ export const translations = {
     "check_in_status_label": "Statut",
     "check_in_status_pending": "En attente de confirmation de l'hôtel",
     "check_in_status_too_early": "Ce n'est pas encore le jour de l'enregistrement",
+    
+    // Invoice
+    "invoice_subtitle": "Un résumé détaillé de toutes les charges pendant votre séjour.",
+    "invoice_table_date": "Date",
+    "invoice_table_item": "Article",
+    "invoice_table_quantity": "Quantité",
+    "invoice_table_unit_price": "Prix Unitaire",
+    "invoice_table_total_price": "Total",
+    "invoice_grand_total": "Total Général",
+    "invoice_empty_message": "Votre facture est actuellement vide. Les frais des services et du service en chambre apparaîtront ici.",
   }
 };
 
@@ -1143,5 +1165,3 @@ export const getTranslator = (lang: Language) => {
   };
   return t;
 };
-
-    

@@ -5,6 +5,7 @@ import { LanguageProvider } from "@/context/language-context";
 import { UserProfileProvider } from "@/context/user-profile-context";
 import DynamicBackground from "@/components/layout/dynamic-background";
 import { CartProvider } from "@/context/cart-context";
+import { InvoiceProvider } from "@/context/invoice-context";
 
 export default function MainLayout({
   children,
@@ -15,13 +16,15 @@ export default function MainLayout({
     <UserProfileProvider>
       <LanguageProvider>
         <CartProvider>
-          <SidebarProvider>
-            <DynamicBackground />
-            <SidebarNav />
-            <SidebarInset>
-              {children}
-            </SidebarInset>
-          </SidebarProvider>
+          <InvoiceProvider>
+            <SidebarProvider>
+              <DynamicBackground />
+              <SidebarNav />
+              <SidebarInset>
+                {children}
+              </SidebarInset>
+            </SidebarProvider>
+          </InvoiceProvider>
         </CartProvider>
       </LanguageProvider>
     </UserProfileProvider>
