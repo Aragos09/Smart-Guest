@@ -66,7 +66,7 @@ const allQuickLinks = [
 const profileFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
   email: z.string().email(),
-  language: z.enum(["en", "es", "fr"], {
+  language: z.enum(["en", "fr"], {
     required_error: "Please select a language.",
   }),
   tripType: z.enum(["leisure", "business"], {
@@ -200,7 +200,6 @@ const ProfilePage = memo(function ProfilePage({ params }: { params: { locale: st
                         </FormControl>
                         <SelectContent>
                             <SelectItem value="en">English</SelectItem>
-                            <SelectItem value="es">Español</SelectItem>
                             <SelectItem value="fr">Français</SelectItem>
                         </SelectContent>
                         </Select>
@@ -647,3 +646,5 @@ const ProfilePage = memo(function ProfilePage({ params }: { params: { locale: st
 });
 
 export default ProfilePage;
+
+    
