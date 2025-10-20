@@ -95,9 +95,14 @@ export type RoomServiceItem = {
   size?: string;
 };
 
+export type RoomServiceMenuCategory = {
+  name_fr: string;
+  items: RoomServiceItem[];
+}
+
 export type RoomServiceMenu = {
   categories: {
-    [key: string]: RoomServiceItem[];
+    [key: string]: RoomServiceMenuCategory;
   };
   eco_options?: {
     [key: string]: string;
@@ -111,4 +116,17 @@ export type RoomServiceCategory = {
   id: string;
   name: string;
   items: RoomServiceItem[];
+};
+
+export type WellnessService = {
+  name_fr: string;
+  description_fr: string;
+  price_eur: number;
+  type?: "bonus";
+};
+
+export type WellnessServiceCategory = {
+  name: string;
+  icon: React.ElementType;
+  items: WellnessService[];
 };

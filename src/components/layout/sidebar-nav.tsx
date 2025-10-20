@@ -14,6 +14,7 @@ import {
   Wind,
   ShoppingBasket,
   Home,
+  Sparkles,
 } from "lucide-react";
 import { AppLogo } from "@/components/icons";
 import {
@@ -39,11 +40,10 @@ function SidebarNav() {
     { href: "/dashboard", icon: LayoutDashboard, label: "dashboard_title" },
     { href: "/smart-room", icon: Home, label: "smart_room_title" },
     { href: "/eco-manager", icon: Leaf, label: "eco_manager_title" },
-    { href: "/services", icon: Building2, label: "services_title" },
+    { href: "/wellness-services", icon: Sparkles, label: "wellness_services_title" },
     { href: "/experiences", icon: HeartHandshake, label: "experiences_title" },
     { href: "/restaurant", icon: Utensils, label: "restaurant_title" },
     { href: "/room-service", icon: ShoppingBasket, label: "room_service_title" },
-    { href: "/wellness", icon: Wind, label: "wellness_title" },
     { href: "/concierge", icon: BotMessageSquare, label: "concierge_title" },
   ];
 
@@ -78,7 +78,7 @@ function SidebarNav() {
                 >
                 <Link href={item.href}>
                     <SidebarMenuButton
-                    isActive={pathname === item.href}
+                    isActive={pathname.startsWith(item.href)}
                     tooltip={t(item.label as any)}
                     >
                     <item.icon />

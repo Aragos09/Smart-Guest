@@ -1,0 +1,88 @@
+{
+  "wellness_services": {
+    "spa": [
+      {
+        "name_fr": "Accès Spa & Hammam",
+        "description_fr": "Espace détente avec hammam, sauna bio, douches sensorielles et tisanerie bio. Accès 1h30.",
+        "price_eur": 25.00
+      },
+      {
+        "name_fr": "Massage Relaxant Signature",
+        "description_fr": "Massage à l’huile d’amande douce et huiles essentielles locales, 45 min.",
+        "price_eur": 65.00
+      },
+      {
+        "name_fr": "Massage Rééquilibrant Smart Energy",
+        "description_fr": "Massage musculaire profond avec huiles énergisantes au romarin et citron. 60 min.",
+        "price_eur": 80.00
+      },
+      {
+        "name_fr": "Soin du visage BioTech Glow",
+        "description_fr": "Soin visage aux extraits d’algues et outils connectés de luminothérapie douce.",
+        "price_eur": 70.00
+      },
+      {
+        "name_fr": "Yoga du Matin – Rooftop Session",
+        "description_fr": "Séance guidée sur le toit (7h–8h30). Tapis recyclés et jus detox inclus.",
+        "price_eur": 20.00
+      }
+    ],
+    "fitness": [
+      {
+        "name_fr": "Accès salle de sport",
+        "description_fr": "Machines connectées Technogym, open 24/7.",
+        "price_eur": 0.00
+      },
+      {
+        "name_fr": "Coaching personnalisé",
+        "description_fr": "Séance individuelle (45 min) avec coach sportif certifié.",
+        "price_eur": 50.00
+      },
+      {
+        "name_fr": "Location de vélo électrique",
+        "description_fr": "Parcours éco-touristique avec carte numérique intégrée à l’app.",
+        "price_eur": 15.00
+      },
+      {
+        "name_fr": "Cours de méditation guidée",
+        "description_fr": "Accessible via l’application ou en salle bien-être (30 min).",
+        "price_eur": 10.00
+      }
+    ],
+    "eco_services": [
+      {
+        "name_fr": "Green Stay Option",
+        "description_fr": "Réduction de 10 % si vous renoncez au ménage quotidien.",
+        "price_eur": 0.00,
+        "type": "bonus"
+      },
+      {
+        "name_fr": "Tri intelligent en chambre",
+        "description_fr": "Poubelles connectées à capteurs pour un tri facilité et récompensé.",
+        "price_eur": 0.00
+      },
+      {
+        "name_fr": "Échange de serviettes à la demande",
+        "description_fr": "Gestion durable du linge via l’application (alertes automatiques IA).",
+        "price_eur": 0.00
+      },
+      {
+        "name_fr": "Plant a Tree Program",
+        "description_fr": "1 € reversé à une ONG partenaire pour chaque nuitée “verte”.",
+        "price_eur": 1.00
+      },
+      {
+        "name_fr": "Eco Mobility Shuttle",
+        "description_fr": "Navette électrique vers la gare/aéroport.",
+        "price_eur": 5.00
+      }
+    ],
+    "eco_commitments": {
+      "energy_fr": "Énergie 100 % renouvelable (solaire & géothermie légère).",
+      "cleaning_fr": "Produits d’entretien écologiques certifiés EU Ecolabel.",
+      "paperless_fr": "Communication digitale zéro papier.",
+      "local_partners_fr": "Partenariats avec artisans locaux pour cosmétiques, textiles et restauration.",
+      "ai_energy_fr": "IA prédictive pour optimiser la consommation énergétique des chambres."
+    }
+  }
+}
