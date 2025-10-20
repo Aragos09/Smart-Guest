@@ -180,24 +180,30 @@ function SmartRoomControls() {
   ];
 
   return (
-    <Dialog open={!!activeControl} onOpenChange={(isOpen) => !isOpen && setActiveControl(null)}>
+    <Dialog onOpenChange={(isOpen) => !isOpen && setActiveControl(null)}>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {controls.map((control) => (
-          <Card key={control.id} className="flex h-32 cursor-pointer flex-col justify-between p-4 transition-all hover:bg-muted/50" onClick={() => setActiveControl(control.id)}>
-            <div className="flex items-center justify-between">
-              <p className="font-semibold">{t(control.label)}</p>
-              <control.icon className="h-6 w-6 text-primary" />
-            </div>
-            <p className="text-sm text-muted-foreground">{t(control.label as any)}</p>
-          </Card>
+          <DialogTrigger asChild key={control.id}>
+            <Card className="flex h-32 cursor-pointer flex-col justify-between p-4 transition-all hover:bg-muted/50" onClick={() => setActiveControl(control.id)}>
+              <div className="flex items-center justify-between">
+                <p className="font-semibold">{t(control.label)}</p>
+                <control.icon className="h-6 w-6 text-primary" />
+              </div>
+              <p className="text-sm text-muted-foreground">{t(control.label as any)}</p>
+            </Card>
+          </DialogTrigger>
         ))}
       </div>
-
+      
       <DialogContent>
-        <DialogHeader>
-          <DialogTitle>{t(controls.find(c => c.id === activeControl)?.label)}</DialogTitle>
-        </DialogHeader>
-        {controls.find(c => c.id === activeControl)?.content}
+        {activeControl && (
+          <>
+            <DialogHeader>
+              <DialogTitle className="text-2xl text-center">{t(controls.find(c => c.id === activeControl)?.label)}</DialogTitle>
+            </DialogHeader>
+            {controls.find(c => c.id === activeControl)?.content}
+          </>
+        )}
       </DialogContent>
     </Dialog>
   );
@@ -252,5 +258,3 @@ export default function SmartRoomPage() {
     </div>
   );
 }
-
-    
