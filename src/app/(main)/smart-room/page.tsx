@@ -15,137 +15,135 @@ import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
-import { Lightbulb, Thermometer, Wind, Tv, Moon, BookOpen, Loader, Wifi } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Lightbulb, Thermometer, Wind, Tv, Moon, BookOpen, Loader, Wifi, Sun, Droplets, User } from "lucide-react";
 
-function SmartRoomControls() {
+type ControlType = "lighting" | "climate" | "ambiance" | "blinds" | "status";
+
+function LightingControls() {
   const { t } = useLanguage();
   const [brightness, setBrightness] = useState(75);
-  const [temperature, setTemperature] = useState(22);
   const [colorTemperature, setColorTemperature] = useState(4000);
-  const [doNotDisturb, setDoNotDisturb] = useState(false);
-  const [makeUpRoom, setMakeUpRoom] = useState(false);
-  const [selectedAmbiance, setSelectedAmbiance] = useState<string | null>(null);
-
-  const handleAmbianceClick = (ambiance: string) => {
-    if (selectedAmbiance === ambiance) {
-      setSelectedAmbiance(null);
-    } else {
-      setSelectedAmbiance(ambiance);
-    }
-  };
-
-  const ambiancePresets = [
-    { id: "reading", icon: BookOpen, label: "reading_preset" },
-    { id: "relax", icon: Moon, label: "relax_preset" },
-    { id: "energize", icon: Lightbulb, label: "energize_preset" },
-    { id: "movie", icon: Tv, label: "movie_preset" },
-  ];
 
   return (
-    <div className="grid gap-6 lg:grid-cols-2">
-      {/* Lighting Card */}
-      <Card>
-        <CardHeader>
-          <CardTitle>{t('lighting_title')}</CardTitle>
-          <CardDescription>{t('lighting_description')}</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="space-y-2">
-            <Label htmlFor="brightness">{t('brightness_label')}</Label>
-            <Slider
-              id="brightness"
-              value={[brightness]}
-              onValueChange={(value) => setBrightness(value[0])}
-              max={100}
-              step={1}
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="color-temp">{t('color_temperature_label')}</Label>
-            <Slider
-              id="color-temp"
-              value={[colorTemperature]}
-              onValueChange={(value) => setColorTemperature(value[0])}
-              min={2700}
-              max={6500}
-              step={100}
-            />
-          </div>
-        </CardContent>
-      </Card>
+    <div className="space-y-6 pt-4">
+      <div className="space-y-2">
+        <Label htmlFor="brightness">{t('brightness_label')}</Label>
+        <Slider
+          id="brightness"
+          value={[brightness]}
+          onValueChange={(value) => setBrightness(value[0])}
+          max={100}
+          step={1}
+        />
+        <div className="text-center text-sm text-muted-foreground">{brightness}%</div>
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="color-temp">{t('color_temperature_label')}</Label>
+        <Slider
+          id="color-temp"
+          value={[colorTemperature]}
+          onValueChange={(value) => setColorTemperature(value[0])}
+          min={2700}
+          max={6500}
+          step={100}
+        />
+        <div className="text-center text-sm text-muted-foreground">{colorTemperature}K</div>
+      </div>
+    </div>
+  );
+}
 
-      {/* Ambiance Card */}
-      <Card>
-        <CardHeader>
-          <CardTitle>{t('ambiance_title')}</CardTitle>
-          <CardDescription>{t('ambiance_description')}</CardDescription>
-        </CardHeader>
-        <CardContent className="grid grid-cols-2 gap-4">
-          {ambiancePresets.map((preset) => (
-            <Button
-              key={preset.id}
-              variant={selectedAmbiance === preset.id ? "default" : "outline"}
-              className="flex flex-col h-20"
-              onClick={() => handleAmbianceClick(preset.id)}
-            >
-              <preset.icon className="h-6 w-6 mb-1" />
-              {t(preset.label as any)}
-            </Button>
-          ))}
-        </CardContent>
-      </Card>
+function AmbianceControls() {
+    const { t } = useLanguage();
+    const [selectedAmbiance, setSelectedAmbiance] = useState<string | null>(null);
 
-      {/* Climate Card */}
-      <Card>
-        <CardHeader>
-          <CardTitle>{t('climate_title')}</CardTitle>
-          <CardDescription>{t('climate_description')}</CardDescription>
-        </CardHeader>
-        <CardContent className="flex items-center justify-center gap-6">
+    const handleAmbianceClick = (ambiance: string) => {
+        setSelectedAmbiance(prev => (prev === ambiance ? null : ambiance));
+    };
+
+    const ambiancePresets = [
+        { id: "reading", icon: BookOpen, label: "reading_preset" },
+        { id: "relax", icon: Moon, label: "relax_preset" },
+        { id: "energize", icon: Lightbulb, label: "energize_preset" },
+        { id: "movie", icon: Tv, label: "movie_preset" },
+    ];
+    return (
+        <div className="grid grid-cols-2 gap-4 pt-4">
+            {ambiancePresets.map((preset) => (
+                <Button
+                key={preset.id}
+                variant={selectedAmbiance === preset.id ? "default" : "outline"}
+                className="flex h-24 flex-col items-center justify-center gap-2"
+                onClick={() => handleAmbianceClick(preset.id)}
+                >
+                <preset.icon className="h-8 w-8" />
+                <span>{t(preset.label as any)}</span>
+                </Button>
+            ))}
+        </div>
+    );
+}
+
+function ClimateControls() {
+    const { t } = useLanguage();
+    const [temperature, setTemperature] = useState(22);
+    return (
+        <div className="flex items-center justify-center gap-6 pt-4">
           <Button
             variant="outline"
             size="icon"
-            className="h-12 w-12 rounded-full"
+            className="h-16 w-16 rounded-full"
             onClick={() => setTemperature(temperature - 1)}
           >
-            <Thermometer className="h-6 w-6" />-
+            <Thermometer className="h-8 w-8" />-
           </Button>
           <div className="text-center">
-            <p className="text-5xl font-bold">{temperature}°C</p>
+            <p className="text-6xl font-bold">{temperature}°C</p>
             <p className="text-sm text-muted-foreground">{t('temperature_label')}</p>
           </div>
           <Button
             variant="outline"
             size="icon"
-            className="h-12 w-12 rounded-full"
+            className="h-16 w-16 rounded-full"
             onClick={() => setTemperature(temperature + 1)}
           >
-            <Thermometer className="h-6 w-6" />+
+            <Thermometer className="h-8 w-8" />+
           </Button>
-        </CardContent>
-      </Card>
+        </div>
+    );
+}
 
-      {/* Blinds Card */}
-      <Card>
-        <CardHeader>
-          <CardTitle>{t('blinds_title')}</CardTitle>
-          <CardDescription>{t('blinds_description')}</CardDescription>
-        </CardHeader>
-        <CardContent className="flex justify-center gap-4">
-          <Button variant="outline" size="lg">{t('open_button')}</Button>
-          <Button variant="outline" size="lg">{t('close_button')}</Button>
-        </CardContent>
-      </Card>
-      
-      {/* Room Status Card */}
-      <Card className="lg:col-span-2">
-          <CardHeader>
-              <CardTitle>{t('room_status_title')}</CardTitle>
-              <CardDescription>{t('room_status_description')}</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
+function BlindsControls() {
+    const { t } = useLanguage();
+    return (
+        <div className="flex justify-center gap-4 pt-4">
+          <Button variant="outline" size="lg" className="h-24 w-32 flex-col gap-2">
+            <Sun className="h-8 w-8"/>
+            {t('open_button')}
+          </Button>
+          <Button variant="outline" size="lg" className="h-24 w-32 flex-col gap-2">
+            <Moon className="h-8 w-8"/>
+            {t('close_button')}
+          </Button>
+        </div>
+    );
+}
+
+function StatusControls() {
+    const { t } = useLanguage();
+    const [doNotDisturb, setDoNotDisturb] = useState(false);
+    const [makeUpRoom, setMakeUpRoom] = useState(false);
+    return (
+         <div className="space-y-4 pt-4">
               <div className="flex items-center justify-between rounded-lg border p-4">
-                  <Label htmlFor="dnd-switch" className="font-medium">
+                  <Label htmlFor="dnd-switch" className="flex-1 font-medium">
                       {t('do_not_disturb_label')}
                   </Label>
                   <Switch
@@ -155,7 +153,7 @@ function SmartRoomControls() {
                   />
               </div>
               <div className="flex items-center justify-between rounded-lg border p-4">
-                  <Label htmlFor="makeup-switch" className="font-medium">
+                  <Label htmlFor="makeup-switch" className="flex-1 font-medium">
                       {t('make_up_room_label')}
                   </Label>
                   <Switch
@@ -164,9 +162,44 @@ function SmartRoomControls() {
                       onCheckedChange={setMakeUpRoom}
                   />
               </div>
-          </CardContent>
-      </Card>
-    </div>
+          </div>
+    );
+}
+
+
+function SmartRoomControls() {
+  const { t } = useLanguage();
+  const [activeControl, setActiveControl] = useState<ControlType | null>(null);
+
+  const controls: { id: ControlType; icon: React.ElementType; label: any; content: React.ReactNode }[] = [
+    { id: 'lighting', icon: Lightbulb, label: 'lighting_title', content: <LightingControls /> },
+    { id: 'climate', icon: Thermometer, label: 'climate_title', content: <ClimateControls /> },
+    { id: 'ambiance', icon: Wind, label: 'ambiance_title', content: <AmbianceControls /> },
+    { id: 'blinds', icon: Sun, label: 'blinds_title', content: <BlindsControls /> },
+    { id: 'status', icon: User, label: 'room_status_title', content: <StatusControls /> },
+  ];
+
+  return (
+    <Dialog open={!!activeControl} onOpenChange={(isOpen) => !isOpen && setActiveControl(null)}>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {controls.map((control) => (
+          <Card key={control.id} className="flex h-32 cursor-pointer flex-col justify-between p-4 transition-all hover:bg-muted/50" onClick={() => setActiveControl(control.id)}>
+            <div className="flex items-center justify-between">
+              <p className="font-semibold">{t(control.label)}</p>
+              <control.icon className="h-6 w-6 text-primary" />
+            </div>
+            <p className="text-sm text-muted-foreground">{t(control.label as any)}</p>
+          </Card>
+        ))}
+      </div>
+
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>{t(controls.find(c => c.id === activeControl)?.label)}</DialogTitle>
+        </DialogHeader>
+        {controls.find(c => c.id === activeControl)?.content}
+      </DialogContent>
+    </Dialog>
   );
 }
 
@@ -219,3 +252,5 @@ export default function SmartRoomPage() {
     </div>
   );
 }
+
+    

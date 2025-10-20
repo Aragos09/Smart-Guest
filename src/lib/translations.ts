@@ -603,7 +603,7 @@ export const translations = {
     'energy_star_badge': 'Energy Star',
     'energy_star_badge_desc': 'Consumed 15% less energy than the daily target.',
     'recycling_champion_badge': 'Recycling Champion',
-    'recycling_champion_badge_desc': 'Recycled over 5kg of waste.',
+    'recycling_champion_badge_desc': 'Recycled over 5 kg of waste.',
     'eco_pioneer_badge': 'Eco Pioneer',
     'eco_pioneer_badge_desc': 'Booked two or more sustainable services.',
 
@@ -1525,3 +1525,5 @@ export const getTranslator = (lang: Language) => {
   };
   return t;
 };
+
+    
