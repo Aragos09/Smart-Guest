@@ -25,10 +25,6 @@ export default function LoginPage() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Login Successful",
-      description: "Redirecting...",
-    });
     router.push("/check-in");
   };
 

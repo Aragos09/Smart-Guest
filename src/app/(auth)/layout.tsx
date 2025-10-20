@@ -1,3 +1,4 @@
+
 import { LanguageProvider } from "@/context/language-context";
 import { UserProfileProvider } from "@/context/user-profile-context";
 
@@ -9,7 +10,7 @@ export default function AuthLayout({
   return (
     <UserProfileProvider>
       <LanguageProvider>
-        <div className="flex min-h-full items-center justify-center p-4">
+        <div className="flex min-h-full flex-col bg-background">
           {children}
         </div>
       </LanguageProvider>

@@ -14,6 +14,7 @@ export const translations = {
     'confirm_button': "Confirm",
     'donate_button': 'Donate',
     'logout_button': 'Log Out',
+    'hello_user': 'Hello',
 
     // Signup Page
     'signup_title': 'Join the new connected and sustainable hotel experience.',
@@ -51,7 +52,6 @@ export const translations = {
     'wellness_title': 'Wellness',
     'concierge_title': 'Concierge',
     'profile_title': 'Profile',
-    'hello_user': 'Hello',
     'room_service_title': 'Room Service',
     'smart_room_title': 'Smart Room',
     'wellness_services_title': 'Wellness & Services',
@@ -549,7 +549,11 @@ export const translations = {
     "check_in_button": "Confirm Check-In",
     "checking_in_button": "Checking In...",
     "check_in_unavailable_title": "Check-In Unavailable",
-    "check_in_unavailable_desc": "Fast check-in is not yet open. Please try again on your arrival day after you receive a notification."
+    "check_in_unavailable_desc": "Fast check-in is not yet open. Please check back on your arrival day.",
+    "check_in_date_label": "Check-in Date",
+    "check_in_status_label": "Status",
+    "check_in_status_pending": "Awaiting hotel confirmation",
+    "check_in_status_too_early": "Not yet check-in day",
   },
   fr: {
     // Common
@@ -565,6 +569,7 @@ export const translations = {
     'confirm_button': "Confirmer",
     'donate_button': 'Faire un don',
     'logout_button': 'Se déconnecter',
+    'hello_user': 'Bonjour',
 
     // Signup Page
     'signup_title': 'Rejoignez la nouvelle expérience hôtelière connectée et durable.',
@@ -602,7 +607,6 @@ export const translations = {
     'wellness_title': 'Bien-être',
     'concierge_title': 'Conciergerie',
     'profile_title': 'Profil',
-    'hello_user': 'Bonjour',
     'room_service_title': 'Room Service',
     'smart_room_title': 'Chambre Connectée',
     'wellness_services_title': 'Bien-être & Services',
@@ -1100,7 +1104,11 @@ export const translations = {
     "check_in_button": "Confirmer l'Enregistrement",
     "checking_in_button": "Enregistrement en cours...",
     "check_in_unavailable_title": "Enregistrement non Disponible",
-    "check_in_unavailable_desc": "L'enregistrement rapide n'est pas encore ouvert. Veuillez réessayer le jour de votre arrivée après avoir reçu une notification."
+    "check_in_unavailable_desc": "L'enregistrement rapide n'est pas encore ouvert. Veuillez réessayer le jour de votre arrivée.",
+    "check_in_date_label": "Date d'enregistrement",
+    "check_in_status_label": "Statut",
+    "check_in_status_pending": "En attente de confirmation de l'hôtel",
+    "check_in_status_too_early": "Ce n'est pas encore le jour de l'enregistrement",
   }
 };
 
