@@ -4,6 +4,7 @@
 import { useState } from "react";
 import classicMenuData from "@/lib/room-service-menu.json";
 import veganMenuData from "@/lib/room-service-menu-vegan.json";
+import beveragesMenuData from "@/lib/room-service-beverages.json";
 import { useLanguage } from "@/context/language-context";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -28,12 +29,13 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { useCart } from "@/context/cart-context";
 import type { RoomServiceItem, CartItem } from "@/lib/types";
-import { Search, ShoppingCart, Plus, Minus, Trash2, ArrowLeft, Utensils, Leaf } from "lucide-react";
+import { Search, ShoppingCart, Plus, Minus, Trash2, ArrowLeft, Utensils, Leaf, Martini } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import Image from "next/image";
 
 const { room_service_menu: classicMenu } = classicMenuData;
 const { room_service_menu_vegan: veganMenu } = veganMenuData;
+const { room_service_beverages_signature: beveragesMenu } = beveragesMenuData;
 
 function MenuItemCard({ item }: { item: RoomServiceItem }) {
   const { t } = useLanguage();
@@ -159,17 +161,19 @@ function CartSheet() {
   );
 }
 
-function MenuDisplay({ menuData, onBack }: { menuData: any, onBack: () => void }) {
+function MenuDisplay({ menuData, menuType, onBack }: { menuData: any, menuType: 'classic' | 'vegan' | 'beverages', onBack: () => void }) {
   const { t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState("");
 
-  const categories = Object.entries(menuData.categories).map(([id, items]: [string, any]) => ({
+  const menuCategories = menuData.categories || menuData;
+
+  const categories = Object.entries(menuCategories).map(([id, items]: [string, any]) => ({
     id,
     name: t(id.charAt(0).toUpperCase() + id.slice(1) as any),
-    items: items.filter((item: RoomServiceItem) =>
+    items: Array.isArray(items) ? items.filter((item: RoomServiceItem) =>
         t(item.name_fr as any).toLowerCase().includes(searchTerm.toLowerCase()) ||
         t(item.description_fr as any).toLowerCase().includes(searchTerm.toLowerCase())
-    )
+    ) : []
   })).filter(category => category.items.length > 0);
 
   const defaultTab = categories.length > 0 ? categories[0].id : "";
@@ -195,7 +199,7 @@ function MenuDisplay({ menuData, onBack }: { menuData: any, onBack: () => void }
         <Tabs defaultValue={defaultTab} className="flex-1 flex flex-col">
             <div className="px-4 md:px-8">
                 <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
-                    {Object.keys(menuData.categories).map((cat) => (
+                    {Object.keys(menuCategories).map((cat) => (
                         <TabsTrigger key={cat} value={cat}>{t(cat.charAt(0).toUpperCase() + cat.slice(1) as any)}</TabsTrigger>
                     ))}
                 </TabsList>
@@ -230,14 +234,14 @@ export default function RoomServicePage() {
   const { t } = useLanguage();
   const { totalItems } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [selectedMenu, setSelectedMenu] = useState<"classic" | "vegan" | null>(null);
+  const [selectedMenu, setSelectedMenu] = useState<"classic" | "vegan" | "beverages" | null>(null);
 
   if (!selectedMenu) {
     return (
       <div className="flex flex-col items-center justify-center h-full p-4">
         <h1 className="text-3xl font-bold tracking-tight text-center font-headline">{t("Room Service")}</h1>
         <p className="text-muted-foreground text-center mb-8">{t("Please select a menu to start your order.")}</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-2xl">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-4xl">
           <Card className="text-center hover:bg-muted/50 transition-colors cursor-pointer" onClick={() => setSelectedMenu('classic')}>
             <CardHeader>
               <Utensils className="h-12 w-12 mx-auto text-primary" />
@@ -256,16 +260,25 @@ export default function RoomServicePage() {
               <CardDescription>{t('Delicious and creative plant-based dishes.')}</CardDescription>
             </CardContent>
           </Card>
+          <Card className="text-center hover:bg-muted/50 transition-colors cursor-pointer" onClick={() => setSelectedMenu('beverages')}>
+            <CardHeader>
+              <Martini className="h-12 w-12 mx-auto text-yellow-500" />
+            </CardHeader>
+            <CardContent>
+              <CardTitle className="text-2xl font-headline">{t('Signature & Mocktails')}</CardTitle>
+              <CardDescription>{t('Artisanal cocktails and refreshing mocktails.')}</CardDescription>
+            </CardContent>
+          </Card>
         </div>
       </div>
     );
   }
   
-  const menuData = selectedMenu === 'classic' ? classicMenu : veganMenu;
+  const menuData = selectedMenu === 'classic' ? classicMenu : selectedMenu === 'vegan' ? veganMenu : beveragesMenu;
 
   return (
     <div className="h-full flex flex-col">
-        <MenuDisplay menuData={menuData} onBack={() => setSelectedMenu(null)} />
+        <MenuDisplay menuData={menuData} menuType={selectedMenu} onBack={() => setSelectedMenu(null)} />
         
         <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
             <CartSheet />
@@ -282,3 +295,5 @@ export default function RoomServicePage() {
     </div>
   );
 }
+
+    
