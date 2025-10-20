@@ -123,6 +123,7 @@ export type WellnessService = {
   description: string;
   price_eur: number;
   type?: "bonus";
+  action_type?: "donate";
 };
 
 export type WellnessServiceCategory = {

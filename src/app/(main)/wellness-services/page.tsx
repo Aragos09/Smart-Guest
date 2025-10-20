@@ -1,4 +1,3 @@
-
 "use client";
 
 import {
@@ -40,7 +39,7 @@ const ServiceCard = memo(function ServiceCard({ item }: { item: WellnessService 
         <p className="text-xl font-bold">
           {item.price_eur > 0 ? `${item.price_eur.toFixed(2)}€` : t('free_price')}
         </p>
-        <Button>{t('book_now_button')}</Button>
+        <Button>{t(item.action_type === 'donate' ? 'donate_button' : 'book_now_button')}</Button>
       </CardFooter>
     </Card>
   );
@@ -70,9 +69,9 @@ const WellnessServicesPage = memo(function WellnessServicesPage({ params }: { pa
         </div>
       </div>
 
-      <Accordion type="multiple" defaultValue={["spa & relaxation", "fitness & activity", "eco-friendly services"]} className="w-full space-y-4">
+      <Accordion type="multiple" defaultValue={categories.map(c => t(c.name as any))} className="w-full space-y-4">
         {categories.map((category) => (
-          <AccordionItem value={t(category.name as any).toLowerCase().replace(/ & /g, '-')} key={category.name}>
+          <AccordionItem value={t(category.name as any)} key={category.name}>
             <AccordionTrigger className="text-2xl font-headline font-bold rounded-lg bg-card p-4 border data-[state=open]:border-b-0 data-[state=open]:rounded-b-none">
               <div className="flex items-center gap-3">
                 <category.icon className="h-6 w-6 text-primary" />

@@ -69,7 +69,8 @@
       {
         "name": "plant_tree_name",
         "description": "plant_tree_desc",
-        "price_eur": 1.00
+        "price_eur": 1.00,
+        "action_type": "donate"
       },
       {
         "name": "eco_shuttle_name",
