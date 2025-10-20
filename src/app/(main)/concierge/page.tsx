@@ -7,12 +7,17 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Send, User, Bot } from "lucide-react";
+import { Send, Bot } from "lucide-react";
 import type { Message } from "@/lib/types";
 import { answerUserQuery } from "@/ai/flows/answer-user-queries";
 import { useUserProfile } from "@/context/user-profile-context";
 import { useLanguage } from "@/context/language-context";
 import { summarizeWeather, type SummarizeWeatherOutput } from "@/ai/flows/summarize-weather";
+import restaurantMenu from '@/lib/restaurant-menu.json';
+import signatureMenu from '@/lib/signature-menu.json';
+import roomServiceMenu from '@/lib/room-service-menu.json';
+import wellnessServices from '@/lib/wellness-services.json';
+
 
 const ConciergePage = memo(function ConciergePage({ params }: { params: { locale: string }}) {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -58,6 +63,20 @@ const ConciergePage = memo(function ConciergePage({ params }: { params: { locale
     return 'evening';
   }
 
+  const knowledgeBase = `
+    GENERAL HOTEL INFO: Our hotel uses solar panels for hot water, offers a linen reuse program, and sources 80% of its restaurant ingredients from local farms within a 50-mile radius. We have EV charging stations, a partnership with a local e-bike rental company, and a farm-to-table restaurant. The spa offers massages and yoga classes. Direct booking for services is available through their respective pages in the app.
+
+    RESTAURANT MENUS:
+    - Vegetarian Menu: ${JSON.stringify(restaurantMenu)}
+    - Signature Menu: ${JSON.stringify(signatureMenu)}
+
+    ROOM SERVICE MENUS:
+    - Classic, Vegan, and Beverages: ${JSON.stringify(roomServiceMenu)}
+
+    WELLNESS & SERVICES:
+    - Spa, Fitness, Eco-Services: ${JSON.stringify(wellnessServices)}
+  `;
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
@@ -81,7 +100,7 @@ const ConciergePage = memo(function ConciergePage({ params }: { params: { locale
           ecoSensitivity: profile.ecoSensitivity,
           budget: "moderate", // Placeholder
         },
-        knowledgeBase: "Our hotel uses solar panels for hot water, offers a linen reuse program, and sources 80% of its restaurant ingredients from local farms within a 50-mile radius. We have EV charging stations, a partnership with a local e-bike rental company, and a farm-to-table restaurant. The spa offers massages and yoga classes. Direct booking for services is available through their respective pages in the app.",
+        knowledgeBase: knowledgeBase,
         geolocation: coords || undefined,
         weatherCondition: weather?.summary,
         timeOfDay: getTimeOfDay(),
