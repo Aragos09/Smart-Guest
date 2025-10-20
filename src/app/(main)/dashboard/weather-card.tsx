@@ -93,7 +93,7 @@ export function WeatherCard() {
         <CardTitle>{t("Local Weather")}</CardTitle>
         <CardDescription>{t("A quick look at the current weather.")}</CardDescription>
       </CardHeader>
-      <CardContent className="flex items-center gap-4">
+      <CardContent className="flex flex-col items-center justify-center gap-2 text-center">
         {isLoading ? (
           <>
             <Skeleton className="h-16 w-16 rounded-full" />
@@ -107,7 +107,7 @@ export function WeatherCard() {
         ) : (
           <>
             {renderIcon(weather.icon)}
-            <p className="flex-1 text-muted-foreground">{weather.summary}</p>
+            <p className="text-muted-foreground">{weather.summary}</p>
           </>
         )}
       </CardContent>
