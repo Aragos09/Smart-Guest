@@ -64,9 +64,9 @@ const initialServices: Service[] = [
 ];
 
 const ecoLabelInfo = {
-  "certified-organic": { icon: Leaf, text: "organic_label", variant: "default" },
-  "energy-star": { icon: Zap, text: "energy_wise_label", variant: "secondary" },
-  "water-wise": { icon: Droplets, text: "water_saver_label", variant: "outline" },
+  "certified-organic": { icon: Leaf, textKey: "organic_label", variant: "default" },
+  "energy-star": { icon: Zap, textKey: "energy_wise_label", variant: "secondary" },
+  "water-wise": { icon: Droplets, textKey: "water_saver_label", variant: "outline" },
 };
 
 function ServiceCard({ service }: { service: Service }) {
@@ -92,7 +92,7 @@ function ServiceCard({ service }: { service: Service }) {
       <CardContent className="flex-grow">
         <Badge variant={labelInfo.variant as any}>
           <LabelIcon className="mr-2 h-4 w-4" />
-          {t(labelInfo.text as any)}
+          {t(labelInfo.textKey as any)}
         </Badge>
         {service.isDurable && (
           <Badge variant="outline" className="ml-2">

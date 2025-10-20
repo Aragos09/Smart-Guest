@@ -25,40 +25,40 @@ import { memo } from "react";
 const activities = [
   {
     icon: Sparkles,
-    title: "relaxing_massage",
-    description: "relaxing_massage_desc",
+    titleKey: "relaxing_massage",
+    descriptionKey: "relaxing_massage_desc",
   },
   {
     icon: Wind,
-    title: "guided_meditation",
-    description: "guided_meditation_desc",
+    titleKey: "guided_meditation",
+    descriptionKey: "guided_meditation_desc",
   },
   {
     icon: Youtube,
-    title: "yoga_class",
-    description: "yoga_class_desc",
+    titleKey: "yoga_class",
+    descriptionKey: "yoga_class_desc",
   },
 ];
 
 const playlists = [
   {
-    title: "peaceful_morning",
-    description: "peaceful_morning_desc",
+    titleKey: "peaceful_morning",
+    descriptionKey: "peaceful_morning_desc",
   },
   {
-    title: "ambient_focus",
-    description: "ambient_focus_desc",
+    titleKey: "ambient_focus",
+    descriptionKey: "ambient_focus_desc",
   },
   {
-    title: "deep_sleep",
-    description: "deep_sleep_desc",
+    titleKey: "deep_sleep",
+    descriptionKey: "deep_sleep_desc",
   },
 ];
 
 const wellnessTrackers = [
-  { icon: Bed, title: "sleep_tracker", value: 75, unit: "8h_goal" },
-  { icon: GlassWater, title: "hydration_tracker", value: 60, unit: "2l_goal" },
-  { icon: Smile, title: "mindfulness_tracker", value: 90, unit: "10m_goal" },
+  { icon: Bed, titleKey: "sleep_tracker", value: 75, unitKey: "8h_goal" },
+  { icon: GlassWater, titleKey: "hydration_tracker", value: 60, unitKey: "2l_goal" },
+  { icon: Smile, titleKey: "mindfulness_tracker", value: 90, unitKey: "10m_goal" },
 ];
 
 function WellnessPage() {
@@ -89,8 +89,8 @@ function WellnessPage() {
                 <CardHeader className="flex-row items-center gap-4">
                   <activity.icon className="h-10 w-10 text-primary" />
                   <div>
-                    <CardTitle className="text-lg">{t(activity.title as any)}</CardTitle>
-                    <CardDescription>{t(activity.description as any)}</CardDescription>
+                    <CardTitle className="text-lg">{t(activity.titleKey as any)}</CardTitle>
+                    <CardDescription>{t(activity.descriptionKey as any)}</CardDescription>
                   </div>
                 </CardHeader>
                 <CardFooter className="mt-auto">
@@ -114,9 +114,9 @@ function WellnessPage() {
                  <div className="flex justify-between">
                     <div className="flex items-center gap-2">
                         <tracker.icon className="h-5 w-5 text-muted-foreground" />
-                        <span className="font-semibold">{t(tracker.title as any)}</span>
+                        <span className="font-semibold">{t(tracker.titleKey as any)}</span>
                     </div>
-                    <span className="text-sm text-muted-foreground">{t(tracker.unit as any)}</span>
+                    <span className="text-sm text-muted-foreground">{t(tracker.unitKey as any)}</span>
                  </div>
                 <Progress value={tracker.value} />
               </div>
@@ -138,9 +138,9 @@ function WellnessPage() {
                 className="flex items-center justify-between rounded-lg border p-4"
               >
                 <div>
-                  <p className="font-semibold">{t(playlist.title as any)}</p>
+                  <p className="font-semibold">{t(playlist.titleKey as any)}</p>
                   <p className="text-sm text-muted-foreground">
-                    {t(playlist.description as any)}
+                    {t(playlist.descriptionKey as any)}
                   </p>
                 </div>
                 <Button variant="outline">{t('play_button')}</Button>

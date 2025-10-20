@@ -137,10 +137,10 @@ function SustainableMenu() {
 function SignatureMenu() {
   const { t } = useLanguage();
   const sustainabilityItems = [
-    { icon: Leaf, text: signatureMenu.sustainability.local_products, label: "local_products" },
-    { icon: Fish, text: signatureMenu.sustainability.fish_label, label: "sustainable_fishing" },
-    { icon: RotateCw, text: signatureMenu.sustainability.menu_rotation, label: "menu_rotation" },
-    { icon: Box, text: signatureMenu.sustainability.packaging, label: "packaging" },
+    { icon: Leaf, textKey: signatureMenu.sustainability.local_products, labelKey: "local_products" },
+    { icon: Fish, textKey: signatureMenu.sustainability.fish_label, labelKey: "sustainable_fishing" },
+    { icon: RotateCw, textKey: signatureMenu.sustainability.menu_rotation, labelKey: "menu_rotation" },
+    { icon: Box, textKey: signatureMenu.sustainability.packaging, labelKey: "packaging" },
   ]
   return (
     <div className="space-y-8">
@@ -152,11 +152,11 @@ function SignatureMenu() {
           <CardContent className="space-y-4">
              <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
                 {sustainabilityItems.map(item => (
-                   <div key={item.label} className="flex items-start space-x-3">
+                   <div key={item.labelKey} className="flex items-start space-x-3">
                       <item.icon className="h-5 w-5 mt-0.5 text-primary"/>
                       <div>
-                         <p className="text-sm font-semibold">{t(item.label as any)}</p>
-                         <p className="text-sm text-muted-foreground">{t(item.text as any)}</p>
+                         <p className="text-sm font-semibold">{t(item.labelKey as any)}</p>
+                         <p className="text-sm text-muted-foreground">{t(item.textKey as any)}</p>
                       </div>
                    </div>
                 ))}

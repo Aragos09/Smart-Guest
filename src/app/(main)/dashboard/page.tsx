@@ -16,7 +16,8 @@ import {
   Leaf,
   LucideIcon,
   Utensils,
-  Wind
+  Wind,
+  ShoppingBasket
 } from "lucide-react";
 import Link from "next/link";
 import { EcoScoreChart } from "./eco-score-chart";
@@ -30,8 +31,8 @@ type QuickLink = {
   id: string;
   href: string;
   icon: LucideIcon;
-  title: string;
-  description: string;
+  titleKey: string;
+  descriptionKey: string;
 };
 
 const allQuickLinks: QuickLink[] = [
@@ -39,43 +40,50 @@ const allQuickLinks: QuickLink[] = [
     id: "eco-manager",
     href: "/eco-manager",
     icon: Leaf,
-    title: "eco_manager",
-    description: "track_your_impact",
+    titleKey: "eco_manager",
+    descriptionKey: "track_your_impact",
   },
   {
     id: "services",
     href: "/services",
     icon: Building2,
-    title: "sustainable_services",
-    description: "book_eco_friendly_services",
+    titleKey: "sustainable_services",
+    descriptionKey: "book_eco_friendly_services",
   },
   {
     id: "experiences",
     href: "/experiences",
     icon: HeartHandshake,
-    title: "local_experiences",
-    description: "discover_green_activities",
+    titleKey: "local_experiences",
+    descriptionKey: "discover_green_activities",
   },
   {
     id: "concierge",
     href: "/concierge",
     icon: BotMessageSquare,
-    title: "ai_concierge",
-    description: "ask_me_anything",
+    titleKey: "ai_concierge",
+    descriptionKey: "ask_me_anything",
   },
   {
     id: "restaurant",
     href: "/restaurant",
     icon: Utensils,
-    title: "restaurant",
-    description: "discover_our_delicious_menus",
+    titleKey: "restaurant",
+    descriptionKey: "discover_our_delicious_menus",
+  },
+  {
+    id: "room-service",
+    href: "/room-service",
+    icon: ShoppingBasket,
+    titleKey: "room_service",
+    descriptionKey: "order_from_your_room",
   },
   {
     id: "wellness",
     href: "/wellness",
     icon: Wind,
-    title: "wellness",
-    description: "relax_and_rejuvenate",
+    titleKey: "wellness",
+    descriptionKey: "relax_and_rejuvenate",
   }
 ];
 
@@ -111,12 +119,7 @@ function DashboardPage() {
 
 
   const quickLinks = allQuickLinks
-    .filter(link => profile.quickLinks?.includes(link.id))
-    .map(link => ({
-      ...link,
-      title: t(link.title as any),
-      description: t(link.description as any)
-    }));
+    .filter(link => profile.quickLinks?.includes(link.id));
 
   return (
     <div className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
@@ -159,9 +162,9 @@ function DashboardPage() {
                     <ArrowRight className="h-5 w-5 text-muted-foreground transition-transform group-hover:translate-x-1" />
                   </div>
                   <div className="mt-4">
-                    <p className="font-semibold">{link.title}</p>
+                    <p className="font-semibold">{t(link.titleKey as any)}</p>
                     <p className="text-sm text-muted-foreground">
-                      {link.description}
+                      {t(link.descriptionKey as any)}
                     </p>
                   </div>
                 </div>

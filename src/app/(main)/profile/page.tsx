@@ -31,7 +31,7 @@ import { useLanguage } from "@/context/language-context";
 import type { Language } from "@/lib/translations";
 import { useUserProfile } from "@/context/user-profile-context";
 import { useEffect, memo } from "react";
-import { Leaf, Building2, HeartHandshake, BotMessageSquare, Utensils, Wind, Star, Sparkles } from "lucide-react";
+import { Leaf, Building2, HeartHandshake, BotMessageSquare, Utensils, Wind, Star, Sparkles, ShoppingBasket } from "lucide-react";
 import menuData from "@/lib/restaurant-menu.json";
 import signatureMenuJson from "@/lib/signature-menu.json";
 import type { MenuCategory, SignatureMenuData } from "@/lib/types";
@@ -59,6 +59,7 @@ const allQuickLinks = [
   { id: "experiences", label: "experiences", icon: HeartHandshake },
   { id: "concierge", label: "concierge", icon: BotMessageSquare },
   { id: "restaurant", label: "restaurant", icon: Utensils },
+  { id: "room-service", label: "room_service", icon: ShoppingBasket },
   { id: "wellness", label: "wellness", icon: Wind },
 ];
 

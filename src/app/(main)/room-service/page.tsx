@@ -26,13 +26,13 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { useCart } from "@/context/cart-context";
-import type { RoomServiceItem as CartItemType, RoomServiceCategory } from "@/lib/types";
+import type { RoomServiceItem, RoomServiceCategory } from "@/lib/types";
 import { Search, ShoppingCart, Plus, Minus, Trash2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const { classicMenu, veganMenu, beveragesMenu } = menuData;
 
-function MenuItemCard({ item }: { item: CartItemType }) {
+function MenuItemCard({ item }: { item: RoomServiceItem }) {
   const { t } = useLanguage();
   const { addToCart } = useCart();
   const { toast } = useToast();
@@ -155,7 +155,7 @@ function MenuTabContent({ menuCategories }: { menuCategories: RoomServiceCategor
 
   const filteredCategories = menuCategories.map(category => ({
     ...category,
-    items: category.items.filter((item: CartItemType) =>
+    items: category.items.filter((item: RoomServiceItem) =>
         t(item.name as any).toLowerCase().includes(searchTerm.toLowerCase()) ||
         (item.description && t(item.description as any).toLowerCase().includes(searchTerm.toLowerCase()))
     )
@@ -178,7 +178,7 @@ function MenuTabContent({ menuCategories }: { menuCategories: RoomServiceCategor
           <div key={category.id}>
             <h2 className="text-2xl font-bold tracking-tight font-headline mt-6 mb-4">{t(category.name as any)}</h2>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {category.items.map((item: CartItemType) => (
+                {category.items.map((item: RoomServiceItem) => (
                   <MenuItemCard key={item.name} item={item} />
                 ))}
             </div>

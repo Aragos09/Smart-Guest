@@ -72,26 +72,26 @@ function EcoManagerPage() {
   const badges = [
     {
       icon: WaterBadge,
-      title: "water_saver",
-      description: "water_saver_desc",
+      titleKey: "water_saver",
+      descriptionKey: "water_saver_desc",
       color: "text-blue-500",
     },
     {
       icon: EnergyBadge,
-      title: "energy_star",
-      description: "energy_star_desc",
+      titleKey: "energy_star",
+      descriptionKey: "energy_star_desc",
       color: "text-yellow-500",
     },
     {
       icon: RecycleBadge,
-      title: "recycling_champion",
-      description: "recycling_champion_desc",
+      titleKey: "recycling_champion",
+      descriptionKey: "recycling_champion_desc",
       color: "text-green-500",
     },
     {
       icon: LeafBadge,
-      title: "eco_pioneer",
-      description: "eco_pioneer_desc",
+      titleKey: "eco_pioneer",
+      descriptionKey: "eco_pioneer_desc",
       color: "text-teal-500",
     },
   ];
@@ -214,9 +214,9 @@ function EcoManagerPage() {
               <div key={index} className="flex items-start space-x-4">
                 <badge.icon className={`h-12 w-12 shrink-0 ${badge.color}`} />
                 <div>
-                  <p className="font-semibold">{t(badge.title as any)}</p>
+                  <p className="font-semibold">{t(badge.titleKey as any)}</p>
                   <p className="text-sm text-muted-foreground">
-                    {t(badge.description as any)}
+                    {t(badge.descriptionKey as any)}
                   </p>
                 </div>
               </div>
