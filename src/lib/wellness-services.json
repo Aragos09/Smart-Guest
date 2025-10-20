@@ -2,78 +2,78 @@
   "wellness_services": {
     "spa": [
       {
-        "name_fr": "Accès Spa & Hammam",
-        "description_fr": "Espace détente avec hammam, sauna bio, douches sensorielles et tisanerie bio. Accès 1h30.",
+        "name_fr": "spa_access_name",
+        "description_fr": "spa_access_desc",
         "price_eur": 25.00
       },
       {
-        "name_fr": "Massage Relaxant Signature",
-        "description_fr": "Massage à l’huile d’amande douce et huiles essentielles locales, 45 min.",
+        "name_fr": "relaxing_massage_name",
+        "description_fr": "relaxing_massage_desc",
         "price_eur": 65.00
       },
       {
-        "name_fr": "Massage Rééquilibrant Smart Energy",
-        "description_fr": "Massage musculaire profond avec huiles énergisantes au romarin et citron. 60 min.",
+        "name_fr": "rebalancing_massage_name",
+        "description_fr": "rebalancing_massage_desc",
         "price_eur": 80.00
       },
       {
-        "name_fr": "Soin du visage BioTech Glow",
-        "description_fr": "Soin visage aux extraits d’algues et outils connectés de luminothérapie douce.",
+        "name_fr": "facial_name",
+        "description_fr": "facial_desc",
         "price_eur": 70.00
       },
       {
-        "name_fr": "Yoga du Matin – Rooftop Session",
-        "description_fr": "Séance guidée sur le toit (7h–8h30). Tapis recyclés et jus detox inclus.",
+        "name_fr": "yoga_name",
+        "description_fr": "yoga_desc",
         "price_eur": 20.00
       }
     ],
     "fitness": [
       {
-        "name_fr": "Accès salle de sport",
-        "description_fr": "Machines connectées Technogym, open 24/7.",
+        "name_fr": "gym_access_name",
+        "description_fr": "gym_access_desc",
         "price_eur": 0.00
       },
       {
-        "name_fr": "Coaching personnalisé",
-        "description_fr": "Séance individuelle (45 min) avec coach sportif certifié.",
+        "name_fr": "coaching_name",
+        "description_fr": "coaching_desc",
         "price_eur": 50.00
       },
       {
-        "name_fr": "Location de vélo électrique",
-        "description_fr": "Parcours éco-touristique avec carte numérique intégrée à l’app.",
+        "name_fr": "ebike_rental_name",
+        "description_fr": "ebike_rental_desc",
         "price_eur": 15.00
       },
       {
-        "name_fr": "Cours de méditation guidée",
-        "description_fr": "Accessible via l’application ou en salle bien-être (30 min).",
+        "name_fr": "meditation_name",
+        "description_fr": "meditation_desc",
         "price_eur": 10.00
       }
     ],
     "eco_services": [
       {
-        "name_fr": "Green Stay Option",
-        "description_fr": "Réduction de 10 % si vous renoncez au ménage quotidien.",
+        "name_fr": "green_stay_name",
+        "description_fr": "green_stay_desc",
         "price_eur": 0.00,
         "type": "bonus"
       },
       {
-        "name_fr": "Tri intelligent en chambre",
-        "description_fr": "Poubelles connectées à capteurs pour un tri facilité et récompensé.",
+        "name_fr": "smart_sorting_name",
+        "description_fr": "smart_sorting_desc",
         "price_eur": 0.00
       },
       {
-        "name_fr": "Échange de serviettes à la demande",
-        "description_fr": "Gestion durable du linge via l’application (alertes automatiques IA).",
+        "name_fr": "towel_exchange_name",
+        "description_fr": "towel_exchange_desc",
         "price_eur": 0.00
       },
       {
-        "name_fr": "Plant a Tree Program",
-        "description_fr": "1 € reversé à une ONG partenaire pour chaque nuitée “verte”.",
+        "name_fr": "plant_tree_name",
+        "description_fr": "plant_tree_desc",
         "price_eur": 1.00
       },
       {
-        "name_fr": "Eco Mobility Shuttle",
-        "description_fr": "Navette électrique vers la gare/aéroport.",
+        "name_fr": "eco_shuttle_name",
+        "description_fr": "eco_shuttle_desc",
         "price_eur": 5.00
       }
     ]
