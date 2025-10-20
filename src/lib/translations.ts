@@ -197,7 +197,7 @@ export const translations = {
     'The app learns from your actions to personalize your experience further. For example:': 'L\'application apprend de vos actions pour personnaliser davantage votre expérience. Par exemple :',
     'Detects that you always order vegan dishes → recommends vegan restaurants automatically.': 'Détecte que vous commandez toujours des plats végétaliens → recommande automatiquement des restaurants végétaliens.',
     'Learns your preferred check-in times → adjusts reminders.': 'Apprend vos heures d\'enregistrement préférées → ajuste les rappels.',
-    'Notices a lower light preference at night → auto-dims room lights.': 'Notices a lower light preference at night → atténue automatiquement les lumières de la chambre.',
+    'Notices a lower light preference at night → auto-dims room lights.': 'Remarque une préférence pour une lumière plus faible la nuit → atténue automatiquement les lumières de la chambre.',
 
 
     // Services
@@ -362,7 +362,7 @@ export const translations = {
     "Your cart is empty.": "Votre panier est vide.",
     "Subtotal": "Sous-total",
     "Total": "Total",
-    "Checkout": "Valider",
+    "Confirm": "Confirmer",
     "Your order has been placed!": "Votre commande a été passée !",
     "Estimated delivery time: 25 minutes.": "Temps de livraison estimé : 25 minutes.",
     "Please select a menu to start your order.": "Veuillez sélectionner un menu pour commencer votre commande.",
@@ -847,7 +847,7 @@ export const translations = {
     "Your cart is empty.": "Your cart is empty.",
     "Subtotal": "Subtotal",
     "Total": "Total",
-    "Checkout": "Checkout",
+    "Confirm": "Confirm",
     "Your order has been placed!": "Your order has been placed!",
     "Estimated delivery time: 25 minutes.": "Estimated delivery time: 25 minutes.",
     "Please select a menu to start your order.": "Please select a menu to start your order.",
@@ -1332,7 +1332,7 @@ export const translations = {
     "Your cart is empty.": "Tu cesta está vacía.",
     "Subtotal": "Subtotal",
     "Total": "Total",
-    "Checkout": "Pagar",
+    "Confirm": "Confirmar",
     "Your order has been placed!": "¡Tu pedido ha sido realizado!",
     "Estimated delivery time: 25 minutes.": "Tiempo estimado de entrega: 25 minutos.",
     "Please select a menu to start your order.": "Por favor, selecciona un menú para empezar tu pedido.",
@@ -1464,5 +1464,3 @@ export const getTranslator = (lang: Language) => {
   };
   return t;
 };
-
-    

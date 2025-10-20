@@ -153,7 +153,7 @@ function CartSheet() {
             <span>{totalPrice.toFixed(2)}€</span>
           </div>
           <SheetClose asChild>
-            <Button size="lg" onClick={handleCheckout}>{t("Checkout")}</Button>
+            <Button size="lg" onClick={handleCheckout}>{t("Confirm")}</Button>
           </SheetClose>
         </SheetFooter>
       )}
@@ -165,7 +165,7 @@ function MenuDisplay({ menuData, menuType, onBack }: { menuData: any, menuType: 
   const { t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState("");
 
-  const menuCategories = menuData.categories || menuData;
+  const menuCategories = menuType === 'beverages' ? menuData : menuData.categories;
 
   const categories = Object.entries(menuCategories).map(([id, items]: [string, any]) => ({
     id,
@@ -295,5 +295,3 @@ export default function RoomServicePage() {
     </div>
   );
 }
-
-    
