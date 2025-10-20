@@ -27,27 +27,28 @@ import {
 } from "@/components/ui/sidebar";
 import { useLanguage } from "@/context/language-context";
 import { useUserProfile } from "@/context/user-profile-context";
+import { memo } from "react";
 
-export function SidebarNav() {
+function SidebarNav() {
   const pathname = usePathname();
   const { t } = useLanguage();
   const { profile } = useUserProfile();
 
   const navItems = [
-    { href: "/dashboard", icon: LayoutDashboard, label: t("Dashboard") },
-    { href: "/eco-manager", icon: Leaf, label: t("Eco Manager") },
-    { href: "/services", icon: Building2, label: t("Services") },
-    { href: "/experiences", icon: HeartHandshake, label: t("Experiences") },
-    { href: "/restaurant", icon: Utensils, label: t("Restaurant") },
-    { href: "/room-service", icon: ShoppingBasket, label: t("Room Service") },
-    { href: "/wellness", icon: Wind, label: t("Wellness") },
-    { href: "/concierge", icon: BotMessageSquare, label: t("Concierge") },
+    { href: "/dashboard", icon: LayoutDashboard, label: "dashboard" },
+    { href: "/eco-manager", icon: Leaf, label: "eco_manager" },
+    { href: "/services", icon: Building2, label: "services" },
+    { href: "/experiences", icon: HeartHandshake, label: "experiences" },
+    { href: "/restaurant", icon: Utensils, label: "restaurant" },
+    { href: "/room-service", icon: ShoppingBasket, label: "room_service" },
+    { href: "/wellness", icon: Wind, label: "wellness" },
+    { href: "/concierge", icon: BotMessageSquare, label: "concierge" },
   ];
 
   const settingsItem = {
     href: "/profile",
     icon: Settings,
-    label: t("Profile"),
+    label: "profile",
   };
 
   return (
@@ -59,7 +60,7 @@ export function SidebarNav() {
                 <span className="text-lg font-bold text-sidebar-foreground">
                   Smart Guest
                 </span>
-                <span className="text-sm text-sidebar-foreground/70">{t('Hello')} {profile.name}!</span>
+                <span className="text-sm text-sidebar-foreground/70">{t('hello_user')} {profile.name}!</span>
               </div>
             </div>
             <SidebarTrigger className="hidden md:flex" />
@@ -76,10 +77,10 @@ export function SidebarNav() {
                 <Link href={item.href}>
                     <SidebarMenuButton
                     isActive={pathname === item.href}
-                    tooltip={item.label}
+                    tooltip={t(item.label as any)}
                     >
                     <item.icon />
-                    <span>{item.label}</span>
+                    <span>{t(item.label as any)}</span>
                     </SidebarMenuButton>
                 </Link>
                 </SidebarMenuItem>
@@ -93,10 +94,10 @@ export function SidebarNav() {
                     <Link href={settingsItem.href}>
                         <SidebarMenuButton
                         isActive={pathname === settingsItem.href}
-                        tooltip={settingsItem.label}
+                        tooltip={t(settingsItem.label as any)}
                         >
                         <settingsItem.icon />
-                        <span>{settingsItem.label}</span>
+                        <span>{t(settingsItem.label as any)}</span>
                         </SidebarMenuButton>
                     </Link>
                 </SidebarMenuItem>
@@ -105,3 +106,5 @@ export function SidebarNav() {
     </Sidebar>
   );
 }
+
+export default memo(SidebarNav);

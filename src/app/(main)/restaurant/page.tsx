@@ -17,6 +17,7 @@ import type { MenuCategory, MenuItem, SignatureMenuData, SignatureMenuItem } fro
 import { useLanguage } from "@/context/language-context";
 import { useUserProfile } from "@/context/user-profile-context";
 import { Utensils, Leaf, Fish, RotateCw, Box, Star } from "lucide-react";
+import { memo } from "react";
 
 const { categories }: { categories: MenuCategory[] } = menuData;
 const { menu: signatureMenu }: { menu: SignatureMenuData } = signatureMenuJson;
@@ -50,9 +51,9 @@ function MenuItemCard({ item }: { item: MenuItem }) {
       </div>
       <div className="flex items-center gap-4">
         <div className="text-lg font-bold text-primary">
-          {item.price > 0 ? `${item.price}€` : t('Offert')}
+          {item.price > 0 ? `${item.price}€` : t('offert_label')}
         </div>
-        <Button variant="ghost" size="icon" onClick={toggleFavorite} aria-label={t(isFavorite ? "Remove from favorites" : "Add to favorites")}>
+        <Button variant="ghost" size="icon" onClick={toggleFavorite} aria-label={t(isFavorite ? "remove_from_favorites" : "add_to_favorites")}>
             <Star className={`h-5 w-5 ${isFavorite ? "fill-yellow-400 text-yellow-400" : "text-muted-foreground"}`} />
         </Button>
       </div>
@@ -85,7 +86,7 @@ function SignatureMenuItemCard({ item }: { item: SignatureMenuItem }) {
           {item.price && (
             <div className="text-lg font-bold text-primary">{item.price.toFixed(2)}€</div>
           )}
-          <Button variant="ghost" size="icon" onClick={toggleFavorite} aria-label={t(isFavorite ? "Remove from favorites" : "Add to favorites")}>
+          <Button variant="ghost" size="icon" onClick={toggleFavorite} aria-label={t(isFavorite ? "remove_from_favorites" : "add_to_favorites")}>
             <Star className={`h-5 w-5 ${isFavorite ? "fill-yellow-400 text-yellow-400" : "text-muted-foreground"}`} />
           </Button>
         </div>
@@ -96,13 +97,13 @@ function SignatureMenuItemCard({ item }: { item: SignatureMenuItem }) {
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
         {item.allergens && item.allergens.length > 0 && (
           <p>
-            <span className="font-medium text-foreground">{t('Allergens')}:</span>{" "}
-            {item.allergens.map(t).join(", ")}
+            <span className="font-medium text-foreground">{t('allergens_label')}:</span>{" "}
+            {item.allergens.map(allergen => t(allergen as any)).join(", ")}
           </p>
         )}
         {item.wine_pairing && (
           <p>
-            <span className="font-medium text-foreground">{t('Wine Pairing')}:</span>{" "}
+            <span className="font-medium text-foreground">{t('wine_pairing_label')}:</span>{" "}
             {t(item.wine_pairing as any)}
           </p>
         )}
@@ -116,7 +117,7 @@ function SustainableMenu() {
   return (
     <div className="space-y-8">
       {categories.map((category) => (
-        <Card key={category.name}>
+        <Card key={category.id}>
           <CardHeader>
             <CardTitle className="font-headline text-2xl">
               {t(category.name as any)}
@@ -136,10 +137,10 @@ function SustainableMenu() {
 function SignatureMenu() {
   const { t } = useLanguage();
   const sustainabilityItems = [
-    { icon: Leaf, text: signatureMenu.sustainability.local_products, label: "Local Products" },
-    { icon: Fish, text: signatureMenu.sustainability.fish_label, label: "Sustainable Fishing" },
-    { icon: RotateCw, text: signatureMenu.sustainability.menu_rotation, label: "Rotation" },
-    { icon: Box, text: signatureMenu.sustainability.packaging, label: "Packaging" },
+    { icon: Leaf, text: signatureMenu.sustainability.local_products, label: "local_products" },
+    { icon: Fish, text: signatureMenu.sustainability.fish_label, label: "sustainable_fishing" },
+    { icon: RotateCw, text: signatureMenu.sustainability.menu_rotation, label: "menu_rotation" },
+    { icon: Box, text: signatureMenu.sustainability.packaging, label: "packaging" },
   ]
   return (
     <div className="space-y-8">
@@ -181,23 +182,23 @@ function SignatureMenu() {
   );
 }
 
-export default function RestaurantPage() {
+function RestaurantPage() {
   const { t } = useLanguage();
   return (
     <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">
       <div>
         <h1 className="text-3xl font-bold tracking-tight font-headline">
-          {t('Restaurant')}
+          {t('restaurant')}
         </h1>
         <p className="text-muted-foreground">
-          {t('Discover our selection of delicious and sustainable dishes.')}
+          {t('restaurant_subtitle')}
         </p>
       </div>
 
       <Tabs defaultValue="sustainable">
         <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="sustainable">{t('Menu Vegetarian')}</TabsTrigger>
-          <TabsTrigger value="signature">{t('Menu Signature')}</TabsTrigger>
+          <TabsTrigger value="sustainable">{t('vegetarian_menu_tab')}</TabsTrigger>
+          <TabsTrigger value="signature">{t('signature_menu_tab')}</TabsTrigger>
         </TabsList>
         <TabsContent value="sustainable">
           <SustainableMenu />
@@ -209,3 +210,5 @@ export default function RestaurantPage() {
     </div>
   );
 }
+
+export default memo(RestaurantPage);

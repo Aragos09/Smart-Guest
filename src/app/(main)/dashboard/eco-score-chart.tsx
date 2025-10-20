@@ -1,3 +1,4 @@
+
 "use client";
 
 import {
@@ -11,6 +12,7 @@ import {
   Radar,
   RadarChart,
 } from "recharts";
+import { memo } from 'react';
 
 const chartData = [
   { category: "Water", score: 82, fullMark: 100 },
@@ -27,7 +29,7 @@ const chartConfig = {
   },
 };
 
-export function EcoScoreChart() {
+export const EcoScoreChart = memo(function EcoScoreChart() {
   return (
     <ChartContainer
       config={chartConfig}
@@ -49,4 +51,4 @@ export function EcoScoreChart() {
       </RadarChart>
     </ChartContainer>
   );
-}
+});

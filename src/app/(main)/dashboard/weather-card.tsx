@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import {
   Card,
   CardContent,
@@ -47,7 +47,7 @@ const renderIcon = (iconName: string, className: string = "h-16 w-16") => {
   }
 };
 
-export function WeatherCard() {
+export const WeatherCard = memo(function WeatherCard() {
   const { t, language } = useLanguage();
   const [weather, setWeather] = useState<SummarizeWeatherOutput | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -71,7 +71,7 @@ export function WeatherCard() {
         setError(null);
       } catch (error) {
         console.error("Error getting weather summary:", error);
-        setError(t("Could not fetch weather data."));
+        setError(t("could_not_fetch_weather_data"));
       } finally {
         setIsLoading(false);
       }
@@ -79,7 +79,7 @@ export function WeatherCard() {
 
     function handleGeoError(error: GeolocationPositionError) {
       console.error("Geolocation error:", error);
-      setError(t("Geolocation is not available."));
+      setError(t("geolocation_not_available"));
       setIsLoading(false);
     }
     
@@ -90,8 +90,8 @@ export function WeatherCard() {
   const cardContent = (
     <>
       <CardHeader>
-        <CardTitle>{t("Local Weather")}</CardTitle>
-        <CardDescription>{t("A quick look at the current weather.")}</CardDescription>
+        <CardTitle>{t("local_weather_title")}</CardTitle>
+        <CardDescription>{t("local_weather_subtitle")}</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col items-center justify-center gap-2 text-center">
         {isLoading ? (
@@ -124,14 +124,14 @@ export function WeatherCard() {
       {weather && (
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>{t('5-Day Forecast')}</DialogTitle>
+            <DialogTitle>{t('5_day_forecast_title')}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
             <div className="flex items-center justify-between rounded-lg bg-muted p-4">
                 <div className="flex items-center gap-4">
                     {renderIcon(weather.icon, "h-12 w-12")}
                     <div>
-                        <p className="font-semibold">{t('Now')}</p>
+                        <p className="font-semibold">{t('now_label')}</p>
                         <p className="text-2xl font-bold">{weather.currentTemp}°C</p>
                     </div>
                 </div>
@@ -141,7 +141,7 @@ export function WeatherCard() {
                     <AccordionItem value={day.day} key={day.day}>
                         <AccordionTrigger>
                           <div className="flex w-full items-center justify-between">
-                            <p className="w-12 font-medium">{t(day.day as any) || day.day}</p>
+                            <p className="w-12 font-medium">{t(day.day.toLowerCase() as any) || day.day}</p>
                             {renderIcon(day.icon, "h-6 w-6")}
                             <p className="text-sm text-muted-foreground">
                                 <span className="font-medium text-foreground">{day.high}°</span> / {day.low}°
@@ -159,4 +159,4 @@ export function WeatherCard() {
       )}
     </Dialog>
   );
-}
+});

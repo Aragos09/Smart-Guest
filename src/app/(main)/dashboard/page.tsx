@@ -22,7 +22,7 @@ import Link from "next/link";
 import { EcoScoreChart } from "./eco-score-chart";
 import { useLanguage } from "@/context/language-context";
 import { useUserProfile } from "@/context/user-profile-context";
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { generateDynamicWelcomeMessage } from "@/ai/flows/dynamic-welcome-message";
 import { WeatherCard } from "./weather-card";
 
@@ -39,48 +39,48 @@ const allQuickLinks: QuickLink[] = [
     id: "eco-manager",
     href: "/eco-manager",
     icon: Leaf,
-    title: "Eco Manager",
-    description: "Track your impact.",
+    title: "eco_manager",
+    description: "track_your_impact",
   },
   {
     id: "services",
     href: "/services",
     icon: Building2,
-    title: "Sustainable Services",
-    description: "Book eco-friendly services.",
+    title: "sustainable_services",
+    description: "book_eco_friendly_services",
   },
   {
     id: "experiences",
     href: "/experiences",
     icon: HeartHandshake,
-    title: "Local Experiences",
-    description: "Discover green activities.",
+    title: "local_experiences",
+    description: "discover_green_activities",
   },
   {
     id: "concierge",
     href: "/concierge",
     icon: BotMessageSquare,
-    title: "AI Concierge",
-    description: "Ask me anything.",
+    title: "ai_concierge",
+    description: "ask_me_anything",
   },
   {
     id: "restaurant",
     href: "/restaurant",
     icon: Utensils,
-    title: "Restaurant",
-    description: "Discover our delicious menus.",
+    title: "restaurant",
+    description: "discover_our_delicious_menus",
   },
   {
     id: "wellness",
     href: "/wellness",
     icon: Wind,
-    title: "Wellness",
-    description: "Relax and rejuvenate.",
+    title: "wellness",
+    description: "relax_and_rejuvenate",
   }
 ];
 
 
-export default function DashboardPage() {
+function DashboardPage() {
   const { t } = useLanguage();
   const { profile } = useUserProfile();
   const [welcomeMessage, setWelcomeMessage] = useState("Loading your personalized welcome...");
@@ -100,14 +100,14 @@ export default function DashboardPage() {
       } catch (error) {
         console.error("Error generating welcome message:", error);
         // Fallback message
-        setWelcomeMessage(`Welcome back! We're glad to see you again.`);
+        setWelcomeMessage(t('welcome_back_generic'));
       }
     }
 
     if (profile.name) {
       getWelcomeMessage();
     }
-  }, [profile]);
+  }, [profile, t]);
 
 
   const quickLinks = allQuickLinks
@@ -123,7 +123,7 @@ export default function DashboardPage() {
       <Card>
         <CardHeader>
           <CardTitle className="font-headline text-3xl">
-            {t('Welcome back')}, {profile.name}!
+            {t('welcome_back')}, {profile.name}!
           </CardTitle>
           <CardDescription>
             {welcomeMessage}
@@ -133,9 +133,9 @@ export default function DashboardPage() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle>{t('Your EcoScore')}</CardTitle>
+            <CardTitle>{t('your_ecoscore')}</CardTitle>
             <CardDescription>
-              {t('A summary of your environmental impact during your stay.')}
+              {t('your_ecoscore_desc')}
             </CardDescription>
           </CardHeader>
           <CardContent className="pb-8">
@@ -145,9 +145,9 @@ export default function DashboardPage() {
         <WeatherCard />
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle>{t('Quick Links')}</CardTitle>
+            <CardTitle>{t('quick_links')}</CardTitle>
             <CardDescription>
-              {t('Navigate to key features of your Smart Guest experience.')}
+              {t('quick_links_desc')}
             </CardDescription>
           </CardHeader>
           <CardContent className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -173,3 +173,5 @@ export default function DashboardPage() {
     </div>
   );
 }
+
+export default memo(DashboardPage);

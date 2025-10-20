@@ -30,7 +30,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useLanguage } from "@/context/language-context";
 import type { Language } from "@/lib/translations";
 import { useUserProfile } from "@/context/user-profile-context";
-import { useEffect } from "react";
+import { useEffect, memo } from "react";
 import { Leaf, Building2, HeartHandshake, BotMessageSquare, Utensils, Wind, Star, Sparkles } from "lucide-react";
 import menuData from "@/lib/restaurant-menu.json";
 import signatureMenuJson from "@/lib/signature-menu.json";
@@ -46,21 +46,21 @@ const allDishes = [
 
 
 const alergies = [
-  { id: "nuts", label: "Nuts" },
-  { id: "shellfish", label: "Shellfish" },
-  { id: "dairy", label: "Dairy" },
-  { id: "wheat", label: "Wheat" },
-  { id: "other", label: "Other" },
+  { id: "nuts", label: "nuts_allergen" },
+  { id: "shellfish", label: "shellfish_allergen" },
+  { id: "dairy", label: "dairy_allergen" },
+  { id: "wheat", label: "wheat_allergen" },
+  { id: "other", label: "other_allergen" },
 ];
 
 const allQuickLinks = [
-  { id: "eco-manager", label: "Eco Manager", icon: Leaf },
-  { id: "services", label: "Services", icon: Building2 },
-  { id: "experiences", label: "Experiences", icon: HeartHandshake },
-  { id: "concierge", label: "Concierge", icon: BotMessageSquare },
-  { id: "restaurant", label: "Restaurant", icon: Utensils },
-  { id: "wellness", label: "Wellness", icon: Wind },
-  ];
+  { id: "eco-manager", label: "eco_manager", icon: Leaf },
+  { id: "services", label: "services", icon: Building2 },
+  { id: "experiences", label: "experiences", icon: HeartHandshake },
+  { id: "concierge", label: "concierge", icon: BotMessageSquare },
+  { id: "restaurant", label: "restaurant", icon: Utensils },
+  { id: "wellness", label: "wellness", icon: Wind },
+];
 
 const profileFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
@@ -88,7 +88,7 @@ const profileFormSchema = z.object({
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
-export default function ProfilePage() {
+function ProfilePage() {
   const { t, setLanguage, language } = useLanguage();
   const { toast } = useToast();
   const { profile, setProfile, isLoading } = useUserProfile();
@@ -111,8 +111,8 @@ export default function ProfilePage() {
     }
     setProfile(data as any);
     toast({
-      title: t('Profile Updated'),
-      description: t('Your preferences have been saved successfully.'),
+      title: t('profile_updated_toast_title'),
+      description: t('profile_updated_toast_desc'),
     });
   }
 
@@ -137,9 +137,9 @@ export default function ProfilePage() {
     <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">
       <div className="flex items-center justify-between space-y-2">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight font-headline">{t('Profile Settings')}</h1>
+          <h1 className="text-3xl font-bold tracking-tight font-headline">{t('profile_settings_title')}</h1>
           <p className="text-muted-foreground">
-            {t('Manage your account and personalization settings.')}
+            {t('profile_settings_subtitle')}
           </p>
         </div>
       </div>
@@ -147,8 +147,8 @@ export default function ProfilePage() {
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <Card>
             <CardHeader>
-              <CardTitle>{t('Personal Information')}</CardTitle>
-              <CardDescription>{t('Update your personal details here.')}</CardDescription>
+              <CardTitle>{t('personal_info_title')}</CardTitle>
+              <CardDescription>{t('personal_info_subtitle')}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-8">
                 <div className="flex items-center space-x-6">
@@ -161,9 +161,9 @@ export default function ProfilePage() {
                     name="name"
                     render={({ field }) => (
                         <FormItem className="flex-1">
-                        <FormLabel>{t('Full Name')}</FormLabel>
+                        <FormLabel>{t('full_name_label')}</FormLabel>
                         <FormControl>
-                            <Input placeholder={t('Your name')} {...field} />
+                            <Input placeholder={t('your_name_placeholder')} {...field} />
                         </FormControl>
                         <FormMessage />
                         </FormItem>
@@ -176,7 +176,7 @@ export default function ProfilePage() {
                     name="email"
                     render={({ field }) => (
                     <FormItem>
-                        <FormLabel>{t('Email')}</FormLabel>
+                        <FormLabel>{t('email_label')}</FormLabel>
                         <FormControl>
                         <Input type="email" placeholder="your.email@example.com" {...field} />
                         </FormControl>
@@ -190,11 +190,11 @@ export default function ProfilePage() {
                     name="language"
                     render={({ field }) => (
                     <FormItem>
-                        <FormLabel>{t('Preferred Language')}</FormLabel>
+                        <FormLabel>{t('preferred_language_label')}</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                             <SelectTrigger>
-                            <SelectValue placeholder={t('Select your language')} />
+                            <SelectValue placeholder={t('select_language_placeholder')} />
                             </SelectTrigger>
                         </FormControl>
                         <SelectContent>
@@ -204,7 +204,7 @@ export default function ProfilePage() {
                         </SelectContent>
                         </Select>
                         <FormDescription>
-                        {t('This will be used for all communications and in-app text.')}
+                        {t('language_description')}
                         </FormDescription>
                         <FormMessage />
                     </FormItem>
@@ -215,8 +215,8 @@ export default function ProfilePage() {
           
           <Card>
             <CardHeader>
-                <CardTitle>{t('Stay & Room Preferences')}</CardTitle>
-                <CardDescription>{t("Customize your room for the perfect stay.")}</CardDescription>
+                <CardTitle>{t('stay_room_preferences_title')}</CardTitle>
+                <CardDescription>{t('stay_room_preferences_subtitle')}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-8">
                 <FormField
@@ -224,18 +224,18 @@ export default function ProfilePage() {
                     name="bedType"
                     render={({ field }) => (
                         <FormItem>
-                        <FormLabel>{t('Bed Type')}</FormLabel>
+                        <FormLabel>{t('bed_type_label')}</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                             <SelectTrigger>
-                                <SelectValue placeholder={t('Select a bed type')} />
+                                <SelectValue placeholder={t('select_bed_type_placeholder')} />
                             </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                            <SelectItem value="king">{t('King')}</SelectItem>
-                            <SelectItem value="queen">{t('Queen')}</SelectItem>
-                            <SelectItem value="twin">{t('Twin')}</SelectItem>
-                            <SelectItem value="sofa-bed">{t('Sofa bed')}</SelectItem>
+                            <SelectItem value="king">{t('king_bed')}</SelectItem>
+                            <SelectItem value="queen">{t('queen_bed')}</SelectItem>
+                            <SelectItem value="twin">{t('twin_bed')}</SelectItem>
+                            <SelectItem value="sofa-bed">{t('sofa_bed')}</SelectItem>
                             </SelectContent>
                         </Select>
                         <FormMessage />
@@ -247,18 +247,18 @@ export default function ProfilePage() {
                     name="floorPreference"
                     render={({ field }) => (
                         <FormItem>
-                        <FormLabel>{t('Floor Preference')}</FormLabel>
+                        <FormLabel>{t('floor_preference_label')}</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                             <SelectTrigger>
-                                <SelectValue placeholder={t('Select a floor preference')} />
+                                <SelectValue placeholder={t('select_floor_preference_placeholder')} />
                             </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                            <SelectItem value="high">{t('High floor')}</SelectItem>
-                            <SelectItem value="low">{t('Low floor')}</SelectItem>
-                            <SelectItem value="near-elevator">{t('Near elevator')}</SelectItem>
-                            <SelectItem value="quiet-zone">{t('Quiet zone')}</SelectItem>
+                            <SelectItem value="high">{t('high_floor')}</SelectItem>
+                            <SelectItem value="low">{t('low_floor')}</SelectItem>
+                            <SelectItem value="near-elevator">{t('near_elevator')}</SelectItem>
+                            <SelectItem value="quiet-zone">{t('quiet_zone')}</SelectItem>
                             </SelectContent>
                         </Select>
                         <FormMessage />
@@ -270,17 +270,17 @@ export default function ProfilePage() {
                     name="viewPreference"
                     render={({ field }) => (
                         <FormItem>
-                        <FormLabel>{t('View Preference')}</FormLabel>
+                        <FormLabel>{t('view_preference_label')}</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                             <SelectTrigger>
-                                <SelectValue placeholder={t('Select a view preference')} />
+                                <SelectValue placeholder={t('select_view_preference_placeholder')} />
                             </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                            <SelectItem value="city">{t('City')}</SelectItem>
-                            <SelectItem value="garden">{t('Garden')}</SelectItem>
-                            <SelectItem value="pool">{t('Pool')}</SelectItem>
+                            <SelectItem value="city">{t('city_view')}</SelectItem>
+                            <SelectItem value="garden">{t('garden_view')}</SelectItem>
+                            <SelectItem value="pool">{t('pool_view')}</SelectItem>
                             </SelectContent>
                         </Select>
                         <FormMessage />
@@ -292,18 +292,18 @@ export default function ProfilePage() {
                     name="pillowType"
                     render={({ field }) => (
                         <FormItem>
-                        <FormLabel>{t('Pillow Type')}</FormLabel>
+                        <FormLabel>{t('pillow_type_label')}</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                             <SelectTrigger>
-                                <SelectValue placeholder={t('Select a pillow type')} />
+                                <SelectValue placeholder={t('select_pillow_type_placeholder')} />
                             </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                            <SelectItem value="soft">{t('Soft')}</SelectItem>
-                            <SelectItem value="firm">{t('Firm')}</SelectItem>
-                            <SelectItem value="hypoallergenic">{t('Hypoallergenic')}</SelectItem>
-                            <SelectItem value="memory-foam">{t('Memory foam')}</SelectItem>
+                            <SelectItem value="soft">{t('soft_pillow')}</SelectItem>
+                            <SelectItem value="firm">{t('firm_pillow')}</SelectItem>
+                            <SelectItem value="hypoallergenic">{t('hypoallergenic_pillow')}</SelectItem>
+                            <SelectItem value="memory-foam">{t('memory_foam_pillow')}</SelectItem>
                             </SelectContent>
                         </Select>
                         <FormMessage />
@@ -315,18 +315,18 @@ export default function ProfilePage() {
                     name="roomFragrance"
                     render={({ field }) => (
                         <FormItem>
-                        <FormLabel>{t('Room Fragrance')}</FormLabel>
+                        <FormLabel>{t('room_fragrance_label')}</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                             <SelectTrigger>
-                                <SelectValue placeholder={t('Select a room fragrance')} />
+                                <SelectValue placeholder={t('select_room_fragrance_placeholder')} />
                             </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                            <SelectItem value="none">{t('None')}</SelectItem>
-                            <SelectItem value="citrus">{t('Citrus')}</SelectItem>
-                            <SelectItem value="lavender">{t('Lavender')}</SelectItem>
-                            <SelectItem value="fresh-linen">{t('Fresh linen')}</SelectItem>
+                            <SelectItem value="none">{t('none_fragrance')}</SelectItem>
+                            <SelectItem value="citrus">{t('citrus_fragrance')}</SelectItem>
+                            <SelectItem value="lavender">{t('lavender_fragrance')}</SelectItem>
+                            <SelectItem value="fresh-linen">{t('fresh_linen_fragrance')}</SelectItem>
                             </SelectContent>
                         </Select>
                         <FormMessage />
@@ -338,17 +338,17 @@ export default function ProfilePage() {
                     name="housekeepingSchedule"
                     render={({ field }) => (
                         <FormItem>
-                        <FormLabel>{t('Housekeeping Schedule')}</FormLabel>
+                        <FormLabel>{t('housekeeping_schedule_label')}</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                             <SelectTrigger>
-                                <SelectValue placeholder={t('Select a housekeeping schedule')} />
+                                <SelectValue placeholder={t('select_housekeeping_schedule_placeholder')} />
                             </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                            <SelectItem value="morning">{t('Morning')}</SelectItem>
-                            <SelectItem value="afternoon">{t('Afternoon')}</SelectItem>
-                            <SelectItem value="on-request">{t('On request')}</SelectItem>
+                            <SelectItem value="morning">{t('morning_schedule')}</SelectItem>
+                            <SelectItem value="afternoon">{t('afternoon_schedule')}</SelectItem>
+                            <SelectItem value="on-request">{t('on_request_schedule')}</SelectItem>
                             </SelectContent>
                         </Select>
                         <FormMessage />
@@ -359,8 +359,8 @@ export default function ProfilePage() {
           </Card>
           <Card>
             <CardHeader>
-                <CardTitle>{t('Dietary Preferences')}</CardTitle>
-                <CardDescription>{t("Let us know about your dietary needs and allergies.")}</CardDescription>
+                <CardTitle>{t('dietary_preferences_title')}</CardTitle>
+                <CardDescription>{t('dietary_preferences_subtitle')}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-8">
                  <FormField
@@ -368,21 +368,21 @@ export default function ProfilePage() {
                     name="dietaryRestrictions"
                     render={({ field }) => (
                         <FormItem>
-                        <FormLabel>{t('Dietary Restrictions')}</FormLabel>
+                        <FormLabel>{t('dietary_restrictions_label')}</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                             <SelectTrigger>
-                                <SelectValue placeholder={t('Select a dietary restriction')} />
+                                <SelectValue placeholder={t('select_dietary_restriction_placeholder')} />
                             </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                                <SelectItem value="vegan">{t('Vegan')}</SelectItem>
-                                <SelectItem value="vegetarian">{t('Végétarien')}</SelectItem>
-                                <SelectItem value="halal">{t('Halal')}</SelectItem>
-                                <SelectItem value="kosher">{t('Kosher')}</SelectItem>
-                                <SelectItem value="gluten-free">{t('Gluten-free')}</SelectItem>
-                                <SelectItem value="lactose-free">{t('Lactose-free')}</SelectItem>
-                                <SelectItem value="none">{t('No dietary restrictions')}</SelectItem>
+                                <SelectItem value="vegan">{t('vegan_diet')}</SelectItem>
+                                <SelectItem value="vegetarian">{t('vegetarian_diet')}</SelectItem>
+                                <SelectItem value="halal">{t('halal_diet')}</SelectItem>
+                                <SelectItem value="kosher">{t('kosher_diet')}</SelectItem>
+                                <SelectItem value="gluten-free">{t('gluten_free_diet')}</SelectItem>
+                                <SelectItem value="lactose-free">{t('lactose_free_diet')}</SelectItem>
+                                <SelectItem value="none">{t('no_dietary_restrictions')}</SelectItem>
                             </SelectContent>
                         </Select>
                         <FormMessage />
@@ -396,7 +396,7 @@ export default function ProfilePage() {
                   render={() => (
                     <FormItem>
                       <div className="mb-4">
-                        <FormLabel className="text-base">{t('Allergens')}</FormLabel>
+                        <FormLabel className="text-base">{t('allergens_label')}</FormLabel>
                       </div>
                       <div className="space-y-2">
                       {alergies.map((item) => (
@@ -442,9 +442,9 @@ export default function ProfilePage() {
           
           <Card>
             <CardHeader>
-              <CardTitle>{t('Favorite Dishes')}</CardTitle>
+              <CardTitle>{t('favorite_dishes_title')}</CardTitle>
               <CardDescription>
-                {t('Star your favorite meals for future stays.')}
+                {t('favorite_dishes_subtitle')}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -467,14 +467,14 @@ export default function ProfilePage() {
                         ))}
                     </div>
                 ) : (
-                    <p className="text-muted-foreground">{t('You have no favorite dishes yet. Star them in the restaurant menu!')}</p>
+                    <p className="text-muted-foreground">{t('no_favorite_dishes_placeholder')}</p>
                 )}
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle>{t('Dashboard Customization')}</CardTitle>
+              <CardTitle>{t('dashboard_customization_title')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-8">
               <FormField
@@ -483,9 +483,9 @@ export default function ProfilePage() {
                 render={() => (
                   <FormItem>
                     <div className="mb-4">
-                      <FormLabel className="text-base">{t('Quick Links')}</FormLabel>
+                      <FormLabel className="text-base">{t('quick_links_label')}</FormLabel>
                       <FormDescription>
-                        {t('Select which quick links to display on your dashboard.')}
+                        {t('quick_links_description')}
                       </FormDescription>
                     </div>
                     <div className="space-y-2">
@@ -534,24 +534,24 @@ export default function ProfilePage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Sparkles className="h-6 w-6 text-primary" />
-                {t('Dynamic Preferences')}
+                {t('dynamic_preferences_title')}
               </CardTitle>
-              <CardDescription>{t("Allow the app to auto-update preferences based on your behavior.")}</CardDescription>
+              <CardDescription>{t('dynamic_preferences_subtitle')}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-2 text-sm text-muted-foreground">
-              <p>{t("The app learns from your actions to personalize your experience further. For example:")}</p>
+              <p>{t('dynamic_preferences_desc')}</p>
               <ul className="list-disc pl-5 space-y-1">
-                <li>{t("Detects that you always order vegan dishes → recommends vegan restaurants automatically.")}</li>
-                <li>{t("Learns your preferred check-in times → adjusts reminders.")}</li>
-                <li>{t("Notices a lower light preference at night → auto-dims room lights.")}</li>
+                <li>{t('dynamic_preferences_example_1')}</li>
+                <li>{t('dynamic_preferences_example_2')}</li>
+                <li>{t('dynamic_preferences_example_3')}</li>
               </ul>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle>{t('Primary Trip Type')}</CardTitle>
-              <CardDescription>{t("This helps us tailor your experience, whether you're here for work or play.")}</CardDescription>
+              <CardTitle>{t('primary_trip_type_title')}</CardTitle>
+              <CardDescription>{t('primary_trip_type_subtitle')}</CardDescription>
             </CardHeader>
             <CardContent>
               <FormField
@@ -569,13 +569,13 @@ export default function ProfilePage() {
                           <FormControl>
                             <RadioGroupItem value="leisure" />
                           </FormControl>
-                          <FormLabel className="font-normal">{t('Leisure')}</FormLabel>
+                          <FormLabel className="font-normal">{t('leisure_radio')}</FormLabel>
                         </FormItem>
                         <FormItem className="flex items-center space-x-3 space-y-0">
                           <FormControl>
                             <RadioGroupItem value="business" />
                           </FormControl>
-                          <FormLabel className="font-normal">{t('Business')}</FormLabel>
+                          <FormLabel className="font-normal">{t('business_radio')}</FormLabel>
                         </FormItem>
                       </RadioGroup>
                     </FormControl>
@@ -588,9 +588,9 @@ export default function ProfilePage() {
 
           <Card>
             <CardHeader>
-              <CardTitle>{t('Eco-Sensitivity Level')}</CardTitle>
+              <CardTitle>{t('eco_sensitivity_title')}</CardTitle>
               <CardDescription>
-                {t('Helps us tailor recommendations to your preferences.')}
+                {t('eco_sensitivity_subtitle')}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -610,7 +610,7 @@ export default function ProfilePage() {
                             <RadioGroupItem value="high" />
                           </FormControl>
                           <FormLabel className="font-normal">
-                            {t('High - I actively seek out the most sustainable options.')}
+                            {t('eco_sensitivity_high')}
                           </FormLabel>
                         </FormItem>
                         <FormItem className="flex items-center space-x-3 space-y-0">
@@ -618,7 +618,7 @@ export default function ProfilePage() {
                             <RadioGroupItem value="medium" />
                           </FormControl>
                           <FormLabel className="font-normal">
-                            {t('Medium - I prefer sustainable options when convenient.')}
+                            {t('eco_sensitivity_medium')}
                           </FormLabel>
                         </FormItem>
                         <FormItem className="flex items-center space-x-3 space-y-0">
@@ -626,7 +626,7 @@ export default function ProfilePage() {
                             <RadioGroupItem value="low" />
                           </FormControl>
                           <FormLabel className="font-normal">
-                            {t("Low - I'm just starting to learn about eco-friendly travel.")}
+                            {t('eco_sensitivity_low')}
                           </FormLabel>
                         </FormItem>
                       </RadioGroup>
@@ -638,9 +638,11 @@ export default function ProfilePage() {
             </CardContent>
           </Card>
 
-          <Button type="submit">{t('Update Profile')}</Button>
+          <Button type="submit">{t('update_profile_button')}</Button>
         </form>
       </Form>
     </div>
   );
 }
+
+export default memo(ProfilePage);
