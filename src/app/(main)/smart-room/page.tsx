@@ -22,7 +22,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Lightbulb, Thermometer, Wind, Tv, Moon, BookOpen, Loader, Wifi, Sun, User, BellOff, Sparkles as SparklesIcon } from "lucide-react";
+import { Lightbulb, Thermometer, Wind, Tv, Moon, BookOpen, Loader, Wifi, Sun, User, BellOff, Sparkles as SparklesIcon, CheckCircle } from "lucide-react";
 
 type ControlType = "lighting" | "climate" | "ambiance" | "blinds" | "status";
 
@@ -256,11 +256,68 @@ function SmartRoomControls() {
   );
 }
 
+function FastCheckIn({ onCheckInComplete }: { onCheckInComplete: () => void }) {
+    const { t } = useLanguage();
+    const [isCheckingIn, setIsCheckingIn] = useState(false);
+
+    // Simulate hotel system check
+    const isCheckInEnabledByHotel = true; 
+    // Simulate date check
+    const isCheckInDay = true; 
+
+    const handleCheckIn = () => {
+        setIsCheckingIn(true);
+        setTimeout(() => {
+            onCheckInComplete();
+            setIsCheckingIn(false);
+        }, 2000);
+    };
+    
+    if (!isCheckInDay || !isCheckInEnabledByHotel) {
+        return (
+             <div className="flex items-center justify-center pt-20">
+                <Card className="w-full max-w-md text-center">
+                    <CardHeader>
+                        <CardTitle className="text-2xl">{t('check_in_unavailable_title')}</CardTitle>
+                        <CardDescription>{t('check_in_unavailable_desc')}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex justify-center">
+                        <CheckCircle className="h-24 w-24 text-muted-foreground" />
+                    </CardContent>
+                </Card>
+            </div>
+        )
+    }
+
+    return (
+        <div className="flex items-center justify-center pt-20">
+            <Card className="w-full max-w-md text-center">
+                <CardHeader>
+                    <CardTitle className="text-2xl">{t('fast_check_in_title')}</CardTitle>
+                    <CardDescription>{t('fast_check_in_desc')}</CardDescription>
+                </CardHeader>
+                <CardContent className="flex justify-center">
+                    <CheckCircle className="h-24 w-24 text-primary" />
+                </CardContent>
+                <CardFooter>
+                    <Button className="w-full" onClick={handleCheckIn} disabled={isCheckingIn}>
+                        {isCheckingIn && <Loader className="mr-2 h-4 w-4 animate-spin" />}
+                        {isCheckingIn ? t('checking_in_button') : t('check_in_button')}
+                    </Button>
+                </CardFooter>
+            </Card>
+        </div>
+    )
+}
 
 const SmartRoomPage = memo(function SmartRoomPage({ params }: { params: { locale: string }}) {
   const { t } = useLanguage();
   const [isConnected, setIsConnected] = useState(false);
   const [isConnecting, setIsConnecting] = useState(false);
+  const [hasCheckedIn, setHasCheckedIn] = useState(false);
+
+  // In a real app, this would be based on booking dates
+  const isCheckInDay = true;
 
   const handleConnect = () => {
     setIsConnecting(true);
@@ -269,21 +326,14 @@ const SmartRoomPage = memo(function SmartRoomPage({ params }: { params: { locale
       setIsConnecting(false);
     }, 2000);
   };
+  
+  const handleCheckInComplete = () => {
+    setHasCheckedIn(true);
+  }
 
-  return (
-    <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight font-headline">
-          {t('smart_room_title')}
-        </h1>
-        <p className="text-muted-foreground">
-          {t('smart_room_subtitle')}
-        </p>
-      </div>
-
-      {isConnected ? (
-        <SmartRoomControls />
-      ) : (
+  let content;
+  if (!isConnected) {
+    content = (
         <div className="flex items-center justify-center pt-20">
             <Card className="w-full max-w-md text-center">
                 <CardHeader>
@@ -301,11 +351,28 @@ const SmartRoomPage = memo(function SmartRoomPage({ params }: { params: { locale
                 </CardFooter>
             </Card>
         </div>
-      )}
+    );
+  } else if (isCheckInDay && !hasCheckedIn) {
+      content = <FastCheckIn onCheckInComplete={handleCheckInComplete} />
+  }
+  else {
+      content = <SmartRoomControls />;
+  }
+
+
+  return (
+    <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">
+      <div>
+        <h1 className="text-3xl font-bold tracking-tight font-headline">
+          {t('smart_room_title')}
+        </h1>
+        <p className="text-muted-foreground">
+          {t('smart_room_subtitle')}
+        </p>
+      </div>
+      {content}
     </div>
   );
 });
 
 export default SmartRoomPage;
-
-    
