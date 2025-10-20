@@ -31,6 +31,7 @@ import {
 } from "@/components/icons";
 import { useLanguage } from "@/context/language-context";
 import { memo } from "react";
+import { Info } from "lucide-react";
 
 const impactChartData = [
   { category: "water_category", impact: 186, target: 200 },
@@ -100,6 +101,13 @@ const EcoManagerPage = memo(function EcoManagerPage({ params }: { params: { loca
     ...item,
     category: t(item.category as any),
   }));
+
+  const calculationExplanations = [
+    { id: "water", title: "water_category", description: "how_we_calculate_water_desc" },
+    { id: "energy", title: "energy_category", description: "how_we_calculate_energy_desc" },
+    { id: "waste", title: "waste_category", description: "how_we_calculate_waste_desc" },
+    { id: "sourcing", title: "sourcing_category", description: "how_we_calculate_sourcing_desc" },
+  ];
 
   return (
     <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">
@@ -202,6 +210,27 @@ const EcoManagerPage = memo(function EcoManagerPage({ params }: { params: { loca
             </ChartContainer>
           </CardContent>
         </Card>
+        
+        <Card className="col-span-4 lg:col-span-7">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Info className="h-6 w-6 text-primary" />
+              {t('how_we_calculate_title')}
+            </CardTitle>
+            <CardDescription>{t('how_we_calculate_description')}</CardDescription>
+          </CardHeader>
+          <CardContent className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            {calculationExplanations.map((item) => (
+              <div key={item.id} className="flex flex-col rounded-lg border p-4">
+                <p className="font-semibold mb-2">{t(item.title as any)}</p>
+                <p className="text-sm text-muted-foreground">
+                  {t(item.description as any)}
+                </p>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+
         <Card className="col-span-4 lg:col-span-7">
           <CardHeader>
             <CardTitle>{t('achievements_title')}</CardTitle>

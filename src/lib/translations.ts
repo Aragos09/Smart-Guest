@@ -18,6 +18,7 @@ export const translations = {
 
     // Signup Page
     'signup_title': 'Join the new connected and sustainable hotel experience.',
+    'signup_subtitle': 'Create an account to personalize your stay and access all our eco-friendly features.',
     'first_name_label': 'First Name',
     'first_name_placeholder': 'Enter your first name',
     'last_name_label': 'Last Name',
@@ -105,6 +106,12 @@ export const translations = {
     'recycling_champion_badge_desc': 'Recycled over 5kg of waste.',
     'eco_pioneer_badge': 'Eco-Pioneer',
     'eco_pioneer_badge_desc': 'Booked two or more sustainable services.',
+    'how_we_calculate_title': "How Your Impact is Calculated",
+    'how_we_calculate_description': "Your EcoScore is a reflection of your choices. Here's how we measure it:",
+    'how_we_calculate_water_desc': "Based on your daily water consumption, influenced by shower duration and participation in our linen reuse program.",
+    'how_we_calculate_energy_desc': "Reflects your room's energy usage for lighting, heating, and cooling. Smart controls make it easy to save.",
+    'how_we_calculate_waste_desc': "Calculated from your recycling habits, participation in composting, and opting out of single-use plastics.",
+    'how_we_calculate_sourcing_desc': "Your score improves when you choose local and organic options from our restaurant, room service, and spa.",
     
     // Experiences
     'experiences_subtitle': 'Personalized recommendations for sustainable activities near you.',
@@ -573,6 +580,7 @@ export const translations = {
 
     // Signup Page
     'signup_title': 'Rejoignez la nouvelle expérience hôtelière connectée et durable.',
+    'signup_subtitle': 'Créez un compte pour personnaliser votre séjour et accéder à toutes nos fonctionnalités écologiques.',
     'first_name_label': 'Prénom',
     'first_name_placeholder': 'Entrez votre prénom',
     'last_name_label': 'Nom',
@@ -660,6 +668,12 @@ export const translations = {
     'recycling_champion_badge_desc': 'A recyclé plus de 5kg de déchets.',
     'eco_pioneer_badge': 'Pionnier Écologique',
     'eco_pioneer_badge_desc': 'A réservé deux services durables ou plus.',
+    'how_we_calculate_title': "Comment votre impact est-il calculé ?",
+    'how_we_calculate_description': "Votre ÉcoScore est le reflet de vos choix. Voici comment nous le mesurons :",
+    'how_we_calculate_water_desc': "Basé sur votre consommation d'eau quotidienne, influencée par la durée de la douche et la participation à notre programme de réutilisation du linge.",
+    'how_we_calculate_energy_desc': "Reflète la consommation d'énergie de votre chambre pour l'éclairage, le chauffage et la climatisation. Les commandes intelligentes facilitent les économies.",
+    'how_we_calculate_waste_desc': "Calculé à partir de vos habitudes de recyclage, de votre participation au compostage et de votre refus des plastiques à usage unique.",
+    'how_we_calculate_sourcing_desc': "Votre score s'améliore lorsque vous choisissez des options locales et biologiques dans notre restaurant, notre service en chambre et notre spa.",
     
     // Experiences
     'experiences_subtitle': 'Recommandations personalisées pour des activités durables près de chez vous.',
@@ -940,24 +954,24 @@ export const translations = {
     'gourmet_coffee_desc': 'Café arabica éthiopien, mini-macarons maison et truffe chocolat.',
 
     // Concierge
-    'concierge_subtitle': 'Ask me about sustainable travel, local tips, or hotel services.',
-    "concierge_placeholder": "Ask a question...",
-    "concierge_error": "Sorry, I'm having trouble connecting. Please try again later.",
+    'concierge_subtitle': 'Demandez-moi des informations sur les voyages durables, des conseils locaux ou les services de l\'hôtel.',
+    'concierge_placeholder': 'Posez une question...',
+    'concierge_error': 'Désolé, je rencontre des difficultés pour me connecter. Veuillez réessayer plus tard.',
     
     // Room Service
-    "room_service_subtitle": "Order from your room, 24/7.",
-    "search_dishes_placeholder": "Search for dishes...",
-    "no_dishes_found": "No dishes found.",
-    "add_to_cart_button": "Add",
-    "added_to_cart_toast_title": "Added to cart",
-    "added_to_cart_toast_desc": "has been added to your order.",
-    "my_order_title": "My Order",
-    "empty_cart_message": "Your cart is empty.",
-    "subtotal_label": "Subtotal",
+    "room_service_subtitle": "Commandez depuis votre chambre, 24h/24 et 7j/7.",
+    "search_dishes_placeholder": "Rechercher des plats...",
+    "no_dishes_found": "Aucun plat trouvé.",
+    "add_to_cart_button": "Ajouter",
+    "added_to_cart_toast_title": "Ajouté au panier",
+    "added_to_cart_toast_desc": "a été ajouté à votre commande.",
+    "my_order_title": "Ma Commande",
+    "empty_cart_message": "Votre panier est vide.",
+    "subtotal_label": "Sous-total",
     "total_label": "Total",
-    "checkout_button": "Confirm Order",
-    "order_placed_toast_title": "Your order has been placed!",
-    "order_placed_toast_desc": "Estimated delivery time: 25 minutes.",
+    "checkout_button": "Confirmer la commande",
+    "order_placed_toast_title": "Votre commande a été passée !",
+    "order_placed_toast_desc": "Délai de livraison estimé : 25 minutes.",
     'classic_menu_title': 'Menu Classique',
     'vegan_menu_title': 'Menu Vegan',
     'beverages_menu_title': 'Signature & Mocktails',
