@@ -55,7 +55,7 @@ export function SidebarNav() {
         <SidebarHeader className="flex items-center justify-between gap-2">
             <div className="flex flex-1 flex-col items-center gap-2 text-center">
               <AppLogo className="size-8 shrink-0 text-sidebar-primary dark:text-sidebar-primary" />
-              <div className="flex flex-col">
+              <div className="flex flex-col group-data-[collapsible=icon]:hidden">
                 <span className="text-lg font-bold text-sidebar-foreground">
                   Smart Guest
                 </span>
