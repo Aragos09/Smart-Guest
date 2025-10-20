@@ -2,7 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   BotMessageSquare,
   Building2,
@@ -15,6 +15,7 @@ import {
   ShoppingBasket,
   Home,
   Sparkles,
+  LogOut,
 } from "lucide-react";
 import { AppLogo } from "@/components/icons";
 import {
@@ -30,11 +31,13 @@ import {
 import { useLanguage } from "@/context/language-context";
 import { useUserProfile } from "@/context/user-profile-context";
 import React from "react";
+import { Button } from "../ui/button";
 
 function SidebarNav() {
   const pathname = usePathname();
+  const router = useRouter();
   const { t } = useLanguage();
-  const { profile } = useUserProfile();
+  const { profile, logout } = useUserProfile();
 
   const navItems = [
     { href: "/dashboard", icon: LayoutDashboard, label: "dashboard_title" },
@@ -51,6 +54,11 @@ function SidebarNav() {
     href: "/profile",
     icon: Settings,
     label: "profile_title",
+  };
+
+  const handleLogout = () => {
+    logout();
+    router.push("/login");
   };
 
   return (
@@ -102,6 +110,15 @@ function SidebarNav() {
                         <span>{t(settingsItem.label as any)}</span>
                         </SidebarMenuButton>
                     </Link>
+                </SidebarMenuItem>
+                 <SidebarMenuItem>
+                    <SidebarMenuButton
+                      onClick={handleLogout}
+                      tooltip={t('logout_button' as any)}
+                    >
+                      <LogOut />
+                      <span>{t('logout_button' as any)}</span>
+                    </SidebarMenuButton>
                 </SidebarMenuItem>
             </SidebarMenu>
         </SidebarFooter>

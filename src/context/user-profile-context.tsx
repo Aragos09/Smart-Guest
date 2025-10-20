@@ -26,6 +26,7 @@ export type UserProfile = {
 type UserProfileContextType = {
   profile: UserProfile;
   setProfile: (profile: UserProfile) => void;
+  logout: () => void;
   isLoading: boolean;
 };
 
@@ -76,8 +77,17 @@ export function UserProfileProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const logout = () => {
+    try {
+      localStorage.removeItem("userProfile");
+      setProfileState(defaultProfile);
+    } catch (error) {
+      console.error("Failed to clear user profile from local storage", error);
+    }
+  };
+
   return (
-    <UserProfileContext.Provider value={{ profile, setProfile, isLoading }}>
+    <UserProfileContext.Provider value={{ profile, setProfile, logout, isLoading }}>
       {!isLoading && children}
     </UserProfileContext.Provider>
   );
