@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, memo } from "react";
 import { useLanguage } from "@/context/language-context";
 import {
   Card,
@@ -22,7 +22,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Lightbulb, Thermometer, Wind, Tv, Moon, BookOpen, Loader, Wifi, Sun, Droplets, User } from "lucide-react";
+import { Lightbulb, Thermometer, Wind, Tv, Moon, BookOpen, Loader, Wifi, Sun, User } from "lucide-react";
 
 type ControlType = "lighting" | "climate" | "ambiance" | "blinds" | "status";
 
@@ -189,7 +189,7 @@ function SmartRoomControls() {
                 <p className="font-semibold">{t(control.label)}</p>
                 <control.icon className="h-6 w-6 text-primary" />
               </div>
-              <p className="text-sm text-muted-foreground">{t(control.label as any)}</p>
+              <p className="text-sm text-muted-foreground">{t(control.label as any, { context: 'description' })}</p>
             </Card>
           </DialogTrigger>
         ))}
@@ -198,8 +198,8 @@ function SmartRoomControls() {
       <DialogContent>
         {activeControl && (
           <>
-            <DialogHeader>
-              <DialogTitle className="text-2xl text-center">{t(controls.find(c => c.id === activeControl)?.label)}</DialogTitle>
+            <DialogHeader className="text-center">
+              <DialogTitle className="text-2xl">{t(controls.find(c => c.id === activeControl)?.label)}</DialogTitle>
             </DialogHeader>
             {controls.find(c => c.id === activeControl)?.content}
           </>
@@ -210,7 +210,7 @@ function SmartRoomControls() {
 }
 
 
-export default function SmartRoomPage() {
+const SmartRoomPage = memo(function SmartRoomPage() {
   const { t } = useLanguage();
   const [isConnected, setIsConnected] = useState(false);
   const [isConnecting, setIsConnecting] = useState(false);
@@ -257,4 +257,8 @@ export default function SmartRoomPage() {
       )}
     </div>
   );
-}
+});
+
+export default SmartRoomPage;
+
+    
