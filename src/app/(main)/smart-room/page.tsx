@@ -211,7 +211,7 @@ function SmartRoomControls() {
     return () => clearTimeout(timer);
   }, [makeUpRoom]);
   
-  const controls: { id: ControlType; icon: React.ElementType; label: any; description: any; content: React.ReactNode, activeState?: boolean, activeIcon?: React.ElementType, activeText?: string }[] = [
+  const controls: { id: ControlType; icon: React.ElementType; label: string; description: string; content: React.ReactNode, activeState?: boolean, activeIcon?: React.ElementType, activeText?: string }[] = [
     { id: 'lighting', icon: Lightbulb, label: t('lighting_title'), description: t('lighting_title_description'), content: <LightingControls /> },
     { id: 'climate', icon: Thermometer, label: t('climate_title'), description: t('climate_title_description'), content: <ClimateControls /> },
     { id: 'ambiance', icon: Wind, label: t('ambiance_title'), description: t('ambiance_title_description'), content: <AmbianceControls /> },
@@ -306,3 +306,5 @@ const SmartRoomPage = memo(function SmartRoomPage() {
 });
 
 export default SmartRoomPage;
+
+    
