@@ -79,7 +79,7 @@ function ServiceCard({ service }: { service: Service }) {
       <div className="relative h-48 w-full">
         <Image
           src={service.image}
-          alt={service.name}
+          alt={t(service.name as any)}
           fill
           className="object-cover"
           data-ai-hint={service.imageHint}

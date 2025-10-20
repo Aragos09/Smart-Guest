@@ -8,6 +8,8 @@ export const translations = {
     'Your AI-powered sustainable travel companion': 'Votre compagnon de voyage durable alimenté par l\'IA',
     'Password': 'Mot de passe',
     'Don\'t have an account? Sign up': 'Vous n\'avez pas de compte ? S\'inscrire',
+    "Add to favorites": "Ajouter aux favoris",
+    "Remove from favorites": "Retirer des favoris",
 
     // Signup Page
     'signup_subtitle': 'Rejoignez la nouvelle expérience hôtelière connectée et durable.',
@@ -43,7 +45,7 @@ export const translations = {
     'Eco Manager': 'Éco-Gestionnaire',
     'Services': 'Services',
     'Experiences': 'Expériences',
-    'Restaurant': 'Restaurante',
+    'Restaurant': 'Restaurant',
     'Wellness': 'Bien-être',
     'Concierge': 'Conciergerie',
     'Profile': 'Profil',
@@ -178,7 +180,7 @@ export const translations = {
     'Halal': 'Halal',
     'Kosher': 'Casher',
     'Gluten-free': 'Sans gluten',
-    'Lactose-free': 'Sans lactosa',
+    'Lactose-free': 'Sans lactose',
     'No dietary restrictions': 'Aucune restriction alimentaire',
     'Allergens': 'Allergènes',
     'Nuts': 'Fruits à coque',
@@ -208,7 +210,7 @@ export const translations = {
     'Free': 'Gratuit',
     'unit': 'unité',
     'Electric Bike Rental': 'Location de Vélo Électrique',
-    'Explore the city with zero emissions. Our e-bikes are perfect for a journée d\'aventure.': 'Explorez la ville sans émissions. Nos vélos électriques sont parfaits pour une journée d\'aventure.',
+    'Explore the city with zero emissions. Our e-bikes are perfect for a day of adventure.': 'Explorez la ville sans émissions. Nos vélos électriques sont parfaits pour une journée d\'aventure.',
     'Farm-to-Table Dinner': 'Dîner de la Ferme à la Table',
     'Enjoy a delicious 3-course meal made from locally sourced, organic ingredients.': 'Savourez un délicieux repas 3 services à base d\'ingrédients locaux et biologiques.',
     'Eco-Friendly Laundry': 'Blanchisserie Écologique',
@@ -492,6 +494,8 @@ export const translations = {
     'Your AI-powered sustainable travel companion': 'Your AI-powered sustainable travel companion',
     'Password': 'Password',
     'Don\'t have an account? Sign up': 'Don\'t have an account? Sign up',
+    "Add to favorites": "Add to favorites",
+    "Remove from favorites": "Remove from favorites",
 
     // Signup Page
     'signup_subtitle': 'Join the new connected and sustainable hospitality experience.',
@@ -977,6 +981,8 @@ export const translations = {
     'Your AI-powered sustainable travel companion': 'Tu compañero de viaje sostenible impulsado por IA',
     'Password': 'Contraseña',
     'Don\'t have an account? Sign up': '¿No tienes una cuenta? Regístrate',
+    "Add to favorites": "Añadir a favoritos",
+    "Remove from favorites": "Eliminar de favoritos",
 
     // Signup Page
     'signup_subtitle': 'Únete a la nueva experiencia de hospitalidad conectada y sostenible.',

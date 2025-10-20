@@ -52,7 +52,7 @@ function MenuItemCard({ item }: { item: MenuItem }) {
         <div className="text-lg font-bold text-primary">
           {item.price > 0 ? `${item.price}€` : t('Offert')}
         </div>
-        <Button variant="ghost" size="icon" onClick={toggleFavorite} aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}>
+        <Button variant="ghost" size="icon" onClick={toggleFavorite} aria-label={t(isFavorite ? "Remove from favorites" : "Add to favorites")}>
             <Star className={`h-5 w-5 ${isFavorite ? "fill-yellow-400 text-yellow-400" : "text-muted-foreground"}`} />
         </Button>
       </div>
@@ -85,7 +85,7 @@ function SignatureMenuItemCard({ item }: { item: SignatureMenuItem }) {
           {item.price && (
             <div className="text-lg font-bold text-primary">{item.price.toFixed(2)}€</div>
           )}
-          <Button variant="ghost" size="icon" onClick={toggleFavorite} aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}>
+          <Button variant="ghost" size="icon" onClick={toggleFavorite} aria-label={t(isFavorite ? "Remove from favorites" : "Add to favorites")}>
             <Star className={`h-5 w-5 ${isFavorite ? "fill-yellow-400 text-yellow-400" : "text-muted-foreground"}`} />
           </Button>
         </div>

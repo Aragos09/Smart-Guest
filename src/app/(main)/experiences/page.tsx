@@ -92,19 +92,24 @@ export default function ExperiencesPage() {
         userProfile: "User enjoys outdoor activities and cultural experiences. Interested in photography."
       };
 
-      const { recommendations } = await personalizedRecommendation(recommendationInput);
-      
-      // For this scaffold, we'll map AI recommendations to our mock data.
-      // A real implementation would fetch detailed data from a database based on the recommendation IDs/names.
-      const recommendedExperiences = mockExperiences.filter(exp => 
-        recommendations.some(rec => rec.toLowerCase().includes(exp.name.toLowerCase()))
-      );
-      
-      // If AI recommendations don't match, show all mock experiences as a fallback.
-      setDisplayExperiences(recommendedExperiences.length > 0 ? recommendedExperiences : mockExperiences);
+      try {
+        const { recommendations } = await personalizedRecommendation(recommendationInput);
+        
+        // For this scaffold, we'll map AI recommendations to our mock data.
+        // A real implementation would fetch detailed data from a database based on the recommendation IDs/names.
+        const recommendedExperiences = mockExperiences.filter(exp => 
+          recommendations.some(rec => rec.toLowerCase().includes(exp.name.toLowerCase()))
+        );
+        
+        // If AI recommendations don't match, show all mock experiences as a fallback.
+        setDisplayExperiences(recommendedExperiences.length > 0 ? recommendedExperiences : mockExperiences);
+      } catch (error) {
+        console.error("Error fetching recommendations:", error);
+        setDisplayExperiences(mockExperiences);
+      }
     }
     
-    if (profile) {
+    if (profile.name) {
       getRecommendations();
     }
   }, [profile]);
