@@ -70,7 +70,7 @@ const WellnessServicesPage = memo(function WellnessServicesPage({ params }: { pa
         </div>
       </div>
 
-      <Accordion type="multiple" defaultValue={["spa", "fitness", "eco-services"]} className="w-full space-y-4">
+      <Accordion type="multiple" defaultValue={["spa & relaxation", "fitness & activity", "eco-friendly services"]} className="w-full space-y-4">
         {categories.map((category) => (
           <AccordionItem value={category.name.toLowerCase().replace(/ & /g, '-')} key={category.name}>
             <AccordionTrigger className="text-2xl font-headline font-bold rounded-lg bg-card p-4 border data-[state=open]:border-b-0 data-[state=open]:rounded-b-none">
