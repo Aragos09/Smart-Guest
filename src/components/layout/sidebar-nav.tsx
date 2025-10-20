@@ -12,7 +12,8 @@ import {
   Settings,
   Utensils,
   Wind,
-  ShoppingBasket
+  ShoppingBasket,
+  Home,
 } from "lucide-react";
 import { AppLogo } from "@/components/icons";
 import {
@@ -27,6 +28,7 @@ import {
 } from "@/components/ui/sidebar";
 import { useLanguage } from "@/context/language-context";
 import { useUserProfile } from "@/context/user-profile-context";
+import React from "react";
 
 function SidebarNav() {
   const pathname = usePathname();
@@ -34,20 +36,21 @@ function SidebarNav() {
   const { profile } = useUserProfile();
 
   const navItems = [
-    { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
-    { href: "/eco-manager", icon: Leaf, label: "Eco Manager" },
-    { href: "/services", icon: Building2, label: "Services" },
-    { href: "/experiences", icon: HeartHandshake, label: "Experiences" },
-    { href: "/restaurant", icon: Utensils, label: "Restaurant" },
-    { href: "/room-service", icon: ShoppingBasket, label: "Room Service" },
-    { href: "/wellness", icon: Wind, label: "Wellness" },
-    { href: "/concierge", icon: BotMessageSquare, label: "Concierge" },
+    { href: "/dashboard", icon: LayoutDashboard, label: "dashboard_title" },
+    { href: "/smart-room", icon: Home, label: "smart_room_title" },
+    { href: "/eco-manager", icon: Leaf, label: "eco_manager_title" },
+    { href: "/services", icon: Building2, label: "services_title" },
+    { href: "/experiences", icon: HeartHandshake, label: "experiences_title" },
+    { href: "/restaurant", icon: Utensils, label: "restaurant_title" },
+    { href: "/room-service", icon: ShoppingBasket, label: "room_service_title" },
+    { href: "/wellness", icon: Wind, label: "wellness_title" },
+    { href: "/concierge", icon: BotMessageSquare, label: "concierge_title" },
   ];
 
   const settingsItem = {
     href: "/profile",
     icon: Settings,
-    label: "Profile",
+    label: "profile_title",
   };
 
   return (
@@ -59,7 +62,7 @@ function SidebarNav() {
                 <span className="text-lg font-bold text-sidebar-foreground">
                   Smart Guest
                 </span>
-                <span className="text-sm text-sidebar-foreground/70">{t('Hello')}, {profile.name}!</span>
+                <span className="text-sm text-sidebar-foreground/70">{t('hello_user')}, {profile.name}!</span>
               </div>
             </div>
             <SidebarTrigger className="hidden md:flex" />
@@ -106,4 +109,4 @@ function SidebarNav() {
   );
 }
 
-export default SidebarNav;
+export default React.memo(SidebarNav);

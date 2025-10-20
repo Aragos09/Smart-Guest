@@ -1,0 +1,170 @@
+
+"use client";
+
+import { useState } from "react";
+import { useLanguage } from "@/context/language-context";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Slider } from "@/components/ui/slider";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
+import { Lightbulb, Thermometer, Wind, Tv, Moon, BookOpen } from "lucide-react";
+
+export default function SmartRoomPage() {
+  const { t } = useLanguage();
+  const [brightness, setBrightness] = useState(75);
+  const [temperature, setTemperature] = useState(22);
+  const [colorTemperature, setColorTemperature] = useState(4000);
+  const [doNotDisturb, setDoNotDisturb] = useState(false);
+  const [makeUpRoom, setMakeUpRoom] = useState(false);
+
+  return (
+    <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">
+      <div>
+        <h1 className="text-3xl font-bold tracking-tight font-headline">
+          {t('smart_room_title')}
+        </h1>
+        <p className="text-muted-foreground">
+          {t('smart_room_subtitle')}
+        </p>
+      </div>
+
+      <div className="grid gap-6 lg:grid-cols-2">
+        {/* Lighting Card */}
+        <Card>
+          <CardHeader>
+            <CardTitle>{t('lighting_title')}</CardTitle>
+            <CardDescription>{t('lighting_description')}</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="space-y-2">
+              <Label htmlFor="brightness">{t('brightness_label')}</Label>
+              <Slider
+                id="brightness"
+                value={[brightness]}
+                onValueChange={(value) => setBrightness(value[0])}
+                max={100}
+                step={1}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="color-temp">{t('color_temperature_label')}</Label>
+              <Slider
+                id="color-temp"
+                value={[colorTemperature]}
+                onValueChange={(value) => setColorTemperature(value[0])}
+                min={2700}
+                max={6500}
+                step={100}
+              />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Ambiance Card */}
+        <Card>
+          <CardHeader>
+            <CardTitle>{t('ambiance_title')}</CardTitle>
+            <CardDescription>{t('ambiance_description')}</CardDescription>
+          </CardHeader>
+          <CardContent className="grid grid-cols-2 gap-4">
+            <Button variant="outline" className="flex flex-col h-20">
+              <BookOpen className="h-6 w-6 mb-1" />
+              {t('reading_preset')}
+            </Button>
+            <Button variant="outline" className="flex flex-col h-20">
+              <Moon className="h-6 w-6 mb-1" />
+              {t('relax_preset')}
+            </Button>
+            <Button variant="outline" className="flex flex-col h-20">
+              <Lightbulb className="h-6 w-6 mb-1" />
+              {t('energize_preset')}
+            </Button>
+            <Button variant="outline" className="flex flex-col h-20">
+              <Tv className="h-6 w-6 mb-1" />
+              {t('movie_preset')}
+            </Button>
+          </CardContent>
+        </Card>
+
+        {/* Climate Card */}
+        <Card>
+          <CardHeader>
+            <CardTitle>{t('climate_title')}</CardTitle>
+            <CardDescription>{t('climate_description')}</CardDescription>
+          </CardHeader>
+          <CardContent className="flex items-center justify-center gap-6">
+            <Button
+              variant="outline"
+              size="icon"
+              className="h-12 w-12 rounded-full"
+              onClick={() => setTemperature(temperature - 1)}
+            >
+              <Thermometer className="h-6 w-6" />-
+            </Button>
+            <div className="text-center">
+              <p className="text-5xl font-bold">{temperature}°C</p>
+              <p className="text-sm text-muted-foreground">{t('temperature_label')}</p>
+            </div>
+            <Button
+              variant="outline"
+              size="icon"
+              className="h-12 w-12 rounded-full"
+              onClick={() => setTemperature(temperature + 1)}
+            >
+              <Thermometer className="h-6 w-6" />+
+            </Button>
+          </CardContent>
+        </Card>
+
+        {/* Blinds Card */}
+        <Card>
+          <CardHeader>
+            <CardTitle>{t('blinds_title')}</CardTitle>
+            <CardDescription>{t('blinds_description')}</CardDescription>
+          </CardHeader>
+          <CardContent className="flex justify-center gap-4">
+            <Button variant="outline" size="lg">{t('open_button')}</Button>
+            <Button variant="outline" size="lg">{t('close_button')}</Button>
+          </CardContent>
+        </Card>
+        
+        {/* Room Status Card */}
+        <Card className="lg:col-span-2">
+            <CardHeader>
+                <CardTitle>{t('room_status_title')}</CardTitle>
+                <CardDescription>{t('room_status_description')}</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+                <div className="flex items-center justify-between rounded-lg border p-4">
+                    <Label htmlFor="dnd-switch" className="font-medium">
+                        {t('do_not_disturb_label')}
+                    </Label>
+                    <Switch
+                        id="dnd-switch"
+                        checked={doNotDisturb}
+                        onCheckedChange={setDoNotDisturb}
+                    />
+                </div>
+                <div className="flex items-center justify-between rounded-lg border p-4">
+                    <Label htmlFor="makeup-switch" className="font-medium">
+                        {t('make_up_room_label')}
+                    </Label>
+                    <Switch
+                        id="makeup-switch"
+                        checked={makeUpRoom}
+                        onCheckedChange={setMakeUpRoom}
+                    />
+                </div>
+            </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+}
