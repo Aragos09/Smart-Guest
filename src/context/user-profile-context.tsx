@@ -10,6 +10,7 @@ export type UserProfile = {
   language: Language;
   tripType: 'leisure' | 'business';
   ecoSensitivity: 'low' | 'medium' | 'high';
+  hasCheckedIn?: boolean;
   bedType?: string;
   floorPreference?: string;
   viewPreference?: string;
@@ -36,6 +37,7 @@ const defaultProfile: UserProfile = {
     language: "en",
     tripType: "leisure",
     ecoSensitivity: "high",
+    hasCheckedIn: false,
     favoriteDishes: [],
     quickLinks: ["eco-manager", "services", "experiences", "concierge"],
 };

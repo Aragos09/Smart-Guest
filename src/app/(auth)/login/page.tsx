@@ -27,9 +27,9 @@ export default function LoginPage() {
     e.preventDefault();
     toast({
       title: "Login Successful",
-      description: "Redirecting to your smart room...",
+      description: "Redirecting...",
     });
-    router.push("/smart-room");
+    router.push("/check-in");
   };
 
   return (

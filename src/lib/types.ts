@@ -1,3 +1,4 @@
+
 import type { Language } from "./translations";
 import type { CartItem as CartContextCartItem } from "@/context/cart-context";
 
@@ -9,6 +10,7 @@ export type UserProfile = {
   language: Language;
   tripType: 'business' | 'leisure';
   ecoSensitivity: 'low' | 'medium' | 'high';
+  hasCheckedIn?: boolean;
   bedType?: string;
   floorPreference?: string;
   viewPreference?: string;

@@ -76,7 +76,7 @@ export default function SignupPage() {
       title: t('account_created_success_title'),
       description: t('account_created_success_desc'),
     });
-    router.push("/smart-room");
+    router.push("/check-in");
   }
 
   return (
