@@ -12,6 +12,7 @@ import type { Message } from "@/lib/types";
 import { answerUserQuery } from "@/ai/flows/answer-user-queries";
 import { useUserProfile } from "@/context/user-profile-context";
 import { useLanguage } from "@/context/language-context";
+import { summarizeWeather, type SummarizeWeatherOutput } from "@/ai/flows/summarize-weather";
 
 const ConciergePage = memo(function ConciergePage({ params }: { params: { locale: string }}) {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -19,13 +20,43 @@ const ConciergePage = memo(function ConciergePage({ params }: { params: { locale
   const [isLoading, setIsLoading] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const { profile } = useUserProfile();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const [weather, setWeather] = useState<SummarizeWeatherOutput | null>(null);
+  const [coords, setCoords] = useState<{latitude: number, longitude: number} | null>(null);
+
+  useEffect(() => {
+    function getWeather(position: GeolocationPosition) {
+      setCoords({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      });
+      summarizeWeather({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+        language: language,
+      }).then(setWeather).catch(console.error);
+    }
+    
+    function handleGeoError(error: GeolocationPositionError) {
+      console.error("Geolocation error:", error);
+    }
+    
+    navigator.geolocation.getCurrentPosition(getWeather, handleGeoError);
+  }, [language]);
+
 
   useEffect(() => {
     if (scrollAreaRef.current) {
       scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
     }
   }, [messages]);
+
+  const getTimeOfDay = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'morning';
+    if (hour < 18) return 'afternoon';
+    return 'evening';
+  }
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -48,8 +79,12 @@ const ConciergePage = memo(function ConciergePage({ params }: { params: { locale
           language: profile.language,
           tripType: profile.tripType,
           ecoSensitivity: profile.ecoSensitivity,
+          budget: "moderate", // Placeholder
         },
-        knowledgeBase: "Our hotel uses solar panels for hot water, offers a linen reuse program, and sources 80% of its restaurant ingredients from local farms within a 50-mile radius. We have EV charging stations available for a small fee.",
+        knowledgeBase: "Our hotel uses solar panels for hot water, offers a linen reuse program, and sources 80% of its restaurant ingredients from local farms within a 50-mile radius. We have EV charging stations, a partnership with a local e-bike rental company, and a farm-to-table restaurant. The spa offers massages and yoga classes. Direct booking for services is available through their respective pages in the app.",
+        geolocation: coords || undefined,
+        weatherCondition: weather?.summary,
+        timeOfDay: getTimeOfDay(),
       });
 
       const assistantMessage: Message = {
