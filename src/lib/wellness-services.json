@@ -76,13 +76,13 @@
         "description_fr": "Navette électrique vers la gare/aéroport.",
         "price_eur": 5.00
       }
-    ],
-    "eco_commitments": {
-      "energy_fr": "Énergie 100 % renouvelable (solaire & géothermie légère).",
-      "cleaning_fr": "Produits d’entretien écologiques certifiés EU Ecolabel.",
-      "paperless_fr": "Communication digitale zéro papier.",
-      "local_partners_fr": "Partenariats avec artisans locaux pour cosmétiques, textiles et restauration.",
-      "ai_energy_fr": "IA prédictive pour optimiser la consommation énergétique des chambres."
-    }
+    ]
+  },
+  "eco_commitments": {
+    "energy_fr": "Énergie 100 % renouvelable (solaire & géothermie légère)",
+    "cleaning_fr": "Produits d’entretien écologiques certifiés EU Ecolabel",
+    "paperless_fr": "Communication digitale zéro papier (factures, room directory, etc.)",
+    "local_partners_fr": "Partenariats avec artisans locaux pour cosmétiques, textiles et restauration",
+    "ai_energy_fr": "IA prédictive pour optimiser la consommation énergétique des chambres"
   }
 }

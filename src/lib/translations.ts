@@ -256,11 +256,11 @@ export const translations = {
     'eco_shuttle_name': 'Eco Mobility Shuttle',
     'eco_shuttle_desc': 'Navette électrique vers la gare/aéroport.',
     'eco_commitments_title': 'Nos Engagements Écologiques',
-    'renewable_energy_commitment': 'Énergie 100 % renouvelable (solaire & géothermie légère).',
-    'eco_cleaning_commitment': 'Produits d’entretien écologiques certifiés EU Ecolabel.',
-    'paperless_commitment': 'Communication digitale zéro papier.',
-    'local_partners_commitment': 'Partenariats avec artisans locaux pour cosmétiques, textiles et restauration.',
-    'ai_energy_commitment': 'IA prédictive pour optimiser la consommation énergétique des chambres.',
+    'renewable_energy_commitment': 'Énergie 100 % renouvelable (solaire & géothermie légère)',
+    'eco_cleaning_commitment': 'Produits d’entretien écologiques certifiés EU Ecolabel',
+    'paperless_commitment': 'Communication digitale zéro papier (factures, room directory, etc.)',
+    'local_partners_commitment': 'Partenariats avec artisans locaux pour cosmétiques, textiles et restauration',
+    'ai_energy_commitment': 'IA prédictive pour optimiser la consommation énergétique des chambres',
 
 
     // Wellness
@@ -464,7 +464,7 @@ export const translations = {
     "balanced_poke_bowl_name": "Poke bowl équilibré",
     "balanced_poke_bowl_desc": "Riz complet, edamame, mangue, chou rouge, graines de chia, sauce soja-gingembre",
     "raw_chocolate_date_tart_name": "Tarte au chocolat cru et dattes",
-    "raw_chocolate_date_tart_desc": "Ganache cacao-avocat, base aux noix de cajou",
+    "raw_chocolate_date_desc": "Ganache cacao-avocat, base aux noix de cajou",
     "vegan_lime_cheesecake_name": "Cheesecake vegan au citron vert",
     "vegan_lime_cheesecake_desc": "Base coco-amande, coulis de framboise",
     "mango_coconut_mousse_name": "Mousse de mangue et lait de coco",
@@ -804,11 +804,11 @@ export const translations = {
     'eco_shuttle_name': 'Eco Mobility Shuttle',
     'eco_shuttle_desc': 'Electric shuttle to the train station/airport.',
     'eco_commitments_title': 'Our Eco-Commitments',
-    'renewable_energy_commitment': '100% renewable energy (solar & light geothermal).',
-    'eco_cleaning_commitment': 'Ecological cleaning products certified with EU Ecolabel.',
-    'paperless_commitment': 'Zero-paper digital communication.',
-    'local_partners_commitment': 'Partnerships with local artisans for cosmetics, textiles, and food.',
-    'ai_energy_commitment': 'Predictive AI to optimize room energy consumption.',
+    'renewable_energy_commitment': '100% renewable energy (solar & light geothermal)',
+    'eco_cleaning_commitment': 'Ecological cleaning products certified with EU Ecolabel',
+    'paperless_commitment': 'Zero-paper digital communication (invoices, room directory, etc.)',
+    'local_partners_commitment': 'Partnerships with local artisans for cosmetics, textiles, and food',
+    'ai_energy_commitment': 'Predictive AI to optimize room energy consumption',
 
     // Wellness
     'wellness_subtitle': 'Your personal space for relaxation and well-being.',
@@ -1350,12 +1350,11 @@ export const translations = {
     'eco_shuttle_name': 'Transporte Ecológico',
     'eco_shuttle_desc': 'Transporte eléctrico a la estación de tren/aeropuerto.',
     'eco_commitments_title': 'Nuestros Compromisos Ecológicos',
-    'renewable_energy_commitment': 'Energía 100% renovable (solar y geotérmica ligera).',
-    'eco_cleaning_commitment': 'Productos de limpieza ecológicos con certificación EU Ecolabel.',
-    'paperless_commitment': 'Comunicación digital sin papel.',
-    'local_partners_commitment': 'Asociaciones con artesanos locales para cosméticos, textiles y alimentos.',
-    'ai_energy_commitment': 'IA predictiva para optimizar el consumo de energía de las habitaciones.',
-
+    'renewable_energy_commitment': 'Energía 100% renovable (solar y geotérmica ligera)',
+    'eco_cleaning_commitment': 'Productos de limpieza ecológicos con certificación EU Ecolabel',
+    'paperless_commitment': 'Comunicación digital sin papel (facturas, directorio de habitaciones, etc.)',
+    'local_partners_commitment': 'Asociaciones con artesanos locales para cosméticos, textiles y alimentos',
+    'ai_energy_commitment': 'IA predictiva para optimizar el consumo de energía de las habitaciones',
 
     // Wellness
     'wellness_subtitle': 'Tu espacio personal para la relajación y el bienestar.',
