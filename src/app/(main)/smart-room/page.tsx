@@ -170,13 +170,13 @@ function StatusControls() {
 function SmartRoomControls() {
   const { t } = useLanguage();
   const [activeControl, setActiveControl] = useState<ControlType | null>(null);
-
-  const controls: { id: ControlType; icon: React.ElementType; label: any; content: React.ReactNode }[] = [
-    { id: 'lighting', icon: Lightbulb, label: 'lighting_title', content: <LightingControls /> },
-    { id: 'climate', icon: Thermometer, label: 'climate_title', content: <ClimateControls /> },
-    { id: 'ambiance', icon: Wind, label: 'ambiance_title', content: <AmbianceControls /> },
-    { id: 'blinds', icon: Sun, label: 'blinds_title', content: <BlindsControls /> },
-    { id: 'status', icon: User, label: 'room_status_title', content: <StatusControls /> },
+  
+  const controls: { id: ControlType; icon: React.ElementType; label: any; description: any; content: React.ReactNode }[] = [
+    { id: 'lighting', icon: Lightbulb, label: t('lighting_title'), description: t('lighting_title_description'), content: <LightingControls /> },
+    { id: 'climate', icon: Thermometer, label: t('climate_title'), description: t('climate_title_description'), content: <ClimateControls /> },
+    { id: 'ambiance', icon: Wind, label: t('ambiance_title'), description: t('ambiance_title_description'), content: <AmbianceControls /> },
+    { id: 'blinds', icon: Sun, label: t('blinds_title'), description: t('blinds_title_description'), content: <BlindsControls /> },
+    { id: 'status', icon: User, label: t('room_status_title'), description: t('room_status_title_description'), content: <StatusControls /> },
   ];
 
   return (
@@ -186,10 +186,10 @@ function SmartRoomControls() {
           <DialogTrigger asChild key={control.id}>
             <Card className="flex h-32 cursor-pointer flex-col justify-between p-4 transition-all hover:bg-muted/50" onClick={() => setActiveControl(control.id)}>
               <div className="flex items-center justify-between">
-                <p className="font-semibold">{t(control.label)}</p>
+                <p className="font-semibold">{control.label}</p>
                 <control.icon className="h-6 w-6 text-primary" />
               </div>
-              <p className="text-sm text-muted-foreground">{t(control.label as any, { context: 'description' })}</p>
+              <p className="text-sm text-muted-foreground">{control.description}</p>
             </Card>
           </DialogTrigger>
         ))}
@@ -199,7 +199,7 @@ function SmartRoomControls() {
         {activeControl && (
           <>
             <DialogHeader className="text-center">
-              <DialogTitle className="text-2xl">{t(controls.find(c => c.id === activeControl)?.label)}</DialogTitle>
+              <DialogTitle className="text-2xl">{controls.find(c => c.id === activeControl)?.label}</DialogTitle>
             </DialogHeader>
             {controls.find(c => c.id === activeControl)?.content}
           </>
