@@ -17,8 +17,9 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/context/language-context";
 import Link from "next/link";
+import { memo } from "react";
 
-export default function LoginPage() {
+const LoginPage = memo(function LoginPage() {
   const router = useRouter();
   const { toast } = useToast();
   const { t } = useLanguage();
@@ -63,4 +64,6 @@ export default function LoginPage() {
       </CardFooter>
     </Card>
   );
-}
+});
+
+export default LoginPage;

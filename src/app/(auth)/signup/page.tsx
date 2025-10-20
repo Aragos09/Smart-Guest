@@ -29,9 +29,10 @@ import { useLanguage } from "@/context/language-context";
 import Link from "next/link";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useRouter } from "next/navigation";
+import { memo } from "react";
 
 
-export default function SignupPage() {
+const SignupPage = memo(function SignupPage() {
   const { t } = useLanguage();
   const { toast } = useToast();
   const router = useRouter();
@@ -233,4 +234,6 @@ export default function SignupPage() {
       </CardFooter>
     </Card>
   );
-}
+});
+
+export default SignupPage;
