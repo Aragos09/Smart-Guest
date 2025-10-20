@@ -15,35 +15,35 @@ import { personalizedRecommendation } from "@/ai/flows/personalized-recommendati
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import type { Experience } from "@/lib/types";
 import { useLanguage } from "@/context/language-context";
-import { useEffect, useState, memo } from "react";
+import { useEffect, useState } from "react";
 import { useUserProfile } from "@/context/user-profile-context";
 
 const mockExperiences: Experience[] = [
   {
     id: "nature-hike",
-    name: "guided_nature_hike",
-    description: "guided_nature_hike_desc",
+    name: "Guided Nature Hike",
+    description: "Explore the breathtaking local trails with an expert guide. Learn about the native flora and fauna.",
     image: PlaceHolderImages.find(p => p.id === 'guided-nature-hike')?.imageUrl || '',
     imageHint: PlaceHolderImages.find(p => p.id === 'guided-nature-hike')?.imageHint || '',
   },
   {
     id: "artisan-market",
-    name: "local_artisan_market",
-    description: "local_artisan_market_desc",
+    name: "Local Artisan Market",
+    description: "Visit the weekly market to discover unique, handmade goods from local artists and craftspeople.",
     image: PlaceHolderImages.find(p => p.id === 'local-artisan-market')?.imageUrl || '',
     imageHint: PlaceHolderImages.find(p => p.id === 'local-artisan-market')?.imageHint || '',
   },
   {
     id: "gardening-workshop",
-    name: "urban_gardening_workshop",
-    description: "urban_gardening_workshop_desc",
+    name: "Urban Gardening Workshop",
+    description: "Get your hands dirty and learn the basics of sustainable urban gardening on a rooftop farm.",
     image: PlaceHolderImages.find(p => p.id === 'urban-gardening-workshop')?.imageUrl || '',
     imageHint: PlaceHolderImages.find(p => p.id === 'urban-gardening-workshop')?.imageHint || '',
   },
   {
     id: "cooking-class",
-    name: "zero_waste_cooking_class",
-    description: "zero_waste_cooking_class_desc",
+    name: "Zero-Waste Cooking Class",
+    description: "Learn how to create delicious meals while minimizing food waste with a professional chef.",
     image: PlaceHolderImages.find(p => p.id === 'zero-waste-cooking-class')?.imageUrl || '',
     imageHint: PlaceHolderImages.find(p => p.id === 'zero-waste-cooking-class')?.imageHint || '',
   },
@@ -68,14 +68,14 @@ function ExperienceCard({ experience }: { experience: Experience }) {
       </CardHeader>
       <CardFooter className="mt-auto">
         <Button variant="secondary" className="w-full">
-          {t('learn_more_button')}
+          {t('Learn More')}
         </Button>
       </CardFooter>
     </Card>
   );
 }
 
-function ExperiencesPage() {
+export default function ExperiencesPage() {
   const { t } = useLanguage();
   const [displayExperiences, setDisplayExperiences] = useState<Experience[]>(mockExperiences);
   const { profile } = useUserProfile();
@@ -98,7 +98,7 @@ function ExperiencesPage() {
         // For this scaffold, we'll map AI recommendations to our mock data.
         // A real implementation would fetch detailed data from a database based on the recommendation IDs/names.
         const recommendedExperiences = mockExperiences.filter(exp => 
-          recommendations.some(rec => rec.toLowerCase().includes(t(exp.name as any).toLowerCase()))
+          recommendations.some(rec => rec.toLowerCase().includes(exp.name.toLowerCase()))
         );
         
         // If AI recommendations don't match, show all mock experiences as a fallback.
@@ -112,17 +112,17 @@ function ExperiencesPage() {
     if (profile.name) {
       getRecommendations();
     }
-  }, [profile, t]);
+  }, [profile]);
 
 
   return (
     <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">
       <div>
         <h1 className="text-3xl font-bold tracking-tight font-headline">
-          {t('local_eco_experiences_title')}
+          {t('Local Eco-Friendly Experiences')}
         </h1>
         <p className="text-muted-foreground">
-          {t('local_eco_experiences_subtitle')}
+          {t('Personalized recommendations for sustainable activities near you.')}
         </p>
       </div>
       <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -133,5 +133,3 @@ function ExperiencesPage() {
     </div>
   );
 }
-
-export default memo(ExperiencesPage);

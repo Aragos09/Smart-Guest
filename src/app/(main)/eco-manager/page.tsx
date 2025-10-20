@@ -30,13 +30,12 @@ import {
   WaterBadge,
 } from "@/components/icons";
 import { useLanguage } from "@/context/language-context";
-import { memo } from 'react';
 
 const impactChartData = [
-  { category: "water", impact: 186, target: 200 },
-  { category: "energy", impact: 305, target: 300 },
-  { category: "waste", impact: 237, target: 250 },
-  { category: "sourcing", impact: 73, target: 100 },
+  { category: "Water", impact: 186, target: 200 },
+  { category: "Energy", impact: 305, target: 300 },
+  { category: "Waste", impact: 237, target: 250 },
+  { category: "Sourcing", impact: 73, target: 100 },
 ];
 
 const trendChartData = [
@@ -48,23 +47,23 @@ const trendChartData = [
   { date: "Day 6", score: 85 },
 ];
 
-function EcoManagerPage() {
+export default function EcoManagerPage() {
   const { t } = useLanguage();
 
   const impactChartConfig = {
     impact: {
-      label: t("your_impact"),
+      label: t("Your Impact"),
       color: "hsl(var(--primary))",
     },
     target: {
-      label: t("target"),
+      label: t("Target"),
       color: "hsl(var(--muted-foreground))",
     },
   } satisfies ChartConfig;
   
   const trendChartConfig = {
     score: {
-      label: t("ecoscore"),
+      label: "EcoScore",
       color: "hsl(var(--accent))",
     },
   } satisfies ChartConfig;
@@ -72,26 +71,26 @@ function EcoManagerPage() {
   const badges = [
     {
       icon: WaterBadge,
-      titleKey: "water_saver",
-      descriptionKey: "water_saver_desc",
+      title: "Water Saver",
+      description: "Used less water than average for 3 consecutive days.",
       color: "text-blue-500",
     },
     {
       icon: EnergyBadge,
-      titleKey: "energy_star",
-      descriptionKey: "energy_star_desc",
+      title: "Energy Star",
+      description: "Consumed 15% less energy than the daily target.",
       color: "text-yellow-500",
     },
     {
       icon: RecycleBadge,
-      titleKey: "recycling_champion",
-      descriptionKey: "recycling_champion_desc",
+      title: "Recycling Champion",
+      description: "Recycled over 5kg of waste.",
       color: "text-green-500",
     },
     {
       icon: LeafBadge,
-      titleKey: "eco_pioneer",
-      descriptionKey: "eco_pioneer_desc",
+      title: "Eco Pioneer",
+      description: "Booked two or more sustainable services.",
       color: "text-teal-500",
     },
   ];
@@ -105,18 +104,18 @@ function EcoManagerPage() {
     <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">
       <div className="flex items-center justify-between space-y-2">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight font-headline">{t('eco_manager')}</h1>
+          <h1 className="text-3xl font-bold tracking-tight font-headline">{t('Eco Manager')}</h1>
           <p className="text-muted-foreground">
-            {t('eco_manager_subtitle')}
+            {t('Visualize your positive impact on the environment.')}
           </p>
         </div>
       </div>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
         <Card className="col-span-4">
           <CardHeader>
-            <CardTitle>{t('impact_breakdown')}</CardTitle>
+            <CardTitle>{t('Impact Breakdown')}</CardTitle>
             <CardDescription>
-              {t('impact_breakdown_desc')}
+              {t('Your consumption compared to daily eco-targets. (Lower is better)')}
             </CardDescription>
           </CardHeader>
           <CardContent className="pl-2">
@@ -138,14 +137,14 @@ function EcoManagerPage() {
                 />
                 <Bar
                   dataKey="impact"
-                  name={t('your_impact')}
+                  name={t("Your Impact")}
                   fill="var(--color-impact)"
                   radius={4}
                   barSize={20}
                 />
                 <Bar
                   dataKey="target"
-                  name={t('target')}
+                  name={t("Target")}
                   fill="var(--color-target)"
                   radius={4}
                   barSize={20}
@@ -156,8 +155,8 @@ function EcoManagerPage() {
         </Card>
         <Card className="col-span-4 lg:col-span-3">
           <CardHeader>
-            <CardTitle>{t('ecoscore_trend')}</CardTitle>
-            <CardDescription>{t('ecoscore_trend_desc')}</CardDescription>
+            <CardTitle>{t('EcoScore Trend')}</CardTitle>
+            <CardDescription>{t('Your daily EcoScore during your stay.')}</CardDescription>
           </CardHeader>
           <CardContent>
             <ChartContainer config={trendChartConfig} className="h-[300px] w-full">
@@ -204,9 +203,9 @@ function EcoManagerPage() {
         </Card>
         <Card className="col-span-4 lg:col-span-7">
           <CardHeader>
-            <CardTitle>{t('achievements')}</CardTitle>
+            <CardTitle>{t('Achievements')}</CardTitle>
             <CardDescription>
-              {t('achievements_desc')}
+              {t("Badges you've earned for your eco-friendly choices.")}
             </CardDescription>
           </CardHeader>
           <CardContent className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -214,9 +213,9 @@ function EcoManagerPage() {
               <div key={index} className="flex items-start space-x-4">
                 <badge.icon className={`h-12 w-12 shrink-0 ${badge.color}`} />
                 <div>
-                  <p className="font-semibold">{t(badge.titleKey as any)}</p>
+                  <p className="font-semibold">{t(badge.title as any)}</p>
                   <p className="text-sm text-muted-foreground">
-                    {t(badge.descriptionKey as any)}
+                    {t(badge.description as any)}
                   </p>
                 </div>
               </div>
@@ -227,5 +226,3 @@ function EcoManagerPage() {
     </div>
   );
 }
-
-export default memo(EcoManagerPage);

@@ -1,9 +1,9 @@
 
 'use client';
 
-import { useState, useEffect, memo } from 'react';
+import { useState, useEffect } from 'react';
 
-function DynamicBackground() {
+export default function DynamicBackground() {
   const [backgroundClass, setBackgroundClass] = useState('');
 
   useEffect(() => {
@@ -22,5 +22,3 @@ function DynamicBackground() {
 
   return <div className={`fixed inset-0 -z-10 transition-colors duration-1000 ${backgroundClass}`}></div>;
 }
-
-export default memo(DynamicBackground);

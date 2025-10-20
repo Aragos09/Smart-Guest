@@ -54,7 +54,6 @@ export type MenuItem = {
 };
 
 export type MenuCategory = {
-  id: string;
   name: string;
   items: MenuItem[];
 };
@@ -90,10 +89,22 @@ export type SignatureMenuData = {
 };
 
 export type RoomServiceItem = {
-  name: string;
-  description: string;
-  price: number;
+  name_fr: string;
+  description_fr?: string;
+  price_eur: number;
   size?: string;
+};
+
+export type RoomServiceMenu = {
+  categories: {
+    [key: string]: RoomServiceItem[];
+  };
+  eco_options?: {
+    [key: string]: string;
+  };
+  service_info?: {
+    [key: string]: string;
+  };
 };
 
 export type RoomServiceCategory = {

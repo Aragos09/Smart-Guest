@@ -27,7 +27,6 @@ import {
 } from "@/components/ui/sidebar";
 import { useLanguage } from "@/context/language-context";
 import { useUserProfile } from "@/context/user-profile-context";
-import { memo } from "react";
 
 function SidebarNav() {
   const pathname = usePathname();
@@ -35,20 +34,20 @@ function SidebarNav() {
   const { profile } = useUserProfile();
 
   const navItems = [
-    { href: "/dashboard", icon: LayoutDashboard, label: "dashboard" },
-    { href: "/eco-manager", icon: Leaf, label: "eco_manager" },
-    { href: "/services", icon: Building2, label: "services" },
-    { href: "/experiences", icon: HeartHandshake, label: "experiences" },
-    { href: "/restaurant", icon: Utensils, label: "restaurant" },
-    { href: "/room-service", icon: ShoppingBasket, label: "room_service" },
-    { href: "/wellness", icon: Wind, label: "wellness" },
-    { href: "/concierge", icon: BotMessageSquare, label: "concierge" },
+    { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
+    { href: "/eco-manager", icon: Leaf, label: "Eco Manager" },
+    { href: "/services", icon: Building2, label: "Services" },
+    { href: "/experiences", icon: HeartHandshake, label: "Experiences" },
+    { href: "/restaurant", icon: Utensils, label: "Restaurant" },
+    { href: "/room-service", icon: ShoppingBasket, label: "Room Service" },
+    { href: "/wellness", icon: Wind, label: "Wellness" },
+    { href: "/concierge", icon: BotMessageSquare, label: "Concierge" },
   ];
 
   const settingsItem = {
     href: "/profile",
     icon: Settings,
-    label: "profile",
+    label: "Profile",
   };
 
   return (
@@ -60,7 +59,7 @@ function SidebarNav() {
                 <span className="text-lg font-bold text-sidebar-foreground">
                   Smart Guest
                 </span>
-                <span className="text-sm text-sidebar-foreground/70">{t('hello_user')} {profile.name}!</span>
+                <span className="text-sm text-sidebar-foreground/70">{t('Hello')}, {profile.name}!</span>
               </div>
             </div>
             <SidebarTrigger className="hidden md:flex" />
@@ -107,4 +106,4 @@ function SidebarNav() {
   );
 }
 
-export default memo(SidebarNav);
+export default SidebarNav;

@@ -1,0 +1,110 @@
+{
+  "room_service_beverages_signature": {
+    "categories": {
+      "mocktails": [
+        {
+          "name_fr": "Green Detox Elixir",
+          "description_fr": "Concombre, pomme verte, citron vert, spiruline, eau pétillante. Rafraîchissant et purifiant.",
+          "price_eur": 7.50
+        },
+        {
+          "name_fr": "Tropical Sunrise",
+          "description_fr": "Jus d’ananas frais, mangue, fruit de la passion, sirop d’agave, touche de curcuma.",
+          "price_eur": 8.00
+        },
+        {
+          "name_fr": "Coconut Dream",
+          "description_fr": "Lait de coco, citron vert, menthe fraîche, sirop de vanille.",
+          "price_eur": 7.50
+        },
+        {
+          "name_fr": "Berry Harmony",
+          "description_fr": "Framboise, mûre, hibiscus infusé, sirop de datte, eau gazeuse.",
+          "price_eur": 8.50
+        },
+        {
+          "name_fr": "Minty Citrus Fizz",
+          "description_fr": "Citron, menthe bio, gingembre, eau pétillante, miel végétal.",
+          "price_eur": 7.00
+        }
+      ],
+      "cocktails": [
+        {
+          "name_fr": "Smart Negroni",
+          "description_fr": "Gin biologique français, vermouth artisanal, bitter orange, glaçons transparents.",
+          "price_eur": 12.00
+        },
+        {
+          "name_fr": "Eco Spritz",
+          "description_fr": "Prosecco vegan, purée d’orange sanguine, sirop d’agave, soda maison.",
+          "price_eur": 11.50
+        },
+        {
+          "name_fr": "Tropical Verde",
+          "description_fr": "Rhum blanc bio, ananas frais, basilic, citron vert, sucre de canne équitable.",
+          "price_eur": 12.50
+        },
+        {
+          "name_fr": "French Garden",
+          "description_fr": "Vodka locale infusée au concombre, sirop de lavande, tonic artisanal.",
+          "price_eur": 11.00
+        },
+        {
+          "name_fr": "Golden Glow",
+          "description_fr": "Whisky infusé au gingembre, miel vegan, citron, cannelle.",
+          "price_eur": 13.00
+        }
+      ],
+      "infusions_thes": [
+        {
+          "name_fr": "Infusion relaxante camomille & citronnelle",
+          "description_fr": "Récolte locale, 100 % bio, servie chaude ou glacée.",
+          "price_eur": 5.50
+        },
+        {
+          "name_fr": "Thé vert Matcha Kyoto",
+          "description_fr": "Préparé à la main, fouetté au bambou.",
+          "price_eur": 6.00
+        },
+        {
+          "name_fr": "Rooibos vanille Bourbon",
+          "description_fr": "Naturellement sans théine, saveur ronde et douce.",
+          "price_eur": 5.50
+        },
+        {
+          "name_fr": "Tisane Équilibre & Vitalité",
+          "description_fr": "Mélisse, ortie, menthe poivrée, gingembre bio.",
+          "price_eur": 5.00
+        }
+      ],
+      "jus_presses": [
+        {
+          "name_fr": "Vitalité Verte",
+          "description_fr": "Pomme, céleri, épinards, citron.",
+          "price_eur": 6.50
+        },
+        {
+          "name_fr": "Rouge Passion",
+          "description_fr": "Betterave, fraise, orange, citron vert.",
+          "price_eur": 6.00
+        },
+        {
+          "name_fr": "Pure Orange Bio",
+          "description_fr": "Oranges locales pressées à froid.",
+          "price_eur": 5.50
+        },
+        {
+          "name_fr": "Immunity Shot",
+          "description_fr": "Gingembre, citron, curcuma, poivre noir.",
+          "price_eur": 4.00
+        }
+      ]
+    },
+    "eco_commitment": {
+      "local_ingredients_fr": "Tous les cocktails sont préparés avec des ingrédients locaux et biologiques.",
+      "zero_waste_fr": "Utilisation zéro déchet : les écorces et fruits réutilisés pour les sirops.",
+      "low_energy_fr": "Production basse consommation (mixologie sans machine lourde).",
+      "no_plastic_fr": "Aucun plastique à usage unique (pailles inox et verres recyclés)."
+    }
+  }
+}

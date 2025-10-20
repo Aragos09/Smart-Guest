@@ -23,7 +23,7 @@ import Link from "next/link";
 import { EcoScoreChart } from "./eco-score-chart";
 import { useLanguage } from "@/context/language-context";
 import { useUserProfile } from "@/context/user-profile-context";
-import { useEffect, useState, memo } from "react";
+import { useEffect, useState } from "react";
 import { generateDynamicWelcomeMessage } from "@/ai/flows/dynamic-welcome-message";
 import { WeatherCard } from "./weather-card";
 
@@ -31,8 +31,8 @@ type QuickLink = {
   id: string;
   href: string;
   icon: LucideIcon;
-  titleKey: string;
-  descriptionKey: string;
+  title: string;
+  description: string;
 };
 
 const allQuickLinks: QuickLink[] = [
@@ -40,55 +40,55 @@ const allQuickLinks: QuickLink[] = [
     id: "eco-manager",
     href: "/eco-manager",
     icon: Leaf,
-    titleKey: "eco_manager",
-    descriptionKey: "track_your_impact",
+    title: "Eco Manager",
+    description: "Track your impact.",
   },
   {
     id: "services",
     href: "/services",
     icon: Building2,
-    titleKey: "sustainable_services",
-    descriptionKey: "book_eco_friendly_services",
+    title: "Sustainable Services",
+    description: "Book eco-friendly services.",
   },
   {
     id: "experiences",
     href: "/experiences",
     icon: HeartHandshake,
-    titleKey: "local_experiences",
-    descriptionKey: "discover_green_activities",
+    title: "Local Experiences",
+    description: "Discover green activities.",
   },
   {
     id: "concierge",
     href: "/concierge",
     icon: BotMessageSquare,
-    titleKey: "ai_concierge",
-    descriptionKey: "ask_me_anything",
+    title: "AI Concierge",
+    description: "Ask me anything.",
   },
   {
     id: "restaurant",
     href: "/restaurant",
     icon: Utensils,
-    titleKey: "restaurant",
-    descriptionKey: "discover_our_delicious_menus",
+    title: "Restaurant",
+    description: "Discover our delicious menus.",
   },
   {
     id: "room-service",
     href: "/room-service",
     icon: ShoppingBasket,
-    titleKey: "room_service",
-    descriptionKey: "order_from_your_room",
+    title: "Room Service",
+    description: "Order from your room.",
   },
   {
     id: "wellness",
     href: "/wellness",
     icon: Wind,
-    titleKey: "wellness",
-    descriptionKey: "relax_and_rejuvenate",
+    title: "Wellness",
+    description: "Relax and rejuvenate.",
   }
 ];
 
 
-function DashboardPage() {
+export default function DashboardPage() {
   const { t } = useLanguage();
   const { profile } = useUserProfile();
   const [welcomeMessage, setWelcomeMessage] = useState("Loading your personalized welcome...");
@@ -119,14 +119,15 @@ function DashboardPage() {
 
 
   const quickLinks = allQuickLinks
-    .filter(link => profile.quickLinks?.includes(link.id));
+    .filter(link => profile.quickLinks?.includes(link.id))
+    .map(link => ({...link, title: t(link.title as any), description: t(link.description as any)}));
 
   return (
     <div className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
       <Card>
         <CardHeader>
           <CardTitle className="font-headline text-3xl">
-            {t('welcome_back')}, {profile.name}!
+            {t('Welcome back')}, {profile.name}!
           </CardTitle>
           <CardDescription>
             {welcomeMessage}
@@ -136,9 +137,9 @@ function DashboardPage() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle>{t('your_ecoscore')}</CardTitle>
+            <CardTitle>{t('Your EcoScore')}</CardTitle>
             <CardDescription>
-              {t('your_ecoscore_desc')}
+              {t('A summary of your environmental impact during your stay.')}
             </CardDescription>
           </CardHeader>
           <CardContent className="pb-8">
@@ -148,9 +149,9 @@ function DashboardPage() {
         <WeatherCard />
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle>{t('quick_links')}</CardTitle>
+            <CardTitle>{t('Quick Links')}</CardTitle>
             <CardDescription>
-              {t('quick_links_desc')}
+              {t('Navigate to key features of your Smart Guest experience.')}
             </CardDescription>
           </CardHeader>
           <CardContent className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -162,9 +163,9 @@ function DashboardPage() {
                     <ArrowRight className="h-5 w-5 text-muted-foreground transition-transform group-hover:translate-x-1" />
                   </div>
                   <div className="mt-4">
-                    <p className="font-semibold">{t(link.titleKey as any)}</p>
+                    <p className="font-semibold">{link.title}</p>
                     <p className="text-sm text-muted-foreground">
-                      {t(link.descriptionKey as any)}
+                      {link.description}
                     </p>
                   </div>
                 </div>
@@ -176,5 +177,3 @@ function DashboardPage() {
     </div>
   );
 }
-
-export default memo(DashboardPage);

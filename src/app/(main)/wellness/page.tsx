@@ -20,67 +20,66 @@ import {
   Smile,
 } from "lucide-react";
 import { useLanguage } from "@/context/language-context";
-import { memo } from "react";
 
 const activities = [
   {
     icon: Sparkles,
-    titleKey: "relaxing_massage",
-    descriptionKey: "relaxing_massage_desc",
+    title: "Relaxing Massage",
+    description: "Book a 60-minute session to unwind and de-stress.",
   },
   {
     icon: Wind,
-    titleKey: "guided_meditation",
-    descriptionKey: "guided_meditation_desc",
+    title: "Guided Meditation",
+    description: "Join our morning session to find your inner peace.",
   },
   {
     icon: Youtube,
-    titleKey: "yoga_class",
-    descriptionKey: "yoga_class_desc",
+    title: "Yoga Class",
+    description: "A vinyasa flow class suitable for all levels.",
   },
 ];
 
 const playlists = [
   {
-    titleKey: "peaceful_morning",
-    descriptionKey: "peaceful_morning_desc",
+    title: "Peaceful Morning",
+    description: "Start your day with calm and focus.",
   },
   {
-    titleKey: "ambient_focus",
-    descriptionKey: "ambient_focus_desc",
+    title: "Ambient Focus",
+    description: "Enhance your concentration and productivity.",
   },
   {
-    titleKey: "deep_sleep",
-    descriptionKey: "deep_sleep_desc",
+    title: "Deep Sleep",
+    description: "Drift off to sleep with soothing soundscapes.",
   },
 ];
 
 const wellnessTrackers = [
-  { icon: Bed, titleKey: "sleep_tracker", value: 75, unitKey: "8h_goal" },
-  { icon: GlassWater, titleKey: "hydration_tracker", value: 60, unitKey: "2l_goal" },
-  { icon: Smile, titleKey: "mindfulness_tracker", value: 90, unitKey: "10m_goal" },
+  { icon: Bed, title: "Sleep", value: 75, unit: "8h goal" },
+  { icon: GlassWater, title: "Hydration", value: 60, unit: "2L goal" },
+  { icon: Smile, title: "Mindfulness", value: 90, unit: "10m goal" },
 ];
 
-function WellnessPage() {
+export default function WellnessPage() {
   const { t } = useLanguage();
   return (
     <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">
       <div className="flex items-center justify-between space-y-2">
         <div>
           <h1 className="text-3xl font-bold tracking-tight font-headline">
-            {t('wellness_mindfulness_title')}
+            {t('Wellness & Mindfulness')}
           </h1>
           <p className="text-muted-foreground">
-            {t('wellness_mindfulness_subtitle')}
+            {t('Your personal space for relaxation and well-being.')}
           </p>
         </div>
       </div>
       <div className="grid gap-8">
         <Card>
           <CardHeader>
-            <CardTitle>{t('personalized_activities_title')}</CardTitle>
+            <CardTitle>{t('Personalized Activities')}</CardTitle>
             <CardDescription>
-              {t('personalized_activities_subtitle')}
+              {t('Based on your profile, here are some recommended activities.')}
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-6 md:grid-cols-3">
@@ -89,12 +88,12 @@ function WellnessPage() {
                 <CardHeader className="flex-row items-center gap-4">
                   <activity.icon className="h-10 w-10 text-primary" />
                   <div>
-                    <CardTitle className="text-lg">{t(activity.titleKey as any)}</CardTitle>
-                    <CardDescription>{t(activity.descriptionKey as any)}</CardDescription>
+                    <CardTitle className="text-lg">{t(activity.title as any)}</CardTitle>
+                    <CardDescription>{t(activity.description as any)}</CardDescription>
                   </div>
                 </CardHeader>
                 <CardFooter className="mt-auto">
-                  <Button className="w-full">{t('book_now_button')}</Button>
+                  <Button className="w-full">{t('Book Now')}</Button>
                 </CardFooter>
               </Card>
             ))}
@@ -103,9 +102,9 @@ function WellnessPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>{t('daily_wellness_tracking_title')}</CardTitle>
+            <CardTitle>{t('Daily Wellness Tracking')}</CardTitle>
             <CardDescription>
-              {t('daily_wellness_tracking_subtitle')}
+              {t('Monitor your daily goals for a healthier you.')}
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-6 md:grid-cols-3">
@@ -114,9 +113,9 @@ function WellnessPage() {
                  <div className="flex justify-between">
                     <div className="flex items-center gap-2">
                         <tracker.icon className="h-5 w-5 text-muted-foreground" />
-                        <span className="font-semibold">{t(tracker.titleKey as any)}</span>
+                        <span className="font-semibold">{t(tracker.title as any)}</span>
                     </div>
-                    <span className="text-sm text-muted-foreground">{t(tracker.unitKey as any)}</span>
+                    <span className="text-sm text-muted-foreground">{t(tracker.unit as any)}</span>
                  </div>
                 <Progress value={tracker.value} />
               </div>
@@ -126,9 +125,9 @@ function WellnessPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>{t('relaxing_playlists_title')}</CardTitle>
+            <CardTitle>{t('Relaxing Playlists')}</CardTitle>
             <CardDescription>
-              {t('relaxing_playlists_subtitle')}
+              {t('Curated sounds to help you relax and focus.')}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -138,12 +137,12 @@ function WellnessPage() {
                 className="flex items-center justify-between rounded-lg border p-4"
               >
                 <div>
-                  <p className="font-semibold">{t(playlist.titleKey as any)}</p>
+                  <p className="font-semibold">{t(playlist.title as any)}</p>
                   <p className="text-sm text-muted-foreground">
-                    {t(playlist.descriptionKey as any)}
+                    {t(playlist.description as any)}
                   </p>
                 </div>
-                <Button variant="outline">{t('play_button')}</Button>
+                <Button variant="outline">{t('Play')}</Button>
               </div>
             ))}
           </CardContent>
@@ -152,5 +151,3 @@ function WellnessPage() {
     </div>
   );
 }
-
-export default memo(WellnessPage);
