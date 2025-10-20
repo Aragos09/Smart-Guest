@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, memo } from "react";
+import { useState, memo, useEffect } from "react";
 import { useLanguage } from "@/context/language-context";
 import {
   Card,
@@ -22,7 +22,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Lightbulb, Thermometer, Wind, Tv, Moon, BookOpen, Loader, Wifi, Sun, User } from "lucide-react";
+import { Lightbulb, Thermometer, Wind, Tv, Moon, BookOpen, Loader, Wifi, Sun, User, BellOff, Sparkles as SparklesIcon } from "lucide-react";
 
 type ControlType = "lighting" | "climate" | "ambiance" | "blinds" | "status";
 
@@ -136,10 +136,13 @@ function BlindsControls() {
     );
 }
 
-function StatusControls() {
+function StatusControls({ doNotDisturb, setDoNotDisturb, makeUpRoom, setMakeUpRoom }: {
+    doNotDisturb: boolean;
+    setDoNotDisturb: (value: boolean) => void;
+    makeUpRoom: boolean;
+    setMakeUpRoom: (value: boolean) => void;
+}) {
     const { t } = useLanguage();
-    const [doNotDisturb, setDoNotDisturb] = useState(false);
-    const [makeUpRoom, setMakeUpRoom] = useState(false);
     return (
          <div className="space-y-4 pt-4">
               <div className="flex items-center justify-between rounded-lg border p-4">
@@ -170,13 +173,35 @@ function StatusControls() {
 function SmartRoomControls() {
   const { t } = useLanguage();
   const [activeControl, setActiveControl] = useState<ControlType | null>(null);
+  const [doNotDisturb, setDoNotDisturb] = useState(false);
+  const [makeUpRoom, setMakeUpRoom] = useState(false);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (doNotDisturb) {
+      timer = setTimeout(() => {
+        setDoNotDisturb(false);
+      }, 24 * 60 * 60 * 1000); // 24 hours
+    }
+    return () => clearTimeout(timer);
+  }, [doNotDisturb]);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (makeUpRoom) {
+      timer = setTimeout(() => {
+        setMakeUpRoom(false);
+      }, 24 * 60 * 60 * 1000); // 24 hours
+    }
+    return () => clearTimeout(timer);
+  }, [makeUpRoom]);
   
-  const controls: { id: ControlType; icon: React.ElementType; label: any; description: any; content: React.ReactNode }[] = [
+  const controls: { id: ControlType; icon: React.ElementType; label: any; description: any; content: React.ReactNode, activeState?: boolean, activeIcon?: React.ElementType, activeText?: string }[] = [
     { id: 'lighting', icon: Lightbulb, label: t('lighting_title'), description: t('lighting_title_description'), content: <LightingControls /> },
     { id: 'climate', icon: Thermometer, label: t('climate_title'), description: t('climate_title_description'), content: <ClimateControls /> },
     { id: 'ambiance', icon: Wind, label: t('ambiance_title'), description: t('ambiance_title_description'), content: <AmbianceControls /> },
     { id: 'blinds', icon: Sun, label: t('blinds_title'), description: t('blinds_title_description'), content: <BlindsControls /> },
-    { id: 'status', icon: User, label: t('room_status_title'), description: t('room_status_title_description'), content: <StatusControls /> },
+    { id: 'status', icon: User, label: t('room_status_title'), description: t('room_status_title_description'), content: <StatusControls doNotDisturb={doNotDisturb} setDoNotDisturb={setDoNotDisturb} makeUpRoom={makeUpRoom} setMakeUpRoom={setMakeUpRoom} />, activeState: doNotDisturb || makeUpRoom, activeIcon: doNotDisturb ? BellOff : SparklesIcon, activeText: doNotDisturb ? t('do_not_disturb_label') : t('make_up_room_label') },
   ];
 
   return (
@@ -189,7 +214,14 @@ function SmartRoomControls() {
                 <p className="font-semibold">{control.label}</p>
                 <control.icon className="h-6 w-6 text-primary" />
               </div>
-              <p className="text-sm text-muted-foreground">{control.description}</p>
+              {control.activeState && control.activeIcon && control.activeText ? (
+                <div className="flex items-center gap-2 text-sm font-medium text-primary">
+                  <control.activeIcon className="h-4 w-4" />
+                  <span>{control.activeText}</span>
+                </div>
+              ) : (
+                <p className="text-sm text-muted-foreground">{control.description}</p>
+              )}
             </Card>
           </DialogTrigger>
         ))}
