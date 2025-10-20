@@ -4,10 +4,8 @@
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
-  CardFooter,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,11 +15,10 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import {
-  Sparkles,
-  Wind,
   Bike,
-  Leaf,
   CheckCircle2,
+  Leaf,
+  Wind,
 } from "lucide-react";
 import { useLanguage } from "@/context/language-context";
 import wellnessData from "@/lib/wellness-services.json";
@@ -36,7 +33,7 @@ const ServiceCard = memo(function ServiceCard({ item }: { item: WellnessService 
     <Card className="flex flex-col">
       <CardHeader>
         <CardTitle className="text-lg">{t(item.name_fr as any)}</CardTitle>
-        <CardDescription>{t(item.description_fr as any)}</CardDescription>
+        <p className="text-sm text-muted-foreground pt-2">{t(item.description_fr as any)}</p>
       </CardHeader>
       <CardFooter className="mt-auto flex items-center justify-between">
         <p className="text-xl font-bold">
