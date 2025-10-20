@@ -360,8 +360,8 @@ export const translations = {
     "subtotal_label": "Sous-total",
     "total_label": "Total",
     "checkout_button": "Confirmer",
-    "order_placed_toast_title": "Votre commande a été passée !",
-    "order_placed_toast_desc": "Temps de livraison estimé : 25 minutes.",
+    'order_placed_toast_title': "Votre commande a été passée !",
+    'order_placed_toast_desc': "Temps de livraison estimé : 25 minutes.",
     'classic_menu_tab': 'Menu Classique',
     'vegan_menu_tab': 'Menu Vegan',
     'beverages_menu_tab': 'Signature & Mocktails',
@@ -499,6 +499,10 @@ export const translations = {
     "room_status_description": "Informez le personnel de vos besoins.",
     "do_not_disturb_label": "Ne pas déranger",
     "make_up_room_label": "Faire la chambre",
+    "connect_to_room_title": "Connecter à la Chambre",
+    "connect_to_room_desc": "Appuyez sur le bouton pour vous connecter aux systèmes de votre chambre.",
+    "connect_button": "Connecter",
+    "connecting_button": "Connexion...",
   },
   en: {
     // Common
@@ -861,6 +865,8 @@ export const translations = {
     "subtotal_label": "Subtotal",
     "total_label": "Total",
     "checkout_button": "Confirm",
+    "order_placed_toast_title": "Your order has been placed!",
+    "order_placed_toast_desc": "Estimated delivery time: 25 minutes.",
     'classic_menu_tab': 'Classic Menu',
     'vegan_menu_tab': 'Vegan Menu',
     'beverages_menu_tab': 'Signature & Mocktails',
@@ -998,6 +1004,10 @@ export const translations = {
     "room_status_description": "Inform staff of your needs.",
     "do_not_disturb_label": "Do Not Disturb",
     "make_up_room_label": "Make Up Room",
+    "connect_to_room_title": "Connect to Room",
+    "connect_to_room_desc": "Press the button to connect to your room's systems.",
+    "connect_button": "Connect",
+    "connecting_button": "Connecting...",
   },
   es: {
     // Common
@@ -1498,6 +1508,10 @@ export const translations = {
     "room_status_description": "Informa al personal de tus necesidades.",
     "do_not_disturb_label": "No molestar",
     "make_up_room_label": "Hacer la habitación",
+    "connect_to_room_title": "Conectar a la Habitación",
+    "connect_to_room_desc": "Pulsa el botón para conectarte a los sistemas de tu habitación.",
+    "connect_button": "Conectar",
+    "connecting_button": "Conectando...",
   }
 };
 
