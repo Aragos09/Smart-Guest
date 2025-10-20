@@ -29,8 +29,14 @@ import type { RoomServiceItem, RoomServiceMenu } from "@/lib/types";
 import { Search, ShoppingCart, Plus, Minus, Trash2, ArrowLeft, Martini, Vegan, Utensils } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
-const { classic, vegan, beverages } = menuData;
+const { classic, vegan, beverages }: { classic: RoomServiceMenu, vegan: RoomServiceMenu, beverages: RoomServiceMenu } = menuData;
 
 function MenuItemCard({ item, menuType }: { item: RoomServiceItem, menuType: string }) {
   const { t } = useLanguage();
@@ -167,18 +173,24 @@ function MenuDisplay({ menu, menuType, searchTerm }: { menu: RoomServiceMenu, me
   })).filter(category => category.items.length > 0);
 
   return (
-    <div className="space-y-4">
+    <div>
       {filteredCategories.length > 0 ? (
-        filteredCategories.map(category => (
-          <div key={category.id}>
-            <h2 className="text-2xl font-bold tracking-tight font-headline mt-6 mb-4">{t(category.name as any)}</h2>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {category.items.map((item: RoomServiceItem) => (
-                  <MenuItemCard key={item.name_fr} item={item} menuType={menuType} />
-                ))}
-            </div>
-          </div>
-        ))
+        <Accordion type="multiple" defaultValue={filteredCategories.map(c => t(c.name as any))} className="w-full space-y-4">
+          {filteredCategories.map(category => (
+            <AccordionItem value={t(category.name as any)} key={category.id}>
+              <AccordionTrigger className="text-2xl font-headline font-bold rounded-lg bg-card p-4 border data-[state=open]:border-b-0 data-[state=open]:rounded-b-none">
+                {t(category.name as any)}
+              </AccordionTrigger>
+              <AccordionContent className="border border-t-0 rounded-b-lg bg-card p-4">
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                  {category.items.map((item: RoomServiceItem) => (
+                    <MenuItemCard key={item.name_fr} item={item} menuType={menuType} />
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
       ) : (
         <div className="text-center text-muted-foreground py-10">
           {t('no_dishes_found')}
@@ -251,3 +263,5 @@ const RoomServicePage = memo(function RoomServicePage({ params }: { params: { lo
 });
 
 export default RoomServicePage;
+
+    
