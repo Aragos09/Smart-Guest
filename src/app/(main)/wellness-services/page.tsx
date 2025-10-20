@@ -33,14 +33,20 @@ const ServiceCard = memo(function ServiceCard({ item }: { item: WellnessService 
   return (
     <Card className="flex flex-col">
       <CardHeader>
-        <CardTitle className="text-lg">{t(item.name_fr as any)}</CardTitle>
-        <p className="text-sm text-muted-foreground pt-2">{t(item.description_fr as any)}</p>
+        <CardTitle className="text-lg">{t(item.name as any)}</CardTitle>
+        <p className="text-sm text-muted-foreground pt-2">{t(item.description as any)}</p>
       </CardHeader>
-      <CardFooter className="mt-auto flex items-center justify-between">
-        <p className="text-xl font-bold">
-          {item.price_eur > 0 ? `${item.price_eur.toFixed(2)}€` : t('free_price')}
-        </p>
-        <Button>{t('book_now_button')}</Button>
+      <CardFooter className={`mt-auto flex items-center ${item.price_eur > 0 ? 'justify-between' : 'justify-center'}`}>
+        {item.price_eur > 0 ? (
+          <>
+            <p className="text-xl font-bold">
+              {`${item.price_eur.toFixed(2)}€`}
+            </p>
+            <Button>{t('book_now_button')}</Button>
+          </>
+        ) : (
+          <p className="text-xl font-bold">{t('free_price')}</p>
+        )}
       </CardFooter>
     </Card>
   );
@@ -50,9 +56,9 @@ const WellnessServicesPage = memo(function WellnessServicesPage({ params }: { pa
   const { t } = useLanguage();
 
   const categories: WellnessServiceCategory[] = [
-    { name: t("spa_category"), icon: Wind, items: wellnessServices.spa },
-    { name: t("fitness_category"), icon: Bike, items: wellnessServices.fitness },
-    { name:t("eco_services_category"), icon: Leaf, items: wellnessServices.eco_services },
+    { name: "spa_category", icon: Wind, items: wellnessServices.spa },
+    { name: "fitness_category", icon: Bike, items: wellnessServices.fitness },
+    { name: "eco_services_category", icon: Leaf, items: wellnessServices.eco_services },
   ];
 
   const commitments = ecoCommitments ? Object.values(ecoCommitments) : [];
@@ -72,17 +78,17 @@ const WellnessServicesPage = memo(function WellnessServicesPage({ params }: { pa
 
       <Accordion type="multiple" defaultValue={["spa & relaxation", "fitness & activity", "eco-friendly services"]} className="w-full space-y-4">
         {categories.map((category) => (
-          <AccordionItem value={category.name.toLowerCase().replace(/ & /g, '-')} key={category.name}>
+          <AccordionItem value={t(category.name as any).toLowerCase().replace(/ & /g, '-')} key={category.name}>
             <AccordionTrigger className="text-2xl font-headline font-bold rounded-lg bg-card p-4 border data-[state=open]:border-b-0 data-[state=open]:rounded-b-none">
               <div className="flex items-center gap-3">
                 <category.icon className="h-6 w-6 text-primary" />
-                {category.name}
+                {t(category.name as any)}
               </div>
             </AccordionTrigger>
             <AccordionContent className="border border-t-0 rounded-b-lg bg-card p-4">
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {category.items.map((item) => (
-                  <ServiceCard key={item.name_fr} item={item} />
+                  <ServiceCard key={item.name} item={item} />
                 ))}
               </div>
             </AccordionContent>
