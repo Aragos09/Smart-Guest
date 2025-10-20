@@ -36,17 +36,11 @@ const ServiceCard = memo(function ServiceCard({ item }: { item: WellnessService 
         <CardTitle className="text-lg">{t(item.name as any)}</CardTitle>
         <p className="text-sm text-muted-foreground pt-2">{t(item.description as any)}</p>
       </CardHeader>
-      <CardFooter className={`mt-auto flex items-center ${item.price_eur > 0 ? 'justify-between' : 'justify-center'}`}>
-        {item.price_eur > 0 ? (
-          <>
-            <p className="text-xl font-bold">
-              {`${item.price_eur.toFixed(2)}€`}
-            </p>
-            <Button>{t('book_now_button')}</Button>
-          </>
-        ) : (
-          <p className="text-xl font-bold">{t('free_price')}</p>
-        )}
+      <CardFooter className="mt-auto flex items-center justify-between">
+        <p className="text-xl font-bold">
+          {item.price_eur > 0 ? `${item.price_eur.toFixed(2)}€` : t('free_price')}
+        </p>
+        <Button>{t('book_now_button')}</Button>
       </CardFooter>
     </Card>
   );
