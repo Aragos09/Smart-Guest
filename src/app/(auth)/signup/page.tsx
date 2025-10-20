@@ -1,3 +1,4 @@
+
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -75,7 +76,7 @@ export default function SignupPage() {
       title: t('account_created_success_title'),
       description: t('account_created_success_desc'),
     });
-    router.push("/dashboard");
+    router.push("/smart-room");
   }
 
   return (

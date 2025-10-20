@@ -27,9 +27,9 @@ export default function LoginPage() {
     e.preventDefault();
     toast({
       title: "Login Successful",
-      description: "Redirecting to your dashboard...",
+      description: "Redirecting to your smart room...",
     });
-    router.push("/dashboard");
+    router.push("/smart-room");
   };
 
   return (
@@ -40,29 +40,29 @@ export default function LoginPage() {
         </div>
         <CardTitle className="text-2xl font-headline">Smart Guest</CardTitle>
         <CardDescription>
-          {t('Your AI-powered sustainable travel companion')}
+          {t('app_subtitle')}
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleLogin}>
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="email">{t('Email')}</Label>
+              <Label htmlFor="email">{t('email_label')}</Label>
               <Input id="email" type="email" placeholder="name@example.com" required />
             </div>
             <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="password">{t('Password')}</Label>
+              <Label htmlFor="password">{t('password_label')}</Label>
               <Input id="password" type="password" placeholder="••••••••" required />
             </div>
             <Button type="submit" className="w-full">
-              {t('Sign In')}
+              {t('sign_in_button')}
             </Button>
           </div>
         </form>
       </CardContent>
       <CardFooter className="flex-col gap-2 pt-6">
           <Button variant="link" asChild>
-            <Link href="/signup">{t("Don't have an account? Sign up")}</Link>
+            <Link href="/signup">{t("signup_link_text")}</Link>
           </Button>
       </CardFooter>
     </Card>
