@@ -117,7 +117,7 @@ export function WeatherCard() {
   return (
     <Dialog>
       <DialogTrigger asChild disabled={isLoading || !!error}>
-        <Card className="lg:col-span-2 h-full transition-all hover:bg-muted/50 cursor-pointer">
+        <Card className="h-full transition-all hover:bg-muted/50 cursor-pointer">
           {cardContent}
         </Card>
       </DialogTrigger>
