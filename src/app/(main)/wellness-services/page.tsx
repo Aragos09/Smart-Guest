@@ -16,6 +16,17 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+    DialogFooter,
+    DialogClose,
+  } from "@/components/ui/dialog";
+import { Calendar } from "@/components/ui/calendar";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
   Bike,
   CheckCircle2,
   Leaf,
@@ -24,28 +35,124 @@ import {
 import { useLanguage } from "@/context/language-context";
 import wellnessData from "@/lib/wellness-services.json";
 import type { WellnessService, WellnessServiceCategory } from "@/lib/types";
-import { memo } from "react";
+import { memo, useState } from "react";
+import { useInvoice } from "@/context/invoice-context";
+import { useToast } from "@/hooks/use-toast";
+import { format } from 'date-fns';
+
 
 const { wellness_services: wellnessServices, eco_commitments: ecoCommitments } = wellnessData;
+
+const timeSlots = [
+    "09:00", "10:00", "11:00", "14:00", "15:00", "16:00", "17:00"
+];
+
+function BookingDialog({ item, children }: { item: WellnessService; children: React.ReactNode }) {
+    const { t } = useLanguage();
+    const { addItemsToInvoice } = useInvoice();
+    const { toast } = useToast();
+    const [date, setDate] = useState<Date | undefined>(new Date());
+    const [time, setTime] = useState<string | undefined>(undefined);
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleBooking = () => {
+        if (!date || !time) {
+          toast({
+            variant: "destructive",
+            title: t('booking_error_title'),
+            description: t('booking_error_desc'),
+          });
+          return;
+        }
+
+        const bookingDate = new Date(date);
+        const [hours, minutes] = time.split(':').map(Number);
+        bookingDate.setHours(hours, minutes);
+
+        addItemsToInvoice([{
+            id: `wellness-${item.name}-${Date.now()}`,
+            name: `${t(item.name as any)} (${format(bookingDate, "PPP @ p")})`,
+            price: item.price_eur,
+            quantity: 1,
+        }]);
+
+        toast({
+            title: t('booking_success_title'),
+            description: t('booking_success_desc', { context: t(item.name as any) }),
+        });
+        
+        setDate(new Date());
+        setTime(undefined);
+        setIsOpen(false);
+    }
+    
+    return (
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+            <DialogTrigger asChild>{children}</DialogTrigger>
+            <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                    <DialogTitle>{t('book_service_title', { context: t(item.name as any)})}</DialogTitle>
+                </DialogHeader>
+                <div className="grid gap-4 py-4">
+                    <Calendar
+                        mode="single"
+                        selected={date}
+                        onSelect={setDate}
+                        disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() - 1))}
+                        className="rounded-md border"
+                    />
+                    <Select onValueChange={setTime} value={time}>
+                        <SelectTrigger>
+                            <SelectValue placeholder={t('select_time_placeholder')} />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {timeSlots.map(slot => (
+                                <SelectItem key={slot} value={slot}>{slot}</SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
+                <DialogFooter>
+                    <DialogClose asChild>
+                        <Button variant="outline">{t('cancel_button')}</Button>
+                    </DialogClose>
+                    <Button onClick={handleBooking}>{t('confirm_button')}</Button>
+                </DialogFooter>
+            </DialogContent>
+        </Dialog>
+    );
+}
 
 const ServiceCard = memo(function ServiceCard({ item }: { item: WellnessService }) {
   const { t } = useLanguage();
   
   const isFree = item.price_eur <= 0;
+  const isDonation = item.action_type === 'donate';
+  const buttonText = isDonation ? 'donate_button' : 'book_now_button';
 
-  return (
-    <Card className="flex flex-col">
+  const cardContent = (
+    <Card className="flex flex-col h-full">
       <CardHeader>
         <CardTitle className="text-lg">{t(item.name as any)}</CardTitle>
         <p className="text-sm text-muted-foreground pt-2">{t(item.description as any)}</p>
       </CardHeader>
       <CardFooter className="mt-auto flex items-center justify-between">
         <p className="text-xl font-bold">
-          {item.price_eur > 0 ? `${item.price_eur.toFixed(2)}€` : t('free_price')}
+          {isFree ? t('free_price') : `${item.price_eur.toFixed(2)}€`}
         </p>
-        <Button>{t(item.action_type === 'donate' ? 'donate_button' : 'book_now_button')}</Button>
+        <Button disabled={isFree}>{t(buttonText as any)}</Button>
       </CardFooter>
     </Card>
+  );
+
+  if(isFree) {
+      return cardContent;
+  }
+
+  return (
+    <BookingDialog item={item}>
+        {cardContent}
+    </BookingDialog>
   );
 });
 
