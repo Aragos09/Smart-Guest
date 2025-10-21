@@ -68,7 +68,6 @@ const SidebarProvider = React.forwardRef<
   ) => {
     const isMobile = useIsMobile()
     
-    // We use a separate state for mobile and desktop to prevent conflicts
     const [openMobile, setOpenMobile] = React.useState(false)
     const [_open, _setOpen] = React.useState(defaultOpen)
     
@@ -88,25 +87,19 @@ const SidebarProvider = React.forwardRef<
         } else {
           _setOpen(openState)
         }
-
-        // This sets the cookie to keep the sidebar state.
         document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`
       },
       [setOpenProp, open, isMobile]
     )
     
-    // Helper to toggle the sidebar.
     const toggleSidebar = React.useCallback(() => {
       setOpen((prev) => !prev)
     }, [setOpen])
 
     const closeSidebar = React.useCallback(() => {
-      if (isMobile) {
-        setOpen(false)
-      }
+      setOpen(false)
     }, [setOpen, isMobile])
 
-    // Adds a keyboard shortcut to toggle the sidebar.
     React.useEffect(() => {
       const handleKeyDown = (event: KeyboardEvent) => {
         if (
@@ -182,7 +175,7 @@ const Sidebar = React.forwardRef<
     },
     ref
   ) => {
-    const { state, isMobile, open } = useSidebar()
+    const { state, isMobile } = useSidebar()
     
     const effectiveCollapsible = isMobile ? "icon" : collapsible;
     const effectiveVariant = isMobile ? "sidebar" : variant;
@@ -384,7 +377,7 @@ const SidebarContent = React.forwardRef<
       ref={ref}
       data-sidebar="content"
       className={cn(
-        "flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto overflow-x-hidden group-data-[collapsible=icon]:overflow-hidden",
+        "flex flex-1 flex-col",
         className
       )}
       {...props}
