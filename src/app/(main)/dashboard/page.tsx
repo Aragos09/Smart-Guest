@@ -141,17 +141,19 @@ const DashboardPage = memo(function DashboardPage() {
         </CardHeader>
       </Card>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card className="lg:col-span-2">
-          <CardHeader>
-            <CardTitle>{t('ecoscore_title')}</CardTitle>
-            <CardDescription>
-              {t('ecoscore_description')}
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="pb-8">
-            <EcoScoreChart />
-          </CardContent>
-        </Card>
+        {profile.ecoSensitivity === 'high' && (
+          <Card className="lg:col-span-2">
+            <CardHeader>
+              <CardTitle>{t('ecoscore_title')}</CardTitle>
+              <CardDescription>
+                {t('ecoscore_description')}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="pb-8">
+              <EcoScoreChart />
+            </CardContent>
+          </Card>
+        )}
         <WeatherCard />
         {quickLinks.length > 0 && (
           <Card className="lg:col-span-2">
