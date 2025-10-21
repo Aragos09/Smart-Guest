@@ -1,40 +1,41 @@
+
 {
   "categories": [
     {
-      "name": "Entrées",
+      "name": "starters_category",
       "items": [
-        {"name": "Velouté de potimarron et lait de coco", "type": "Vegan", "price": 12, "eco_label": "Local/Bio"},
-        {"name": "Tartare de saumon à la mangue", "type": "Pescetarien", "price": 14, "eco_label": "Label Rouge"},
-        {"name": "Carpaccio de betterave et chèvre frais", "type": "Végétarien", "price": 11, "eco_label": "Local"},
-        {"name": "Gaspacho vert detox", "type": "Vegan", "price": 10, "eco_label": "Bio"}
+        {"name": "pumpkin_soup_name", "type": "vegan_type", "price": 12, "eco_label": "local_organic_ecolabel"},
+        {"name": "salmon_tartare_name", "type": "pescetarian_type", "price": 14, "eco_label": "red_label_ecolabel"},
+        {"name": "beetroot_carpaccio_name", "type": "vegetarian_type", "price": 11, "eco_label": "local_ecolabel"},
+        {"name": "detox_gazpacho_name", "type": "vegan_type", "price": 10, "eco_label": "organic_ecolabel"}
       ]
     },
     {
-      "name": "Plats principaux",
+      "name": "main_courses_category",
       "items": [
-        {"name": "Filet de bar rôti", "type": "Pescetarien", "price": 24, "eco_label": "Pêche durable"},
-        {"name": "Risotto de champignons", "type": "Végétarien", "price": 20, "eco_label": "Bio"},
-        {"name": "Curry vert de légumes", "type": "Vegan", "price": 18, "eco_label": "Bio / Équitable"},
-        {"name": "Burger végétal", "type": "Vegan", "price": 19, "eco_label": "Local / Bio"},
-        {"name": "Suprême de volaille fermière", "type": "Omnivore", "price": 23, "eco_label": "Label Rouge"}
+        {"name": "sea_bass_name", "type": "pescetarian_type", "price": 24, "eco_label": "sustainable_fishing_ecolabel"},
+        {"name": "mushroom_risotto_name", "type": "vegetarian_type", "price": 20, "eco_label": "organic_ecolabel"},
+        {"name": "green_curry_name", "type": "vegan_type", "price": 18, "eco_label": "organic_fair_trade_ecolabel"},
+        {"name": "veggie_burger_name", "type": "vegan_type", "price": 19, "eco_label": "local_organic_ecolabel"},
+        {"name": "chicken_supreme_name", "type": "omnivore_type", "price": 23, "eco_label": "red_label_ecolabel"}
       ]
     },
     {
-      "name": "Desserts",
+      "name": "desserts_category",
       "items": [
-        {"name": "Mousse au chocolat noir", "type": "Vegan", "price": 9, "eco_label": "Commerce équitable"},
-        {"name": "Tartelette citron meringuée", "type": "Végétarien", "price": 8, "eco_label": "Local"},
-        {"name": "Assiette de fruits de saison", "type": "Vegan", "price": 8, "eco_label": "Bio / Local"},
-        {"name": "Crème brûlée à la vanille", "type": "Végétarien", "price": 9, "eco_label": "Bio"}
+        {"name": "chocolate_mousse_name", "type": "vegan_type", "price": 9, "eco_label": "fair_trade_ecolabel"},
+        {"name": "lemon_tart_name", "type": "vegetarian_type", "price": 8, "eco_label": "local_ecolabel"},
+        {"name": "fruit_platter_name", "type": "vegan_type", "price": 8, "eco_label": "local_organic_ecolabel"},
+        {"name": "creme_brulee_name", "type": "vegetarian_type", "price": 9, "eco_label": "organic_ecolabel"}
       ]
     },
     {
-      "name": "Boissons & Cocktails",
+      "name": "drinks_cocktails_category",
       "items": [
-        {"name": "Smoothie vert detox", "type": "Vegan", "price": 7, "eco_label": "Bio"},
-        {"name": "Cocktail Green Spirit", "type": "Vegan", "price": 8, "eco_label": "Local"},
-        {"name": "Vin blanc biodynamique", "type": "Vegan-friendly", "price": 6, "eco_label": "Biodynamique"},
-        {"name": "Eau filtrée Smart Guest", "type": "Vegan", "price": 0, "eco_label": "Zéro déchet"}
+        {"name": "detox_smoothie_name", "type": "vegan_type", "price": 7, "eco_label": "organic_ecolabel"},
+        {"name": "green_spirit_cocktail_name", "type": "vegan_type", "price": 8, "eco_label": "local_ecolabel"},
+        {"name": "biodynamic_wine_name", "type": "vegan_friendly_type", "price": 6, "eco_label": "biodynamic_ecolabel"},
+        {"name": "filtered_water_name", "type": "vegan_type", "price": 0, "eco_label": "zero_waste_ecolabel"}
       ]
     }
   ]

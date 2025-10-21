@@ -1,9 +1,10 @@
+
 {
   "menu": {
     "id": "signature_menu",
-    "name": "Menu Signature – Saveurs Contemporaines",
+    "name": "signature_menu_title",
     "type": "gastronomic",
-    "description": "Un menu raffiné mêlant tradition française et modernité, élaboré avec des produits locaux et de saison.",
+    "description": "signature_menu_description",
     "sustainability": {
       "local_products": "80% issus de producteurs régionaux",
       "fish_label": "MSC (Marine Stewardship Council)",
@@ -12,151 +13,151 @@
     },
     "sections": [
       {
-        "category": "Amuse-bouche de bienvenue",
+        "category": "welcome_appetizer_category",
         "items": [
           {
-            "name": "Mini-croquette de homard à la citronnelle",
-            "description": "Servie avec espuma de yuzu et zestes de citron vert.",
+            "name": "lobster_croquette_name",
+            "description": "lobster_croquette_desc",
             "price": 12.5,
-            "allergens": ["Crustacés", "Lactose"],
-            "wine_pairing": "Champagne brut nature"
+            "allergens": ["allergen_shellfish", "allergen_dairy"],
+            "wine_pairing": "champagne_brut_pairing"
           },
           {
-            "name": "Velouté de potiron aux éclats de noisettes caramélisées",
-            "description": "Préparé avec potiron bio et crème légère infusée à la sauge.",
+            "name": "pumpkin_veloute_name",
+            "description": "pumpkin_veloute_desc",
             "price": 10,
-            "allergens": ["Noisettes", "Lactose"],
-            "wine_pairing": "Chardonnay de Bourgogne"
+            "allergens": ["allergen_nuts", "allergen_dairy"],
+            "wine_pairing": "burgundy_chardonnay_pairing"
           }
         ]
       },
       {
-        "category": "Entrées",
+        "category": "starters_category",
         "items": [
           {
-            "name": "Tartare de saumon Label Rouge, avocat et perles de citron caviar",
-            "description": "Servi avec tuile de sésame noir et huile d’olive de Provence.",
+            "name": "red_label_salmon_tartare_name",
+            "description": "red_label_salmon_tartare_desc",
             "price": 18,
-            "allergens": ["Poisson", "Sésame"],
-            "wine_pairing": "Sancerre blanc – Les Monts Damnés"
+            "allergens": ["allergen_fish", "allergen_sesame"],
+            "wine_pairing": "sancerre_blanc_pairing"
           },
           {
-            "name": "Foie gras de canard maison, chutney de figues et brioche toastée",
-            "description": "Préparé au torchon, accompagné d’un verre de Sauternes.",
+            "name": "foie_gras_name",
+            "description": "foie_gras_desc",
             "price": 22,
-            "allergens": ["Gluten", "Lactose"],
-            "wine_pairing": "Sauternes – Château Rieussec"
+            "allergens": ["allergen_gluten", "allergen_dairy"],
+            "wine_pairing": "sauternes_pairing"
           },
           {
-            "name": "Œuf parfait, crème de truffe et éclats de parmesan AOP",
-            "description": "Servi sur une mousseline de céleri fondante.",
+            "name": "perfect_egg_name",
+            "description": "perfect_egg_desc",
             "price": 16,
-            "allergens": ["Œufs", "Lactose"],
-            "wine_pairing": "Chablis 1er Cru – Montée de Tonnerre"
+            "allergens": ["allergen_eggs", "allergen_dairy"],
+            "wine_pairing": "chablis_premier_cru_pairing"
           }
         ]
       },
       {
-        "category": "Plats principaux",
+        "category": "main_courses_category",
         "items": [
           {
-            "name": "Filet de bœuf français, jus corsé au vin rouge et purée de pommes vitelotte",
-            "description": "Accompagné de légumes racines glacés et chips de panais.",
+            "name": "french_beef_filet_name",
+            "description": "french_beef_filet_desc",
             "price": 32,
             "allergens": [],
-            "wine_pairing": "Saint-Émilion Grand Cru – Château Canon"
+            "wine_pairing": "saint_emilion_grand_cru_pairing"
           },
           {
-            "name": "Dos de bar rôti, émulsion de champagne et risotto au citron confit",
-            "description": "Filet à peau croustillante, touche acidulée et fondante.",
+            "name": "roasted_seabass_name",
+            "description": "roasted_seabass_desc",
             "price": 28,
-            "allergens": ["Poisson", "Lactose"],
-            "wine_pairing": "Chablis 1er Cru – Domaine Laroche"
+            "allergens": ["allergen_fish", "allergen_dairy"],
+            "wine_pairing": "chablis_domaine_laroche_pairing"
           },
           {
-            "name": "Suprême de volaille fermière aux morilles, tagliatelles fraîches et asperges vertes",
-            "description": "Sauce crémeuse au vin jaune du Jura, cuisson basse température.",
+            "name": "farmhouse_chicken_supreme_name",
+            "description": "farmhouse_chicken_supreme_desc",
             "price": 26,
-            "allergens": ["Gluten", "Lactose"],
-            "wine_pairing": "Côtes-du-Jura blanc – Domaine Rolet"
+            "allergens": ["allergen_gluten", "allergen_dairy"],
+            "wine_pairing": "cotes_du_jura_blanc_pairing"
           },
           {
-            "name": "Côte d’agneau rôtie, purée de pois chiches au cumin et jus réduit au romarin",
-            "description": "Servie avec légumes confits et oignons rouges caramélisés.",
+            "name": "roasted_lamb_chop_name",
+            "description": "roasted_lamb_chop_desc",
             "price": 29,
             "allergens": [],
-            "wine_pairing": "Côtes-du-Rhône – Les Becs Fins"
+            "wine_pairing": "cotes_du_rhone_pairing"
           }
         ]
       },
       {
-        "category": "Interlude Fromager",
+        "category": "cheese_interlude_category",
         "items": [
           {
-            "name": "Sélection de trois fromages affinés",
-            "description": "Comté 24 mois, Saint-Nectaire fermier, Rocamadour. Servis avec confiture de cerise noire et pain aux noix.",
+            "name": "aged_cheese_selection_name",
+            "description": "aged_cheese_selection_desc",
             "price": 14,
-            "allergens": ["Lactose", "Gluten"],
-            "wine_pairing": "Bordeaux blanc sec – Château Carbonnieux"
+            "allergens": ["allergen_dairy", "allergen_gluten"],
+            "wine_pairing": "dry_white_bordeaux_pairing"
           }
         ]
       },
       {
-        "category": "Desserts",
+        "category": "desserts_category",
         "items": [
           {
-            "name": "Dôme chocolat noir 70%, cœur coulant praliné et crumble noisette",
-            "description": "Servi avec sorbet cacao et éclats d’amandes torréfiées.",
+            "name": "dark_chocolate_dome_name",
+            "description": "dark_chocolate_dome_desc",
             "price": 12,
-            "allergens": ["Noisettes", "Lactose"],
-            "wine_pairing": "Porto Tawny 10 ans"
+            "allergens": ["allergen_nuts", "allergen_dairy"],
+            "wine_pairing": "tawny_port_pairing"
           },
           {
-            "name": "Tarte fine aux pommes caramélisées, glace vanille bourbon",
-            "description": "Fines lamelles de pommes, sirop léger à la cannelle.",
+            "name": "fine_apple_tart_name",
+            "description": "fine_apple_tart_desc",
             "price": 10,
-            "allergens": ["Gluten", "Lactose"],
-            "wine_pairing": "Cidre brut fermier"
+            "allergens": ["allergen_gluten", "allergen_dairy"],
+            "wine_pairing": "farmhouse_cider_pairing"
           },
           {
-            "name": "Mille-feuille pistache et framboises fraîches",
-            "description": "Feuilletage croustillant et crème légère à la pistache.",
+            "name": "pistachio_millefeuille_name",
+            "description": "pistachio_millefeuille_desc",
             "price": 11,
-            "allergens": ["Gluten", "Lactose"],
-            "wine_pairing": "Champagne rosé"
+            "allergens": ["allergen_gluten", "allergen_dairy"],
+            "wine_pairing": "rose_champagne_pairing"
           }
         ]
       },
       {
-        "category": "Vins et boissons",
+        "category": "wines_drinks_category",
         "items": [
           {
-            "name": "Chablis 1er Cru – Montée de Tonnerre",
+            "name": "chablis_premier_cru_pairing",
             "type": "Blanc",
             "region": "Bourgogne, France",
             "price": 9
           },
           {
-            "name": "Sancerre blanc – Les Monts Damnés",
+            "name": "sancerre_blanc_pairing",
             "type": "Blanc",
             "region": "Loire, France",
             "price": 8.5
           },
           {
-            "name": "Saint-Émilion Grand Cru – Château Canon",
+            "name": "saint_emilion_grand_cru_pairing",
             "type": "Rouge",
             "region": "Bordeaux, France",
             "price": 11
           },
           {
-            "name": "Côtes-du-Rhône – Les Becs Fins",
+            "name": "cotes_du_rhone_pairing",
             "type": "Rouge",
             "region": "Vallée du Rhône, France",
             "price": 7.5
           },
           {
-            "name": "Café gourmand",
-            "description": "Café arabica éthiopien, mini-macarons maison et truffe chocolat.",
+            "name": "gourmet_coffee_name",
+            "description": "gourmet_coffee_desc",
             "price": 6
           }
         ]
