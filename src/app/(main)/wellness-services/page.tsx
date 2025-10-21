@@ -68,12 +68,15 @@ function BookingDialog({ item, children }: { item: WellnessService; children: Re
         const bookingDate = new Date(date);
         const [hours, minutes] = time.split(':').map(Number);
         bookingDate.setHours(hours, minutes);
+        
+        const bookingInfo = format(bookingDate, "PPP @ p");
 
         addItemsToInvoice([{
             id: `wellness-${item.name}-${Date.now()}`,
-            name: `${t(item.name as any)} (${format(bookingDate, "PPP @ p")})`,
+            name: item.name, // Store the key, not the translated string
             price: item.price_eur,
             quantity: 1,
+            bookingInfo: bookingInfo, // Store formatted date separately
         }]);
 
         toast({

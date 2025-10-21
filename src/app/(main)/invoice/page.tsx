@@ -51,6 +51,13 @@ const InvoicePage = memo(function InvoicePage() {
     // In a real app, you would clear the invoice or mark it as paid here.
   };
 
+  const renderItemName = (item: any) => {
+    if (item.bookingInfo) {
+      return `${t(item.name as any)} (${item.bookingInfo})`;
+    }
+    return t(item.name as any);
+  }
+
   return (
     <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">
       <div>
@@ -87,7 +94,7 @@ const InvoicePage = memo(function InvoicePage() {
                 {invoiceItems.map((item, index) => (
                   <TableRow key={`${item.id}-${index}`}>
                     <TableCell>{format(new Date(item.date), "PPP p")}</TableCell>
-                    <TableCell>{t(item.name as any)}</TableCell>
+                    <TableCell>{renderItemName(item)}</TableCell>
                     <TableCell className="text-center">{item.quantity}</TableCell>
                     <TableCell className="text-right">{item.price.toFixed(2)}€</TableCell>
                     <TableCell className="text-right">{(item.price * item.quantity).toFixed(2)}€</TableCell>
@@ -123,7 +130,7 @@ const InvoicePage = memo(function InvoicePage() {
                     onClick={() => handlePayment("Visa")}
                   >
                     <CreditCard className="h-8 w-8 text-blue-600" />
-                    <span className="font-semibold text-lg">Visa</span>
+                    <span className="font-semibold text-lg">{t('payment_method_visa')}</span>
                   </Button>
                   <Button
                     variant="outline"
@@ -131,7 +138,7 @@ const InvoicePage = memo(function InvoicePage() {
                     onClick={() => handlePayment("Mastercard")}
                   >
                     <CreditCard className="h-8 w-8 text-orange-500" />
-                    <span className="font-semibold text-lg">Mastercard</span>
+                    <span className="font-semibold text-lg">{t('payment_method_mastercard')}</span>
                   </Button>
                   <Button
                     variant="outline"

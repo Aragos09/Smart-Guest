@@ -6,6 +6,7 @@ export type CartItem = CartContextCartItem;
 
 export type InvoiceItem = CartItem & {
     date: string;
+    bookingInfo?: string;
 };
 
 export type UserProfile = {
