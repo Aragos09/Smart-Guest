@@ -296,5 +296,3 @@ const SmartRoomPage = memo(function SmartRoomPage() {
 });
 
 export default SmartRoomPage;
-
-    
