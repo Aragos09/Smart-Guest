@@ -78,7 +78,6 @@ function BookingDialog({ item, children }: { item: WellnessService; children: Re
 
         toast({
             title: t('booking_success_title'),
-            description: t('booking_success_desc', { context: t(item.name as any) }),
         });
         
         setDate(new Date());
