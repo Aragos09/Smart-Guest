@@ -180,7 +180,7 @@ const Sidebar = React.forwardRef<
     },
     ref
   ) => {
-    const { state, isMobile } = useSidebar()
+    const { state, isMobile, toggleSidebar, open } = useSidebar()
     
     const effectiveCollapsible = isMobile ? "icon" : collapsible;
     const effectiveVariant = isMobile ? "sidebar" : variant;
@@ -206,7 +206,7 @@ const Sidebar = React.forwardRef<
         className="group peer text-sidebar-foreground"
         data-state={state}
         data-collapsible={state === "collapsed" ? effectiveCollapsible : ""}
-        data-variant={effectiveVariant}
+        data-variant={isMobile ? "sidebar" : variant}
         data-side={side}
       >
         <div
@@ -214,7 +214,6 @@ const Sidebar = React.forwardRef<
             "duration-200 relative h-svh bg-transparent transition-[width] ease-linear",
             side === "left" ? "w-[--sidebar-width-icon]" : "w-0",
             "group-data-[state=expanded]:w-[--sidebar-width]",
-            "md:group-data-[collapsible=icon]:w-[--sidebar-width-icon]",
           )}
         />
         <div
@@ -222,7 +221,8 @@ const Sidebar = React.forwardRef<
             "duration-200 fixed inset-y-0 z-10 h-svh w-[--sidebar-width-icon] transition-[width] ease-linear flex",
              "group-data-[state=expanded]:w-[--sidebar-width]",
             side === "left" ? "left-0" : "right-0",
-            className
+            className,
+            isMobile && !open && 'hidden'
           )}
           {...props}
         >
@@ -268,7 +268,8 @@ SidebarTrigger.displayName = "SidebarTrigger"
 const SidebarRail = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<"button">
->(({ className, ...props }, ref) => {
+>(({ className, onClick, ...props }, ref) => {
+  const { toggleSidebar } = useSidebar();
 
   return (
     <button
@@ -283,6 +284,10 @@ const SidebarRail = React.forwardRef<
         "[[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize",
         className
       )}
+      onClick={(event) => {
+        onClick?.(event)
+        toggleSidebar()
+      }}
       {...props}
     />
   )
