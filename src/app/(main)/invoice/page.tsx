@@ -91,12 +91,25 @@ const InvoicePage = memo(function InvoicePage() {
         description: t('payment_success_desc_Cash')
       });
       setIsDialogOpen(false);
+    } else if (method === "Apple Pay") {
+      setPaymentStep('applePayConfirmation');
     } else {
       setPaymentStep('cardDetails');
     }
   };
+  
+  const handleApplePayConfirm = () => {
+    console.log(`Payment confirmed for ${selectedMethod}`);
+    toast({
+        title: t('payment_success_title'),
+        description: t('payment_success_desc', { context: selectedMethod }),
+    });
+    setPaymentStep('methodSelection');
+    setIsDialogOpen(false);
+    // In a real app, you would clear the invoice or mark it as paid here.
+  };
 
-  const handleConfirmPayment = (data: FormValues) => {
+  const handleCardPayment = (data: FormValues) => {
     console.log(`Payment confirmed for ${selectedMethod} with data:`, data);
     toast({
       title: t('payment_success_title'),
@@ -229,9 +242,31 @@ const InvoicePage = memo(function InvoicePage() {
                       </Button>
                     </div>
                   </>
+                ) : paymentStep === 'applePayConfirmation' ? (
+                    <>
+                        <DialogHeader>
+                            <div className="flex items-center gap-2">
+                                <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => setPaymentStep('methodSelection')}>
+                                    <ArrowLeft className="h-4 w-4" />
+                                </Button>
+                                <DialogTitle>{t('apple_pay_confirm_title')}</DialogTitle>
+                            </div>
+                            <DialogDescription>{t('apple_pay_confirm_desc')}</DialogDescription>
+                        </DialogHeader>
+                        <div className="py-8 text-center space-y-4">
+                            <AppleIcon className="h-16 w-16 mx-auto" />
+                            <p className="text-sm text-muted-foreground">{t('total_amount_label')}</p>
+                            <p className="text-3xl font-bold">{totalPrice.toFixed(2)}€</p>
+                        </div>
+                        <DialogFooter>
+                            <Button onClick={handleApplePayConfirm} className="w-full">
+                                {t('apple_pay_confirm_button')}
+                            </Button>
+                        </DialogFooter>
+                    </>
                 ) : (
                     <Form {...form}>
-                      <form onSubmit={form.handleSubmit(handleConfirmPayment)} className="space-y-4">
+                      <form onSubmit={form.handleSubmit(handleCardPayment)} className="space-y-4">
                         <DialogHeader>
                           <div className="flex items-center gap-2">
                               <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => setPaymentStep('methodSelection')}>
