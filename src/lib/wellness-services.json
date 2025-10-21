@@ -1,3 +1,4 @@
+
 {
   "wellness_services": {
     "spa": [
@@ -70,7 +71,7 @@
       {
         "name": "eco_shuttle_name",
         "description": "eco_shuttle_desc",
-        "price_eur": 5.00
+        "price_eur": 35.00
       }
     ]
   },
