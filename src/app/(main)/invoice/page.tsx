@@ -66,7 +66,7 @@ const InvoicePage = memo(function InvoicePage() {
 
   const formSchema = z.object({
     cardName: z.string().min(1, { message: t('required_field_error') }),
-    cardNumber: z.string().regex(/^\d{16}$/, { message: t('invalid_card_number_error') }),
+    cardNumber: z.string().regex(/^(?:\d{4} ){3}\d{4}$/, { message: t('invalid_card_number_error') }),
     expiryMonth: z.string({ required_error: t('required_field_error') }),
     expiryYear: z.string({ required_error: t('required_field_error') }),
     cvc: z.string().regex(/^\d{3,4}$/, { message: t('invalid_cvc_error') }),
@@ -138,6 +138,20 @@ const InvoicePage = memo(function InvoicePage() {
         setSelectedMethod('');
       }, 300);
     }
+  }
+
+  const formatCardNumber = (value: string) => {
+    const v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+    const matches = v.match(/\d{4,16}/g);
+    const match = (matches && matches[0]) || '';
+    const parts = [];
+    for (let i = 0, len = match.length; i < len; i += 4) {
+      parts.push(match.substring(i, i + 4));
+    }
+    if (parts.length) {
+      return parts.join(' ');
+    }
+    return value;
   }
   
   return (
@@ -296,7 +310,14 @@ const InvoicePage = memo(function InvoicePage() {
                             <FormItem>
                               <FormLabel>{t('card_number_label')}</FormLabel>
                               <FormControl>
-                                <Input placeholder="0000 0000 0000 0000" {...field} />
+                                <Input 
+                                  placeholder="0000 0000 0000 0000"
+                                  {...field}
+                                  onChange={(e) => {
+                                    const formattedValue = formatCardNumber(e.target.value);
+                                    field.onChange(formattedValue);
+                                  }}
+                                />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
