@@ -61,7 +61,7 @@ const wellnessTrackers = [
   { icon: Smile, title: "mindfulness_tracker", value: 90, unit: "mindfulness_tracker_goal" },
 ];
 
-const WellnessPage = memo(function WellnessPage({ params }: { params: { locale: string }}) {
+const WellnessPage = memo(function WellnessPage() {
   const { t } = useLanguage();
   return (
     <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">

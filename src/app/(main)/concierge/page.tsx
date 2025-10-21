@@ -19,7 +19,7 @@ import roomServiceMenu from '@/lib/room-service-menu.json';
 import wellnessServices from '@/lib/wellness-services.json';
 
 
-const ConciergePage = memo(function ConciergePage({ params }: { params: { locale: string }}) {
+const ConciergePage = memo(function ConciergePage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);

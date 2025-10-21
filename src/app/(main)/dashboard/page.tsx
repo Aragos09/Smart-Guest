@@ -87,7 +87,7 @@ const allQuickLinks: QuickLink[] = [
   }
 ];
 
-const DashboardPage = memo(function DashboardPage({ params }: { params: { locale: string }}) {
+const DashboardPage = memo(function DashboardPage() {
   const { t } = useLanguage();
   const { profile } = useUserProfile();
   const [welcomeMessage, setWelcomeMessage] = useState("Loading your personalized welcome...");
@@ -114,7 +114,7 @@ const DashboardPage = memo(function DashboardPage({ params }: { params: { locale
     if (profile.name) {
       getWelcomeMessage();
     }
-  }, [profile, t]);
+  }, [profile.name, profile.tripType, profile.ecoSensitivity, profile.language, t]);
 
 
   const quickLinks = allQuickLinks

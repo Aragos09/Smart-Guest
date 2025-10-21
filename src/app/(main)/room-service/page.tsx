@@ -203,7 +203,7 @@ function MenuDisplay({ menu, menuType, searchTerm }: { menu: RoomServiceMenu, me
   );
 }
 
-const RoomServicePage = memo(function RoomServicePage({ params }: { params: { locale: string }}) {
+const RoomServicePage = memo(function RoomServicePage() {
   const { t } = useLanguage();
   const { totalItems } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);

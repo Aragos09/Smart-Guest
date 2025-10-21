@@ -111,7 +111,7 @@ function ServiceCard({ service }: { service: Service }) {
   );
 }
 
-const ServicesPage = memo(function ServicesPage({ params }: { params: { locale: string }}) {
+const ServicesPage = memo(function ServicesPage() {
   const { t } = useLanguage();
   const [showDurableOnly, setShowDurableOnly] = useState(false);
   const filteredServices = showDurableOnly

@@ -75,7 +75,7 @@ function ExperienceCard({ experience }: { experience: Experience }) {
   );
 }
 
-const ExperiencesPage = memo(function ExperiencesPage({ params }: { params: { locale: string }}) {
+const ExperiencesPage = memo(function ExperiencesPage() {
   const { t } = useLanguage();
   const [displayExperiences, setDisplayExperiences] = useState<Experience[]>(mockExperiences);
   const { profile } = useUserProfile();

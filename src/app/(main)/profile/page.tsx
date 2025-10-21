@@ -89,7 +89,7 @@ const profileFormSchema = z.object({
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
-const ProfilePage = memo(function ProfilePage({ params }: { params: { locale: string }}) {
+const ProfilePage = memo(function ProfilePage() {
   const { t, setLanguage, language } = useLanguage();
   const { toast } = useToast();
   const { profile, setProfile, isLoading } = useUserProfile();
@@ -646,5 +646,3 @@ const ProfilePage = memo(function ProfilePage({ params }: { params: { locale: st
 });
 
 export default ProfilePage;
-
-    

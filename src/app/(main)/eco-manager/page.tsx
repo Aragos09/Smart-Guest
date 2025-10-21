@@ -49,7 +49,7 @@ const trendChartData = [
   { date: "Day 6", score: 85 },
 ];
 
-const EcoManagerPage = memo(function EcoManagerPage({ params }: { params: { locale: string }}) {
+const EcoManagerPage = memo(function EcoManagerPage() {
   const { t } = useLanguage();
 
   const impactChartConfig = {

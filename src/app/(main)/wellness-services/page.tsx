@@ -1,3 +1,4 @@
+
 "use client";
 
 import {
@@ -48,7 +49,7 @@ const ServiceCard = memo(function ServiceCard({ item }: { item: WellnessService 
   );
 });
 
-const WellnessServicesPage = memo(function WellnessServicesPage({ params }: { params: { locale: string }}) {
+const WellnessServicesPage = memo(function WellnessServicesPage() {
   const { t } = useLanguage();
 
   const categories: WellnessServiceCategory[] = [
