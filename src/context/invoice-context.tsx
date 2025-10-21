@@ -7,6 +7,7 @@ import type { CartItem, InvoiceItem } from '@/lib/types';
 interface InvoiceContextType {
   invoiceItems: InvoiceItem[];
   addItemsToInvoice: (items: CartItem[]) => void;
+  clearInvoice: () => void;
   totalPrice: number;
 }
 
@@ -46,6 +47,15 @@ export function InvoiceProvider({ children }: { children: ReactNode }) {
     });
   };
 
+  const clearInvoice = () => {
+    setInvoiceItems([]);
+    try {
+      localStorage.removeItem("invoiceItems");
+    } catch (error) {
+      console.error("Failed to clear invoice items from local storage", error);
+    }
+  };
+
   const totalPrice = useMemo(() => {
     return invoiceItems.reduce((total, item) => total + item.price * item.quantity, 0);
   }, [invoiceItems]);
@@ -55,6 +65,7 @@ export function InvoiceProvider({ children }: { children: ReactNode }) {
       value={{
         invoiceItems,
         addItemsToInvoice,
+        clearInvoice,
         totalPrice,
       }}
     >

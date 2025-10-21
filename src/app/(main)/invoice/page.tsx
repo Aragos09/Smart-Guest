@@ -54,7 +54,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 const InvoicePage = memo(function InvoicePage() {
   const { t } = useLanguage();
-  const { invoiceItems, totalPrice } = useInvoice();
+  const { invoiceItems, totalPrice, clearInvoice } = useInvoice();
   const { toast } = useToast();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [paymentStep, setPaymentStep] = useState('methodSelection');
@@ -106,7 +106,7 @@ const InvoicePage = memo(function InvoicePage() {
     });
     setPaymentStep('methodSelection');
     setIsDialogOpen(false);
-    // In a real app, you would clear the invoice or mark it as paid here.
+    clearInvoice();
   };
 
   const handleCardPayment = (data: FormValues) => {
@@ -118,7 +118,7 @@ const InvoicePage = memo(function InvoicePage() {
     form.reset();
     setPaymentStep('methodSelection');
     setIsDialogOpen(false);
-    // In a real app, you would clear the invoice or mark it as paid here.
+    clearInvoice();
   };
 
   const renderItemName = (item: InvoiceItem) => {
