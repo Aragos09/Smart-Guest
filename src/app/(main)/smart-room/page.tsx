@@ -21,6 +21,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogDescription,
 } from "@/components/ui/dialog";
 import { Lightbulb, Thermometer, Wind, Tv, Moon, BookOpen, Loader, Wifi, Sun, User, BellOff, Sparkles as SparklesIcon } from "lucide-react";
 
@@ -208,6 +209,8 @@ function SmartRoomControls() {
     { id: 'blinds', icon: Sun, label: t('blinds_title'), description: t('blinds_title_description'), content: <BlindsControls /> },
     { id: 'status', icon: User, label: t('room_status_title'), description: t('room_status_title_description'), content: <StatusControls doNotDisturb={doNotDisturb} setDoNotDisturb={setDoNotDisturb} makeUpRoom={makeUpRoom} setMakeUpRoom={setMakeUpRoom} />, activeState: doNotDisturb || makeUpRoom, activeIcon: doNotDisturb ? BellOff : SparklesIcon, activeText: doNotDisturb ? t('do_not_disturb_label') : t('make_up_room_label') },
   ];
+  
+  const activeControlDetails = controls.find(c => c.id === activeControl);
 
   return (
     <Dialog onOpenChange={(isOpen) => !isOpen && setActiveControl(null)}>
@@ -232,16 +235,15 @@ function SmartRoomControls() {
         ))}
       </div>
       
-      <DialogContent>
-        {activeControl && (
-          <>
+      {activeControlDetails && (
+        <DialogContent aria-label={activeControlDetails.label}>
             <DialogHeader className="text-center">
-              <DialogTitle className="text-2xl">{controls.find(c => c.id === activeControl)?.label}</DialogTitle>
+              <DialogTitle className="text-2xl">{activeControlDetails.label}</DialogTitle>
+              <DialogDescription>{activeControlDetails.description}</DialogDescription>
             </DialogHeader>
-            {controls.find(c => c.id === activeControl)?.content}
-          </>
-        )}
-      </DialogContent>
+            {activeControlDetails.content}
+        </DialogContent>
+      )}
     </Dialog>
   );
 }
@@ -296,3 +298,5 @@ const SmartRoomPage = memo(function SmartRoomPage() {
 });
 
 export default SmartRoomPage;
+
+    
