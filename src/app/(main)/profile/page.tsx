@@ -55,7 +55,6 @@ const alergies = [
 
 const allQuickLinks = [
   { id: "eco-manager", label: "eco_manager_title", icon: Leaf },
-  { id: "services", label: "services_title", icon: Building2 },
   { id: "experiences", label: "experiences_title", icon: HeartHandshake },
   { id: "concierge", label: "concierge_title", icon: BotMessageSquare },
   { id: "restaurant", label: "restaurant_title", icon: Utensils },

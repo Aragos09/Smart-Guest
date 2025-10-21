@@ -40,7 +40,7 @@ const defaultProfile: UserProfile = {
     ecoSensitivity: "high",
     hasCheckedIn: false,
     favoriteDishes: [],
-    quickLinks: ["eco-manager", "services", "experiences", "concierge"],
+    quickLinks: ["eco-manager", "experiences", "concierge"],
 };
 
 export function UserProfileProvider({ children }: { children: ReactNode }) {

@@ -44,13 +44,6 @@ const allQuickLinks: QuickLink[] = [
     description: "eco_manager_description",
   },
   {
-    id: "services",
-    href: "/services",
-    icon: Building2,
-    title: "services_title",
-    description: "services_description",
-  },
-  {
     id: "experiences",
     href: "/experiences",
     icon: HeartHandshake,
