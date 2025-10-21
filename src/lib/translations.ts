@@ -16,6 +16,9 @@ export const translations = {
     'logout_button': 'Log Out',
     'hello_user': 'Hello',
     'cancel_button': 'Cancel',
+    'accept_terms_and_conditions': 'I accept the terms and conditions',
+    'terms_not_accepted_title': 'Terms not accepted',
+    'terms_not_accepted_desc': 'You must accept the terms and conditions to sign in.',
 
     // Signup Page
     'signup_title': 'Join the new connected and sustainable hotel experience.',
@@ -442,10 +445,6 @@ export const translations = {
     "pay_at_reception_button": "Pay at reception",
     "payment_success_title": "Payment Successful",
     "payment_success_desc": "Your payment has been processed.",
-    "payment_success_desc_Cash": "Please proceed to the reception to finalize your payment.",
-    "payment_method_apple_pay": "Apple Pay",
-    "payment_method_visa": "Visa",
-    "payment_method_mastercard": "Mastercard",
     "reception_notified_title": "The reception has been notified.",
     "card_details_title": "Enter Card Details",
     "card_name_label": "Name on Card",
@@ -463,6 +462,9 @@ export const translations = {
     "apple_pay_confirm_desc": "Review your order and confirm payment.",
     "apple_pay_confirm_button": "Confirm with Apple Pay",
     "total_amount_label": "Total Amount",
+    'payment_method_apple_pay': 'Apple Pay',
+    'payment_method_visa': 'Visa',
+    'payment_method_mastercard': 'Mastercard',
 
     "pumpkin_soup_name": "Pumpkin Soup",
     "salmon_tartare_name": "Salmon Tartare",
@@ -616,6 +618,9 @@ export const translations = {
     'logout_button': 'Se déconnecter',
     'hello_user': 'Bonjour',
     'cancel_button': 'Annuler',
+    'accept_terms_and_conditions': 'J\'accepte les termes et conditions',
+    'terms_not_accepted_title': 'Termes non acceptés',
+    'terms_not_accepted_desc': 'Vous devez accepter les termes et conditions pour vous connecter.',
 
     // Signup Page
     'signup_title': 'Rejoignez la nouvelle expérience hôtelière connectée et durable.',
@@ -1042,10 +1047,6 @@ export const translations = {
     "pay_at_reception_button": "Payer à la réception",
     "payment_success_title": "Paiement réussi",
     "payment_success_desc": "Votre paiement a été traité.",
-    "payment_success_desc_Cash": "Veuillez vous présenter à la réception pour finaliser votre paiement.",
-    "payment_method_apple_pay": "Apple Pay",
-    "payment_method_visa": "Visa",
-    "payment_method_mastercard": "Mastercard",
     "reception_notified_title": "La réception a été informée.",
     "card_details_title": "Entrez les détails de la carte",
     "card_name_label": "Nom sur la carte",
@@ -1063,6 +1064,9 @@ export const translations = {
     "apple_pay_confirm_desc": "Vérifiez votre commande et confirmez le paiement.",
     "apple_pay_confirm_button": "Confirmer avec Apple Pay",
     "total_amount_label": "Montant total",
+    'payment_method_apple_pay': 'Apple Pay',
+    'payment_method_visa': 'Visa',
+    'payment_method_mastercard': 'Mastercard',
 
     "pumpkin_soup_name": "Soupe de potiron",
     "salmon_tartare_name": "Tartare de saumon",
