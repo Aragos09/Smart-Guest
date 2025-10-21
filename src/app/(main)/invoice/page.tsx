@@ -34,6 +34,7 @@ import { format } from "date-fns";
 import { CreditCard, Landmark } from "lucide-react";
 import { AppleIcon } from "@/components/icons";
 import { useToast } from "@/hooks/use-toast";
+import type { InvoiceItem } from "@/lib/types";
 
 const InvoicePage = memo(function InvoicePage() {
   const { t } = useLanguage();
@@ -51,11 +52,12 @@ const InvoicePage = memo(function InvoicePage() {
     // In a real app, you would clear the invoice or mark it as paid here.
   };
 
-  const renderItemName = (item: any) => {
+  const renderItemName = (item: InvoiceItem) => {
+    const mainName = t(item.name as any);
     if (item.bookingInfo) {
-      return `${t(item.name as any)} (${item.bookingInfo})`;
+      return `${mainName} (${item.bookingInfo})`;
     }
-    return t(item.name as any);
+    return mainName;
   }
 
   return (
