@@ -3,81 +3,81 @@
   "classic": {
     "categories": {
       "entrees": {
-        "name_fr": "room_service_entrees",
+        "name": "room_service_entrees",
         "items": [
           {
-            "name_fr": "pumpkin_soup_bio_name",
-            "description_fr": "pumpkin_soup_bio_desc",
+            "name": "pumpkin_soup_bio_name",
+            "description": "pumpkin_soup_bio_desc",
             "price_eur": 9.00
           },
           {
-            "name_fr": "salmon_avocado_tartare_name",
-            "description_fr": "salmon_avocado_tartare_desc",
+            "name": "salmon_avocado_tartare_name",
+            "description": "salmon_avocado_tartare_desc",
             "price_eur": 13.50
           },
           {
-            "name_fr": "creamy_burrata_name",
-            "description_fr": "creamy_burrata_desc",
+            "name": "creamy_burrata_name",
+            "description": "creamy_burrata_desc",
             "price_eur": 11.00
           },
           {
-            "name_fr": "cold_cucumber_soup_name",
-            "description_fr": "cold_cucumber_soup_desc",
+            "name": "cold_cucumber_soup_name",
+            "description": "cold_cucumber_soup_desc",
             "price_eur": 8.50
           }
         ]
       },
       "plats": {
-        "name_fr": "room_service_plats",
+        "name": "room_service_plats",
         "items": [
           {
-            "name_fr": "grilled_beef_filet_name",
-            "description_fr": "grilled_beef_filet_desc",
+            "name": "grilled_beef_filet_name",
+            "description": "grilled_beef_filet_desc",
             "price_eur": 28.00
           },
           {
-            "name_fr": "wild_mushroom_risotto_name",
-            "description_fr": "wild_mushroom_risotto_desc",
+            "name": "wild_mushroom_risotto_name",
+            "description": "wild_mushroom_risotto_desc",
             "price_eur": 21.00
           },
           {
-            "name_fr": "roasted_salmon_peas_name",
-            "description_fr": "roasted_salmon_peas_desc",
+            "name": "roasted_salmon_peas_name",
+            "description": "roasted_salmon_peas_desc",
             "price_eur": 23.00
           },
           {
-            "name_fr": "roasted_farm_chicken_name",
-            "description_fr": "roasted_farm_chicken_desc",
+            "name": "roasted_farm_chicken_name",
+            "description": "roasted_farm_chicken_desc",
             "price_eur": 22.50
           },
           {
-            "name_fr": "fresh_truffle_tagliatelle_name",
-            "description_fr": "fresh_truffle_tagliatelle_desc",
+            "name": "fresh_truffle_tagliatelle_name",
+            "description": "fresh_truffle_tagliatelle_desc",
             "price_eur": 19.00
           }
         ]
       },
       "desserts": {
-        "name_fr": "room_service_desserts",
+        "name": "room_service_desserts",
         "items": [
           {
-            "name_fr": "valrhona_chocolate_mousse_name",
-            "description_fr": "valrhona_chocolate_mousse_desc",
+            "name": "valrhona_chocolate_mousse_name",
+            "description": "valrhona_chocolate_mousse_desc",
             "price_eur": 8.50
           },
           {
-            "name_fr": "yuzu_lemon_tartlet_name",
-            "description_fr": "yuzu_lemon_tartlet_desc",
+            "name": "yuzu_lemon_tartlet_name",
+            "description": "yuzu_lemon_tartlet_desc",
             "price_eur": 9.00
           },
           {
-            "name_fr": "bourbon_vanilla_panna_cotta_name",
-            "description_fr": "bourbon_vanilla_panna_cotta_desc",
+            "name": "bourbon_vanilla_panna_cotta_name",
+            "description": "bourbon_vanilla_panna_cotta_desc",
             "price_eur": 8.00
           },
           {
-            "name_fr": "aop_cheese_platter_name",
-            "description_fr": "aop_cheese_platter_desc",
+            "name": "aop_cheese_platter_name",
+            "description": "aop_cheese_platter_desc",
             "price_eur": 11.50
           }
         ]
@@ -87,81 +87,81 @@
   "vegan": {
     "categories": {
       "entrees": {
-        "name_fr": "room_service_entrees",
+        "name": "room_service_entrees",
         "items": [
           {
-            "name_fr": "crunchy_vegetable_ceviche_name",
-            "description_fr": "crunchy_vegetable_ceviche_desc",
+            "name": "crunchy_vegetable_ceviche_name",
+            "description": "crunchy_vegetable_ceviche_desc",
             "price_eur": 10.00
           },
           {
-            "name_fr": "lentil_mushroom_terrine_name",
-            "description_fr": "lentil_mushroom_terrine_desc",
+            "name": "lentil_mushroom_terrine_name",
+            "description": "lentil_mushroom_terrine_desc",
             "price_eur": 9.50
           },
           {
-            "name_fr": "tricolor_quinoa_salad_name",
-            "description_fr": "tricolor_quinoa_salad_desc",
+            "name": "tricolor_quinoa_salad_name",
+            "description": "tricolor_quinoa_salad_desc",
             "price_eur": 11.00
           },
           {
-            "name_fr": "cold_carrot_ginger_soup_name",
-            "description_fr": "cold_carrot_ginger_soup_desc",
+            "name": "cold_carrot_ginger_soup_name",
+            "description": "cold_carrot_ginger_soup_desc",
             "price_eur": 8.50
           }
         ]
       },
       "plats": {
-        "name_fr": "room_service_plats",
+        "name": "room_service_plats",
         "items": [
           {
-            "name_fr": "thai_green_curry_name",
-            "description_fr": "thai_green_curry_desc",
+            "name": "thai_green_curry_name",
+            "description": "thai_green_curry_desc",
             "price_eur": 19.50
           },
           {
-            "name_fr": "gourmet_vegan_burger_name",
-            "description_fr": "gourmet_vegan_burger_desc",
+            "name": "gourmet_vegan_burger_name",
+            "description": "gourmet_vegan_burger_desc",
             "price_eur": 21.00
           },
           {
-            "name_fr": "grilled_vegetable_lasagna_name",
-            "description_fr": "grilled_vegetable_lasagna_desc",
+            "name": "grilled_vegetable_lasagna_name",
+            "description": "grilled_vegetable_lasagna_desc",
             "price_eur": 18.50
           },
           {
-            "name_fr": "roasted_tofu_black_sesame_name",
-            "description_fr": "roasted_tofu_black_sesame_desc",
+            "name": "roasted_tofu_black_sesame_name",
+            "description": "roasted_tofu_black_sesame_desc",
             "price_eur": 20.00
           },
           {
-            "name_fr": "balanced_poke_bowl_name",
-            "description_fr": "balanced_poke_bowl_desc",
+            "name": "balanced_poke_bowl_name",
+            "description": "balanced_poke_bowl_desc",
             "price_eur": 17.50
           }
         ]
       },
       "desserts": {
-        "name_fr": "room_service_desserts",
+        "name": "room_service_desserts",
         "items": [
           {
-            "name_fr": "raw_chocolate_date_tart_name",
-            "description_fr": "raw_chocolate_date_desc",
+            "name": "raw_chocolate_date_tart_name",
+            "description": "raw_chocolate_date_desc",
             "price_eur": 9.00
           },
           {
-            "name_fr": "vegan_lime_cheesecake_name",
-            "description_fr": "vegan_lime_cheesecake_desc",
+            "name": "vegan_lime_cheesecake_name",
+            "description": "vegan_lime_cheesecake_desc",
             "price_eur": 8.50
           },
           {
-            "name_fr": "mango_coconut_mousse_name",
-            "description_fr": "mango_coconut_mousse_desc",
+            "name": "mango_coconut_mousse_name",
+            "description": "mango_coconut_mousse_desc",
             "price_eur": 8.00
           },
           {
-            "name_fr": "gluten_free_brownie_name",
-            "description_fr": "gluten_free_brownie_desc",
+            "name": "gluten_free_brownie_name",
+            "description": "gluten_free_brownie_desc",
             "price_eur": 9.50
           }
         ]
@@ -171,111 +171,111 @@
   "beverages": {
     "categories": {
       "mocktails": {
-        "name_fr": "room_service_mocktails",
+        "name": "room_service_mocktails",
         "items": [
           {
-            "name_fr": "green_detox_elixir_name",
-            "description_fr": "green_detox_elixir_desc",
+            "name": "green_detox_elixir_name",
+            "description": "green_detox_elixir_desc",
             "price_eur": 7.50
           },
           {
-            "name_fr": "tropical_sunrise_name",
-            "description_fr": "tropical_sunrise_desc",
+            "name": "tropical_sunrise_name",
+            "description": "tropical_sunrise_desc",
             "price_eur": 8.00
           },
           {
-            "name_fr": "coconut_dream_name",
-            "description_fr": "coconut_dream_desc",
+            "name": "coconut_dream_name",
+            "description": "coconut_dream_desc",
             "price_eur": 7.50
           },
           {
-            "name_fr": "berry_harmony_name",
-            "description_fr": "berry_harmony_desc",
+            "name": "berry_harmony_name",
+            "description": "berry_harmony_desc",
             "price_eur": 8.50
           },
           {
-            "name_fr": "minty_citrus_fizz_name",
-            "description_fr": "minty_citrus_fizz_desc",
+            "name": "minty_citrus_fizz_name",
+            "description": "minty_citrus_fizz_desc",
             "price_eur": 7.00
           }
         ]
       },
       "cocktails": {
-        "name_fr": "room_service_cocktails",
+        "name": "room_service_cocktails",
         "items": [
           {
-            "name_fr": "smart_negroni_name",
-            "description_fr": "smart_negroni_desc",
+            "name": "smart_negroni_name",
+            "description": "smart_negroni_desc",
             "price_eur": 12.00
           },
           {
-            "name_fr": "eco_spritz_name",
-            "description_fr": "eco_spritz_desc",
+            "name": "eco_spritz_name",
+            "description": "eco_spritz_desc",
             "price_eur": 11.50
           },
           {
-            "name_fr": "tropical_verde_name",
-            "description_fr": "tropical_verde_desc",
+            "name": "tropical_verde_name",
+            "description": "tropical_verde_desc",
             "price_eur": 12.50
           },
           {
-            "name_fr": "french_garden_name",
-            "description_fr": "french_garden_desc",
+            "name": "french_garden_name",
+            "description": "french_garden_desc",
             "price_eur": 11.00
           },
           {
-            "name_fr": "golden_glow_name",
-            "description_fr": "golden_glow_desc",
+            "name": "golden_glow_name",
+            "description": "golden_glow_desc",
             "price_eur": 13.00
           }
         ]
       },
       "infusions_thes": {
-        "name_fr": "room_service_infusions_teas",
+        "name": "room_service_infusions_teas",
         "items": [
           {
-            "name_fr": "relaxing_infusion_name",
-            "description_fr": "relaxing_infusion_desc",
+            "name": "relaxing_infusion_name",
+            "description": "relaxing_infusion_desc",
             "price_eur": 5.50
           },
           {
-            "name_fr": "matcha_green_tea_name",
-            "description_fr": "matcha_green_tea_desc",
+            "name": "matcha_green_tea_name",
+            "description": "matcha_green_tea_desc",
             "price_eur": 6.00
           },
           {
-            "name_fr": "bourbon_vanilla_rooibos_name",
-            "description_fr": "bourbon_vanilla_rooibos_desc",
+            "name": "bourbon_vanilla_rooibos_name",
+            "description": "bourbon_vanilla_rooibos_desc",
             "price_eur": 5.50
           },
           {
-            "name_fr": "balance_vitality_herbal_tea_name",
-            "description_fr": "balance_vitality_herbal_tea_desc",
+            "name": "balance_vitality_herbal_tea_name",
+            "description": "balance_vitality_herbal_tea_desc",
             "price_eur": 5.00
           }
         ]
       },
       "jus_presses": {
-        "name_fr": "room_service_pressed_juices",
+        "name": "room_service_pressed_juices",
         "items": [
           {
-            "name_fr": "green_vitality_juice_name",
-            "description_fr": "green_vitality_juice_desc",
+            "name": "green_vitality_juice_name",
+            "description": "green_vitality_juice_desc",
             "price_eur": 6.50
           },
           {
-            "name_fr": "red_passion_juice_name",
-            "description_fr": "red_passion_juice_desc",
+            "name": "red_passion_juice_name",
+            "description": "red_passion_juice_desc",
             "price_eur": 6.00
           },
           {
-            "name_fr": "pure_organic_orange_juice_name",
-            "description_fr": "pure_organic_orange_juice_desc",
+            "name": "pure_organic_orange_juice_name",
+            "description": "pure_organic_orange_juice_desc",
             "price_eur": 5.50
           },
           {
-            "name_fr": "immunity_shot_name",
-            "description_fr": "immunity_shot_desc",
+            "name": "immunity_shot_name",
+            "description": "immunity_shot_desc",
             "price_eur": 4.00
           }
         ]
