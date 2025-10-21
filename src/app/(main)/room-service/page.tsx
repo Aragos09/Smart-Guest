@@ -46,24 +46,24 @@ function MenuItemCard({ item, menuType }: { item: RoomServiceItem, menuType: str
 
   const handleAddToCart = () => {
     addToCart({
-      id: `${menuType}-${item.name_fr}`,
-      name: item.name_fr,
+      id: `${menuType}-${item.name}`,
+      name: item.name,
       price: item.price_eur,
       quantity: 1,
     });
     toast({
       title: t('added_to_cart_toast_title'),
-      description: `${t(item.name_fr as any)} ${t('added_to_cart_toast_desc')}`,
+      description: `${t(item.name as any)} ${t('added_to_cart_toast_desc')}`,
     });
   };
 
   return (
     <Card className="overflow-hidden flex flex-col">
        <CardHeader>
-        <CardTitle>{t(item.name_fr as any)}</CardTitle>
+        <CardTitle>{t(item.name as any)}</CardTitle>
       </CardHeader>
       <CardContent className="flex-grow">
-        <p className="text-sm text-muted-foreground">{t(item.description_fr as any)}</p>
+        <p className="text-sm text-muted-foreground">{item.description ? t(item.description as any) : ''}</p>
       </CardContent>
       <CardFooter className="flex items-center justify-between mt-auto">
         <p className="text-lg font-bold">{item.price_eur > 0 ? `${item.price_eur.toFixed(2)}€` : t('free_price')}</p>
@@ -163,15 +163,15 @@ function MenuDisplay({ menu, menuType, searchTerm }: { menu: RoomServiceMenu, me
 
   const categories = Object.entries(menu.categories).map(([id, cat]) => ({
     id,
-    name: cat.name_fr,
+    name: cat.name,
     items: cat.items,
   }));
 
   const filteredCategories = categories.map(category => ({
     ...category,
     items: category.items.filter((item: RoomServiceItem) =>
-        t(item.name_fr as any).toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (item.description_fr && t(item.description_fr as any).toLowerCase().includes(searchTerm.toLowerCase()))
+        t(item.name as any).toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (item.description && t(item.description as any).toLowerCase().includes(searchTerm.toLowerCase()))
     )
   })).filter(category => category.items.length > 0);
 
@@ -187,7 +187,7 @@ function MenuDisplay({ menu, menuType, searchTerm }: { menu: RoomServiceMenu, me
               <AccordionContent className="border border-t-0 rounded-b-lg bg-card p-4">
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                   {category.items.map((item: RoomServiceItem) => (
-                    <MenuItemCard key={item.name_fr} item={item} menuType={menuType} />
+                    <MenuItemCard key={item.name} item={item} menuType={menuType} />
                   ))}
                 </div>
               </AccordionContent>
@@ -203,7 +203,7 @@ function MenuDisplay({ menu, menuType, searchTerm }: { menu: RoomServiceMenu, me
   );
 }
 
-const RoomServicePage = memo(function RoomServicePage() {
+const RoomServicePage = () => {
   const { t } = useLanguage();
   const { totalItems } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -263,6 +263,6 @@ const RoomServicePage = memo(function RoomServicePage() {
       )}
     </div>
   );
-});
+};
 
-export default RoomServicePage;
+export default memo(RoomServicePage);

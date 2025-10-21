@@ -182,7 +182,7 @@ function SignatureMenu() {
   );
 }
 
-const RestaurantPage = memo(function RestaurantPage() {
+const RestaurantPage = () => {
   const { t } = useLanguage();
   return (
     <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">
@@ -209,6 +209,6 @@ const RestaurantPage = memo(function RestaurantPage() {
       </Tabs>
     </div>
   );
-});
+};
 
-export default RestaurantPage;
+export default memo(RestaurantPage);

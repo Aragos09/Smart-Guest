@@ -96,14 +96,14 @@ export type SignatureMenuData = {
 };
 
 export type RoomServiceItem = {
-  name_fr: string;
-  description_fr?: string;
+  name: string;
+  description?: string;
   price_eur: number;
   size?: string;
 };
 
 export type RoomServiceMenuCategory = {
-  name_fr: string;
+  name: string;
   items: RoomServiceItem[];
 }
 

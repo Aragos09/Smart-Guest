@@ -71,7 +71,7 @@ export function WeatherCard() {
         setError(null);
       } catch (error) {
         console.error("Error getting weather summary:", error);
-        setError(t("Could not fetch weather data."));
+        setError(t("weather_fetch_error"));
       } finally {
         setIsLoading(false);
       }
@@ -79,7 +79,7 @@ export function WeatherCard() {
 
     function handleGeoError(error: GeolocationPositionError) {
       console.error("Geolocation error:", error);
-      setError(t("Geolocation is not available."));
+      setError(t("geolocation_unavailable_error"));
       setIsLoading(false);
     }
     
@@ -90,8 +90,8 @@ export function WeatherCard() {
   const cardContent = (
     <>
       <CardHeader>
-        <CardTitle>{t("Local Weather")}</CardTitle>
-        <CardDescription>{t("A quick look at the current weather.")}</CardDescription>
+        <CardTitle>{t("local_weather_title")}</CardTitle>
+        <CardDescription>{t("local_weather_description")}</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col items-center justify-center gap-2 text-center">
         {isLoading ? (
@@ -124,14 +124,14 @@ export function WeatherCard() {
       {weather && (
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>{t('5-Day Forecast')}</DialogTitle>
+            <DialogTitle>{t('five_day_forecast_title')}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
             <div className="flex items-center justify-between rounded-lg bg-muted p-4">
                 <div className="flex items-center gap-4">
                     {renderIcon(weather.icon, "h-12 w-12")}
                     <div>
-                        <p className="font-semibold">{t('Now')}</p>
+                        <p className="font-semibold">{t('weather_now')}</p>
                         <p className="text-2xl font-bold">{weather.currentTemp}°C</p>
                     </div>
                 </div>
