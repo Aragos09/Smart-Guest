@@ -101,8 +101,10 @@ const SidebarProvider = React.forwardRef<
     }, [setOpen])
 
     const closeSidebar = React.useCallback(() => {
-      setOpen(false)
-    }, [setOpen])
+      if (isMobile) {
+        setOpen(false)
+      }
+    }, [setOpen, isMobile])
 
     // Adds a keyboard shortcut to toggle the sidebar.
     React.useEffect(() => {
@@ -180,7 +182,7 @@ const Sidebar = React.forwardRef<
     },
     ref
   ) => {
-    const { state, isMobile, toggleSidebar, open } = useSidebar()
+    const { state, isMobile, open } = useSidebar()
     
     const effectiveCollapsible = isMobile ? "icon" : collapsible;
     const effectiveVariant = isMobile ? "sidebar" : variant;
@@ -212,7 +214,7 @@ const Sidebar = React.forwardRef<
         <div
           className={cn(
             "duration-200 relative h-svh bg-transparent transition-[width] ease-linear",
-            side === "left" ? "w-[--sidebar-width-icon]" : "w-0",
+            "w-[--sidebar-width-icon]",
             "group-data-[state=expanded]:w-[--sidebar-width]",
           )}
         />
@@ -221,8 +223,7 @@ const Sidebar = React.forwardRef<
             "duration-200 fixed inset-y-0 z-10 h-svh w-[--sidebar-width-icon] transition-[width] ease-linear flex",
              "group-data-[state=expanded]:w-[--sidebar-width]",
             side === "left" ? "left-0" : "right-0",
-            className,
-            isMobile && !open && 'hidden'
+            className
           )}
           {...props}
         >
@@ -383,7 +384,7 @@ const SidebarContent = React.forwardRef<
       ref={ref}
       data-sidebar="content"
       className={cn(
-        "flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden",
+        "flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto overflow-x-hidden group-data-[collapsible=icon]:overflow-hidden",
         className
       )}
       {...props}
@@ -533,7 +534,7 @@ const SidebarMenuButton = React.forwardRef<
     ref
   ) => {
     const Comp = asChild ? Slot : "button"
-    const { isMobile, state } = useSidebar()
+    const { state } = useSidebar()
 
     const button = (
       <Comp
