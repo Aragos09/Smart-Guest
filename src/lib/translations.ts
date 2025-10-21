@@ -88,7 +88,10 @@ export const translations = {
     'weather_thu': 'Thu',
     'five_day_forecast_title': '5-Day Forecast',
     'weather_now': 'Now',
-    
+    'invoice_description': 'View and pay your invoice.',
+    'smart_room_subtitle': 'Control your room settings.',
+    'smart_room_description': 'Adjust lighting, temperature, and more.',
+
     // Eco Manager
     'eco_manager_subtitle': 'Visualize your positive impact on the environment.',
     'impact_breakdown_title': 'Impact Breakdown',
@@ -445,6 +448,7 @@ export const translations = {
     "pay_at_reception_button": "Pay at reception",
     "payment_success_title": "Payment Successful",
     "payment_success_desc": "Your payment has been processed.",
+    "payment_success_desc_Cash": "Please proceed to the reception to finalize your payment.",
     "reception_notified_title": "The reception has been notified.",
     "card_details_title": "Enter Card Details",
     "card_name_label": "Name on Card",
@@ -690,6 +694,9 @@ export const translations = {
     'weather_thu': 'Jeu',
     'five_day_forecast_title': 'Prévisions à 5 jours',
     'weather_now': 'Maintenant',
+    'invoice_description': 'Visualisez et payez votre facture.',
+    'smart_room_subtitle': 'Contrôlez les paramètres de votre chambre.',
+    'smart_room_description': 'Ajustez l’éclairage, la température, et plus encore.',
     
     // Eco Manager
     'eco_manager_subtitle': 'Visualisez votre impact positif sur l\'environnement.',
@@ -1047,6 +1054,7 @@ export const translations = {
     "pay_at_reception_button": "Payer à la réception",
     "payment_success_title": "Paiement réussi",
     "payment_success_desc": "Votre paiement a été traité.",
+    "payment_success_desc_Cash": "Veuillez vous présenter à la réception pour finaliser votre paiement.",
     "reception_notified_title": "La réception a été informée.",
     "card_details_title": "Entrez les détails de la carte",
     "card_name_label": "Nom sur la carte",

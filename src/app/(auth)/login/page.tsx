@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/context/language-context";
+import type { Language } from "@/lib/translations";
 import Link from "next/link";
 import { memo, useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -23,7 +24,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 const LoginPage = memo(function LoginPage() {
   const router = useRouter();
   const { toast } = useToast();
-  const { t } = useLanguage();
+  const { t, language, setLanguage } = useLanguage();
   const [acceptedTerms, setAcceptedTerms] = useState(false);
 
   const handleLogin = (e: React.FormEvent) => {
@@ -49,6 +50,22 @@ const LoginPage = memo(function LoginPage() {
         <CardDescription>
           {t('app_subtitle')}
         </CardDescription>
+        <div className="flex justify-center gap-2 pt-4">
+            <Button
+              variant={language === 'en' ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => setLanguage('en')}
+            >
+              EN
+            </Button>
+            <Button
+              variant={language === 'fr' ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => setLanguage('fr')}
+            >
+              FR
+            </Button>
+          </div>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleLogin}>
