@@ -580,6 +580,8 @@ export const translations = {
     "payment_success_title": "Paiement réussi",
     "payment_success_desc": "Votre paiement avec {context} a été traité.",
     "payment_success_desc_Cash": "Veuillez vous présenter à la réception pour finaliser votre paiement.",
+    "payment_method_apple_pay": "Apple Pay",
+    "payment_success_desc_Apple Pay": "Votre paiement avec Apple Pay a été traité.",
   },
   fr: {
     // Common
@@ -1161,6 +1163,8 @@ export const translations = {
     "payment_success_title": "Paiement réussi",
     "payment_success_desc": "Votre paiement avec {context} a été traité.",
     "payment_success_desc_Cash": "Veuillez vous présenter à la réception pour finaliser votre paiement.",
+    "payment_method_apple_pay": "Apple Pay",
+    "payment_success_desc_Apple Pay": "Votre paiement avec Apple Pay a été traité.",
   }
 };
 

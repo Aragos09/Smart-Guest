@@ -33,6 +33,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import { CreditCard, Landmark } from "lucide-react";
+import { AppleIcon } from "@/components/icons";
 import { useToast } from "@/hooks/use-toast";
 
 const InvoicePage = memo(function InvoicePage() {
@@ -132,6 +133,14 @@ const InvoicePage = memo(function InvoicePage() {
                   >
                     <CreditCard className="h-8 w-8 text-orange-500" />
                     <span className="font-semibold text-lg">Mastercard</span>
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="w-full h-16 justify-start gap-4"
+                    onClick={() => handlePayment("Apple Pay")}
+                  >
+                    <AppleIcon className="h-8 w-8" />
+                    <span className="font-semibold text-lg">{t('payment_method_apple_pay')}</span>
                   </Button>
                   <Button
                     variant="outline"
