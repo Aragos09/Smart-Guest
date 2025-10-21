@@ -49,6 +49,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 
 const InvoicePage = memo(function InvoicePage() {
@@ -59,10 +60,15 @@ const InvoicePage = memo(function InvoicePage() {
   const [paymentStep, setPaymentStep] = useState('methodSelection');
   const [selectedMethod, setSelectedMethod] = useState('');
 
+  const currentYear = new Date().getFullYear();
+  const years = Array.from({ length: 11 }, (_, i) => currentYear + i);
+  const months = Array.from({ length: 12 }, (_, i) => String(i + 1).padStart(2, '0'));
+
   const formSchema = z.object({
     cardName: z.string().min(1, { message: t('required_field_error') }),
     cardNumber: z.string().regex(/^\d{16}$/, { message: t('invalid_card_number_error') }),
-    expiryDate: z.string().regex(/^(0[1-9]|1[0-2])\/\d{2}$/, { message: t('invalid_expiry_date_error') }),
+    expiryMonth: z.string({ required_error: t('required_field_error') }),
+    expiryYear: z.string({ required_error: t('required_field_error') }),
     cvc: z.string().regex(/^\d{3,4}$/, { message: t('invalid_cvc_error') }),
   });
   
@@ -73,7 +79,6 @@ const InvoicePage = memo(function InvoicePage() {
     defaultValues: {
       cardName: "",
       cardNumber: "",
-      expiryDate: "",
       cvc: "",
     },
   });
@@ -83,6 +88,7 @@ const InvoicePage = memo(function InvoicePage() {
     if (method === "Cash") {
       toast({
         title: t('reception_notified_title'),
+        description: t('payment_success_desc_Cash')
       });
       setIsDialogOpen(false);
     } else {
@@ -261,33 +267,64 @@ const InvoicePage = memo(function InvoicePage() {
                             </FormItem>
                           )}
                         />
-                        <div className="grid grid-cols-2 gap-4">
-                            <FormField
+                        <div className="grid grid-cols-3 gap-4">
+                          <FormField
                             control={form.control}
-                            name="expiryDate"
+                            name="expiryMonth"
                             render={({ field }) => (
-                                <FormItem>
-                                <FormLabel>{t('expiry_date_label')}</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="MM/YY" {...field} />
-                                </FormControl>
+                              <FormItem className="col-span-1">
+                                <FormLabel>{t('expiry_month_label')}</FormLabel>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                  <FormControl>
+                                    <SelectTrigger>
+                                      <SelectValue placeholder={t('month_placeholder')} />
+                                    </SelectTrigger>
+                                  </FormControl>
+                                  <SelectContent>
+                                    {months.map(month => (
+                                      <SelectItem key={month} value={month}>{month}</SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
                                 <FormMessage />
-                                </FormItem>
+                              </FormItem>
                             )}
-                            />
-                            <FormField
+                          />
+                          <FormField
+                            control={form.control}
+                            name="expiryYear"
+                            render={({ field }) => (
+                              <FormItem className="col-span-1">
+                                <FormLabel>{t('expiry_year_label')}</FormLabel>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                  <FormControl>
+                                    <SelectTrigger>
+                                      <SelectValue placeholder={t('year_placeholder')} />
+                                    </SelectTrigger>
+                                  </FormControl>
+                                  <SelectContent>
+                                    {years.map(year => (
+                                      <SelectItem key={year} value={String(year)}>{year}</SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          <FormField
                             control={form.control}
                             name="cvc"
                             render={({ field }) => (
-                                <FormItem>
+                              <FormItem className="col-span-1">
                                 <FormLabel>{t('cvc_label')}</FormLabel>
                                 <FormControl>
                                     <Input placeholder="CVC" {...field} />
                                 </FormControl>
                                 <FormMessage />
-                                </FormItem>
+                              </FormItem>
                             )}
-                            />
+                          />
                         </div>
                         <DialogFooter>
                             <Button type="submit" className="w-full">{t('confirm_payment_button')}</Button>
