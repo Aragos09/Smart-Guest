@@ -31,7 +31,7 @@ import { useLanguage } from "@/context/language-context";
 import type { Language } from "@/lib/translations";
 import { useUserProfile } from "@/context/user-profile-context";
 import { useEffect, memo } from "react";
-import { Leaf, HeartHandshake, BotMessageSquare, Utensils, Sparkles, ShoppingBasket, Home, Receipt } from "lucide-react";
+import { Leaf, HeartHandshake, BotMessageSquare, Utensils, Sparkles, ShoppingBasket, Home, Receipt, Star } from "lucide-react";
 import menuData from "@/lib/restaurant-menu.json";
 import signatureMenuJson from "@/lib/signature-menu.json";
 import type { MenuCategory, SignatureMenuData } from "@/lib/types";
@@ -489,7 +489,7 @@ const ProfilePage = memo(function ProfilePage() {
                         {t('dashboard_customization_description')}
                       </FormDescription>
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                       {allQuickLinks.map((item) => (
                         <FormField
                           key={item.id}
