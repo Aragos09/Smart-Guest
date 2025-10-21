@@ -173,7 +173,7 @@ const DashboardPage = memo(function DashboardPage() {
                     </div>
                     <div className="mt-4">
                       <p className="font-semibold">{t(link.title as any)}</p>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-muted-foreground hidden sm:block">
                         {t(link.description as any)}
                       </p>
                     </div>

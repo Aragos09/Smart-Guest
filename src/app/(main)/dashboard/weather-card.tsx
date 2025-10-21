@@ -91,23 +91,31 @@ export function WeatherCard() {
     <>
       <CardHeader>
         <CardTitle>{t("local_weather_title")}</CardTitle>
-        <CardDescription>{t("local_weather_description")}</CardDescription>
+        <CardDescription className="hidden sm:block">{t("local_weather_description")}</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col items-center justify-center gap-2 text-center">
         {isLoading ? (
           <>
             <Skeleton className="h-16 w-16 rounded-full" />
             <div className="space-y-2">
-                <Skeleton className="h-4 w-[250px]" />
-                <Skeleton className="h-4 w-[200px]" />
+                <Skeleton className="h-4 w-[250px] hidden sm:block" />
+                <Skeleton className="h-4 w-[200px] hidden sm:block" />
+                <Skeleton className="h-8 w-16 sm:hidden" />
             </div>
           </>
         ) : error || !weather ? (
           <p className="text-sm text-destructive">{error}</p>
         ) : (
           <>
-            {renderIcon(weather.icon)}
-            <p className="text-muted-foreground">{weather.summary}</p>
+            <div className="flex flex-col sm:flex-col items-center gap-2">
+              {renderIcon(weather.icon)}
+              <div className="flex items-baseline gap-2">
+                <p className="text-2xl font-bold sm:text-lg sm:font-normal sm:text-muted-foreground">
+                  {weather.currentTemp}°C
+                </p>
+                <p className="text-muted-foreground hidden sm:block">{weather.summary}</p>
+              </div>
+            </div>
           </>
         )}
       </CardContent>
