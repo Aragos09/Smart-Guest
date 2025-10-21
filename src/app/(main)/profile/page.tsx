@@ -31,7 +31,7 @@ import { useLanguage } from "@/context/language-context";
 import type { Language } from "@/lib/translations";
 import { useUserProfile } from "@/context/user-profile-context";
 import { useEffect, memo } from "react";
-import { Leaf, Building2, HeartHandshake, BotMessageSquare, Utensils, Wind, Star, Sparkles, ShoppingBasket } from "lucide-react";
+import { Leaf, HeartHandshake, BotMessageSquare, Utensils, Sparkles, ShoppingBasket, Home, Receipt } from "lucide-react";
 import menuData from "@/lib/restaurant-menu.json";
 import signatureMenuJson from "@/lib/signature-menu.json";
 import type { MenuCategory, SignatureMenuData } from "@/lib/types";
@@ -54,12 +54,14 @@ const alergies = [
 ];
 
 const allQuickLinks = [
+  { id: "smart-room", label: "smart_room_title", icon: Home },
   { id: "eco-manager", label: "eco_manager_title", icon: Leaf },
+  { id: "wellness-services", label: "wellness_services_title", icon: Sparkles },
   { id: "experiences", label: "experiences_title", icon: HeartHandshake },
-  { id: "concierge", label: "concierge_title", icon: BotMessageSquare },
   { id: "restaurant", label: "restaurant_title", icon: Utensils },
   { id: "room-service", label: "room_service_title", icon: ShoppingBasket },
-  { id: "wellness", label: "wellness_title", icon: Wind },
+  { id: "invoice", label: "invoice_title", icon: Receipt },
+  { id: "concierge", label: "concierge_title", icon: BotMessageSquare },
 ];
 
 const profileFormSchema = z.object({
@@ -487,7 +489,7 @@ const ProfilePage = memo(function ProfilePage() {
                         {t('dashboard_customization_description')}
                       </FormDescription>
                     </div>
-                    <div className="space-y-2">
+                    <div className="grid grid-cols-2 gap-4">
                       {allQuickLinks.map((item) => (
                         <FormField
                           key={item.id}
