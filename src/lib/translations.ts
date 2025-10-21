@@ -441,7 +441,7 @@ export const translations = {
     "payment_method_desc": "Select your preferred payment method.",
     "pay_at_reception_button": "Pay at reception",
     "payment_success_title": "Payment Successful",
-    "payment_success_desc": "Your payment with {context} has been processed.",
+    "payment_success_desc": "Your payment has been processed.",
     "payment_success_desc_Cash": "Please proceed to the reception to finalize your payment.",
     "payment_method_apple_pay": "Apple Pay",
     "payment_method_visa": "Visa",
@@ -561,6 +561,8 @@ export const translations = {
     "mango_coconut_mousse_desc": "Served fresh, lime zest.",
     "gluten_free_brownie_name": "Gluten-Free Brownie",
     "gluten_free_brownie_desc": "Pure cocoa, pecans, maple syrup.",
+    
+    // Room Service - Beverages
     "green_detox_elixir_name": "Green Detox Elixir",
     "green_detox_elixir_desc": "Cucumber, green apple, lime, spirulina, sparkling water. Refreshing and purifying.",
     "tropical_sunrise_name": "Tropical Sunrise",
@@ -1039,7 +1041,7 @@ export const translations = {
     "payment_method_desc": "Sélectionnez votre méthode de paiement préférée.",
     "pay_at_reception_button": "Payer à la réception",
     "payment_success_title": "Paiement réussi",
-    "payment_success_desc": "Votre paiement avec {context} a été traité.",
+    "payment_success_desc": "Votre paiement a été traité.",
     "payment_success_desc_Cash": "Veuillez vous présenter à la réception pour finaliser votre paiement.",
     "payment_method_apple_pay": "Apple Pay",
     "payment_method_visa": "Visa",

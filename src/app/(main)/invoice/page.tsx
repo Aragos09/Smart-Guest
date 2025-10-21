@@ -102,7 +102,7 @@ const InvoicePage = memo(function InvoicePage() {
     console.log(`Payment confirmed for ${selectedMethod}`);
     toast({
         title: t('payment_success_title'),
-        description: t('payment_success_desc', { context: selectedMethod }),
+        description: t('payment_success_desc'),
     });
     setPaymentStep('methodSelection');
     setIsDialogOpen(false);
@@ -113,7 +113,7 @@ const InvoicePage = memo(function InvoicePage() {
     console.log(`Payment confirmed for ${selectedMethod} with data:`, data);
     toast({
       title: t('payment_success_title'),
-      description: t('payment_success_desc', { context: selectedMethod }),
+      description: t('payment_success_desc'),
     });
     form.reset();
     setPaymentStep('methodSelection');
