@@ -19,11 +19,11 @@ export default function MainLayout({
         <CartProvider>
           <InvoiceProvider>
             <SidebarProvider>
-              <div className="md:flex">
+              <div className="flex">
                 <DynamicBackground />
                 <SidebarNav />
                 <SidebarInset>
-                  <div className="flex h-14 items-center gap-4 border-b bg-background/50 backdrop-blur-sm px-4 md:hidden">
+                  <div className="flex h-14 items-center gap-4 border-b bg-background/50 backdrop-blur-sm px-4">
                     <SidebarTrigger>
                       <PanelLeft />
                     </SidebarTrigger>
@@ -38,3 +38,5 @@ export default function MainLayout({
     </UserProfileProvider>
   );
 }
+
+    

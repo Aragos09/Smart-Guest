@@ -28,6 +28,7 @@ import {
   SidebarTrigger,
   SidebarFooter,
   SidebarContent,
+  useSidebar
 } from "@/components/ui/sidebar";
 import { useLanguage } from "@/context/language-context";
 import { useUserProfile } from "@/context/user-profile-context";
@@ -39,6 +40,7 @@ function SidebarNav() {
   const router = useRouter();
   const { t } = useLanguage();
   const { profile, logout } = useUserProfile();
+  const { closeSidebar } = useSidebar();
 
   const navItems = [
     { href: "/dashboard", icon: LayoutDashboard, label: "dashboard_title" },
@@ -85,6 +87,7 @@ function SidebarNav() {
                   key={item.href}
                   className="animate-in fade-in-0 slide-in-from-left-2"
                   style={{ animationDelay: `${index * 50}ms`, animationFillMode: 'backwards' }}
+                  onClick={closeSidebar}
                 >
                 <Link href={item.href}>
                     <SidebarMenuButton
@@ -102,7 +105,7 @@ function SidebarNav() {
 
         <SidebarFooter className="mt-auto">
             <SidebarMenu>
-                <SidebarMenuItem>
+                <SidebarMenuItem onClick={closeSidebar}>
                     <Link href={settingsItem.href}>
                         <SidebarMenuButton
                         isActive={pathname === settingsItem.href}
@@ -129,3 +132,5 @@ function SidebarNav() {
 }
 
 export default React.memo(SidebarNav);
+
+    
