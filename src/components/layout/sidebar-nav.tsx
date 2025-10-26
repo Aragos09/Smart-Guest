@@ -77,7 +77,7 @@ function SidebarNav() {
                 <span className="text-sm text-sidebar-foreground/70">{t('hello_user')}, {profile.name}!</span>
               </div>
             </div>
-            <SidebarTrigger className="hidden md:flex" />
+            <SidebarTrigger className="flex md:hidden" />
         </SidebarHeader>
 
         <SidebarContent>
@@ -103,7 +103,7 @@ function SidebarNav() {
             </SidebarMenu>
         </SidebarContent>
 
-        <SidebarFooter className="mt-auto">
+        <SidebarFooter className="mt-auto pt-4">
             <SidebarMenu>
                 <SidebarMenuItem onClick={closeSidebar}>
                     <Link href={settingsItem.href}>
