@@ -61,6 +61,7 @@ function SidebarNav() {
   };
 
   const handleLogout = () => {
+    closeSidebar();
     logout();
     router.push("/login");
   };
