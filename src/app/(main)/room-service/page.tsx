@@ -185,7 +185,7 @@ function MenuDisplay({ menu, menuType, searchTerm }: { menu: RoomServiceMenu, me
                 {t(category.name as any)}
               </AccordionTrigger>
               <AccordionContent className="border border-t-0 rounded-b-lg bg-card p-4">
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                   {category.items.map((item: RoomServiceItem) => (
                     <MenuItemCard key={item.name} item={item} menuType={menuType} />
                   ))}
@@ -222,8 +222,8 @@ const RoomServicePage = () => {
         <p className="text-muted-foreground mb-8">{t("room_service_subtitle")}</p>
 
         <Tabs defaultValue="classic" className="space-y-4">
-          <div className="flex justify-between items-center">
-            <TabsList>
+          <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+            <TabsList className="grid w-full grid-cols-3 md:w-auto">
               {menuChoices.map(choice => (
                 <TabsTrigger key={choice.id} value={choice.id}>
                   <choice.icon className="mr-2 h-4 w-4" />
@@ -231,7 +231,7 @@ const RoomServicePage = () => {
                 </TabsTrigger>
               ))}
             </TabsList>
-            <div className="relative w-full max-w-sm">
+            <div className="relative w-full md:max-w-xs">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
               <Input
                   placeholder={t("search_dishes_placeholder")}
