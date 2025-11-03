@@ -176,34 +176,59 @@ const InvoicePage = memo(function InvoicePage() {
         </CardHeader>
         <CardContent>
           {invoiceItems.length > 0 && (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>{t("invoice_table_date")}</TableHead>
-                  <TableHead>{t("invoice_table_item")}</TableHead>
-                  <TableHead className="text-center">{t("invoice_table_quantity")}</TableHead>
-                  <TableHead className="text-right">{t("invoice_table_unit_price")}</TableHead>
-                  <TableHead className="text-right">{t("invoice_table_total_price")}</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
+            <>
+              {/* Mobile View */}
+              <div className="md:hidden">
                 {invoiceItems.map((item, index) => (
-                  <TableRow key={`${item.id}-${index}`}>
-                    <TableCell>{format(new Date(item.date), "PPP p")}</TableCell>
-                    <TableCell>{renderItemName(item)}</TableCell>
-                    <TableCell className="text-center">{item.quantity}</TableCell>
-                    <TableCell className="text-right">{item.price.toFixed(2)}€</TableCell>
-                    <TableCell className="text-right">{(item.price * item.quantity).toFixed(2)}€</TableCell>
-                  </TableRow>
+                  <div key={`${item.id}-${index}`} className="mb-4 rounded-lg border p-4">
+                    <div className="font-semibold">{renderItemName(item)}</div>
+                    <div className="text-sm text-muted-foreground">{format(new Date(item.date), "PPP p")}</div>
+                    <div className="mt-2 flex justify-between">
+                      <div>
+                        {item.quantity} x {item.price.toFixed(2)}€
+                      </div>
+                      <div className="font-semibold">{(item.price * item.quantity).toFixed(2)}€</div>
+                    </div>
+                  </div>
                 ))}
-              </TableBody>
-              <TableFooter>
-                <TableRow>
-                  <TableCell colSpan={4} className="text-right font-bold text-lg">{t("invoice_grand_total")}</TableCell>
-                  <TableCell className="text-right font-bold text-lg">{totalPrice.toFixed(2)}€</TableCell>
-                </TableRow>
-              </TableFooter>
-            </Table>
+                <div className="mt-4 flex justify-between border-t pt-4 font-bold text-lg">
+                  <span>{t("invoice_grand_total")}</span>
+                  <span>{totalPrice.toFixed(2)}€</span>
+                </div>
+              </div>
+
+              {/* Desktop View */}
+              <div className="hidden md:block">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>{t("invoice_table_date")}</TableHead>
+                      <TableHead>{t("invoice_table_item")}</TableHead>
+                      <TableHead className="text-center">{t("invoice_table_quantity")}</TableHead>
+                      <TableHead className="text-right">{t("invoice_table_unit_price")}</TableHead>
+                      <TableHead className="text-right">{t("invoice_table_total_price")}</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {invoiceItems.map((item, index) => (
+                      <TableRow key={`${item.id}-${index}`}>
+                        <TableCell>{format(new Date(item.date), "PPP p")}</TableCell>
+                        <TableCell>{renderItemName(item)}</TableCell>
+                        <TableCell className="text-center">{item.quantity}</TableCell>
+                        <TableCell className="text-right">{item.price.toFixed(2)}€</TableCell>
+                        <TableCell className="text-right">{(item.price * item.quantity).toFixed(2)}€</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                  <TableFooter>
+                    <TableRow>
+                      <TableCell colSpan={4} className="text-right font-bold text-lg">{t("invoice_grand_total")}</TableCell>
+                      <TableCell className="text-right font-bold text-lg">{totalPrice.toFixed(2)}€</TableCell>
+                    </TableRow>
+                  </TableFooter>
+                </Table>
+              </div>
+            </>
           )}
         </CardContent>
         {totalPrice > 0 && (
@@ -356,7 +381,7 @@ const InvoicePage = memo(function InvoicePage() {
                                   <FormControl>
                                     <SelectTrigger>
                                       <SelectValue placeholder={t('year_placeholder')} />
-                                    </SelectTrigger>
+                                    </Trigger>
                                   </FormControl>
                                   <SelectContent>
                                     {years.map(year => (

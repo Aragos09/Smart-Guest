@@ -96,26 +96,26 @@ function ClimateControls() {
     const { t } = useLanguage();
     const [temperature, setTemperature] = useState(22);
     return (
-        <div className="flex items-center justify-center gap-6 pt-4">
+        <div className="flex items-center justify-center gap-2 sm:gap-6 pt-4">
           <Button
             variant="outline"
             size="icon"
-            className="h-16 w-16 rounded-full"
+            className="h-12 w-12 sm:h-16 sm:w-16 rounded-full"
             onClick={() => setTemperature(temperature - 1)}
           >
-            <Thermometer className="h-8 w-8" />-
+            <Thermometer className="h-6 w-6 sm:h-8 sm:w-8" />-
           </Button>
           <div className="text-center">
-            <p className="text-6xl font-bold">{temperature}°C</p>
+            <p className="text-5xl sm:text-6xl font-bold">{temperature}°C</p>
             <p className="text-sm text-muted-foreground">{t('temperature_label')}</p>
           </div>
           <Button
             variant="outline"
             size="icon"
-            className="h-16 w-16 rounded-full"
+            className="h-12 w-12 sm:h-16 sm:w-16 rounded-full"
             onClick={() => setTemperature(temperature + 1)}
           >
-            <Thermometer className="h-8 w-8" />+
+            <Thermometer className="h-6 w-6 sm:h-8 sm:w-8" />+
           </Button>
         </div>
     );
@@ -236,7 +236,7 @@ function SmartRoomControls() {
       </div>
       
       {activeControlDetails && (
-        <DialogContent aria-label={activeControlDetails.label}>
+        <DialogContent className="sm:max-w-[425px]" aria-label={activeControlDetails.label}>
             <DialogHeader className="text-center">
               <DialogTitle className="text-2xl">{activeControlDetails.label}</DialogTitle>
               <DialogDescription>{activeControlDetails.description}</DialogDescription>
@@ -273,7 +273,7 @@ const SmartRoomPage = memo(function SmartRoomPage() {
       </div>
       
       {!isConnected ? (
-          <div className="flex items-center justify-center pt-20">
+          <div className="flex items-center justify-center pt-10 md:pt-20">
               <Card className="w-full max-w-md text-center">
                   <CardHeader>
                       <CardTitle className="text-2xl">{t('connect_to_room_title')}</CardTitle>

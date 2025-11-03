@@ -140,7 +140,7 @@ const DashboardPage = memo(function DashboardPage() {
           </CardDescription>
         </CardHeader>
       </Card>
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {profile.ecoSensitivity === 'high' && (
           <Card className="lg:col-span-2">
             <CardHeader>
@@ -156,7 +156,7 @@ const DashboardPage = memo(function DashboardPage() {
         )}
         <WeatherCard />
         {quickLinks.length > 0 && (
-          <Card className="lg:col-span-2">
+          <Card className="lg:col-span-2 xl:col-span-2">
             <CardHeader>
               <CardTitle>{t('quick_links_title')}</CardTitle>
               <CardDescription>

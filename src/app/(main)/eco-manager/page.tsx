@@ -120,7 +120,7 @@ const EcoManagerPage = memo(function EcoManagerPage() {
         </div>
       </div>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="col-span-4">
+        <Card className="col-span-1 lg:col-span-4">
           <CardHeader>
             <CardTitle>{t('impact_breakdown_title')}</CardTitle>
             <CardDescription>
@@ -162,7 +162,7 @@ const EcoManagerPage = memo(function EcoManagerPage() {
             </ChartContainer>
           </CardContent>
         </Card>
-        <Card className="col-span-4 lg:col-span-3">
+        <Card className="col-span-1 lg:col-span-3">
           <CardHeader>
             <CardTitle>{t('ecoscore_trend_title')}</CardTitle>
             <CardDescription>{t('ecoscore_trend_description')}</CardDescription>
@@ -211,7 +211,7 @@ const EcoManagerPage = memo(function EcoManagerPage() {
           </CardContent>
         </Card>
         
-        <Card className="col-span-4 lg:col-span-7">
+        <Card className="col-span-1 lg:col-span-7">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Info className="h-6 w-6 text-primary" />
@@ -231,7 +231,7 @@ const EcoManagerPage = memo(function EcoManagerPage() {
           </CardContent>
         </Card>
 
-        <Card className="col-span-4 lg:col-span-7">
+        <Card className="col-span-1 lg:col-span-7">
           <CardHeader>
             <CardTitle>{t('achievements_title')}</CardTitle>
             <CardDescription>

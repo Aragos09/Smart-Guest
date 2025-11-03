@@ -150,7 +150,7 @@ function SignatureMenu() {
             <CardDescription>{t(signatureMenu.description as any)}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-             <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {sustainabilityItems.map(item => (
                    <div key={item.label} className="flex items-start space-x-3">
                       <item.icon className="h-5 w-5 mt-0.5 text-primary"/>
@@ -196,7 +196,7 @@ const RestaurantPage = () => {
       </div>
 
       <Tabs defaultValue="sustainable">
-        <TabsList className="grid w-full grid-cols-2">
+        <TabsList className="grid w-full grid-cols-1 sm:w-auto sm:grid-cols-2">
           <TabsTrigger value="sustainable">{t('vegetarian_menu_tab')}</TabsTrigger>
           <TabsTrigger value="signature">{t('signature_menu_tab')}</TabsTrigger>
         </TabsList>

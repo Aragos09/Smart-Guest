@@ -182,7 +182,7 @@ const WellnessServicesPage = memo(function WellnessServicesPage() {
         </div>
       </div>
 
-      <Accordion type="multiple" className="w-full space-y-4">
+      <Accordion type="multiple" defaultValue={[t("spa_category" as any)]} className="w-full space-y-4">
         {categories.map((category) => (
           <AccordionItem value={t(category.name as any)} key={category.name}>
             <AccordionTrigger className="text-2xl font-headline font-bold rounded-lg bg-card p-4 border data-[state=open]:border-b-0 data-[state=open]:rounded-b-none">

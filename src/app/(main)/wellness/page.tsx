@@ -83,11 +83,11 @@ const WellnessPage = memo(function WellnessPage() {
               {t('personalized_activities_desc')}
             </CardDescription>
           </CardHeader>
-          <CardContent className="grid gap-6 md:grid-cols-3">
+          <CardContent className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {activities.map((activity, index) => (
               <Card key={index} className="flex flex-col">
-                <CardHeader className="flex-row items-center gap-4">
-                  <activity.icon className="h-10 w-10 text-primary" />
+                <CardHeader className="flex-row items-start gap-4">
+                  <activity.icon className="h-10 w-10 text-primary flex-shrink-0" />
                   <div>
                     <CardTitle className="text-lg">{t(activity.title as any)}</CardTitle>
                     <CardDescription>{t(activity.description as any)}</CardDescription>
@@ -135,7 +135,7 @@ const WellnessPage = memo(function WellnessPage() {
             {playlists.map((playlist, index) => (
               <div
                 key={index}
-                className="flex items-center justify-between rounded-lg border p-4"
+                className="flex flex-col sm:flex-row items-start sm:items-center justify-between rounded-lg border p-4 gap-4"
               >
                 <div>
                   <p className="font-semibold">{t(playlist.title as any)}</p>
@@ -143,7 +143,7 @@ const WellnessPage = memo(function WellnessPage() {
                     {t(playlist.description as any)}
                   </p>
                 </div>
-                <Button variant="outline">{t('play_button')}</Button>
+                <Button variant="outline" className="w-full sm:w-auto">{t('play_button')}</Button>
               </div>
             ))}
           </CardContent>
