@@ -25,6 +25,12 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { useToast } from "@/hooks/use-toast";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useLanguage } from "@/context/language-context";
@@ -214,150 +220,159 @@ const ProfilePage = memo(function ProfilePage() {
              </CardContent>
           </Card>
           
-          <Card>
-            <CardHeader>
-                <CardTitle>{t('stay_preferences_title')}</CardTitle>
-                <CardDescription>{t('stay_preferences_description')}</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-8">
-                <FormField
-                    control={form.control}
-                    name="bedType"
-                    render={({ field }) => (
-                        <FormItem>
-                        <FormLabel>{t('bed_type_label')}</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                            <SelectTrigger>
-                                <SelectValue placeholder={t('bed_type_placeholder')} />
-                            </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                            <SelectItem value="king">{t('bed_type_king')}</SelectItem>
-                            <SelectItem value="queen">{t('bed_type_queen')}</SelectItem>
-                            <SelectItem value="twin">{t('bed_type_twin')}</SelectItem>
-                            <SelectItem value="sofa-bed">{t('bed_type_sofa')}</SelectItem>
-                            </SelectContent>
-                        </Select>
-                        <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="floorPreference"
-                    render={({ field }) => (
-                        <FormItem>
-                        <FormLabel>{t('floor_preference_label')}</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                            <SelectTrigger>
-                                <SelectValue placeholder={t('floor_preference_placeholder')} />
-                            </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                            <SelectItem value="high">{t('floor_preference_high')}</SelectItem>
-                            <SelectItem value="low">{t('floor_preference_low')}</SelectItem>
-                            <SelectItem value="near-elevator">{t('floor_preference_elevator')}</SelectItem>
-                            <SelectItem value="quiet-zone">{t('floor_preference_quiet')}</SelectItem>
-                            </SelectContent>
-                        </Select>
-                        <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="viewPreference"
-                    render={({ field }) => (
-                        <FormItem>
-                        <FormLabel>{t('view_preference_label')}</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                            <SelectTrigger>
-                                <SelectValue placeholder={t('view_preference_placeholder')} />
-                            </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                            <SelectItem value="city">{t('view_preference_city')}</SelectItem>
-                            <SelectItem value="garden">{t('view_preference_garden')}</SelectItem>
-                            <SelectItem value="pool">{t('view_preference_pool')}</SelectItem>
-                            </SelectContent>
-                        </Select>
-                        <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="pillowType"
-                    render={({ field }) => (
-                        <FormItem>
-                        <FormLabel>{t('pillow_type_label')}</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                            <SelectTrigger>
-                                <SelectValue placeholder={t('pillow_type_placeholder')} />
-                            </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                            <SelectItem value="soft">{t('pillow_type_soft')}</SelectItem>
-                            <SelectItem value="firm">{t('pillow_type_firm')}</SelectItem>
-                            <SelectItem value="hypoallergenic">{t('pillow_type_hypoallergenic')}</SelectItem>
-                            <SelectItem value="memory-foam">{t('pillow_type_memory')}</SelectItem>
-                            </SelectContent>
-                        </Select>
-                        <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="roomFragrance"
-                    render={({ field }) => (
-                        <FormItem>
-                        <FormLabel>{t('fragrance_label')}</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                            <SelectTrigger>
-                                <SelectValue placeholder={t('fragrance_placeholder')} />
-                            </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                            <SelectItem value="none">{t('fragrance_none')}</SelectItem>
-                            <SelectItem value="citrus">{t('fragrance_citrus')}</SelectItem>
-                            <SelectItem value="lavender">{t('fragrance_lavender')}</SelectItem>
-                            <SelectItem value="fresh-linen">{t('fragrance_linen')}</SelectItem>
-                            </SelectContent>
-                        </Select>
-                        <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="housekeepingSchedule"
-                    render={({ field }) => (
-                        <FormItem>
-                        <FormLabel>{t('housekeeping_label')}</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                            <SelectTrigger>
-                                <SelectValue placeholder={t('housekeeping_placeholder')} />
-                            </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                            <SelectItem value="morning">{t('housekeeping_morning')}</SelectItem>
-                            <SelectItem value="afternoon">{t('housekeeping_afternoon')}</SelectItem>
-                            <SelectItem value="on-request">{t('housekeeping_request')}</SelectItem>
-                            </SelectContent>
-                        </Select>
-                        <FormMessage />
-                        </FormItem>
-                    )}
-                />
-            </CardContent>
-          </Card>
+          <Accordion type="single" collapsible className="w-full">
+            <Card asChild>
+              <AccordionItem value="item-1">
+                <AccordionTrigger className="p-6">
+                  <div className="flex flex-col items-start text-left">
+                      <CardTitle>{t('stay_preferences_title')}</CardTitle>
+                      <CardDescription className="mt-1.5">{t('stay_preferences_description')}</CardDescription>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent>
+                  <CardContent className="space-y-8">
+                      <FormField
+                          control={form.control}
+                          name="bedType"
+                          render={({ field }) => (
+                              <FormItem>
+                              <FormLabel>{t('bed_type_label')}</FormLabel>
+                              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                  <FormControl>
+                                  <SelectTrigger>
+                                      <SelectValue placeholder={t('bed_type_placeholder')} />
+                                  </SelectTrigger>
+                                  </FormControl>
+                                  <SelectContent>
+                                  <SelectItem value="king">{t('bed_type_king')}</SelectItem>
+                                  <SelectItem value="queen">{t('bed_type_queen')}</SelectItem>
+                                  <SelectItem value="twin">{t('bed_type_twin')}</SelectItem>
+                                  <SelectItem value="sofa-bed">{t('bed_type_sofa')}</SelectItem>
+                                  </SelectContent>
+                              </Select>
+                              <FormMessage />
+                              </FormItem>
+                          )}
+                      />
+                      <FormField
+                          control={form.control}
+                          name="floorPreference"
+                          render={({ field }) => (
+                              <FormItem>
+                              <FormLabel>{t('floor_preference_label')}</FormLabel>
+                              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                  <FormControl>
+                                  <SelectTrigger>
+                                      <SelectValue placeholder={t('floor_preference_placeholder')} />
+                                  </SelectTrigger>
+                                  </FormControl>
+                                  <SelectContent>
+                                  <SelectItem value="high">{t('floor_preference_high')}</SelectItem>
+                                  <SelectItem value="low">{t('floor_preference_low')}</SelectItem>
+                                  <SelectItem value="near-elevator">{t('floor_preference_elevator')}</SelectItem>
+                                  <SelectItem value="quiet-zone">{t('floor_preference_quiet')}</SelectItem>
+                                  </SelectContent>
+                              </Select>
+                              <FormMessage />
+                              </FormItem>
+                          )}
+                      />
+                      <FormField
+                          control={form.control}
+                          name="viewPreference"
+                          render={({ field }) => (
+                              <FormItem>
+                              <FormLabel>{t('view_preference_label')}</FormLabel>
+                              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                  <FormControl>
+                                  <SelectTrigger>
+                                      <SelectValue placeholder={t('view_preference_placeholder')} />
+                                  </SelectTrigger>
+                                  </FormControl>
+                                  <SelectContent>
+                                  <SelectItem value="city">{t('view_preference_city')}</SelectItem>
+                                  <SelectItem value="garden">{t('view_preference_garden')}</SelectItem>
+                                  <SelectItem value="pool">{t('view_preference_pool')}</SelectItem>
+                                  </SelectContent>
+                              </Select>
+                              <FormMessage />
+                              </FormItem>
+                          )}
+                      />
+                      <FormField
+                          control={form.control}
+                          name="pillowType"
+                          render={({ field }) => (
+                              <FormItem>
+                              <FormLabel>{t('pillow_type_label')}</FormLabel>
+                              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                  <FormControl>
+                                  <SelectTrigger>
+                                      <SelectValue placeholder={t('pillow_type_placeholder')} />
+                                  </SelectTrigger>
+                                  </FormControl>
+                                  <SelectContent>
+                                  <SelectItem value="soft">{t('pillow_type_soft')}</SelectItem>
+                                  <SelectItem value="firm">{t('pillow_type_firm')}</SelectItem>
+                                  <SelectItem value="hypoallergenic">{t('pillow_type_hypoallergenic')}</SelectItem>
+                                  <SelectItem value="memory-foam">{t('pillow_type_memory')}</SelectItem>
+                                  </SelectContent>
+                              </Select>
+                              <FormMessage />
+                              </FormItem>
+                          )}
+                      />
+                      <FormField
+                          control={form.control}
+                          name="roomFragrance"
+                          render={({ field }) => (
+                              <FormItem>
+                              <FormLabel>{t('fragrance_label')}</FormLabel>
+                              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                  <FormControl>
+                                  <SelectTrigger>
+                                      <SelectValue placeholder={t('fragrance_placeholder')} />
+                                  </SelectTrigger>
+                                  </FormControl>
+                                  <SelectContent>
+                                  <SelectItem value="none">{t('fragrance_none')}</SelectItem>
+                                  <SelectItem value="citrus">{t('fragrance_citrus')}</SelectItem>
+                                  <SelectItem value="lavender">{t('fragrance_lavender')}</SelectItem>
+                                  <SelectItem value="fresh-linen">{t('fragrance_linen')}</SelectItem>
+                                  </SelectContent>
+                              </Select>
+                              <FormMessage />
+                              </FormItem>
+                          )}
+                      />
+                      <FormField
+                          control={form.control}
+                          name="housekeepingSchedule"
+                          render={({ field }) => (
+                              <FormItem>
+                              <FormLabel>{t('housekeeping_label')}</FormLabel>
+                              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                  <FormControl>
+                                  <SelectTrigger>
+                                      <SelectValue placeholder={t('housekeeping_placeholder')} />
+                                  </SelectTrigger>
+                                  </FormControl>
+                                  <SelectContent>
+                                  <SelectItem value="morning">{t('housekeeping_morning')}</SelectItem>
+                                  <SelectItem value="afternoon">{t('housekeeping_afternoon')}</SelectItem>
+                                  <SelectItem value="on-request">{t('housekeeping_request')}</SelectItem>
+                                  </SelectContent>
+                              </Select>
+                              <FormMessage />
+                              </FormItem>
+                          )}
+                      />
+                  </CardContent>
+                </AccordionContent>
+              </AccordionItem>
+            </Card>
+          </Accordion>
+
           <Card>
             <CardHeader>
                 <CardTitle>{t('dietary_preferences_title')}</CardTitle>
