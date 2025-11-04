@@ -221,9 +221,9 @@ const ProfilePage = memo(function ProfilePage() {
           </Card>
           
           <Accordion type="single" collapsible className="w-full">
-            <Card asChild>
-              <AccordionItem value="item-1">
-                <AccordionTrigger className="p-6">
+            <Card>
+              <AccordionItem value="item-1" className="border-b-0">
+                <AccordionTrigger className="p-6 hover:no-underline">
                   <div className="flex flex-col items-start text-left">
                       <CardTitle>{t('stay_preferences_title')}</CardTitle>
                       <CardDescription className="mt-1.5">{t('stay_preferences_description')}</CardDescription>
