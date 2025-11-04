@@ -373,88 +373,96 @@ const ProfilePage = memo(function ProfilePage() {
             </Card>
           </Accordion>
 
-          <Card>
-            <CardHeader>
-                <CardTitle>{t('dietary_preferences_title')}</CardTitle>
-                <CardDescription>{t('dietary_preferences_description')}</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-8">
-                 <FormField
-                    control={form.control}
-                    name="dietaryRestrictions"
-                    render={({ field }) => (
-                        <FormItem>
-                        <FormLabel>{t('dietary_restrictions_label')}</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                            <SelectTrigger>
-                                <SelectValue placeholder={t('dietary_restrictions_placeholder')} />
-                            </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                                <SelectItem value="vegan">{t('dietary_vegan')}</SelectItem>
-                                <SelectItem value="vegetarian">{t('dietary_vegetarian')}</SelectItem>
-                                <SelectItem value="halal">{t('dietary_halal')}</SelectItem>
-                                <SelectItem value="kosher">{t('dietary_kosher')}</SelectItem>
-                                <SelectItem value="gluten-free">{t('dietary_gluten_free')}</SelectItem>
-                                <SelectItem value="lactose-free">{t('dietary_lactose_free')}</SelectItem>
-                                <SelectItem value="none">{t('dietary_none')}</SelectItem>
-                            </SelectContent>
-                        </Select>
-                        <FormMessage />
-                        </FormItem>
-                    )}
-                />
+          <Accordion type="single" collapsible className="w-full">
+            <Card>
+                <AccordionItem value="item-1" className="border-b-0">
+                    <AccordionTrigger className="p-6 hover:no-underline">
+                        <div className="flex flex-col items-start text-left">
+                            <CardTitle>{t('dietary_preferences_title')}</CardTitle>
+                            <CardDescription className="mt-1.5">{t('dietary_preferences_description')}</CardDescription>
+                        </div>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                        <CardContent className="space-y-8">
+                            <FormField
+                                control={form.control}
+                                name="dietaryRestrictions"
+                                render={({ field }) => (
+                                    <FormItem>
+                                    <FormLabel>{t('dietary_restrictions_label')}</FormLabel>
+                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                        <FormControl>
+                                        <SelectTrigger>
+                                            <SelectValue placeholder={t('dietary_restrictions_placeholder')} />
+                                        </SelectTrigger>
+                                        </FormControl>
+                                        <SelectContent>
+                                            <SelectItem value="vegan">{t('dietary_vegan')}</SelectItem>
+                                            <SelectItem value="vegetarian">{t('dietary_vegetarian')}</SelectItem>
+                                            <SelectItem value="halal">{t('dietary_halal')}</SelectItem>
+                                            <SelectItem value="kosher">{t('dietary_kosher')}</SelectItem>
+                                            <SelectItem value="gluten-free">{t('dietary_gluten_free')}</SelectItem>
+                                            <SelectItem value="lactose-free">{t('dietary_lactose_free')}</SelectItem>
+                                            <SelectItem value="none">{t('dietary_none')}</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                    <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
 
-                <FormField
-                  control={form.control}
-                  name="allergies"
-                  render={() => (
-                    <FormItem>
-                      <div className="mb-4">
-                        <FormLabel className="text-base">{t('allergens_label')}</FormLabel>
-                      </div>
-                      <div className="space-y-2">
-                      {alergies.map((item) => (
-                        <FormField
-                          key={item.id}
-                          control={form.control}
-                          name="allergies"
-                          render={({ field }) => {
-                            return (
-                              <FormItem
-                                key={item.id}
-                                className="flex flex-row items-start space-x-3 space-y-0"
-                              >
-                                <FormControl>
-                                  <Checkbox
-                                    checked={field.value?.includes(item.id)}
-                                    onCheckedChange={(checked) => {
-                                      return checked
-                                        ? field.onChange([...(field.value || []), item.id])
-                                        : field.onChange(
-                                            field.value?.filter(
-                                              (value) => value !== item.id
-                                            )
-                                          )
+                            <FormField
+                            control={form.control}
+                            name="allergies"
+                            render={() => (
+                                <FormItem>
+                                <div className="mb-4">
+                                    <FormLabel className="text-base">{t('allergens_label')}</FormLabel>
+                                </div>
+                                <div className="space-y-2">
+                                {alergies.map((item) => (
+                                    <FormField
+                                    key={item.id}
+                                    control={form.control}
+                                    name="allergies"
+                                    render={({ field }) => {
+                                        return (
+                                        <FormItem
+                                            key={item.id}
+                                            className="flex flex-row items-start space-x-3 space-y-0"
+                                        >
+                                            <FormControl>
+                                            <Checkbox
+                                                checked={field.value?.includes(item.id)}
+                                                onCheckedChange={(checked) => {
+                                                return checked
+                                                    ? field.onChange([...(field.value || []), item.id])
+                                                    : field.onChange(
+                                                        field.value?.filter(
+                                                        (value) => value !== item.id
+                                                        )
+                                                    )
+                                                }}
+                                            />
+                                            </FormControl>
+                                            <FormLabel className="font-normal">
+                                            {t(item.label as any)}
+                                            </FormLabel>
+                                        </FormItem>
+                                        )
                                     }}
-                                  />
-                                </FormControl>
-                                <FormLabel className="font-normal">
-                                  {t(item.label as any)}
-                                </FormLabel>
-                              </FormItem>
-                            )
-                          }}
-                        />
-                      ))}
-                      </div>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-            </CardContent>
-          </Card>
+                                    />
+                                ))}
+                                </div>
+                                <FormMessage />
+                                </FormItem>
+                            )}
+                            />
+                        </CardContent>
+                    </AccordionContent>
+                </AccordionItem>
+            </Card>
+          </Accordion>
           
           <Card>
             <CardHeader>
@@ -662,3 +670,5 @@ const ProfilePage = memo(function ProfilePage() {
 });
 
 export default ProfilePage;
+
+    
