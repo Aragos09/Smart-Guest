@@ -79,7 +79,24 @@ const LoginPage = memo(function LoginPage() {
               <Input id="password" type="password" placeholder="••••••••" required />
             </div>
              <div className="flex items-center space-x-2">
-              <Checkbox id="terms" onCheckedChange={(checked) => setAcceptedTerms(checked as boolean)} />
+              <Checkbox 
+                id="terms" 
+                onCheckedChange={(checked) => {
+                  const isChecked = checked as boolean;
+                  setAcceptedTerms(isChecked);
+                  if (isChecked && typeof window !== "undefined" && navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                      (position) => {
+                        localStorage.setItem("user_lat", position.coords.latitude.toString());
+                        localStorage.setItem("user_lon", position.coords.longitude.toString());
+                      },
+                      (error) => {
+                        console.warn("Geolocation permission denied or error during login terms check:", error);
+                      }
+                    );
+                  }
+                }} 
+              />
               <label
                 htmlFor="terms"
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"

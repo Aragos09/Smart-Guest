@@ -30,23 +30,46 @@ const ConciergePage = memo(function ConciergePage() {
   const [coords, setCoords] = useState<{latitude: number, longitude: number} | null>(null);
 
   useEffect(() => {
-    function getWeather(position: GeolocationPosition) {
+    const defaultCoords = { latitude: 48.8566, longitude: 2.3522 }; // Paris (Hotel Location)
+
+    function fetchWeatherForCoords(lat: number, lon: number) {
       setCoords({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
+        latitude: lat,
+        longitude: lon,
       });
       summarizeWeather({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
+        latitude: lat,
+        longitude: lon,
         language: language,
       }).then(setWeather).catch(console.error);
     }
-    
-    function handleGeoError(error: GeolocationPositionError) {
-      console.error("Geolocation error:", error);
+
+    if (typeof window !== "undefined" && navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          fetchWeatherForCoords(position.coords.latitude, position.coords.longitude);
+        },
+        (error) => {
+          console.warn("Concierge geolocation failed, checking localStorage:", error);
+          const cachedLat = localStorage.getItem("user_lat");
+          const cachedLon = localStorage.getItem("user_lon");
+          if (cachedLat && cachedLon) {
+            fetchWeatherForCoords(parseFloat(cachedLat), parseFloat(cachedLon));
+          } else {
+            fetchWeatherForCoords(defaultCoords.latitude, defaultCoords.longitude);
+          }
+        }
+      );
+    } else {
+      const cachedLat = typeof window !== "undefined" ? localStorage.getItem("user_lat") : null;
+      const cachedLon = typeof window !== "undefined" ? localStorage.getItem("user_lon") : null;
+      if (cachedLat && cachedLon) {
+        fetchWeatherForCoords(parseFloat(cachedLat), parseFloat(cachedLon));
+      } else {
+        console.warn("Geolocation not supported, falling back to hotel location.");
+        fetchWeatherForCoords(defaultCoords.latitude, defaultCoords.longitude);
+      }
     }
-    
-    navigator.geolocation.getCurrentPosition(getWeather, handleGeoError);
   }, [language]);
 
 

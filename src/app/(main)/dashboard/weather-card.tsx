@@ -85,13 +85,25 @@ export function WeatherCard() {
           fetchWeather(position.coords.latitude, position.coords.longitude);
         },
         (error) => {
-          console.warn("Geolocation error, falling back to hotel location:", error);
-          fetchWeather(defaultCoords.latitude, defaultCoords.longitude);
+          console.warn("Geolocation error, checking localStorage fallback:", error);
+          const cachedLat = localStorage.getItem("user_lat");
+          const cachedLon = localStorage.getItem("user_lon");
+          if (cachedLat && cachedLon) {
+            fetchWeather(parseFloat(cachedLat), parseFloat(cachedLon));
+          } else {
+            fetchWeather(defaultCoords.latitude, defaultCoords.longitude);
+          }
         }
       );
     } else {
-      console.warn("Geolocation not supported, falling back to hotel location.");
-      fetchWeather(defaultCoords.latitude, defaultCoords.longitude);
+      const cachedLat = typeof window !== "undefined" ? localStorage.getItem("user_lat") : null;
+      const cachedLon = typeof window !== "undefined" ? localStorage.getItem("user_lon") : null;
+      if (cachedLat && cachedLon) {
+        fetchWeather(parseFloat(cachedLat), parseFloat(cachedLon));
+      } else {
+        console.warn("Geolocation not supported, falling back to hotel location.");
+        fetchWeather(defaultCoords.latitude, defaultCoords.longitude);
+      }
     }
   }, [language, t]);
 
