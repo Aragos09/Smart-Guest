@@ -8,6 +8,12 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  serverExternalPackages: [
+    'genkit',
+    '@genkit-ai/google-genai',
+    '@genkit-ai/next',
+    'firebase-admin',
+  ],
   images: {
     remotePatterns: [
       {

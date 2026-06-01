@@ -13,14 +13,7 @@ import {
   RadarChart,
 } from "recharts";
 import { memo } from 'react';
-
-const chartData = [
-  { category: "Water", score: 82, fullMark: 100 },
-  { category: "Energy", score: 75, fullMark: 100 },
-  { category: "Waste", score: 90, fullMark: 100 },
-  { category: "Transport", score: 65, fullMark: 100 },
-  { category: "Sourcing", score: 88, fullMark: 100 },
-];
+import { useLanguage } from "@/context/language-context";
 
 const chartConfig = {
   score: {
@@ -30,6 +23,15 @@ const chartConfig = {
 };
 
 export const EcoScoreChart = memo(function EcoScoreChart() {
+  const { t } = useLanguage();
+
+  const chartData = [
+    { category: t('water_category' as any), score: 82, fullMark: 100 },
+    { category: t('energy_category' as any), score: 75, fullMark: 100 },
+    { category: t('waste_category' as any), score: 90, fullMark: 100 },
+    { category: t('sourcing_category' as any), score: 88, fullMark: 100 },
+  ];
+
   return (
     <ChartContainer
       config={chartConfig}

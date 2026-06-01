@@ -64,7 +64,14 @@ const ConciergePage = memo(function ConciergePage() {
   }
 
   const knowledgeBase = `
-    GENERAL HOTEL INFO: Our hotel uses solar panels for hot water, offers a linen reuse program, and sources 80% of its restaurant ingredients from local farms within a 50-mile radius. We have EV charging stations, a partnership with a local e-bike rental company, and a farm-to-table restaurant. The spa offers massages and yoga classes. Direct booking for services is available through their respective pages in the app.
+    GENERAL HOTEL INFO: 
+    - Check-in is at 3:00 PM, Check-out is at 11:00 AM.
+    - We cater to bleisure travelers with high-speed Wi-Fi throughout the hotel and dedicated co-working areas in the lobby.
+    - Eco-commitments: Solar panels for hot water, linen reuse program, 80% of restaurant ingredients from local farms within a 50-mile radius, EV charging stations, partnership with a local e-bike rental company.
+    - Direct booking for services is available through their respective pages in the app.
+
+    SPECIAL REQUESTS:
+    - Guests can request a "Wake-up Call" or a "Late Check-out" through the "Special Requests" (Requêtes Spéciales) page in the app. If a guest asks for either of these, explicitly tell them to navigate to the "Special Requests" section of the app to submit their preferred time.
 
     RESTAURANT MENUS:
     - Vegetarian Menu: ${JSON.stringify(restaurantMenu)}

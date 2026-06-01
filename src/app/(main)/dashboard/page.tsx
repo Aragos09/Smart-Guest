@@ -17,8 +17,9 @@ import {
   Utensils,
   ShoppingBasket,
   Home,
-  Sparkles,
   Receipt,
+  Star,
+  Flower2,
 } from "lucide-react";
 import Link from "next/link";
 import { EcoScoreChart } from "./eco-score-chart";
@@ -42,7 +43,7 @@ const allQuickLinks: QuickLink[] = [
     href: "/smart-room",
     icon: Home,
     title: "smart_room_title",
-    description: "smart_room_subtitle",
+    description: "smart_room_description",
   },
   {
     id: "eco-manager",
@@ -54,7 +55,7 @@ const allQuickLinks: QuickLink[] = [
   {
     id: "wellness-services",
     href: "/wellness-services",
-    icon: Sparkles,
+    icon: Flower2,
     title: "wellness_services_title",
     description: "wellness_services_subtitle",
   },
@@ -93,6 +94,13 @@ const allQuickLinks: QuickLink[] = [
     title: "concierge_title",
     description: "concierge_subtitle",
   },
+  {
+    id: "special-requests",
+    href: "/special-requests",
+    icon: Star,
+    title: "special_requests_title",
+    description: "special_requests_subtitle",
+  },
 ];
 
 const DashboardPage = memo(function DashboardPage() {
@@ -130,7 +138,7 @@ const DashboardPage = memo(function DashboardPage() {
 
   return (
     <div className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
-      <Card>
+      <Card className="glass-panel">
         <CardHeader>
           <CardTitle className="font-headline text-3xl">
             {t('welcome_back_user')}, {profile.name}!
@@ -142,7 +150,7 @@ const DashboardPage = memo(function DashboardPage() {
       </Card>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {profile.ecoSensitivity === 'high' && (
-          <Card className="lg:col-span-2">
+          <Card className="lg:col-span-2 glass-panel">
             <CardHeader>
               <CardTitle>{t('ecoscore_title')}</CardTitle>
               <CardDescription>
@@ -155,8 +163,8 @@ const DashboardPage = memo(function DashboardPage() {
           </Card>
         )}
         <WeatherCard />
-        {quickLinks.length > 0 && (
-          <Card className="lg:col-span-2 xl:col-span-2">
+        {quickLinks.length > 0 && profile.tripType !== "bleisure" && (
+          <Card className="lg:col-span-2 xl:col-span-2 glass-panel">
             <CardHeader>
               <CardTitle>{t('quick_links_title')}</CardTitle>
               <CardDescription>
@@ -182,6 +190,64 @@ const DashboardPage = memo(function DashboardPage() {
               ))}
             </CardContent>
           </Card>
+        )}
+
+        {quickLinks.length > 0 && profile.tripType === "bleisure" && (
+          <>
+            <Card className="lg:col-span-2 glass-panel">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                   <Home className="h-5 w-5 text-primary" />
+                   {t('work_essentials_title')}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                {quickLinks.filter(l => ["smart-room", "room-service", "invoice", "special-requests", "concierge"].includes(l.id)).map((link) => (
+                  <Link href={link.href} key={link.href} passHref>
+                    <div className="group flex h-full flex-col rounded-lg border border-primary/20 bg-primary/5 p-4 transition-colors hover:bg-primary/10">
+                      <div className="flex items-center justify-between">
+                        <link.icon className="h-6 w-6 text-primary" />
+                        <ArrowRight className="h-4 w-4 text-primary/70 transition-transform group-hover:translate-x-1" />
+                      </div>
+                      <div className="mt-4">
+                        <p className="font-semibold">{t(link.title as any)}</p>
+                        <p className="text-sm text-muted-foreground hidden xl:block">
+                          {t(link.description as any)}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </CardContent>
+            </Card>
+
+            <Card className="lg:col-span-2 glass-panel border-green-200/20">
+               <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                   <Flower2 className="h-5 w-5 text-green-600 dark:text-green-400" />
+                   {t('leisure_wellness_title')}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                {quickLinks.filter(l => ["eco-manager", "wellness-services", "experiences", "restaurant"].includes(l.id)).map((link) => (
+                  <Link href={link.href} key={link.href} passHref>
+                    <div className="group flex h-full flex-col rounded-lg border border-green-200 bg-green-50/50 p-4 transition-colors hover:bg-green-100/50 dark:border-green-900/30 dark:bg-green-900/10 dark:hover:bg-green-900/20">
+                      <div className="flex items-center justify-between">
+                        <link.icon className="h-6 w-6 text-green-600 dark:text-green-400" />
+                        <ArrowRight className="h-4 w-4 text-green-600/70 dark:text-green-400/70 transition-transform group-hover:translate-x-1" />
+                      </div>
+                      <div className="mt-4">
+                        <p className="font-semibold">{t(link.title as any)}</p>
+                        <p className="text-sm text-muted-foreground hidden xl:block">
+                          {t(link.description as any)}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </CardContent>
+            </Card>
+          </>
         )}
       </div>
     </div>

@@ -5,11 +5,16 @@ import React, { createContext, useContext, useState, ReactNode, useMemo } from '
 import type { RoomServiceItem, MenuItem } from '@/lib/types';
 
 
-export type CartItem = (RoomServiceItem | MenuItem) & {
+export type CartItem = {
   id: string;
+  name: string;
+  price: number;
   quantity: number;
   image?: string;
-  price: number;
+  description?: string;
+  type?: string;
+  eco_label?: string;
+  bookingInfo?: string;
 };
 
 interface CartContextType {

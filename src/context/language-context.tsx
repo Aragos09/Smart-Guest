@@ -10,7 +10,7 @@ import { useUserProfile } from "./user-profile-context";
 type LanguageContextType = {
   language: Language;
   setLanguage: (language: Language) => void;
-  t: (key: any) => string;
+  t: (key: any, options?: { context?: string }) => string;
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);

@@ -23,7 +23,7 @@ import {
   DialogTrigger,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { Lightbulb, Thermometer, Wind, Tv, Moon, BookOpen, Loader, Wifi, Sun, User, BellOff, Sparkles as SparklesIcon } from "lucide-react";
+import { Lightbulb, Thermometer, Wind, Tv, Moon, BookOpen, Loader, Wifi, Sun, User, BellOff, Sparkles as SparklesIcon, Briefcase } from "lucide-react";
 
 type ControlType = "lighting" | "climate" | "ambiance" | "blinds" | "status";
 
@@ -74,6 +74,7 @@ function AmbianceControls() {
         { id: "relax", icon: Moon, label: t('relax_preset') },
         { id: "energize", icon: Lightbulb, label: t('energize_preset') },
         { id: "movie", icon: Tv, label: t('movie_preset') },
+        { id: "work", icon: Briefcase, label: t('work_preset') },
     ];
     return (
         <div className="grid grid-cols-2 gap-4 pt-4">

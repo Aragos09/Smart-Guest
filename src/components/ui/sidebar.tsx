@@ -18,6 +18,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { Sheet, SheetContent } from "@/components/ui/sheet"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
@@ -175,10 +176,28 @@ const Sidebar = React.forwardRef<
     },
     ref
   ) => {
-    const { state, isMobile } = useSidebar()
+    const { state, isMobile, open, setOpen } = useSidebar()
     
     const effectiveCollapsible = isMobile ? "icon" : collapsible;
     const effectiveVariant = isMobile ? "sidebar" : variant;
+
+    if (isMobile) {
+      return (
+        <Sheet open={open} onOpenChange={setOpen} {...props}>
+          <SheetContent
+            data-sidebar="sidebar"
+            data-mobile="true"
+            className={cn(
+              "w-[--sidebar-width] bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden",
+              className
+            )}
+            side={side}
+          >
+            <div className="flex h-full w-full flex-col">{children}</div>
+          </SheetContent>
+        </Sheet>
+      )
+    }
 
     if (effectiveCollapsible === "none") {
       return (

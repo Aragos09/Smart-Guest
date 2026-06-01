@@ -37,7 +37,7 @@ import { useLanguage } from "@/context/language-context";
 import type { Language } from "@/lib/translations";
 import { useUserProfile } from "@/context/user-profile-context";
 import { useEffect, memo } from "react";
-import { Leaf, HeartHandshake, BotMessageSquare, Utensils, Sparkles, ShoppingBasket, Home, Receipt, Star } from "lucide-react";
+import { Leaf, HeartHandshake, BotMessageSquare, Utensils, Flower2, ShoppingBasket, Home, Receipt, Star, Sparkles } from "lucide-react";
 import menuData from "@/lib/restaurant-menu.json";
 import signatureMenuJson from "@/lib/signature-menu.json";
 import type { MenuCategory, SignatureMenuData } from "@/lib/types";
@@ -62,12 +62,13 @@ const alergies = [
 const allQuickLinks = [
   { id: "smart-room", label: "smart_room_title", icon: Home },
   { id: "eco-manager", label: "eco_manager_title", icon: Leaf },
-  { id: "wellness-services", label: "wellness_services_title", icon: Sparkles },
+  { id: "wellness-services", label: "wellness_services_title", icon: Flower2 },
   { id: "experiences", label: "experiences_title", icon: HeartHandshake },
   { id: "restaurant", label: "restaurant_title", icon: Utensils },
   { id: "room-service", label: "room_service_title", icon: ShoppingBasket },
   { id: "invoice", label: "invoice_title", icon: Receipt },
   { id: "concierge", label: "concierge_title", icon: BotMessageSquare },
+  { id: "special-requests", label: "special_requests_title", icon: Star },
 ];
 
 const profileFormSchema = z.object({
@@ -76,7 +77,7 @@ const profileFormSchema = z.object({
   language: z.enum(["en", "fr"], {
     required_error: "Please select a language.",
   }),
-  tripType: z.enum(["leisure", "business"], {
+  tripType: z.enum(["leisure", "business", "bleisure"], {
     required_error: "Please select a trip type.",
   }),
   ecoSensitivity: z.enum(["low", "medium", "high"], {
@@ -600,6 +601,12 @@ const ProfilePage = memo(function ProfilePage() {
                             <RadioGroupItem value="business" />
                           </FormControl>
                           <FormLabel className="font-normal">{t('trip_type_business')}</FormLabel>
+                        </FormItem>
+                        <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem value="bleisure" />
+                          </FormControl>
+                          <FormLabel className="font-normal">{t('trip_type_bleisure')}</FormLabel>
                         </FormItem>
                       </RadioGroup>
                     </FormControl>

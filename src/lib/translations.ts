@@ -61,6 +61,25 @@ export const translations = {
     'smart_room_title': 'Smart Room',
     'wellness_services_title': 'Wellness & Services',
     'invoice_title': 'Invoice',
+    'special_requests_title': 'Special Requests',
+    'menu_title': 'Menu',
+
+    // Special Requests
+    'special_requests_subtitle': 'Manage your stay requirements.',
+    'wake_up_call_title': 'Wake-up Call',
+    'wake_up_call_desc': 'Set a time to be woken up.',
+    'late_checkout_title': 'Late Check-out',
+    'late_checkout_desc': 'Request a later departure time.',
+    'status_confirmed': 'Confirmed',
+    'status_pending': 'Pending Confirmation',
+    'time_label': 'Time',
+    'submit_request_button': 'Submit Request',
+    'request_submitted_toast': 'Request Submitted',
+    'request_submitted_desc': 'Your request has been successfully submitted.',
+    'work_essentials_title': 'Work Essentials',
+    'leisure_wellness_title': 'Leisure & Wellness',
+    'work_preset': 'Work / Focus',
+    'trip_type_bleisure': 'Bleisure (Business + Leisure)',
 
     // Dashboard
     'welcome_back_user': 'Welcome back',
@@ -89,11 +108,11 @@ export const translations = {
     'five_day_forecast_title': '5-Day Forecast',
     'weather_now': 'Now',
     'invoice_description': 'View and pay your invoice.',
-    'smart_room_subtitle': 'Control your room settings.',
     'smart_room_description': 'Adjust lighting, temperature, and more.',
 
     // Eco Manager
     'eco_manager_subtitle': 'Visualize your positive impact on the environment.',
+    'day_label': 'Day',
     'impact_breakdown_title': 'Impact Breakdown',
     'impact_breakdown_description': 'Your consumption against daily eco-goals. (Lower is better)',
     'your_impact_label': 'Your Impact',
@@ -668,6 +687,25 @@ export const translations = {
     'smart_room_title': 'Chambre Connectée',
     'wellness_services_title': 'Bien-être & Services',
     'invoice_title': 'Facture',
+    'special_requests_title': 'Requêtes Spéciales',
+    'menu_title': 'Menu',
+
+    // Special Requests
+    'special_requests_subtitle': 'Gérez les exigences de votre séjour.',
+    'wake_up_call_title': 'Réveil par téléphone',
+    'wake_up_call_desc': 'Définissez une heure de réveil.',
+    'late_checkout_title': 'Départ tardif',
+    'late_checkout_desc': 'Demandez une heure de départ plus tardive.',
+    'status_confirmed': 'Confirmé',
+    'status_pending': 'En attente de confirmation',
+    'time_label': 'Heure',
+    'submit_request_button': 'Soumettre la requête',
+    'request_submitted_toast': 'Requête soumise',
+    'request_submitted_desc': 'Votre requête a été soumise avec succès.',
+    'work_essentials_title': 'L\'essentiel pour le Travail',
+    'leisure_wellness_title': 'Loisirs & Bien-être',
+    'work_preset': 'Travail / Concentration',
+    'trip_type_bleisure': 'Bleisure (Affaires + Loisirs)',
 
     // Dashboard
     'welcome_back_user': 'Bon retour',
@@ -696,11 +734,11 @@ export const translations = {
     'five_day_forecast_title': 'Prévisions à 5 jours',
     'weather_now': 'Maintenant',
     'invoice_description': 'Visualisez et payez votre facture.',
-    'smart_room_subtitle': 'Contrôlez les paramètres de votre chambre.',
     'smart_room_description': 'Ajustez l’éclairage, la température, et plus encore.',
     
     // Eco Manager
     'eco_manager_subtitle': 'Visualisez votre impact positif sur l\'environnement.',
+    'day_label': 'Jour',
     'impact_breakdown_title': 'Détail de l\'Impact',
     'impact_breakdown_description': 'Votre consommation par rapport aux éco-objectifs quotidiens. (Plus c\'est bas, mieux c\'est)',
     'your_impact_label': 'Votre Impact',

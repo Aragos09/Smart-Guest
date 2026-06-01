@@ -14,9 +14,11 @@ import {
   Wind,
   ShoppingBasket,
   Home,
-  Sparkles,
-  LogOut,
   Receipt,
+  Star,
+  Flower2,
+  User,
+  LogOut,
 } from "lucide-react";
 import { AppLogo } from "@/components/icons";
 import {
@@ -42,21 +44,42 @@ function SidebarNav() {
   const { profile, logout } = useUserProfile();
   const { closeSidebar } = useSidebar();
 
-  const navItems = [
-    { href: "/dashboard", icon: LayoutDashboard, label: "dashboard_title" },
-    { href: "/smart-room", icon: Home, label: "smart_room_title" },
-    { href: "/eco-manager", icon: Leaf, label: "eco_manager_title" },
-    { href: "/wellness-services", icon: Sparkles, label: "wellness_services_title" },
-    { href: "/experiences", icon: HeartHandshake, label: "experiences_title" },
-    { href: "/restaurant", icon: Utensils, label: "restaurant_title" },
-    { href: "/room-service", icon: ShoppingBasket, label: "room_service_title" },
-    { href: "/invoice", icon: Receipt, label: "invoice_title" },
-    { href: "/concierge", icon: BotMessageSquare, label: "concierge_title" },
+  const navGroups = [
+    {
+      label: "Mon Séjour",
+      items: [
+        { href: "/dashboard", icon: LayoutDashboard, label: "dashboard_title" },
+        { href: "/smart-room", icon: Home, label: "smart_room_title" },
+        { href: "/room-service", icon: ShoppingBasket, label: "room_service_title" },
+        { href: "/eco-manager", icon: Leaf, label: "eco_manager_title" },
+      ]
+    },
+    {
+      label: "Espace Affaires",
+      items: [
+        { href: "/invoice", icon: Receipt, label: "invoice_title" },
+        { href: "/special-requests", icon: Star, label: "special_requests_title" },
+      ]
+    },
+    {
+      label: "Détente & Loisirs",
+      items: [
+        { href: "/wellness-services", icon: Flower2, label: "wellness_services_title" },
+        { href: "/experiences", icon: HeartHandshake, label: "experiences_title" },
+        { href: "/restaurant", icon: Utensils, label: "restaurant_title" },
+      ]
+    },
+    {
+      label: "Assistance",
+      items: [
+        { href: "/concierge", icon: BotMessageSquare, label: "concierge_title" },
+      ]
+    }
   ];
 
   const settingsItem = {
     href: "/profile",
-    icon: Settings,
+    icon: User,
     label: "profile_title",
   };
 
@@ -82,26 +105,33 @@ function SidebarNav() {
         </SidebarHeader>
 
         <SidebarContent>
-            <SidebarMenu>
-            {navItems.map((item, index) => (
-                <SidebarMenuItem 
-                  key={item.href}
-                  className="animate-in fade-in-0 slide-in-from-left-2"
-                  style={{ animationDelay: `${index * 50}ms`, animationFillMode: 'backwards' }}
-                  onClick={closeSidebar}
-                >
-                <Link href={item.href}>
-                    <SidebarMenuButton
-                    isActive={pathname.startsWith(item.href)}
-                    tooltip={t(item.label as any)}
-                    >
-                    <item.icon />
-                    <span>{t(item.label as any)}</span>
-                    </SidebarMenuButton>
-                </Link>
-                </SidebarMenuItem>
+            {navGroups.map((group, groupIndex) => (
+              <div key={group.label} className="px-2 py-2">
+                <div className="mb-1 px-2 text-xs font-semibold uppercase tracking-wider text-sidebar-foreground/50 group-data-[collapsible=icon]:hidden">
+                  {group.label}
+                </div>
+                <SidebarMenu>
+                  {group.items.map((item, index) => (
+                      <SidebarMenuItem 
+                        key={item.href}
+                        className="animate-in fade-in-0 slide-in-from-left-2"
+                        style={{ animationDelay: `${(groupIndex * 3 + index) * 50}ms`, animationFillMode: 'backwards' }}
+                        onClick={closeSidebar}
+                      >
+                      <Link href={item.href}>
+                          <SidebarMenuButton
+                          isActive={pathname.startsWith(item.href)}
+                          tooltip={t(item.label as any)}
+                          >
+                          <item.icon />
+                          <span>{t(item.label as any)}</span>
+                          </SidebarMenuButton>
+                      </Link>
+                      </SidebarMenuItem>
+                  ))}
+                </SidebarMenu>
+              </div>
             ))}
-            </SidebarMenu>
         </SidebarContent>
 
         <SidebarFooter className="mt-auto pt-4">

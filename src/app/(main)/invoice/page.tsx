@@ -381,7 +381,7 @@ const InvoicePage = memo(function InvoicePage() {
                                   <FormControl>
                                     <SelectTrigger>
                                       <SelectValue placeholder={t('year_placeholder')} />
-                                    </Trigger>
+                                    </SelectTrigger>
                                   </FormControl>
                                   <SelectContent>
                                     {years.map(year => (

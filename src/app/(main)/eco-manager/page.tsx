@@ -40,17 +40,15 @@ const impactChartData = [
   { category: "sourcing_category", impact: 73, target: 100 },
 ];
 
-const trendChartData = [
-  { date: "Day 1", score: 65 },
-  { date: "Day 2", score: 72 },
-  { date: "Day 3", score: 70 },
-  { date: "Day 4", score: 78 },
-  { date: "Day 5", score: 82 },
-  { date: "Day 6", score: 85 },
-];
+const trendScores = [65, 72, 70, 78, 82, 85];
 
 const EcoManagerPage = memo(function EcoManagerPage() {
   const { t } = useLanguage();
+
+  const trendChartData = trendScores.map((score, i) => ({
+    date: `${t('day_label' as any) || 'Day'} ${i + 1}`,
+    score,
+  }));
 
   const impactChartConfig = {
     impact: {

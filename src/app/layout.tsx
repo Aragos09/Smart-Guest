@@ -1,18 +1,37 @@
-import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/toaster";
 
-const poppins = Poppins({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-poppins",
+  variable: "--font-inter",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
 });
 
 export const metadata: Metadata = {
   title: "Smart Guest",
   description: "Your AI-powered sustainable travel companion.",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Smart Guest",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#19664D",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
@@ -25,7 +44,8 @@ export default function RootLayout({
       <body
         className={cn(
           "h-full font-body antialiased",
-          poppins.variable
+          inter.variable,
+          playfair.variable
         )}
       >
         {children}
