@@ -55,18 +55,20 @@ export function WeatherCard() {
   const [coords, setCoords] = useState<Coordinates | null>(null);
 
   useEffect(() => {
-    async function getWeather(position: GeolocationPosition) {
+    const defaultCoords = { latitude: 48.8566, longitude: 2.3522 }; // Paris (Hotel Location)
+
+    async function fetchWeather(lat: number, lon: number) {
       setIsLoading(true);
       try {
         const result = await summarizeWeather({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
+          latitude: lat,
+          longitude: lon,
           language,
         });
         setWeather(result);
         setCoords({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
+          latitude: lat,
+          longitude: lon,
         });
         setError(null);
       } catch (error) {
@@ -77,14 +79,20 @@ export function WeatherCard() {
       }
     }
 
-    function handleGeoError(error: GeolocationPositionError) {
-      console.error("Geolocation error:", error);
-      setError(t("geolocation_unavailable_error"));
-      setIsLoading(false);
+    if (typeof window !== "undefined" && navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          fetchWeather(position.coords.latitude, position.coords.longitude);
+        },
+        (error) => {
+          console.warn("Geolocation error, falling back to hotel location:", error);
+          fetchWeather(defaultCoords.latitude, defaultCoords.longitude);
+        }
+      );
+    } else {
+      console.warn("Geolocation not supported, falling back to hotel location.");
+      fetchWeather(defaultCoords.latitude, defaultCoords.longitude);
     }
-    
-    navigator.geolocation.getCurrentPosition(getWeather, handleGeoError);
-
   }, [language, t]);
 
   const cardContent = (

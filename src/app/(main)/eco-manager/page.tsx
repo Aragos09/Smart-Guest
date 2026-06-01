@@ -21,7 +21,7 @@ import {
   XAxis,
   YAxis,
   Area,
-  LineChart,
+  AreaChart,
 } from "recharts";
 import {
   EnergyBadge,
@@ -32,6 +32,7 @@ import {
 import { useLanguage } from "@/context/language-context";
 import { memo } from "react";
 import { Info } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const impactChartData = [
   { category: "water_category", impact: 186, target: 200 },
@@ -44,6 +45,7 @@ const trendScores = [65, 72, 70, 78, 82, 85];
 
 const EcoManagerPage = memo(function EcoManagerPage() {
   const { t } = useLanguage();
+  const isMobile = useIsMobile();
 
   const trendChartData = trendScores.map((score, i) => ({
     date: `${t('day_label' as any) || 'Day'} ${i + 1}`,
@@ -125,39 +127,70 @@ const EcoManagerPage = memo(function EcoManagerPage() {
               {t('impact_breakdown_description')}
             </CardDescription>
           </CardHeader>
-          <CardContent className="pl-2">
-            <ChartContainer config={impactChartConfig} className="h-[300px] w-full">
-              <BarChart accessibilityLayer data={localizedImpactData} layout="vertical">
-                <CartesianGrid horizontal={false} />
-                <XAxis type="number" hide />
-                <YAxis
-                  dataKey="category"
-                  type="category"
-                  tickLine={false}
-                  axisLine={false}
-                  tickMargin={10}
-                  width={80}
-                />
-                <ChartTooltip
-                  cursor={false}
-                  content={<ChartTooltipContent indicator="line" />}
-                />
-                <Bar
-                  dataKey="impact"
-                  name={t("your_impact_label")}
-                  fill="var(--color-impact)"
-                  radius={4}
-                  barSize={20}
-                />
-                <Bar
-                  dataKey="target"
-                  name={t("target_label")}
-                  fill="var(--color-target)"
-                  radius={4}
-                  barSize={20}
-                />
-              </BarChart>
-            </ChartContainer>
+          <CardContent className={isMobile ? "px-4 py-2" : "pl-2"}>
+            {isMobile ? (
+              <div className="space-y-6 py-4">
+                {localizedImpactData.map((item) => {
+                  const percentage = Math.min(100, (item.impact / item.target) * 100);
+                  const isExceeded = item.impact > item.target;
+                  return (
+                    <div key={item.category} className="space-y-2">
+                      <div className="flex justify-between text-sm">
+                        <span className="font-semibold text-foreground">{item.category}</span>
+                        <span className="text-muted-foreground font-medium">
+                          {item.impact} <span className="text-xs">/ {item.target}</span>
+                        </span>
+                      </div>
+                      <div className="relative h-3 w-full rounded-full bg-muted/50 overflow-hidden">
+                        <div 
+                          className={`h-full rounded-full transition-all duration-500 ${
+                            isExceeded ? "bg-destructive" : "bg-primary"
+                          }`}
+                          style={{ width: `${percentage}%` }}
+                        />
+                      </div>
+                      <div className="flex justify-between text-[11px] text-muted-foreground">
+                        <span>{t('your_impact_label')}</span>
+                        <span>{t('target_label')}: {item.target}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <ChartContainer config={impactChartConfig} className="h-[300px] w-full">
+                <BarChart accessibilityLayer data={localizedImpactData} layout="vertical">
+                  <CartesianGrid horizontal={false} />
+                  <XAxis type="number" hide />
+                  <YAxis
+                    dataKey="category"
+                    type="category"
+                    tickLine={false}
+                    axisLine={false}
+                    tickMargin={10}
+                    width={80}
+                  />
+                  <ChartTooltip
+                    cursor={false}
+                    content={<ChartTooltipContent indicator="line" />}
+                  />
+                  <Bar
+                    dataKey="impact"
+                    name={t("your_impact_label")}
+                    fill="var(--color-impact)"
+                    radius={4}
+                    barSize={20}
+                  />
+                  <Bar
+                    dataKey="target"
+                    name={t("target_label")}
+                    fill="var(--color-target)"
+                    radius={4}
+                    barSize={20}
+                  />
+                </BarChart>
+              </ChartContainer>
+            )}
           </CardContent>
         </Card>
         <Card className="col-span-1 lg:col-span-3">
@@ -167,7 +200,7 @@ const EcoManagerPage = memo(function EcoManagerPage() {
           </CardHeader>
           <CardContent>
             <ChartContainer config={trendChartConfig} className="h-[300px] w-full">
-              <LineChart
+              <AreaChart
                 accessibilityLayer
                 data={trendChartData}
                 margin={{ top: 5, right: 20, left: -10, bottom: 0 }}
@@ -204,7 +237,7 @@ const EcoManagerPage = memo(function EcoManagerPage() {
                   stroke="var(--color-score)"
                   stackId="a"
                 />
-              </LineChart>
+              </AreaChart>
             </ChartContainer>
           </CardContent>
         </Card>
