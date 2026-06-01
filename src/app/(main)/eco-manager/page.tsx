@@ -30,9 +30,10 @@ import {
   WaterBadge,
 } from "@/components/icons";
 import { useLanguage } from "@/context/language-context";
-import { memo } from "react";
+import { memo, useState, useEffect } from "react";
 import { Info } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const impactChartData = [
   { category: "water_category", impact: 186, target: 200 },
@@ -46,6 +47,11 @@ const trendScores = [65, 72, 70, 78, 82, 85];
 const EcoManagerPage = memo(function EcoManagerPage() {
   const { t } = useLanguage();
   const isMobile = useIsMobile();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const trendChartData = trendScores.map((score, i) => ({
     date: `${t('day_label' as any) || 'Day'} ${i + 1}`,
@@ -128,7 +134,11 @@ const EcoManagerPage = memo(function EcoManagerPage() {
             </CardDescription>
           </CardHeader>
           <CardContent className={isMobile ? "px-4 py-2" : "pl-2"}>
-            {isMobile ? (
+            {!isMounted ? (
+              <div className="h-[300px] w-full flex items-center justify-center">
+                <Skeleton className="h-[260px] w-full rounded-lg" />
+              </div>
+            ) : isMobile ? (
               <div className="space-y-6 py-4">
                 {localizedImpactData.map((item) => {
                   const percentage = Math.min(100, (item.impact / item.target) * 100);
@@ -199,46 +209,52 @@ const EcoManagerPage = memo(function EcoManagerPage() {
             <CardDescription>{t('ecoscore_trend_description')}</CardDescription>
           </CardHeader>
           <CardContent>
-            <ChartContainer config={trendChartConfig} className="h-[300px] w-full">
-              <AreaChart
-                accessibilityLayer
-                data={trendChartData}
-                margin={{ top: 5, right: 20, left: -10, bottom: 0 }}
-              >
-                <CartesianGrid vertical={false} />
-                <XAxis
-                  dataKey="date"
-                  tickLine={false}
-                  axisLine={false}
-                  tickMargin={8}
-                />
-                <ChartTooltip
-                  cursor={false}
-                  content={<ChartTooltipContent indicator="dot" />}
-                />
-                <defs>
-                  <linearGradient id="fillScore" x1="0" y1="0" x2="0" y2="1">
-                    <stop
-                      offset="5%"
-                      stopColor="var(--color-score)"
-                      stopOpacity={0.8}
-                    />
-                    <stop
-                      offset="95%"
-                      stopColor="var(--color-score)"
-                      stopOpacity={0.1}
-                    />
-                  </linearGradient>
-                </defs>
-                <Area
-                  dataKey="score"
-                  type="natural"
-                  fill="url(#fillScore)"
-                  stroke="var(--color-score)"
-                  stackId="a"
-                />
-              </AreaChart>
-            </ChartContainer>
+            {!isMounted ? (
+              <div className="h-[300px] w-full flex items-center justify-center">
+                <Skeleton className="h-[260px] w-full rounded-lg" />
+              </div>
+            ) : (
+              <ChartContainer config={trendChartConfig} className="h-[300px] w-full aspect-auto">
+                <AreaChart
+                  accessibilityLayer
+                  data={trendChartData}
+                  margin={{ top: 5, right: 20, left: -10, bottom: 0 }}
+                >
+                  <CartesianGrid vertical={false} />
+                  <XAxis
+                    dataKey="date"
+                    tickLine={false}
+                    axisLine={false}
+                    tickMargin={8}
+                  />
+                  <ChartTooltip
+                    cursor={false}
+                    content={<ChartTooltipContent indicator="dot" />}
+                  />
+                  <defs>
+                    <linearGradient id="fillScore" x1="0" y1="0" x2="0" y2="1">
+                      <stop
+                        offset="5%"
+                        stopColor="var(--color-score)"
+                        stopOpacity={0.8}
+                      />
+                      <stop
+                        offset="95%"
+                        stopColor="var(--color-score)"
+                        stopOpacity={0.1}
+                      />
+                    </linearGradient>
+                  </defs>
+                  <Area
+                    dataKey="score"
+                    type="natural"
+                    fill="url(#fillScore)"
+                    stroke="var(--color-score)"
+                    stackId="a"
+                  />
+                </AreaChart>
+              </ChartContainer>
+            )}
           </CardContent>
         </Card>
         
@@ -254,7 +270,7 @@ const EcoManagerPage = memo(function EcoManagerPage() {
             {calculationExplanations.map((item) => (
               <div key={item.id} className="flex flex-col rounded-lg border p-4">
                 <p className="font-semibold mb-2">{t(item.title as any)}</p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-muted-foreground break-words">
                   {t(item.description as any)}
                 </p>
               </div>
@@ -275,7 +291,7 @@ const EcoManagerPage = memo(function EcoManagerPage() {
                 <badge.icon className={`h-12 w-12 shrink-0 ${badge.color}`} />
                 <div>
                   <p className="font-semibold">{t(badge.title as any)}</p>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted-foreground break-words">
                     {t(badge.description as any)}
                   </p>
                 </div>
