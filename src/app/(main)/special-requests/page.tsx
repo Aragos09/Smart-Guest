@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Clock, CalendarClock, CheckCircle2, Clock3 } from "lucide-react";
+import { Clock, CalendarClock, CheckCircle2, Clock3, Phone } from "lucide-react";
 
 const SpecialRequestsPage = memo(function SpecialRequestsPage() {
   const { t } = useLanguage();
@@ -45,6 +45,13 @@ const SpecialRequestsPage = memo(function SpecialRequestsPage() {
     });
   };
 
+  const handleContactReception = () => {
+    toast({
+      title: t("reception_contacted_toast" as any),
+      description: t("reception_contacted_desc" as any),
+    });
+  };
+
   return (
     <div className="flex-1 space-y-4 p-4 md:space-y-8 md:p-8">
       <div>
@@ -56,7 +63,7 @@ const SpecialRequestsPage = memo(function SpecialRequestsPage() {
         </p>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {/* Wake-up Call Card */}
         <Card>
           <CardHeader>
@@ -134,6 +141,22 @@ const SpecialRequestsPage = memo(function SpecialRequestsPage() {
                 </Button>
               </form>
             )}
+          </CardContent>
+        </Card>
+
+        {/* Other Request Card */}
+        <Card className="flex flex-col h-full justify-between">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Phone className="h-5 w-5 text-primary" />
+              {t("other_request_title" as any)}
+            </CardTitle>
+            <CardDescription>{t("other_request_desc" as any)}</CardDescription>
+          </CardHeader>
+          <CardContent className="pt-2 mt-auto">
+            <Button onClick={handleContactReception} className="w-full">
+              {t("contact_reception_button" as any)}
+            </Button>
           </CardContent>
         </Card>
       </div>
