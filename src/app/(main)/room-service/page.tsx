@@ -223,10 +223,14 @@ const RoomServicePage = () => {
 
         <Tabs defaultValue="classic" className="space-y-4">
           <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
-            <TabsList className="grid w-full grid-cols-3 md:w-auto">
+            <TabsList className="flex w-full overflow-x-auto justify-start md:grid md:grid-cols-3 md:w-auto gap-1 bg-muted p-1">
               {menuChoices.map(choice => (
-                <TabsTrigger key={choice.id} value={choice.id}>
-                  <choice.icon className="mr-2 h-4 w-4" />
+                <TabsTrigger 
+                  key={choice.id} 
+                  value={choice.id} 
+                  className="flex-1 md:flex-none shrink-0 whitespace-nowrap"
+                >
+                  <choice.icon className="mr-2 h-4 w-4 shrink-0" />
                   {t(choice.label as any)}
                 </TabsTrigger>
               ))}
